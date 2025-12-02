@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "types": ["sanity"]
   },
   "include": [
     "next-env.d.ts",
@@ -28,7 +29,12 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "./sanity/**/*",
+    "sanity.cli.ts",
+    "sanity.config.ts",
+    "sanity.types.ts",
+    "schema.json"
   ],
   "exclude": ["node_modules"]
 }
