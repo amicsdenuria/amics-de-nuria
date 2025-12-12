@@ -3,6 +3,14 @@ import { notFound } from 'next/navigation';
 import { Button } from '../ui/button';
 import { createCustomerPortal } from '@/actions/createCustomerPortal';
 import Link from 'next/link';
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../ui/card';
 
 interface SubscriptionDetailsProps {
   clerkId: string | undefined;
@@ -43,24 +51,37 @@ const SubscriptionDetails = async ({
   };
 
   return (
-    <div className="bg-amber-200">
-      <div>{formattedSubscription.productName}</div>
-      <div>{formattedSubscription.priceInterval}</div>
-      <div>
-        <div>Es renova automàticament el:</div>
-        <div>{formattedSubscription.currentPeriodEnd}</div>
-      </div>
-
-      <Button asChild>
-        <Link
-          href={url}
-          target="_blank"
-        >
-          Modifica la teva subscripció
-        </Link>
-      </Button>
-      <pre>{JSON.stringify(subscription, null, 2)}</pre>
-    </div>
+    <Card className="bg-secondary">
+      <CardHeader className="font-serif">
+        <CardTitle className="text-2xl font-bold">
+          {formattedSubscription.productName}
+        </CardTitle>
+        <CardAction className="text-2xl">
+          {subscription.unit_amount?.toFixed(2)}€
+        </CardAction>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div>
+          <h2 className="text-muted-foreground">Tipus de pagament</h2>
+          <p className="text-xl font-semibold font-serif">
+            {formattedSubscription.priceInterval}
+          </p>
+        </div>
+        <div>
+          <h2 className="text-muted-foreground">
+            Es renova automàticament el:
+          </h2>
+          <p className="text-xl font-semibold font-serif">
+            {formattedSubscription.currentPeriodEnd}
+          </p>
+        </div>
+      </CardContent>
+      <CardFooter>
+        <Button asChild>
+          <Link href={url}>Modifica la teva subscripció</Link>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
 export default SubscriptionDetails;
