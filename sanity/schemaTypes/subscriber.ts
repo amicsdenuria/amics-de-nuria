@@ -30,7 +30,7 @@ export const subscriber = defineType({
     }),
     defineField({
       name: 'currentSubscription',
-      title: 'Subscripció Activa',
+      title: 'Subscripció',
       type: 'reference',
       to: [{ type: 'subscription' }],
     }),

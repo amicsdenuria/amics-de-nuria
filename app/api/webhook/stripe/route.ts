@@ -2,7 +2,9 @@ import { AppError, BadRequest, InternalError } from '@/lib/appErrors';
 import stripe from '@/lib/stripe';
 import { adminClient } from '@/sanity/lib/client';
 import createSubscriberIfNotExist from '@/sanity/lib/subscriber/createSubscriberIfNotExist';
+import { cancelSubscription } from '@/sanity/lib/subscription/cancelSubscription';
 import { createSubscription } from '@/sanity/lib/subscription/createSubscription';
+import { patchSubscription } from '@/sanity/lib/subscription/patchSubscription';
 import { clerkClient } from '@clerk/nextjs/server';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
@@ -31,7 +33,7 @@ export const POST = async (req: NextRequest) => {
     );
 
     switch (event.type) {
-      case 'checkout.session.completed':
+      case 'checkout.session.completed': {
         const session = event.data.object;
         const mode = session.mode;
 
@@ -166,7 +168,7 @@ export const POST = async (req: NextRequest) => {
           throw new InternalError('Subscription was not created in Sanity');
         }
 
-        const updatedSubscriber = adminClient
+        const updatedSubscriber = await adminClient
           .patch(subscriber._id, {
             set: {
               stripeCustomerId,
@@ -186,6 +188,53 @@ export const POST = async (req: NextRequest) => {
         const message = `Subscriber & Subscription created successfully: \n${subscriber} \n${subscription}`;
         console.log(message);
         return new NextResponse(message, { status: 200 });
+      }
+
+      case 'customer.subscription.deleted': {
+        const subscriptionObj = event.data.object;
+
+        const stripeSubscriptionId = subscriptionObj.id;
+
+        const canceledAtSeconds =
+          typeof subscriptionObj.canceled_at === 'number'
+            ? subscriptionObj.canceled_at
+            : typeof subscriptionObj.ended_at === 'number'
+            ? subscriptionObj.ended_at
+            : Math.floor(Date.now() / 1000);
+
+        await cancelSubscription({
+          subscriptionId: stripeSubscriptionId,
+          canceledAt: canceledAtSeconds,
+        });
+
+        const message = `Subscription ${stripeSubscriptionId} marked canceled in Sanity`;
+        console.log(message);
+        return new NextResponse(message, { status: 200 });
+      }
+
+      case 'customer.subscription.updated': {
+        const subscriptionObj = event.data.object;
+
+        const subscriptionId = subscriptionObj.id;
+
+        const subscriptionPrice = subscriptionObj.items.data[0].price;
+        const product = await stripe.products.retrieve(
+          subscriptionPrice.product as string
+        );
+
+        await patchSubscription({
+          stripeSubscriptionId: subscriptionId,
+          stripePriceId: subscriptionPrice.id,
+          stripeProductId: subscriptionPrice.product as string,
+          stripeProductName: product.name ?? 'Desconegut',
+          unitAmount: subscriptionPrice.unit_amount,
+          recurringInterval: subscriptionPrice.recurring?.interval,
+          currentPeriodEnd: subscriptionObj.items.data[0].current_period_end,
+        });
+
+        const message = `Subscription ${subscriptionId} updated correctly in Sanity`;
+        return new NextResponse(message, { status: 200 });
+      }
 
       default:
         return new NextResponse(`Event ${event.type} ignored`, { status: 200 });

@@ -2,8 +2,10 @@
 
 import { baseUrl } from '@/lib/baseUrl';
 import stripe from '@/lib/stripe';
+import { getSubscriberByClerkId } from '@/sanity/lib/subscriber/getSubscriberByClerkId';
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
+import Stripe from 'stripe';
 
 interface CreateStripeSubscriptionCheckoutParams {
   priceId: string;
@@ -19,12 +21,18 @@ export const createStripeSubscriptionCheckout = async ({
     if (!user || !emailAddresses || !email)
       throw new Error('User details not found');
 
-    const session = await stripe.checkout.sessions.create({
+    const currentSubscriber = await getSubscriberByClerkId({
+      clerkId: user.id,
+    });
+
+    const sessionParams: Stripe.Checkout.SessionCreateParams = {
       locale: 'es',
       mode: 'subscription',
       success_url: `${baseUrl}/subscription/confirmation`,
       cancel_url: `${baseUrl}/subscription`,
-      customer_email: email,
+      ...(currentSubscriber?.stripeCustomerId
+        ? { customer: currentSubscriber.stripeCustomerId }
+        : { customer_email: email }),
       metadata: {
         clerkId: user.id,
       },
@@ -34,7 +42,9 @@ export const createStripeSubscriptionCheckout = async ({
           price: priceId,
         },
       ],
-    });
+    };
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return { url: session.url };
   } catch (error) {

@@ -252,6 +252,34 @@ export type GetSubscriberByClerkIdQueryResult = {
   createdSubscriberAt?: string;
 } | null;
 
+// Source: ./sanity/lib/subscription/cancelSubscription.ts
+// Variable: getCurrentSubscriptionQuery
+// Query: *[_type == 'subscription' && stripeSubscriptionId == $subscriptionId][0]
+export type GetCurrentSubscriptionQueryResult = {
+  _id: string;
+  _type: "subscription";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  subscriber?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "subscriber";
+  };
+  stripeSubscriptionId?: string;
+  stripeCustomerId?: string;
+  stripePriceId?: string;
+  stripeProductId?: string;
+  productName?: string;
+  unit_amount?: number;
+  priceInterval?: "month" | "year";
+  status?: "active" | "canceled" | "incomplete" | "past_due";
+  current_period_end?: string;
+  canceled_at?: string;
+  createdAt?: string;
+} | null;
+
 // Source: ./sanity/lib/subscription/createSubscription.ts
 // Variable: subscriberActiveSubscriptionQuery
 // Query: *[_type == 'subscription' && subscriber._ref == $subscriberId && status == 'active'][0]
@@ -308,12 +336,42 @@ export type GetSubscriptionQueryResult = {
   createdAt?: string;
 } | null;
 
+// Source: ./sanity/lib/subscription/patchSubscription.ts
+// Variable: getCurrentSubscriptionByStripeSubscriptionIdQuery
+// Query: *[_type == 'subscription' && stripeSubscriptionId == $stripeSubscriptionId][0]
+export type GetCurrentSubscriptionByStripeSubscriptionIdQueryResult = {
+  _id: string;
+  _type: "subscription";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  subscriber?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "subscriber";
+  };
+  stripeSubscriptionId?: string;
+  stripeCustomerId?: string;
+  stripePriceId?: string;
+  stripeProductId?: string;
+  productName?: string;
+  unit_amount?: number;
+  priceInterval?: "month" | "year";
+  status?: "active" | "canceled" | "incomplete" | "past_due";
+  current_period_end?: string;
+  canceled_at?: string;
+  createdAt?: string;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == 'subscriber' && clerkId == $clerkId][0]": ExistingSubscriberQueryResult | GetSubscriberByClerkIdQueryResult;
     "*[_type == 'subscription' && subscriber._ref == $subscriberId && status == 'active'][0]": GetIsEnrolledQueryResult | SubscriberActiveSubscriptionQueryResult;
+    "*[_type == 'subscription' && stripeSubscriptionId == $subscriptionId][0]": GetCurrentSubscriptionQueryResult;
     "*[_type == 'subscription' && subscriber->clerkId == $clerkId && status == 'active'][0]": GetSubscriptionQueryResult;
+    "*[_type == 'subscription' && stripeSubscriptionId == $stripeSubscriptionId][0]": GetCurrentSubscriptionByStripeSubscriptionIdQueryResult;
   }
 }

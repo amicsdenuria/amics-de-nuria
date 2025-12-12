@@ -1,5 +1,24 @@
 import { defineField, defineType } from 'sanity';
 
+const subscriptionStatusMap = {
+  active: {
+    title: 'Activa',
+    value: 'active',
+  },
+  canceled: {
+    title: 'Cancelada',
+    value: 'canceled',
+  },
+  pastDue: {
+    title: 'Pendent / Fallida',
+    value: 'past_due',
+  },
+  incomplete: {
+    title: 'Incompleta',
+    value: 'incomplete',
+  },
+};
+
 export const subscription = defineType({
   name: 'subscription',
   title: 'Subscripció',
@@ -70,10 +89,22 @@ export const subscription = defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Activa', value: 'active' },
-          { title: 'Pendent / fallida', value: 'past_due' },
-          { title: 'Cancelada', value: 'canceled' },
-          { title: 'Incompleta', value: 'incomplete' },
+          {
+            title: subscriptionStatusMap.active.title,
+            value: subscriptionStatusMap.active.value,
+          },
+          {
+            title: subscriptionStatusMap.pastDue.title,
+            value: subscriptionStatusMap.pastDue.value,
+          },
+          {
+            title: subscriptionStatusMap.canceled.title,
+            value: subscriptionStatusMap.canceled.value,
+          },
+          {
+            title: subscriptionStatusMap.incomplete.title,
+            value: subscriptionStatusMap.incomplete.value,
+          },
         ],
       },
     }),
@@ -109,10 +140,15 @@ export const subscription = defineType({
     prepare(selection) {
       const { subscriberName, subscriberEmail, status, end } = selection;
       const title = subscriberName || subscriberEmail || 'Subscriptor';
-      const endStr = end
-        ? ` - fins al ${new Date(end).toLocaleDateString()}`
-        : '';
-      const subtitle = `${status ?? 'desconegut'}${endStr}`;
+      const endStr =
+        end && status === subscriptionStatusMap.active.value
+          ? ` - activa fins al ${new Date(end).toLocaleDateString()}`
+          : '';
+
+      const subtitle = `${
+        subscriptionStatusMap[status as keyof typeof subscriptionStatusMap]
+          ?.title ?? 'desconegut'
+      }${endStr}`;
 
       return { title, subtitle };
     },
