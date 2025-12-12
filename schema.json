@@ -92,7 +92,14 @@
         },
         "optional": true
       },
-      "createdAt": {
+      "createdStripeAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "createdSubscriberAt": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

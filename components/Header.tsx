@@ -5,8 +5,15 @@ import PageContainer from './ui/page-container';
 import PrimaryActionButton from './navbar/PrimaryActionButton';
 import { site } from '@/config/site.config';
 import AuthButtons from './navbar/AuthButtons';
+import { currentUser } from '@clerk/nextjs/server';
+import { getIsEnrolled } from '@/sanity/lib/subscriber/getIsEnrolled';
 
-const Header = () => {
+export const dynamic = 'force-dynamic';
+
+const Header = async () => {
+  const user = await currentUser();
+
+  const isEnrolled = await getIsEnrolled({ clerkId: user?.id });
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
       <PageContainer className="flex h-16 items-center justify-between gap-4">
@@ -30,7 +37,7 @@ const Header = () => {
         <div className="flex items-center space-x-2 md:space-x-4">
           {/* Nav */}
           <nav className="flex items-center space-x-2 md:space-x-4">
-            <PrimaryActionButton />
+            <PrimaryActionButton isEnrolled={isEnrolled} />
           </nav>
 
           {/* Auth Buttons */}

@@ -29,7 +29,8 @@ export type Subscriber = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "subscription";
   };
-  createdAt?: string;
+  createdStripeAt?: string;
+  createdSubscriberAt?: string;
 };
 
 export type Subscription = {
@@ -196,6 +197,114 @@ export type ExistingSubscriberQueryResult = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "subscription";
   };
+  createdStripeAt?: string;
+  createdSubscriberAt?: string;
+} | null;
+
+// Source: ./sanity/lib/subscriber/getIsEnrolled.ts
+// Variable: getIsEnrolledQuery
+// Query: *[_type == 'subscription' && subscriber._ref == $subscriberId && status == 'active'][0]
+export type GetIsEnrolledQueryResult = {
+  _id: string;
+  _type: "subscription";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  subscriber?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "subscriber";
+  };
+  stripeSubscriptionId?: string;
+  stripeCustomerId?: string;
+  stripePriceId?: string;
+  stripeProductId?: string;
+  productName?: string;
+  unit_amount?: number;
+  priceInterval?: "month" | "year";
+  status?: "active" | "canceled" | "incomplete" | "past_due";
+  current_period_end?: string;
+  canceled_at?: string;
+  createdAt?: string;
+} | null;
+
+// Source: ./sanity/lib/subscriber/getSubscriberByClerkId.ts
+// Variable: getSubscriberByClerkIdQuery
+// Query: *[_type == 'subscriber' && clerkId == $clerkId][0]
+export type GetSubscriberByClerkIdQueryResult = {
+  _id: string;
+  _type: "subscriber";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  displayName?: string;
+  email?: string;
+  clerkId?: string;
+  stripeCustomerId?: string;
+  currentSubscription?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "subscription";
+  };
+  createdStripeAt?: string;
+  createdSubscriberAt?: string;
+} | null;
+
+// Source: ./sanity/lib/subscription/createSubscription.ts
+// Variable: subscriberActiveSubscriptionQuery
+// Query: *[_type == 'subscription' && subscriber._ref == $subscriberId && status == 'active'][0]
+export type SubscriberActiveSubscriptionQueryResult = {
+  _id: string;
+  _type: "subscription";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  subscriber?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "subscriber";
+  };
+  stripeSubscriptionId?: string;
+  stripeCustomerId?: string;
+  stripePriceId?: string;
+  stripeProductId?: string;
+  productName?: string;
+  unit_amount?: number;
+  priceInterval?: "month" | "year";
+  status?: "active" | "canceled" | "incomplete" | "past_due";
+  current_period_end?: string;
+  canceled_at?: string;
+  createdAt?: string;
+} | null;
+
+// Source: ./sanity/lib/subscription/getActiveSubscriptionByClerkId.ts
+// Variable: getSubscriptionQuery
+// Query: *[_type == 'subscription' && subscriber->clerkId == $clerkId && status == 'active'][0]
+export type GetSubscriptionQueryResult = {
+  _id: string;
+  _type: "subscription";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  subscriber?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "subscriber";
+  };
+  stripeSubscriptionId?: string;
+  stripeCustomerId?: string;
+  stripePriceId?: string;
+  stripeProductId?: string;
+  productName?: string;
+  unit_amount?: number;
+  priceInterval?: "month" | "year";
+  status?: "active" | "canceled" | "incomplete" | "past_due";
+  current_period_end?: string;
+  canceled_at?: string;
   createdAt?: string;
 } | null;
 
@@ -203,6 +312,8 @@ export type ExistingSubscriberQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == 'subscriber' && clerkId == $clerkId][0]": ExistingSubscriberQueryResult;
+    "*[_type == 'subscriber' && clerkId == $clerkId][0]": ExistingSubscriberQueryResult | GetSubscriberByClerkIdQueryResult;
+    "*[_type == 'subscription' && subscriber._ref == $subscriberId && status == 'active'][0]": GetIsEnrolledQueryResult | SubscriberActiveSubscriptionQueryResult;
+    "*[_type == 'subscription' && subscriber->clerkId == $clerkId && status == 'active'][0]": GetSubscriptionQueryResult;
   }
 }
