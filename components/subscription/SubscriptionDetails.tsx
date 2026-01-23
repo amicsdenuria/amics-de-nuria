@@ -52,7 +52,7 @@ const SubscriptionDetails = async ({
 
   return (
     <Card className="bg-secondary">
-      <CardHeader className="font-serif">
+      <CardHeader>
         <CardTitle className="text-2xl font-bold">
           {formattedSubscription.productName}
         </CardTitle>
@@ -63,7 +63,7 @@ const SubscriptionDetails = async ({
       <CardContent className="space-y-4">
         <div>
           <h2 className="text-muted-foreground">Tipus de pagament</h2>
-          <p className="text-xl font-semibold font-serif">
+          <p className="text-xl font-semibold">
             {formattedSubscription.priceInterval}
           </p>
         </div>
@@ -71,7 +71,7 @@ const SubscriptionDetails = async ({
           <h2 className="text-muted-foreground">
             Es renova automàticament el:
           </h2>
-          <p className="text-xl font-semibold font-serif">
+          <p className="text-xl font-semibold">
             {formattedSubscription.currentPeriodEnd}
           </p>
         </div>
