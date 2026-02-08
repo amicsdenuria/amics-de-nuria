@@ -1,5 +1,8 @@
 export const site = {
-  name: 'Amics de Núria',
+  name: {
+    long: 'Amics de Núria',
+    short: 'AdNúria',
+  },
   hero: {
     title: 'Esperit, Natura i País', // exemple: Amics de Núria: Esperit, Natura i País
     description:

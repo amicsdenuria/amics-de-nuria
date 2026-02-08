@@ -1,9 +1,14 @@
 'use client';
 
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import { LoaderCircleIcon, MousePointerClickIcon } from 'lucide-react';
+import {
+  CreditCardIcon,
+  LoaderCircleIcon,
+  MousePointerClickIcon,
+} from 'lucide-react';
 import { SignedIn, SignedOut, useClerk } from '@clerk/nextjs';
+
+import { ResponsiveButton } from '../ui/responsive-button';
+import { ResponsiveLinkButton } from '../ui/responsive-link-button';
 
 interface PrimaryActionButtonProps {
   isEnrolled: boolean;
@@ -17,32 +22,38 @@ const PrimaryActionButton = ({ isEnrolled }: PrimaryActionButtonProps) => {
       {loaded ? (
         <>
           <SignedIn>
-            <Button asChild>
-              <Link
-                href={'/subscription'}
+            {isEnrolled ? (
+              <ResponsiveLinkButton
+                href="/subscription"
                 prefetch={false}
-              >
-                <MousePointerClickIcon className="h-4 w-4" />
-                {isEnrolled ? (
-                  <span>Gestionar Suscripció</span>
-                ) : (
-                  <span>Fes-te Soci</span>
-                )}
-              </Link>
-            </Button>
+                Icon={CreditCardIcon}
+                text="Gestionar Suscripció"
+              />
+            ) : (
+              <ResponsiveLinkButton
+                href="/subscription"
+                prefetch={false}
+                Icon={MousePointerClickIcon}
+                text="Fes-te Soci"
+              />
+            )}
           </SignedIn>
 
           <SignedOut>
-            <Button onClick={() => openSignIn()}>
-              <MousePointerClickIcon className="h-4 w-4" />
-              <span className="sr-only md:not-sr-only">Fes-te Soci</span>
-            </Button>
+            <ResponsiveButton
+              Icon={MousePointerClickIcon}
+              text="Fes-te Soci"
+              onClick={() => openSignIn()}
+            />
           </SignedOut>
         </>
       ) : (
-        <Button className="min-w-28 opacity-70">
-          <LoaderCircleIcon className="animate-spin" />
-        </Button>
+        <ResponsiveButton
+          className="sm:min-w-28"
+          disabled
+          Icon={LoaderCircleIcon}
+          iconClassName="animate-spin"
+        />
       )}
     </>
   );

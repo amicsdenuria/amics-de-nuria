@@ -1,6 +1,6 @@
-import { createClient } from 'next-sanity';
-
 import { apiVersion, dataset, projectId } from '../env';
+
+import { createClient } from 'next-sanity';
 
 const viewerToken = process.env.SANITY_VIEWER_API_TOKEN;
 const adminToken = process.env.SANITY_ADMIN_API_TOKEN;
