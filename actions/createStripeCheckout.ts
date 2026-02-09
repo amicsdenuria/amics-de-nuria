@@ -1,11 +1,11 @@
 'use server';
 
-import { baseUrl } from '@/lib/baseUrl';
-import stripe from '@/lib/stripe';
-import { getSubscriberByClerkId } from '@/sanity/lib/subscriber/getSubscriberByClerkId';
-import { currentUser } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
+import { baseUrl } from '@/lib/baseUrl';
+import { currentUser } from '@clerk/nextjs/server';
+import { getActiveSubscriptionByClerkId } from '@/sanity/lib/subscription/getActiveSubscriptionByClerkId';
+import { getSubscriberByClerkId } from '@/sanity/lib/subscriber/getSubscriberByClerkId';
+import stripe from '@/lib/stripe';
 
 interface CreateStripeSubscriptionCheckoutParams {
   priceId: string;
@@ -24,6 +24,13 @@ export const createStripeSubscriptionCheckout = async ({
     const currentSubscriber = await getSubscriberByClerkId({
       clerkId: user.id,
     });
+
+    const activeSubscription = await getActiveSubscriptionByClerkId({
+      clerkId: user.id,
+    });
+    if (activeSubscription) {
+      return { url: '/subscription' };
+    }
 
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       locale: 'es',
@@ -45,10 +52,19 @@ export const createStripeSubscriptionCheckout = async ({
     };
 
     const session = await stripe.checkout.sessions.create(sessionParams);
+    if (!session.url) throw new Error('Unable to create session');
 
     return { url: session.url };
   } catch (error) {
-    console.error('Error in createStripeSubscriptionCheckout:', error);
-    redirect('/subscription/error');
+    if (error instanceof Error) {
+      console.error(
+        'Error in createStripeSubscriptionCheckout:',
+        error.message,
+      );
+    } else {
+      console.error('Error in createStripeSubscriptionCheckout:', error);
+    }
+
+    return { url: '/subscription/error' };
   }
 };

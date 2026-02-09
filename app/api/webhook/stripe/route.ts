@@ -1,14 +1,15 @@
 import { AppError, BadRequest, InternalError } from '@/lib/appErrors';
-import stripe from '@/lib/stripe';
-import { adminClient } from '@/sanity/lib/client';
-import createSubscriberIfNotExist from '@/sanity/lib/subscriber/createSubscriberIfNotExist';
-import { cancelSubscription } from '@/sanity/lib/subscription/cancelSubscription';
-import { createSubscription } from '@/sanity/lib/subscription/createSubscription';
-import { patchSubscription } from '@/sanity/lib/subscription/patchSubscription';
-import { clerkClient } from '@clerk/nextjs/server';
-import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+
 import Stripe from 'stripe';
+import { adminClient } from '@/sanity/lib/client';
+import { cancelSubscription } from '@/sanity/lib/subscription/cancelSubscription';
+import { clerkClient } from '@clerk/nextjs/server';
+import createSubscriberIfNotExist from '@/sanity/lib/subscriber/createSubscriberIfNotExist';
+import { createSubscription } from '@/sanity/lib/subscription/createSubscription';
+import { headers } from 'next/headers';
+import { patchSubscription } from '@/sanity/lib/subscription/patchSubscription';
+import stripe from '@/lib/stripe';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -29,7 +30,7 @@ export const POST = async (req: NextRequest) => {
     const event: Stripe.Event = stripe.webhooks.constructEvent(
       body,
       signature,
-      webhookSecret
+      webhookSecret,
     );
 
     switch (event.type) {
@@ -43,13 +44,13 @@ export const POST = async (req: NextRequest) => {
           throw new BadRequest('Missing clerkId in Metadata');
         }
 
-        if (mode === 'setup') {
-          console.log('Ignored setup event');
-          return new NextResponse('Ignored setup event', { status: 200 });
-        } else if (mode === 'payment') {
+        if (mode === 'payment') {
           // TODO: handle donations
           console.log('TODO: Handle payments');
           return new NextResponse('TODO: Handle payments', { status: 200 });
+        } else if (mode !== 'subscription') {
+          console.log(`Ignored ${mode} event`);
+          return new NextResponse(`Ignored ${mode} event`, { status: 200 });
         }
 
         // mode: 'subscription'
@@ -85,13 +86,12 @@ export const POST = async (req: NextRequest) => {
           throw new BadRequest(
             `Missing stripe session details or invalid formats: 
             \nstipreSubscriptionId: ${stripeSubscriptionId}; 
-            \nstripeCustomerId: ${stripeCustomerId};`
+            \nstripeCustomerId: ${stripeCustomerId};`,
           );
         }
 
-        const stripeSubscription = await stripe.subscriptions.retrieve(
-          stripeSubscriptionId
-        );
+        const stripeSubscription =
+          await stripe.subscriptions.retrieve(stripeSubscriptionId);
         const status = stripeSubscription.status;
         const createdAt = stripeSubscription.created;
         const currentPeriodEnd =
@@ -114,7 +114,7 @@ export const POST = async (req: NextRequest) => {
             `Missing stripe price details: 
             \nstripePriceId: ${stripePriceId}; 
             \nunitAmount: ${unitAmount}; 
-            \npriceInterval: ${priceInterval}`
+            \npriceInterval: ${priceInterval}`,
           );
         }
         const recurringInterval =
@@ -124,7 +124,7 @@ export const POST = async (req: NextRequest) => {
         if (typeof stripeProductId !== 'string') {
           throw new BadRequest(
             `Missing stripe productId or invalid format: 
-            \nstripeProductId: ${stripeProductId}`
+            \nstripeProductId: ${stripeProductId}`,
           );
         }
 
@@ -140,13 +140,13 @@ export const POST = async (req: NextRequest) => {
             `Missing stripe subscription details: 
             \nstatus: ${status}; 
             \ncreatedAt: ${createdAt}; 
-            \ncurrentPeriodEnd: ${currentPeriodEnd}`
+            \ncurrentPeriodEnd: ${currentPeriodEnd}`,
           );
         }
         if (typeof stripeProductName !== 'string') {
           throw new BadRequest(
             `Missing stripe product name: 
-            \nstripeProductName: ${stripeProductName}`
+            \nstripeProductName: ${stripeProductName}`,
           );
         }
 
@@ -181,7 +181,7 @@ export const POST = async (req: NextRequest) => {
           .commit();
         if (!updatedSubscriber) {
           throw new InternalError(
-            'Subscriber was not updated correctly in Sanity'
+            'Subscriber was not updated correctly in Sanity',
           );
         }
 
@@ -199,8 +199,8 @@ export const POST = async (req: NextRequest) => {
           typeof subscriptionObj.canceled_at === 'number'
             ? subscriptionObj.canceled_at
             : typeof subscriptionObj.ended_at === 'number'
-            ? subscriptionObj.ended_at
-            : Math.floor(Date.now() / 1000);
+              ? subscriptionObj.ended_at
+              : Math.floor(Date.now() / 1000);
 
         await cancelSubscription({
           subscriptionId: stripeSubscriptionId,
@@ -214,12 +214,11 @@ export const POST = async (req: NextRequest) => {
 
       case 'customer.subscription.updated': {
         const subscriptionObj = event.data.object;
-
         const subscriptionId = subscriptionObj.id;
 
         const subscriptionPrice = subscriptionObj.items.data[0].price;
         const product = await stripe.products.retrieve(
-          subscriptionPrice.product as string
+          subscriptionPrice.product as string,
         );
 
         await patchSubscription({

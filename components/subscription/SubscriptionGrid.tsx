@@ -2,9 +2,9 @@
 
 import { ProductWithRecurringPrices } from '@/lib/stripe.types';
 import SubscriptionCard from './SubscriptionCard';
-import { useTransition } from 'react';
 import { createStripeSubscriptionCheckout } from '@/actions/createStripeCheckout';
 import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 
 interface SubscriptionGridProps {
   products: ProductWithRecurringPrices[];
@@ -18,10 +18,6 @@ const SubscriptionGrid = ({ products, interval }: SubscriptionGridProps) => {
   const handleSubscription = async (priceId: string) => {
     startTransition(async () => {
       const { url } = await createStripeSubscriptionCheckout({ priceId });
-      if (!url) {
-        router.push('/subscription/error');
-        return;
-      }
 
       router.push(url);
     });

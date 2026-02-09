@@ -1,8 +1,3 @@
-import { getActiveSubscriptionByClerkId } from '@/sanity/lib/subscription/getActiveSubscriptionByClerkId';
-import { notFound } from 'next/navigation';
-import { Button } from '../ui/button';
-import { createCustomerPortal } from '@/actions/createCustomerPortal';
-import Link from 'next/link';
 import {
   Card,
   CardAction,
@@ -11,6 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
+
+import PortalButton from './PortalButton';
+import { getActiveSubscriptionByClerkId } from '@/sanity/lib/subscription/getActiveSubscriptionByClerkId';
+import { notFound } from 'next/navigation';
 
 interface SubscriptionDetailsProps {
   clerkId: string | undefined;
@@ -29,18 +28,14 @@ const SubscriptionDetails = async ({
     notFound();
   }
 
-  const { url } = await createCustomerPortal({
-    customerId: subscription.stripeCustomerId,
-  });
-
   const formattedSubscription = {
     productName: subscription.productName ?? 'Subscripció',
     priceInterval:
       subscription.priceInterval === 'month'
         ? 'Mensual'
         : subscription.priceInterval === 'year'
-        ? 'Anual'
-        : 'Desconegut',
+          ? 'Anual'
+          : 'Desconegut',
     currentPeriodEnd: subscription.current_period_end
       ? new Date(subscription.current_period_end).toLocaleDateString('ca-ES', {
           day: '2-digit',
@@ -77,9 +72,7 @@ const SubscriptionDetails = async ({
         </div>
       </CardContent>
       <CardFooter>
-        <Button asChild>
-          <Link href={url}>Modifica la teva subscripció</Link>
-        </Button>
+        <PortalButton />
       </CardFooter>
     </Card>
   );

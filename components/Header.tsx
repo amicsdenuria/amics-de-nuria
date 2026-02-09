@@ -35,4 +35,5 @@ const Header = async () => {
     </header>
   );
 };
+
 export default Header;
