@@ -11,7 +11,7 @@ export interface DeleteASDFResult {
 }
 
 export const deleteasdf = async (): Promise<DeleteASDFResult> => {
-  const email = 'genismuner+1@gmail.com';
+  const email = '';
   try {
     // 1) Obtener subscribers que tengan ese email
     const subscribers: { _id: string }[] = await adminClient.fetch(
