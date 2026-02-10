@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { AppError, BadRequest, InternalError } from '@/lib/appErrors';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -16,6 +18,8 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 if (!webhookSecret) {
   throw new Error('Missing STRIPE_WEBHOOK_SECRET');
 }
+
+const NO_STORE_HEADERS = { 'Cache-Control': 'no-store' };
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -47,10 +51,16 @@ export const POST = async (req: NextRequest) => {
         if (mode === 'payment') {
           // TODO: handle donations
           console.log('TODO: Handle payments');
-          return new NextResponse('TODO: Handle payments', { status: 200 });
+          return new NextResponse('TODO: Handle payments', {
+            status: 200,
+            headers: NO_STORE_HEADERS,
+          });
         } else if (mode !== 'subscription') {
           console.log(`Ignored ${mode} event`);
-          return new NextResponse(`Ignored ${mode} event`, { status: 200 });
+          return new NextResponse(`Ignored ${mode} event`, {
+            status: 200,
+            headers: NO_STORE_HEADERS,
+          });
         }
 
         // mode: 'subscription'
@@ -187,7 +197,10 @@ export const POST = async (req: NextRequest) => {
 
         const message = `Subscriber & Subscription created successfully: \n${subscriber} \n${subscription}`;
         console.log(message);
-        return new NextResponse(message, { status: 200 });
+        return new NextResponse(message, {
+          status: 200,
+          headers: NO_STORE_HEADERS,
+        });
       }
 
       case 'customer.subscription.deleted': {
@@ -209,7 +222,10 @@ export const POST = async (req: NextRequest) => {
 
         const message = `Subscription ${stripeSubscriptionId} marked canceled in Sanity`;
         console.log(message);
-        return new NextResponse(message, { status: 200 });
+        return new NextResponse(message, {
+          status: 200,
+          headers: NO_STORE_HEADERS,
+        });
       }
 
       case 'customer.subscription.updated': {
@@ -232,21 +248,36 @@ export const POST = async (req: NextRequest) => {
         });
 
         const message = `Subscription ${subscriptionId} updated correctly in Sanity`;
-        return new NextResponse(message, { status: 200 });
+        return new NextResponse(message, {
+          status: 200,
+          headers: NO_STORE_HEADERS,
+        });
       }
 
       default:
-        return new NextResponse(`Event ${event.type} ignored`, { status: 200 });
+        return new NextResponse(`Event ${event.type} ignored`, {
+          status: 200,
+          headers: NO_STORE_HEADERS,
+        });
     }
   } catch (error) {
     if (error instanceof AppError) {
       console.error(`${error.statusCode}: ${error.message}`);
-      return new NextResponse(error.message, { status: error.statusCode });
+      return new NextResponse(error.message, {
+        status: error.statusCode,
+        headers: NO_STORE_HEADERS,
+      });
     } else if (error instanceof Error) {
       console.error(`500: ${error.message}`);
-      return new NextResponse(error.message, { status: 500 });
+      return new NextResponse(error.message, {
+        status: 500,
+        headers: NO_STORE_HEADERS,
+      });
     }
     console.error(`500: Internal Unknown error; \n${error}`);
-    return new NextResponse('Unknown Error', { status: 500 });
+    return new NextResponse('Unknown Error', {
+      status: 500,
+      headers: NO_STORE_HEADERS,
+    });
   }
 };

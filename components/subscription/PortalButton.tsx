@@ -12,7 +12,10 @@ const PortalButton = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/create-portal', { method: 'POST' });
+      const res = await fetch('/api/create-portal', {
+        method: 'POST',
+        cache: 'no-store',
+      });
       const data = await res.json();
       if (!res.ok || !data.url) {
         setError(

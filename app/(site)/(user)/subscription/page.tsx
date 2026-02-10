@@ -1,16 +1,14 @@
-import { fetchProductsWithRecurringPrices } from '@/actions/fetchProductsWithRecurringPrices';
 import IntervalTabs from '@/components/subscription/IntervalTabs';
+import PageContainer from '@/components/ui/page-container';
 import SubscriptionDetails from '@/components/subscription/SubscriptionDetails';
 import SubscriptionGrid from '@/components/subscription/SubscriptionGrid';
-import PageContainer from '@/components/ui/page-container';
-import { getIsEnrolled } from '@/sanity/lib/subscriber/getIsEnrolled';
 import { currentUser } from '@clerk/nextjs/server';
+import { fetchProductsWithRecurringPrices } from '@/actions/fetchProductsWithRecurringPrices';
+import { getIsEnrolled } from '@/sanity/lib/subscriber/getIsEnrolled';
 
 interface SubscriptionsPageProps {
   searchParams: Promise<{ interval?: 'year' }>;
 }
-
-export const dynamic = 'force-dynamic';
 
 const SubscriptionsPage = async ({ searchParams }: SubscriptionsPageProps) => {
   const { interval } = await searchParams;

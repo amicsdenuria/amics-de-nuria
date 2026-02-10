@@ -6,8 +6,6 @@ import PrimaryActionButton from './navbar/PrimaryActionButton';
 import { currentUser } from '@clerk/nextjs/server';
 import { getIsEnrolled } from '@/sanity/lib/subscriber/getIsEnrolled';
 
-export const dynamic = 'force-dynamic';
-
 const Header = async () => {
   const user = await currentUser();
   const isEnrolled = await getIsEnrolled({ clerkId: user?.id });
