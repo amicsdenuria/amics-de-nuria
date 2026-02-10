@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 import Providers from '@/components/providers';
 import { SanityLive } from '@/sanity/lib/live';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Amics de Núria',
   description: '#TODO',
