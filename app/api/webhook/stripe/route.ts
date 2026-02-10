@@ -11,6 +11,7 @@ import createSubscriberIfNotExist from '@/sanity/lib/subscriber/createSubscriber
 import { createSubscription } from '@/sanity/lib/subscription/createSubscription';
 import { headers } from 'next/headers';
 import { patchSubscription } from '@/sanity/lib/subscription/patchSubscription';
+import { revalidateTag } from 'next/cache';
 import stripe from '@/lib/stripe';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -195,6 +196,9 @@ export const POST = async (req: NextRequest) => {
           );
         }
 
+        // Revalidate the enrolled status cache
+        revalidateTag('enrolled-status', { expire: 0 });
+
         const message = `Subscriber & Subscription created successfully: \n${subscriber} \n${subscription}`;
         console.log(message);
         return new NextResponse(message, {
@@ -219,6 +223,9 @@ export const POST = async (req: NextRequest) => {
           subscriptionId: stripeSubscriptionId,
           canceledAt: canceledAtSeconds,
         });
+
+        // Revalidate the enrolled status cache
+        revalidateTag('enrolled-status', { expire: 0 });
 
         const message = `Subscription ${stripeSubscriptionId} marked canceled in Sanity`;
         console.log(message);
@@ -246,6 +253,9 @@ export const POST = async (req: NextRequest) => {
           recurringInterval: subscriptionPrice.recurring?.interval,
           currentPeriodEnd: subscriptionObj.items.data[0].current_period_end,
         });
+
+        // Revalidate the enrolled status cache
+        revalidateTag('enrolled-status', { expire: 0 });
 
         const message = `Subscription ${subscriptionId} updated correctly in Sanity`;
         return new NextResponse(message, {

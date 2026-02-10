@@ -25,6 +25,7 @@ export const getIsEnrolled = async ({ clerkId }: GetIsEnrolledParams) => {
   const subscription = await sanityFetch({
     query: getIsEnrolledQuery,
     params: { subscriberId: subscriber._id },
+    tags: ['enrolled-status'],
   });
 
   if (!subscription.data) {
