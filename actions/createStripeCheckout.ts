@@ -25,6 +25,8 @@ export const createStripeSubscriptionCheckout = async ({
       clerkId: user.id,
     });
 
+    // TODO: Verificar en Stripe si existe customer
+    // Como está ahora, podria pasar que el webhook aún no ha llegado y no se ha creado la suscription, pero si existe la suscription y customer en stripe.
     const activeSubscription = await getActiveSubscriptionByClerkId({
       clerkId: user.id,
     });

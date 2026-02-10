@@ -1,3 +1,5 @@
+'use server';
+
 import { MultipleMutationResult } from 'next-sanity';
 import { adminClient } from '@/sanity/lib/client';
 

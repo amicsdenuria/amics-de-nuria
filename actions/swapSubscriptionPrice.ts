@@ -1,8 +1,10 @@
+'use server';
+
 import stripe from '@/lib/stripe';
 
 export const swapSubscriptionPrice = async (
   subscriptionId: string,
-  newPriceId: string
+  newPriceId: string,
 ) => {
   try {
     // 1) get subscription and subscription item id

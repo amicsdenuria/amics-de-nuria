@@ -1,5 +1,7 @@
-import stripe from '@/lib/stripe';
+'use server';
+
 import { ProductWithRecurringPrices } from '@/lib/stripe.types';
+import stripe from '@/lib/stripe';
 
 interface FetchProductsWithRecurringPrices {
   interval: 'month' | 'year';
@@ -10,7 +12,7 @@ export const fetchProductsWithRecurringPrices = async ({
 }: FetchProductsWithRecurringPrices): Promise<ProductWithRecurringPrices[]> => {
   try {
     const products = (await stripe.products.list({ active: true })).data.sort(
-      (a, b) => a.created - b.created
+      (a, b) => a.created - b.created,
     );
     if (!products) return [];
 
@@ -21,18 +23,18 @@ export const fetchProductsWithRecurringPrices = async ({
     if (!prices) return [];
 
     const recurringPricesInInterval = prices.data.filter(
-      (p) => p.recurring?.interval === interval
+      (p) => p.recurring?.interval === interval,
     );
 
     const productIdsWithRecurring = new Set(
-      recurringPricesInInterval.map((p) => p.product)
+      recurringPricesInInterval.map((p) => p.product),
     );
 
     const result: ProductWithRecurringPrices[] = products
       .filter((product) => productIdsWithRecurring.has(product.id))
       .map((product) => {
         const productRecurringPriceInInterval = recurringPricesInInterval.find(
-          (price) => price.product === product.id
+          (price) => price.product === product.id,
         );
 
         return {
