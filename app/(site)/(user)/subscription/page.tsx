@@ -6,6 +6,8 @@ import { currentUser } from '@clerk/nextjs/server';
 import { fetchProductsWithRecurringPrices } from '@/actions/fetchProductsWithRecurringPrices';
 import { getIsEnrolled } from '@/sanity/lib/subscriber/getIsEnrolled';
 
+export const dynamic = 'force-dynamic';
+
 interface SubscriptionsPageProps {
   searchParams: Promise<{ interval?: 'year' }>;
 }
