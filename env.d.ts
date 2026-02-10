@@ -1,7 +1,8 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    // Dev Url
+    // Base Url
     NEXT_PUBLIC_BASE_URL: string;
+    VERCEL_URL: string;
 
     // Clerk
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: string;

@@ -1,9 +1,9 @@
 'use server';
 
 import Stripe from 'stripe';
-import { baseUrl } from '@/lib/baseUrl';
 import { currentUser } from '@clerk/nextjs/server';
 import { getActiveSubscriptionByClerkId } from '@/sanity/lib/subscription/getActiveSubscriptionByClerkId';
+import { getBaseUrl } from '@/lib/baseUrl';
 import { getSubscriberByClerkId } from '@/sanity/lib/subscriber/getSubscriberByClerkId';
 import stripe from '@/lib/stripe';
 
@@ -34,6 +34,7 @@ export const createStripeSubscriptionCheckout = async ({
       return { url: '/subscription' };
     }
 
+    const baseUrl = getBaseUrl();
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       locale: 'es',
       mode: 'subscription',
