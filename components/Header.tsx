@@ -3,12 +3,10 @@ import HomeLink from './navbar/HomeLink';
 import { ModeToggle } from './ui/theme-toggle';
 import PageContainer from './ui/page-container';
 import PrimaryActionButton from './navbar/PrimaryActionButton';
-import { currentUser } from '@clerk/nextjs/server';
-import { getIsEnrolled } from '@/sanity/lib/subscriber/getIsEnrolled';
+import { getUserData } from '@/actions/getUserData';
 
 const Header = async () => {
-  const user = await currentUser();
-  const isEnrolled = await getIsEnrolled({ clerkId: user?.id });
+  const { user, isEnrolled, isAdmin } = await getUserData();
 
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
@@ -24,7 +22,10 @@ const Header = async () => {
           </nav>
 
           {/* Auth Buttons */}
-          <AuthButtons user={user} />
+          <AuthButtons
+            user={user}
+            isAdmin={isAdmin}
+          />
 
           {/* Theme Toggle Button */}
           <ModeToggle />

@@ -12,7 +12,6 @@ export const getIsEnrolled = async ({ clerkId }: GetIsEnrolledParams) => {
   }
 
   const subscriber = await getSubscriberByClerkId({ clerkId });
-  console.log(JSON.stringify(subscriber, null, 2));
 
   if (!subscriber) {
     return false;

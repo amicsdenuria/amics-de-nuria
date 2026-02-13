@@ -14,9 +14,9 @@ import { User2Icon } from 'lucide-react';
 
 interface AuthButtonsProps {
   user: User | null;
+  isAdmin: boolean | undefined;
 }
-// TODO: Integrar un desplegable al botó user i dintre mostrar usuari i mostrar (gestiona la teva suscripció, toggle per a theme i tancar o iniciar sessió)
-const AuthButtons = ({ user }: AuthButtonsProps) => {
+const AuthButtons = ({ user, isAdmin }: AuthButtonsProps) => {
   return user ? (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,9 +29,11 @@ const AuthButtons = ({ user }: AuthButtonsProps) => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <Link href={'/profile'}>
-          <DropdownMenuItem>Perfil</DropdownMenuItem>
-        </Link>
+        {isAdmin && (
+          <Link href={'/admin'}>
+            <DropdownMenuItem>Panell Admin</DropdownMenuItem>
+          </Link>
+        )}
         <Link href={'/subscription'}>
           <DropdownMenuItem>Subscripció</DropdownMenuItem>
         </Link>
@@ -43,15 +45,6 @@ const AuthButtons = ({ user }: AuthButtonsProps) => {
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (
-    // <SignOutButton>
-    //   <div>
-    //     <ResponsiveButton
-    //       variant={'outline'}
-    //       text="Tanca Sessió"
-    //       Icon={User2Icon}
-    //     />
-    //   </div>
-    // </SignOutButton>
     <SignInButton mode="modal">
       <div>
         <ResponsiveButton
