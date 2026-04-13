@@ -23,7 +23,7 @@ const SubscriptionCard = ({
     <div className="bg-secondary p-4 rounded-md shadow-md flex flex-col space-y-12">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">{title}</h2>
-        <span className="text-secondary text-sm bg-chart-2/40 px-2 py-1 rounded-full">
+        <span className="text-accent-foreground/70 text-xs bg-accent/70 px-2 py-1 rounded-full font-semibold rotate-12 -translate-y-4 translate-x-6 shadow-sm">
           {label}
         </span>
       </div>

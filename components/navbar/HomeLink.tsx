@@ -1,4 +1,4 @@
-import { HomeIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { site } from '@/config/site.config';
 
@@ -10,7 +10,12 @@ const HomeLink = () => {
       prefetch={false}
     >
       {/* Logo */}
-      <HomeIcon className="h-6 w-6 text-primary" />
+      <Image
+        alt="Amics de Núria Logo"
+        src="/adn-glass-logo-transparent-bg.webp"
+        width={24}
+        height={24}
+      />
       {/* Site Name */}
       <span className="text-xl font-bold bg-linear-to-r from-primary/90 to-primary bg-clip-text text-transparent">
         <span className="sr-only sm:not-sr-only">{site.name.long}</span>

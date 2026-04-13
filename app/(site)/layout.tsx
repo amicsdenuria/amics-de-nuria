@@ -2,12 +2,13 @@ import Header from '@/components/Header';
 import { Metadata } from 'next';
 import Providers from '@/components/providers';
 import { SanityLive } from '@/sanity/lib/live';
+import { site } from '@/config/site.config';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Amics de Núria',
-  description: '#TODO',
+  title: site.name.long,
+  description: site.hero.description,
 };
 
 interface PublicLayoutProps {

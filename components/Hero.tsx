@@ -1,5 +1,5 @@
-import { site } from '@/config/site.config';
 import PageContainer from './ui/page-container';
+import { site } from '@/config/site.config';
 
 const Hero = () => {
   return (
@@ -9,7 +9,7 @@ const Hero = () => {
 
       <PageContainer className="relative h-full flex flex-col justify-center">
         <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-foreground to-foreground/80 bg-clip-text text-transparent text-pretty">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent text-pretty">
             {site.hero.title}
           </h1>
           <p className="text-xl text-muted-foreground text-pretty">

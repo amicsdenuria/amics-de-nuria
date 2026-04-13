@@ -6,6 +6,6 @@ export const site = {
   hero: {
     title: 'Esperit, Natura i País', // exemple: Amics de Núria: Esperit, Natura i País
     description:
-      "Descripció en una sola frase de la missió, l'esperit i el missatge principal d'Amics de Núria. Posant ènfasi en el missatge que es vol transmetre al usuari que visiti la pàgina.",
+      'Una comunitat que uneix espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
   },
 };
