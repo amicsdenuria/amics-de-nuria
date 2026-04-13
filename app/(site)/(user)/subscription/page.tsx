@@ -35,7 +35,7 @@ const SubscriptionsPage = async ({ searchParams }: SubscriptionsPageProps) => {
           />
         ) : (
           <>
-            <IntervalTabs />
+            <IntervalTabs interval={interval ?? 'month'} />
             <SubscriptionGrid
               products={productsWithRecurringPrices}
               interval={interval ?? 'month'}
