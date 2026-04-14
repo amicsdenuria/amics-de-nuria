@@ -27,7 +27,8 @@ const PrimaryActionButton = ({ isEnrolled }: PrimaryActionButtonProps) => {
                 href="/subscription"
                 prefetch={false}
                 Icon={CreditCardIcon}
-                text="Gestionar Suscripció"
+                text="Suscripció"
+                showTextOnMobile
               />
             ) : (
               <ResponsiveLinkButton
@@ -35,6 +36,7 @@ const PrimaryActionButton = ({ isEnrolled }: PrimaryActionButtonProps) => {
                 prefetch={false}
                 Icon={MousePointerClickIcon}
                 text="Fes-te Soci"
+                showTextOnMobile
               />
             )}
           </SignedIn>
@@ -43,6 +45,7 @@ const PrimaryActionButton = ({ isEnrolled }: PrimaryActionButtonProps) => {
             <ResponsiveButton
               Icon={MousePointerClickIcon}
               text="Fes-te Soci"
+              showTextOnMobile
               onClick={() => openSignIn()}
             />
           </SignedOut>

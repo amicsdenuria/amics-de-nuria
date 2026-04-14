@@ -8,6 +8,7 @@ interface ResponsiveButtonProps extends SCNButton {
   className?: string;
   iconClassName?: string;
   text?: string;
+  showTextOnMobile?: boolean;
 }
 
 export const ResponsiveButton = ({
@@ -15,18 +16,21 @@ export const ResponsiveButton = ({
   Icon,
   iconClassName,
   text,
+  showTextOnMobile = false,
   ...props
 }: ResponsiveButtonProps) => {
   return (
     <>
       {/* Mobile: Icon only */}
       <Button
-        size="icon"
+        size={showTextOnMobile ? 'default' : 'icon'}
         className={cn('flex sm:hidden', className)}
         {...props}
       >
         <Icon className={cn('h-4 w-4', iconClassName)} />
-        {text && <span className="sr-only">{text}</span>}
+        {text && (
+          <span className={cn(!showTextOnMobile && 'sr-only')}>{text}</span>
+        )}
       </Button>
 
       {/* Desktop: Icon + Text */}

@@ -1,19 +1,53 @@
+import Image from 'next/image';
 import PageContainer from './ui/page-container';
-import { site } from '@/config/site.config';
+import { cn } from '@/lib/utils';
 
-const Hero = () => {
+interface HeroProps {
+  title: string;
+  description: string;
+  hasImage?: boolean;
+  img?: {
+    alt: string;
+    src: string;
+    className?: string;
+  };
+}
+
+const Hero = ({ title, description, hasImage = true, img }: HeroProps) => {
   return (
-    <section className="relative h-[45vh] w-full">
-      <div className="absolute inset-0 bg-linear-to-b from-black/10 to-black/55 dark:from-white/15 dark:to-black/40" />
-      <div className="absolute inset-0 bg-linear-to-t from-background via-background/80 to-background/20" />
+    <section className="relative h-[45vh] w-full mb-16">
+      {hasImage && img ? (
+        <Image
+          alt={img.alt}
+          src={img.src}
+          fill
+          sizes="100vw"
+          className={cn('object-cover', img.className)}
+        />
+      ) : (
+        hasImage && (
+          <Image
+            alt="Vall de Núria"
+            src="/hero-vall-nuria.webp"
+            fill
+            sizes="100vw"
+            className={cn('object-cover object-top')}
+          />
+        )
+      )}
+      <div className="absolute inset-0 bg-linear-to-b from-white/5 to-white/40 dark:to-black/40" />
+      <div className="absolute inset-0 bg-linear-to-t from-background via-background/85 md:via-background/70 to-background/20 dark:to-background/20" />
 
-      <PageContainer className="relative h-full flex flex-col justify-center">
-        <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent text-pretty">
-            {site.hero.title}
+      {/* <div className="absolute inset-0 bg-linear-to-l from-white/5 to-white/40 dark:to-black/40" />
+      <div className="absolute inset-0 bg-linear-to-r from-background via-background/85 md:via-background/70 to-background/20 dark:to-background/20" /> */}
+
+      <PageContainer className="relative h-full flex flex-col justify-end">
+        <div className="max-w-4xl">
+          <h1 className="text-5xl md:text-6xl font-bold bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent text-pretty">
+            {title}
           </h1>
-          <p className="text-xl text-muted-foreground text-pretty">
-            {site.hero.description}
+          <p className="text-xl text-muted-foreground text-pretty mt-4">
+            {description}
           </p>
         </div>
       </PageContainer>

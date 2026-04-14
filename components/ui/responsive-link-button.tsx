@@ -10,6 +10,7 @@ interface ResponsiveLinkButtonProps extends SCNButton {
   href: string;
   text?: string;
   prefetch?: boolean | 'auto' | null;
+  showTextOnMobile?: boolean;
 }
 
 export const ResponsiveLinkButton = ({
@@ -18,13 +19,14 @@ export const ResponsiveLinkButton = ({
   text,
   href,
   prefetch = null,
+  showTextOnMobile = false,
   ...props
 }: ResponsiveLinkButtonProps) => {
   return (
     <>
       {/* Mobile: Icon only */}
       <Button
-        size="icon"
+        size={showTextOnMobile ? 'default' : 'icon'}
         className="flex sm:hidden"
         asChild
         {...props}
@@ -34,7 +36,9 @@ export const ResponsiveLinkButton = ({
           prefetch={prefetch}
         >
           <Icon className={cn('h-4 w-4', iconClassName)} />
-          {text && <span className="sr-only">{text}</span>}
+          {text && (
+            <span className={cn(!showTextOnMobile && 'sr-only')}>{text}</span>
+          )}
         </Link>
       </Button>
 
