@@ -1,7 +1,6 @@
-import { Button } from '@/components/ui/button';
 import Hero from '@/components/Hero';
-import Link from 'next/link';
 import PageContainer from '@/components/ui/page-container';
+import RouteCard from './components/RouteCard';
 import { routes } from '@/data/routes';
 
 const Pelegrinatges = () => {
@@ -12,19 +11,12 @@ const Pelegrinatges = () => {
         description="El pelegrinatge de Montserrat a Núria per etapes és el trajecte que organitza anualment Amics de Núria."
       />
       <PageContainer>
-        <div className="flex flex-col gap-y-4 items-start">
+        <div className="flex flex-col gap-y-4 mb-8">
           {routes.map((route) => (
-            <Button
-              asChild
-              key={`${route.id} ${route.origin} ${route.destiny}`}
-            >
-              <Link href={`/pelegrinatges/${route.id}`}>
-                {route.origin} - {route.destiny} (
-                {route.alternativeRoutePoints &&
-                  route.alternativeRoutePoints.join(', ')}
-                )
-              </Link>
-            </Button>
+            <RouteCard
+              key={route.id}
+              route={route}
+            />
           ))}
         </div>
       </PageContainer>

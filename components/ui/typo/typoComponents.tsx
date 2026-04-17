@@ -14,7 +14,7 @@ export function TypoH2({ children, className }: ComponentProps<'h2'>) {
     <h2
       className={cn(
         'text-primary',
-        'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',
+        'scroll-m-20 border-b pb-2 text-2xl md:text-3xl font-semibold tracking-tight first:mt-0',
         className,
       )}
     >
