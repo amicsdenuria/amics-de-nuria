@@ -1,10 +1,8 @@
 import AuthButtons from './navbar/AuthButtons';
 import HomeLink from './navbar/HomeLink';
-import { MapIcon } from 'lucide-react';
 import { ModeToggle } from './ui/theme-toggle';
 import PageContainer from './ui/page-container';
 import PrimaryActionButton from './navbar/PrimaryActionButton';
-import { ResponsiveLinkButton } from './ui/responsive-link-button';
 import { getUserData } from '@/actions/getUserData';
 
 const Header = async () => {
@@ -18,13 +16,6 @@ const Header = async () => {
 
         {/* Right */}
         <div className="flex items-center space-x-2 md:space-x-4">
-          {/* Nav */}
-          <ResponsiveLinkButton
-            href="/pelegrinatges"
-            Icon={MapIcon}
-            text="Rutes"
-            variant={'secondary'}
-          />
           {/* CTA */}
           <nav>
             <PrimaryActionButton isEnrolled={isEnrolled} />

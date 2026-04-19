@@ -107,7 +107,10 @@ const Footer = () => {
                   variant={'link'}
                   size={'sm'}
                 >
-                  <Link href={'https://www.gmuner.es'}>
+                  <Link
+                    href={'https://www.gmuner.es'}
+                    target="_blank"
+                  >
                     Genís Muner <ArrowRightIcon className="h-3 w-3" />
                   </Link>
                 </Button>

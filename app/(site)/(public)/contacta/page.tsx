@@ -34,6 +34,7 @@ const ContactaPage = () => {
             <Link
               href={'https://www.gmuner.es'}
               className="flex gap-2 items-center"
+              target="_blank"
             >
               Genís Muner
               <ExternalLinkIcon className="w-4 h-4" />
