@@ -5,7 +5,7 @@ import { site } from '@/config/site.config';
 const HomeLink = () => {
   return (
     <Link
-      className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+      className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
       href={'/'}
       prefetch={false}
     >

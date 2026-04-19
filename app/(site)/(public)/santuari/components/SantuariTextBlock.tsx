@@ -6,7 +6,7 @@ interface SantuariTextBlockProps {
 }
 const SantuariTextBlock = ({ block, index }: SantuariTextBlockProps) => {
   return (
-    <article className="group">
+    <article className="group border-l-2 border-primary/20 pl-6 transition-colors hover:border-primary/40">
       <div className="flex items-start gap-6">
         {typeof index === 'number' && (
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-sm font-medium text-secondary-foreground">

@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { Metadata } from 'next';
 import Providers from '@/components/providers';
@@ -21,6 +22,7 @@ const PublicLayout = ({ children }: PublicLayoutProps) => {
       <div className="min-h-screen flex flex-col font-serif">
         <Header />
         {children}
+        <Footer />
       </div>
 
       <SanityLive />
