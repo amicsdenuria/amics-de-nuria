@@ -31,7 +31,7 @@ const Hero = ({ title, description, hasImage = true, img }: HeroProps) => {
             src="/hero-vall-nuria.webp"
             fill
             sizes="100vw"
-            className={cn('object-cover object-top')}
+            className={cn('object-cover object-bottom')}
           />
         )
       )}
@@ -43,7 +43,7 @@ const Hero = ({ title, description, hasImage = true, img }: HeroProps) => {
 
       <PageContainer className="relative h-full flex flex-col justify-end">
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent text-pretty">
+          <h1 className="text-5xl md:text-6xl font-bold bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent text-pretty pb-2">
             {title}
           </h1>
           <p className="text-xl text-muted-foreground text-pretty mt-4">

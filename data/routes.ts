@@ -2,7 +2,7 @@ import { Route } from './interfaces/route';
 
 export const routes: Route[] = [
   {
-    id: 'a',
+    id: 'route-a',
     origin: 'Montserrat',
     destiny: 'Núria',
     alternativeRoutePoints: ['Berguedà'],
@@ -20,7 +20,7 @@ export const routes: Route[] = [
     ],
   },
   {
-    id: 'b',
+    id: 'route-b',
     origin: 'Montserrat',
     destiny: 'Núria',
     alternativeRoutePoints: ['Lluçanès', 'Campdevànol'],
@@ -37,7 +37,7 @@ export const routes: Route[] = [
     ],
   },
   {
-    id: 'c',
+    id: 'route-c',
     origin: 'Montserrat',
     destiny: 'Núria',
     alternativeRoutePoints: ['Lluçanès', 'Planoles'],

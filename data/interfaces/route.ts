@@ -17,7 +17,7 @@ export interface Stage {
   stageMapUrl: string;
   videoUrl: string;
   regions: string[]; //lista de ids de regions
-  trailLocations: TrailLocations;
+  trailLocations: string[];
   technicalDetails: TechnicalDetails;
   allocations: string[];
   pois: string[]; //lista ids de pois
@@ -28,6 +28,7 @@ export interface Stage {
 export interface POI {
   id: string;
   name: string;
+  location: string;
   img: string;
   text: string[];
 }
@@ -35,13 +36,9 @@ export interface POI {
 export interface Region {
   id: string;
   name: string;
+  province: string;
   img: string;
   text: string[];
-}
-
-export interface TrailLocations {
-  locationsList: string[];
-  tooltip?: string;
 }
 
 export interface TechnicalDetails {

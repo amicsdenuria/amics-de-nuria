@@ -55,7 +55,7 @@ const StageContent = ({ stage, regions, pois }: RouteContentProps) => {
       </section>
 
       {/* TECH-DATA, TRAIL LOCATIONS & NOTES */}
-      <div>
+      <section className="min-h-60">
         <TypoH2 className="mb-4">Planifica l&apos;etapa</TypoH2>
         <Tabs
           defaultValue="technical-data"
@@ -72,34 +72,75 @@ const StageContent = ({ stage, regions, pois }: RouteContentProps) => {
             </TabsTrigger>
             <TabsTrigger value="notes">
               <InfoIcon className="h-5 w-5" />
-              Notes importants
+              <span className="hidden md:block">Notes importants</span>
+              <span className="block md:hidden">Notes</span>
             </TabsTrigger>
           </TabsList>
           <TabsContent value="technical-data">
-            <section>
+            <div>
               <Stats stats={stage.technicalDetails} />
-            </section>
+            </div>
           </TabsContent>
           <TabsContent value="trail-locations">
-            <section>
-              <ol className="list-decimal pl-12 space-y-2">
-                {stage.trailLocations.locationsList.map((loc) => (
-                  <li key={loc}>{loc}</li>
+            <div>
+              <TypoP className="mb-8">
+                Recull dels punts principals del recorregut. Cada etapa comença
+                i finalitza a l&apos;església del nucli o de la zona.
+              </TypoP>
+              <ul className="relative ml-6">
+                {stage.trailLocations.map((loc, i) => (
+                  <li
+                    key={loc}
+                    className="flex items-start gap-3 pb-4 last:pb-0"
+                  >
+                    {/* Vertical line */}
+                    {i !== stage.trailLocations.length - 1 && (
+                      <div className="absolute left-[7px] top-0 w-0.5 h-full bg-border" />
+                    )}
+
+                    {/* Dot */}
+                    <div className="relative z-10 mt-0.5">
+                      <div
+                        className={cn(
+                          'h-4 w-4 rounded-full border-2',
+                          i === 0
+                            ? 'bg-emerald-500 border-emerald-500'
+                            : i === stage.trailLocations.length - 1
+                              ? 'bg-rose-500 border-rose-500'
+                              : 'bg-background border-border',
+                        )}
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <p
+                        className={cn(
+                          'text-sm',
+                          i === 0 || i == stage.trailLocations.length - 1
+                            ? 'font-semibold'
+                            : 'text-muted-foreground',
+                        )}
+                      >
+                        {loc}
+                      </p>
+                    </div>
+                  </li>
                 ))}
-              </ol>
-            </section>
+              </ul>
+            </div>
           </TabsContent>
           <TabsContent value="notes">
-            <section>
+            <div>
               {stage?.notes?.map((n, i) => <TypoP key={i}>{n}</TypoP>) ?? (
                 <TypoP>Sense notes</TypoP>
               )}
-            </section>
+            </div>
           </TabsContent>
         </Tabs>
-      </div>
+      </section>
 
-      <div>
+      <section className="min-h-64">
         <TypoH2 className="mb-4">Descobreix l&apos;entorn</TypoH2>
         <Tabs
           defaultValue="allocations"
@@ -116,7 +157,8 @@ const StageContent = ({ stage, regions, pois }: RouteContentProps) => {
             </TabsTrigger>
             <TabsTrigger value="pois">
               <LocateIcon className="h-5 w-5" />
-              Punts d&apos;interès
+              <span className="hidden md:block">Punts d&apos;interès</span>
+              <span className="block md:hidden">P. d&apos;interès</span>
             </TabsTrigger>
           </TabsList>
           <TabsContent value="allocations">
@@ -201,7 +243,7 @@ const StageContent = ({ stage, regions, pois }: RouteContentProps) => {
             </div>
           </TabsContent>
         </Tabs>
-      </div>
+      </section>
     </div>
   );
 };

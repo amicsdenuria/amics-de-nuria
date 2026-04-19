@@ -167,8 +167,8 @@ const StageTimelineItem = ({
                 Punts del recorregut
               </h4>
               <p className="text-sm text-muted-foreground line-clamp-2">
-                {stage.trailLocations.locationsList.slice(0, 5).join(' → ')}
-                {stage.trailLocations.locationsList.length > 5 && ' ...'}
+                {stage.trailLocations.slice(0, 5).join(' → ')}
+                {stage.trailLocations.length > 5 && ' ...'}
               </p>
             </div>
 
