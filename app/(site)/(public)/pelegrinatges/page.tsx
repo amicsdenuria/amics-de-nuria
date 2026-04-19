@@ -1,7 +1,7 @@
 import Hero from '@/components/Hero';
 import PageContainer from '@/components/ui/page-container';
 import RouteCard from './components/RouteCard';
-import { routes } from '@/data/routes';
+import { routes } from '@/data/pelegrinatges/routes';
 
 const Pelegrinatges = () => {
   return (

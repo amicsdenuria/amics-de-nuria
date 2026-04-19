@@ -9,6 +9,32 @@ export function TypoP({ children, className }: ComponentProps<'p'>) {
   );
 }
 
+export function TypoPVar({ children, className }: ComponentProps<'p'>) {
+  return (
+    <p
+      className={cn(
+        'max-w-2xl font-light leading-relaxed text-muted-foreground',
+        className,
+      )}
+    >
+      {children}
+    </p>
+  );
+}
+
+export function TypoH2Var({ children, className }: ComponentProps<'h2'>) {
+  return (
+    <h2
+      className={cn(
+        'scroll-m20 text-3xl md:text-4xl font-light tracking-tight text-foreground',
+        className,
+      )}
+    >
+      {children}
+    </h2>
+  );
+}
+
 export function TypoH2({ children, className }: ComponentProps<'h2'>) {
   return (
     <h2

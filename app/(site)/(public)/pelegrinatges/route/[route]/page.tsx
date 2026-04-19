@@ -1,12 +1,12 @@
-import { Stage, TechnicalDetails } from '@/data/interfaces/route';
+import { Stage, TechnicalDetails } from '@/data/pelegrinatges/interfaces/route';
 
 import PageContainer from '@/components/ui/page-container';
 import RouteContent from './components/RouteContent';
 import RouteHero from '../../components/RouteHero';
 import { notFound } from 'next/navigation';
-import { regions } from '@/data/regions';
-import { routes } from '@/data/routes';
-import { stages } from '@/data/stages';
+import { regions } from '@/data/pelegrinatges/regions';
+import { routes } from '@/data/pelegrinatges/routes';
+import { stages } from '@/data/pelegrinatges/stages';
 
 export const dynamicParams = false;
 export const generateStaticParams = async () =>

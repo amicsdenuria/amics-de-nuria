@@ -1,12 +1,12 @@
-import { POI, Region } from '@/data/interfaces/route';
+import { POI, Region } from '@/data/pelegrinatges/interfaces/route';
 
 import PageContainer from '@/components/ui/page-container';
 import RouteHero from '../../components/RouteHero';
 import StageContent from './components/StageContent';
 import { notFound } from 'next/navigation';
-import { pois } from '@/data/pois';
-import { regions } from '@/data/regions';
-import { stages } from '@/data/stages';
+import { pois } from '@/data/pelegrinatges/pois';
+import { regions } from '@/data/pelegrinatges/regions';
+import { stages } from '@/data/pelegrinatges/stages';
 
 export const dynamicParams = false;
 export const generateStaticParams = async () =>

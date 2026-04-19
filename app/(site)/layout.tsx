@@ -18,7 +18,7 @@ interface PublicLayoutProps {
 const PublicLayout = ({ children }: PublicLayoutProps) => {
   return (
     <Providers>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col font-serif">
         <Header />
         {children}
       </div>

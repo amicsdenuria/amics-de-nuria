@@ -8,7 +8,7 @@ import {
   MountainIcon,
   RouteIcon,
 } from 'lucide-react';
-import { POI, Region, Stage } from '@/data/interfaces/route';
+import { POI, Region, Stage } from '@/data/pelegrinatges/interfaces/route';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TypoH2, TypoP } from '@/components/ui/typo/typoComponents';
 

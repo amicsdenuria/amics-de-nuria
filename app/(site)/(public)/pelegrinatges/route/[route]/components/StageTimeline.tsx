@@ -14,7 +14,7 @@ import {
   TrendingDownIcon,
   TrendingUpIcon,
 } from 'lucide-react';
-import { Region, Stage } from '@/data/interfaces/route';
+import { Region, Stage } from '@/data/pelegrinatges/interfaces/route';
 import { formatDistance, formatDuration } from '@/lib/routesLib';
 
 import { Badge } from '@/components/ui/badge';

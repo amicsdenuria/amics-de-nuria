@@ -4,7 +4,7 @@ import {
   Route,
   Stage,
   TechnicalDetails,
-} from '@/data/interfaces/route';
+} from '@/data/pelegrinatges/interfaces/route';
 import { TypoH2, TypoP } from '@/components/ui/typo/typoComponents';
 
 import RouteMap from '../../../components/Map';
