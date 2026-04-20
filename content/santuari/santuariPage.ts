@@ -24,6 +24,11 @@ export const santuariContent: SantuariContent = {
         { label: 'Com arribar', href: '/santuari/com-arribar' },
         { label: 'Veure el Via Crucis', href: '/santuari/via-crucis' },
       ],
+      img: {
+        src: '/hero-santuari-nuria.webp',
+        alt: 'Santuari de Núria',
+        className: 'object-center',
+      },
     },
 
     intro: {
