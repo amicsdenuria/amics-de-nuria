@@ -47,17 +47,19 @@ const Pelegrinatges = () => {
         </section>
         <section
           id="routes"
-          className="scroll-m-20 flex flex-col gap-y-4"
+          className="scroll-m-20"
         >
           <TypoH2Var className="mb-6">Altres rutes</TypoH2Var>
-          {routes
-            .filter((route) => route.id !== currentRouteId)
-            .map((route) => (
-              <RouteCard
-                key={route.id}
-                route={route}
-              />
-            ))}
+          <div className="flex flex-col gap-y-4">
+            {routes
+              .filter((route) => route.id !== currentRouteId)
+              .map((route) => (
+                <RouteCard
+                  key={route.id}
+                  route={route}
+                />
+              ))}
+          </div>
         </section>
       </PageContainer>
     </>
