@@ -66,7 +66,7 @@ export const comunitatContent: ComunitatContent = {
       title: 'Xarxes Socials',
       own: [
         { label: 'Instagram', href: 'https://www.instagram.com/amicsdenuria' },
-        { label: 'Facebook', href: 'https://www.facebook.com/amicsdenuria' },
+        { label: 'Wikiloc', href: 'https://loc.wiki/u/15686852' },
       ],
       others: [
         { label: 'Web', href: 'https://www.gmuner.es' },
