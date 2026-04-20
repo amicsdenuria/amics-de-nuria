@@ -16,7 +16,7 @@ const SantuariHero = ({ content }: SantuariHeroProps) => {
         <h1 className="mb-6 text-balance text-5xl font-light leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
           {content.title}
         </h1>
-        <p className="mb-4 text-left font-light leading-relaxed text-foreground/80 md:text-2xl">
+        <p className="mb-4 text-lg font-light leading-relaxed text-foreground/80 md:text-2xl">
           {content.subtitle}
         </p>
         <p className="mx-auto mb-10 max-w-2xl text-base font-light leading-relaxed text-muted-foreground md:text-lg">
