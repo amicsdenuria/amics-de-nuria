@@ -38,12 +38,24 @@ const Footer = () => {
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
                 Pelegrinatges
               </h4>
-              <Link
-                href={'/pelegrinatges'}
-                className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Rutes
-              </Link>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href={'/pelegrinatges#current-route'}
+                    className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    La ruta d&apos;enguany
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={'/pelegrinatges#routes'}
+                    className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Altres rutes
+                  </Link>
+                </li>
+              </ul>
             </div>
 
             <div>
