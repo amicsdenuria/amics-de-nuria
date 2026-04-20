@@ -17,7 +17,7 @@ const HomeLink = () => {
         height={24}
       />
       {/* Site Name */}
-      <span className="text-xl font-bold bg-linear-to-r from-primary/90 to-primary bg-clip-text text-transparent">
+      <span className="text-xl font-bold">
         <span className="sr-only sm:not-sr-only">{site.name.long}</span>
         <span className="inline sm:hidden">{site.name.short}</span>
       </span>
