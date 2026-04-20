@@ -6,34 +6,28 @@ import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from './components/PrimaryPageHero';
 import { cn } from '@/lib/utils';
 import { getUserData } from '@/actions/getUserData';
-import { homeSections } from '@/content/home/homePage';
-import { site } from '@/config/site.config';
+import { homeContent } from '@/content/home/homePage';
 
 export default async function Home() {
   const { isEnrolled } = await getUserData();
-  const ctas = [
-    { label: 'Rutes i itineraris', href: '/pelegrinatges' },
-    { label: 'Agenda', href: '/agenda' },
-  ];
+
+  const { hero, sections } = homeContent;
 
   return (
     <main className="flex-1 flex flex-col">
       <PrimaryPageHero
-        title={site.hero.title}
-        description={site.hero.description}
-        img={{
-          src: '/hero-santuari-nuria.webp',
-          alt: 'Santuari de Núria',
-          className: 'object-center',
-        }}
-        ctas={ctas}
+        pretitle={hero.pretitle}
+        title={hero.title}
+        description={hero.description}
+        img={hero.img}
+        ctas={hero.ctas}
         showSubscribeCTA
         isEnrolled={isEnrolled}
       />
       <PageContainer className="py-16 md:py-24 flex-1 flex">
         <section className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {homeSections.map((section) => {
+            {sections.map((section) => {
               const Icon = section.icon;
 
               return (

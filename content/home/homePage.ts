@@ -5,8 +5,18 @@ import {
   RouteIcon,
   UsersIcon,
 } from 'lucide-react';
+import {
+  PrimaryPageHeroContent,
+  PrimaryPageNavItem,
+} from '../interfaces/primary-page-interfaces';
 
 import { HomeSectionItem } from './interfaces';
+import { site } from '@/config/site.config';
+
+const homeCTAs: PrimaryPageNavItem[] = [
+  { label: 'Rutes i itineraris', href: '/pelegrinatges' },
+  { label: 'Agenda', href: '/agenda' },
+];
 
 export const homeSections: HomeSectionItem[] = [
   {
@@ -49,3 +59,25 @@ export const homeSections: HomeSectionItem[] = [
     gridClass: 'md:col-span-1', // 1/3
   },
 ];
+
+interface HomeContent {
+  hero: PrimaryPageHeroContent;
+  sections: HomeSectionItem[];
+}
+
+export const homeContent: HomeContent = {
+  hero: {
+    pretitle: 'Amics de Núria',
+    title: site.hero.title,
+    subtitle: '',
+    description: site.hero.description,
+    ctas: homeCTAs,
+    img: {
+      src: '/hero-santuari-nuria.webp',
+      alt: 'Santuari de Núria',
+      className: 'object-center',
+    },
+  },
+
+  sections: homeSections,
+};
