@@ -1,12 +1,10 @@
-import { POI, Region } from '@/data/pelegrinatges/interfaces/route';
-
 import PageContainer from '@/components/ui/page-container';
 import RouteHero from '../../components/RouteHero';
 import StageContent from './components/StageContent';
 import { notFound } from 'next/navigation';
-import { pois } from '@/data/pelegrinatges/pois';
-import { regions } from '@/data/pelegrinatges/regions';
-import { stages } from '@/data/pelegrinatges/stages';
+import { pois } from '@/content/pelegrinatges/data/pois';
+import { regions } from '@/content/pelegrinatges/data/regions';
+import { stages } from '@/content/pelegrinatges/data/stages';
 
 export const dynamicParams = false;
 export const generateStaticParams = async () =>
@@ -22,11 +20,11 @@ const StagePage = async ({ params }: StagePageParams) => {
 
   if (!stage) notFound();
 
-  const stageRegions: Region[] = stage.regions
+  const stageRegions = stage.regions
     .map((stageRegion) => regions.find((region) => region.id === stageRegion))
     .filter((region) => region !== undefined);
 
-  const stagePois: POI[] = stage.pois
+  const stagePois = stage.pois
     .map((stagePOI) => pois.find((poi) => poi.id === stagePOI))
     .filter((p) => p !== undefined);
 

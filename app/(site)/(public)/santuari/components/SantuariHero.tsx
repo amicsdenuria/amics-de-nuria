@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { SantuariHeroContent } from '@/data/santuari/interfaces';
+import { PrimaryPageHeroContent } from '@/content/interfaces/primary-page-interfaces';
 
 interface SantuariHeroProps {
-  content: SantuariHeroContent;
+  content: PrimaryPageHeroContent;
 }
 
 const SantuariHero = ({ content }: SantuariHeroProps) => {

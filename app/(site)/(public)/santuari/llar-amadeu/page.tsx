@@ -1,6 +1,6 @@
 import SantuariPageHero from '../components/SantuariPageHero';
 import SantuariTextBlock from '../components/SantuariTextBlock';
-import { santuariContent } from '@/data/santuari/santuari';
+import { santuariContent } from '@/content/santuari/santuariPage';
 
 const LlarAmadeuPage = () => {
   const { llarAmadeu } = santuariContent.pages;

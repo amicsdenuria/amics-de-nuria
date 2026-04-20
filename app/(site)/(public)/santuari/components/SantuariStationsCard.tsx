@@ -1,7 +1,7 @@
-import { SantuariStationItem } from '@/data/santuari/interfaces';
+import { OrderedCardItem } from '@/content/interfaces/primary-page-interfaces';
 
 interface SantuariStationsCardProps {
-  station: SantuariStationItem;
+  station: OrderedCardItem;
 }
 const SantuariStationsCard = ({ station }: SantuariStationsCardProps) => {
   return (
@@ -15,7 +15,7 @@ const SantuariStationsCard = ({ station }: SantuariStationsCardProps) => {
             {station.title}
           </h3>
           <p className="text-base font-light italic leading-relaxed text-muted-foreground">
-            {station.meditation}
+            {station.body}
           </p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import Hero from '@/components/Hero';
 import PageContainer from '@/components/ui/page-container';
 import { TypoP } from '@/components/ui/typo/typoComponents';
 import { notFound } from 'next/navigation';
-import { pois } from '@/data/pelegrinatges/pois';
+import { pois } from '@/content/pelegrinatges/data/pois';
 
 export const dynamicParams = false;
 export const generateStaticParams = async () =>

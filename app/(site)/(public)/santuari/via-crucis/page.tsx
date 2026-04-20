@@ -2,7 +2,7 @@ import SantuariPageHero from '../components/SantuariPageHero';
 import SantuariStationsCard from '../components/SantuariStationsCard';
 import SantuariTextBlock from '../components/SantuariTextBlock';
 import { TypoH2Var } from '@/components/ui/typo/typoComponents';
-import { santuariContent } from '@/data/santuari/santuari';
+import { santuariContent } from '@/content/santuari/santuariPage';
 
 const ViaCrucisPage = () => {
   const { viaCrucis } = santuariContent.pages;

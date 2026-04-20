@@ -1,12 +1,10 @@
-import { Stage, TechnicalDetails } from '@/data/pelegrinatges/interfaces/route';
-
 import PageContainer from '@/components/ui/page-container';
 import RouteContent from './components/RouteContent';
 import RouteHero from '../../components/RouteHero';
 import { notFound } from 'next/navigation';
-import { regions } from '@/data/pelegrinatges/regions';
-import { routes } from '@/data/pelegrinatges/routes';
-import { stages } from '@/data/pelegrinatges/stages';
+import { regions } from '@/content/pelegrinatges/data/regions';
+import { routes } from '@/content/pelegrinatges/data/routes';
+import { stages } from '@/content/pelegrinatges/data/stages';
 
 export const dynamicParams = false;
 export const generateStaticParams = async () =>
@@ -22,7 +20,7 @@ const RoutePage = async ({ params }: RoutePageParams) => {
 
   if (!route) notFound();
 
-  const routeStages: Stage[] = route.stages
+  const routeStages = route.stages
     .map((stageId) => stages.find((s) => s.id === stageId))
     .filter((s) => s !== undefined);
 
@@ -55,7 +53,7 @@ const RoutePage = async ({ params }: RoutePageParams) => {
     0,
   );
 
-  const routeStats: TechnicalDetails = {
+  const routeStats = {
     distance: routeDistance,
     duration: routeDuration,
     initialHeight: routeInitHeight,

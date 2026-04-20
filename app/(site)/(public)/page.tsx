@@ -1,79 +1,39 @@
-import {
-  ArrowRightIcon,
-  BookOpenIcon,
-  CalendarIcon,
-  ChurchIcon,
-  RouteIcon,
-  UsersIcon,
-} from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
-import Hero from '@/components/Hero';
+import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
 import PageContainer from '@/components/ui/page-container';
+import PrimaryPageHero from './components/PrimaryPageHero';
 import { cn } from '@/lib/utils';
+import { getUserData } from '@/actions/getUserData';
+import { homeSections } from '@/content/home/homePage';
 import { site } from '@/config/site.config';
 
-const sections = [
-  {
-    title: 'El Santuari',
-    description:
-      'Un lloc de fe, silenci i acollida. Descobreix la història i els espais de contemplació.',
-    href: '/santuari',
-    icon: ChurchIcon,
-    gridClass: 'md:col-span-1', // 1/3
-  },
-  {
-    title: 'Pelegrinatges',
-    description:
-      'Rutes, itineraris i variants de camí per arribar al Santuari fent pelegrinatge. Prepara la teva visita espiritual amb tota la informació necessària.',
-    href: '/pelegrinatges',
-    icon: RouteIcon,
-    gridClass: 'md:col-span-2', // 2/3
-  },
-  {
-    title: 'Agenda',
-    description:
-      "Celebracions, actes litúrgics, trobades comunitàries i esdeveniments especials al llarg de l'any. Consulta el calendari i no et perdis cap activitat.",
-    href: '/',
-    icon: CalendarIcon,
-    gridClass: 'md:col-span-3', // 3/3 (full width)
-  },
-  {
-    title: 'Comunitat',
-    description:
-      "Coneix la comunitat que acull els visitants i pelegrins. Una tradició d'hospitalitat i espiritualitat que perdura al llarg dels segles.",
-    href: '/',
-    icon: UsersIcon,
-    gridClass: 'md:col-span-2', // 2/3
-  },
-  {
-    title: 'Publicacions',
-    description: 'Llibres, materials de pregària i recursos espirituals.',
-    href: '/',
-    icon: BookOpenIcon,
-    gridClass: 'md:col-span-1', // 1/3
-  },
-];
+export default async function Home() {
+  const { isEnrolled } = await getUserData();
+  const ctas = [
+    { label: 'Rutes i itineraris', href: '/pelegrinatges' },
+    { label: 'Agenda', href: '/agenda' },
+  ];
 
-export default function Home() {
   return (
     <main className="flex-1 flex flex-col">
-      <Hero
+      <PrimaryPageHero
         title={site.hero.title}
         description={site.hero.description}
+        img={{
+          src: '/hero-santuari-nuria.webp',
+          alt: 'Santuari de Núria',
+          className: 'object-center',
+        }}
+        ctas={ctas}
+        showSubscribeCTA
+        isEnrolled={isEnrolled}
       />
-      <PageContainer className="py-4 flex-1 flex">
-        {/* <div className="flex-1 flex flex-col gap-4 justify-center items-center my-4 bg-gray-500 text-amber-200 rounded-md relative">
-          <span className="text-xl font-semibold inset-x-0 inset-y-0 bg-stone-800 dark:bg-neutral-700 shadow-xl w-fit h-fit py-3 px-4 rounded-sm -translate-x-4 -translate-y-3 -rotate-6 absolute">
-            Pròximament...
-          </span>
-          <span className="text-8xl">👷🏻‍♂️</span>
-          <span className="text-lg font-mono">En construcció</span>
-        </div> */}
-        <section className="mx-auto max-w-6xl px-6 pb-24">
+      <PageContainer className="py-16 md:py-24 flex-1 flex">
+        <section className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {sections.map((section) => {
+            {homeSections.map((section) => {
               const Icon = section.icon;
 
               return (

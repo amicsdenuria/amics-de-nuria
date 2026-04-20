@@ -1,4 +1,4 @@
-import { Stage } from './interfaces/route';
+import { Stage } from './interfaces/stage';
 
 export const stages: Stage[] = [
   {

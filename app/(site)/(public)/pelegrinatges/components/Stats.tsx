@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { formatDistance, formatDuration } from '@/lib/routesLib';
 
-import { TechnicalDetails } from '@/data/pelegrinatges/interfaces/route';
+import { TechnicalDetails } from '@/content/pelegrinatges/data/interfaces/route';
 import TechnicalStat from './TechnicalStat';
 
 interface StatsProps {

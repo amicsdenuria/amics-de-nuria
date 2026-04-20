@@ -14,12 +14,13 @@ import {
   TrendingDownIcon,
   TrendingUpIcon,
 } from 'lucide-react';
-import { Region, Stage } from '@/data/pelegrinatges/interfaces/route';
 import { formatDistance, formatDuration } from '@/lib/routesLib';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Region } from '@/content/pelegrinatges/data/interfaces/region';
+import { Stage } from '@/content/pelegrinatges/data/interfaces/stage';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 

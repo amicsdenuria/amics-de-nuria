@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import SantuariHero from './components/SantuariHero';
 import SectionCard from './components/SectionCard';
-import { santuariContent } from '@/data/santuari/santuari';
+import { santuariContent } from '@/content/santuari/santuariPage';
 
 const SantuariPage = () => {
   const { home } = santuariContent;
@@ -18,7 +18,6 @@ const SantuariPage = () => {
         <div className="mx-auto max-w-4xl px-6 text-center">
           <TypoH2Var className="mb-6">{home.intro.title}</TypoH2Var>
           <TypoPVar className="mx-auto text-lg">{home.intro.body}</TypoPVar>
-          <p></p>
         </div>
       </section>
 
@@ -26,10 +25,10 @@ const SantuariPage = () => {
       <section className="bg-secondary/20 py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <TypoH2Var className="mb-10 text-center">
-            Descobreix el Santuari
+            {home.cards.title}
           </TypoH2Var>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {home.cards.map((card) => (
+            {home.cards.items.map((card) => (
               <SectionCard
                 key={card.href}
                 card={card}

@@ -8,13 +8,15 @@ import {
   MountainIcon,
   RouteIcon,
 } from 'lucide-react';
-import { POI, Region, Stage } from '@/data/pelegrinatges/interfaces/route';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TypoH2, TypoP } from '@/components/ui/typo/typoComponents';
 
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { POI } from '@/content/pelegrinatges/data/interfaces/poi';
+import { Region } from '@/content/pelegrinatges/data/interfaces/region';
+import { Stage } from '@/content/pelegrinatges/data/interfaces/stage';
 import StageMedia from './StageMedia';
 import Stats from '../../../components/Stats';
 import { cn } from '@/lib/utils';

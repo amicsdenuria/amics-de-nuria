@@ -1,7 +1,7 @@
-import { SantuariTextBlock as SantuariTextBlockType } from '@/data/santuari/interfaces';
+import { TextBlock } from '@/content/interfaces/primary-page-interfaces';
 
 interface SantuariTextBlockProps {
-  block: SantuariTextBlockType;
+  block: TextBlock;
   index?: number;
 }
 const SantuariTextBlock = ({ block, index }: SantuariTextBlockProps) => {

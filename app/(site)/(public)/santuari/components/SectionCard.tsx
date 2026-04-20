@@ -2,10 +2,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
-import { SantuariSectionCard } from '@/data/santuari/interfaces';
+import { SectionCard as SectionCardType } from '@/content/interfaces/primary-page-interfaces';
 
 interface SectionCardProps {
-  card: SantuariSectionCard;
+  card: SectionCardType;
 }
 const SectionCard = ({ card }: SectionCardProps) => {
   return (

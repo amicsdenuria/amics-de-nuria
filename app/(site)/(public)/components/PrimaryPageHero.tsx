@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import PrimaryActionButtonHero from '@/components/navbar/PrimaryActionButtonHero';
 import { cn } from '@/lib/utils';
 
 interface PrimaryPageHeroProps {
@@ -17,6 +18,8 @@ interface PrimaryPageHeroProps {
     alt: string;
     className?: string;
   };
+  showSubscribeCTA?: boolean;
+  isEnrolled?: boolean;
 }
 
 const PrimaryPageHero = ({
@@ -26,7 +29,11 @@ const PrimaryPageHero = ({
   description,
   ctas,
   img,
+  showSubscribeCTA = false,
+  isEnrolled,
 }: PrimaryPageHeroProps) => {
+  const showPrimaryCTAButton = showSubscribeCTA && !isEnrolled;
+
   return (
     <section className="relative flex min-h-[70vh] items-center justify-center font-serif overflow-hidden bg-secondary/30">
       {img && (
@@ -71,11 +78,16 @@ const PrimaryPageHero = ({
 
         {ctas && ctas.length > 0 && (
           <div className="flex flex-wrap items-center justify-center gap-4">
+            {showPrimaryCTAButton && (
+              <PrimaryActionButtonHero isEnrolled={isEnrolled ?? false} />
+            )}
             {ctas.map((cta, i) => (
               <Button
                 key={cta.href}
                 asChild
-                variant={i === 0 ? 'default' : 'outline'}
+                variant={
+                  i === 0 && !showPrimaryCTAButton ? 'default' : 'outline'
+                }
                 size={'lg'}
                 className="min-w-[180px] font-light tracking-wide"
               >

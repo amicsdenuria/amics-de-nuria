@@ -1,7 +1,7 @@
-import { SantuariInfoItem } from '@/data/santuari/interfaces';
+import { InfoItem } from '@/content/interfaces/primary-page-interfaces';
 
 interface SantuariInfoCardProps {
-  item: SantuariInfoItem;
+  item: InfoItem;
 }
 
 const SantuariInfoCard = ({ item }: SantuariInfoCardProps) => {

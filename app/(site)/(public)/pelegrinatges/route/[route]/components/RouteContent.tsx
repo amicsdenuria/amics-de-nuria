@@ -1,12 +1,12 @@
 import { InfoIcon, MapIcon, MountainIcon, RouteIcon } from 'lucide-react';
 import {
-  Region,
-  Route,
   Stage,
   TechnicalDetails,
-} from '@/data/pelegrinatges/interfaces/route';
+} from '@/content/pelegrinatges/data/interfaces/stage';
 import { TypoH2, TypoP } from '@/components/ui/typo/typoComponents';
 
+import { Region } from '@/content/pelegrinatges/data/interfaces/region';
+import { Route } from '@/content/pelegrinatges/data/interfaces/route';
 import RouteMap from '../../../components/Map';
 import StageTimeline from './StageTimeline';
 import Stats from '../../../components/Stats';

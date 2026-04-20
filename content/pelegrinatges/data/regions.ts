@@ -1,4 +1,4 @@
-import { Region } from './interfaces/route';
+import { Region } from './interfaces/region';
 
 export const regions: Region[] = [
   {

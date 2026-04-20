@@ -1,4 +1,4 @@
-import { POI } from './interfaces/route';
+import { POI } from './interfaces/poi';
 
 export const pois: POI[] = [
   {
