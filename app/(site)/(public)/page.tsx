@@ -78,7 +78,7 @@ export default function Home() {
 
               return (
                 <Link
-                  key={section.href}
+                  key={`${section.title}-${section.href}`}
                   href={section.href}
                   className={cn('group block col-span-1', section.gridClass)}
                 >

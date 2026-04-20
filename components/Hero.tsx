@@ -28,10 +28,10 @@ const Hero = ({ title, description, hasImage = true, img }: HeroProps) => {
         hasImage && (
           <Image
             alt="Vall de Núria"
-            src="/hero-vall-nuria.webp"
+            src="/hero-santuari-nuria.webp"
             fill
             sizes="100vw"
-            className={cn('object-cover object-bottom')}
+            className={cn('object-cover object-center')}
           />
         )
       )}

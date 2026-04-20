@@ -51,7 +51,7 @@ const RouteHero = ({
         hasImage && (
           <Image
             alt="Vall de Núria"
-            src="/hero-vall-nuria.webp"
+            src="/hero-muntanya-nuria.webp"
             fill
             sizes="100vw"
             className={cn('object-cover object-top')}
