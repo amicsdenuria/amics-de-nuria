@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { formatDistance, formatDuration } from '@/lib/routesLib';
 
-import { TechnicalDetails } from '@/content/pelegrinatges/data/interfaces/route';
+import { TechnicalDetails } from '@/content/pelegrinatges/data/interfaces/stage';
 import TechnicalStat from './TechnicalStat';
 
 interface StatsProps {
@@ -84,14 +84,6 @@ const Stats = ({ stats }: StatsProps) => {
           variant="warning"
         />
       </div>
-      {/* minHeight: {
-        value: 177,
-        tooltip: "",
-      }, */}
-      {/* maxHeight: {
-        value: 801,
-        tooltip: "",
-      }, */}
     </div>
   );
 };
