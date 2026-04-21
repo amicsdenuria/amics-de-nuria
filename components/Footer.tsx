@@ -143,7 +143,7 @@ const Footer = () => {
               </h4>
               <address className="not-italic mb-4">
                 <p className="text-sm font-light leading-relaxed text-muted-foreground">
-                  Per a més informació sobre visites, pelegrinatges o
+                  Per a més informació sobre sortides, visites, pelegrinatges o
                   col·laboracions, poseu-vos en contacte amb nosaltres.
                 </p>
               </address>

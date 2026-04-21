@@ -23,9 +23,9 @@ interface AgendaContent {
 }
 
 const agendaCTAs: PrimaryPageNavItem[] = [
-  { label: 'Próxima activitat', href: '/agenda#next-activity' },
+  { label: 'Pròxima activitat', href: '/agenda#next-activity' },
   { label: 'Activitat destacada', href: '/agenda#key-activity' },
-  { label: 'Totes les activitats', href: '/agenda#all' },
+  { label: 'Totes les activitats', href: '/agenda#activities' },
 ];
 
 export const agendaContent: AgendaContent = {
@@ -51,7 +51,7 @@ export const agendaContent: AgendaContent = {
     },
 
     nextActivity: {
-      title: 'Próxima activitat',
+      title: 'Pròxima activitat',
     },
 
     keyActivity: {
