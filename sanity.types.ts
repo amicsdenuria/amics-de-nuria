@@ -13,6 +13,70 @@
  */
 
 // Source: schema.json
+export type Stage = {
+  _id: string;
+  _type: "stage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  origin?: string;
+  destiny?: string;
+  wayPoints?: Array<string>;
+  slug?: Slug;
+  description?: string;
+  mapUrl?: string;
+  videoUrl?: string;
+  imgs?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  trailLocations?: Array<string>;
+  allocations?: Array<string>;
+  technicalDetails?: {
+    distance?: number;
+    duration?: number;
+    initialHeight?: number;
+    finalHeight?: number;
+    minHeight?: number;
+    maxHeight?: number;
+    cumulativeAscent?: number;
+    cumulativeDescent?: number;
+  };
+  notes?: Array<string>;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
 export type Subscriber = {
   _id: string;
   _type: "subscriber";
@@ -95,22 +159,6 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
 export type SanityFileAsset = {
   _id: string;
   _type: "sanity.fileAsset";
@@ -170,13 +218,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type AllSanitySchemaTypes = Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint | Slug;
+export type AllSanitySchemaTypes = Stage | SanityImageCrop | SanityImageHotspot | Slug | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/subscriber/createSubscriberIfNotExist.ts
 // Variable: existingSubscriberQuery
