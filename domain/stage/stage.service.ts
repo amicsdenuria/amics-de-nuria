@@ -5,11 +5,12 @@ import {
   stagesFromSanity,
 } from './stage.adapter';
 
+import { dataSource } from '@/config/site.config';
 import { getStageBySlug as getSanityStage } from '@/sanity/lib/pelegrinatges/stage/getStageBySlug';
 import { getStagesBySlugs as getSanityStages } from '@/sanity/lib/pelegrinatges/stage/getStagesBySlugs';
 import { stagesMock } from '@/content/pelegrinatges/mockData/stages';
 
-const DATA_SOURCE: 'local' | 'sanity' = 'local';
+const DATA_SOURCE = dataSource.pelegrinatges.stages;
 
 export const getStageBySlug = async (slug: string) => {
   if (DATA_SOURCE === 'local') {

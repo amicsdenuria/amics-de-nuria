@@ -1,10 +1,11 @@
 import { poiFromLocal, poiFromSanity } from './poi.adapter';
 
 import { DomainPoi } from './poi.types';
+import { dataSource } from '@/config/site.config';
 import { getPoiBySlug as getSanityPoi } from '@/sanity/lib/pelegrinatges/poi/getPoiBySlug';
 import { poisMock } from '@/content/pelegrinatges/mockData/pois';
 
-const DATA_SOURCE: 'local' | 'sanity' = 'local';
+const DATA_SOURCE = dataSource.pelegrinatges.pois;
 
 export const getPoiBySlug = async (slug: string): Promise<DomainPoi | null> => {
   if (DATA_SOURCE === 'local') {

@@ -9,3 +9,35 @@ export const site = {
       'Una comunitat que uneix espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
   },
 };
+
+type DataSourceOption = 'local' | 'sanity';
+
+interface DataSource {
+  pelegrinatges: {
+    regions: DataSourceOption;
+    pois: DataSourceOption;
+    stages: DataSourceOption;
+    routes: DataSourceOption;
+  };
+  agenda: {
+    activities: DataSourceOption;
+  };
+  publicacions: {
+    publications: DataSourceOption;
+  };
+}
+
+export const dataSource: DataSource = {
+  pelegrinatges: {
+    regions: 'sanity',
+    pois: 'local',
+    stages: 'local',
+    routes: 'local',
+  },
+  agenda: {
+    activities: 'local',
+  },
+  publicacions: {
+    publications: 'local',
+  },
+};

@@ -6,11 +6,12 @@ import {
   routesFromSanity,
 } from './route.adapter';
 
+import { dataSource } from '@/config/site.config';
 import { getAllRoutes as getSanityAllRoutes } from '@/sanity/lib/pelegrinatges/route/getAllRoutes';
 import { getRouteBySlug as getSanityRoute } from '@/sanity/lib/pelegrinatges/route/getRouteBySlug';
 import { routesMock } from '@/content/pelegrinatges/mockData/routes';
 
-const DATA_SOURCE: 'local' | 'sanity' = 'local';
+const DATA_SOURCE = dataSource.pelegrinatges.routes;
 
 export const getRouteBySlug = async (slug: string) => {
   if (DATA_SOURCE === 'local') {

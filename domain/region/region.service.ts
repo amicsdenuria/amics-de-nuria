@@ -5,11 +5,12 @@ import {
   regionsFromSanity,
 } from './region.adapter';
 
+import { dataSource } from '@/config/site.config';
 import { getRegionBySlug as getSanityRegion } from '@/sanity/lib/pelegrinatges/region/getRegionBySlug';
 import { getRegionsBySlugs as getSanityRegions } from '@/sanity/lib/pelegrinatges/region/getRegionsBySlugs';
 import { regionsMock } from '@/content/pelegrinatges/mockData/regions';
 
-const DATA_SOURCE: 'local' | 'sanity' = 'local';
+const DATA_SOURCE = dataSource.pelegrinatges.regions;
 
 export const getRegionBySlug = async (slug: string) => {
   if (DATA_SOURCE === 'local') {
