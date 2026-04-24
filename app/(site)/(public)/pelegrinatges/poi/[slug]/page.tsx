@@ -4,8 +4,6 @@ import { TypoP } from '@/components/ui/typo/typoComponents';
 import { getPoiBySlug } from '@/domain/poi/poi.service';
 import { notFound } from 'next/navigation';
 
-export const dynamicParams = false;
-
 interface RegionPageParams {
   params: Promise<{ slug: string }>;
 }

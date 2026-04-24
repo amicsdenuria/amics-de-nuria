@@ -3,8 +3,8 @@ import { defineField, defineType } from 'sanity';
 import CharacterCountTextInput from '@/sanity/components/CharacterCountTextInput';
 import { HoursMinsToMinsInput } from '@/sanity/components/HoursMinsToMinsInput';
 import { KmToMInput } from '@/sanity/components/KmToMInput';
+import MultilineDescription from '@/sanity/components/MultilineDescription';
 import SpanWithLink from '@/sanity/components/SpanWithLink';
-import WayPointsDescription from '@/sanity/components/stage/WayPointsDescription';
 
 export const stage = defineType({
   name: 'stage',
@@ -44,7 +44,7 @@ export const stage = defineType({
     }),
     defineField({
       name: 'wayPoints',
-      title: 'Punts intermitjos',
+      title: "Punts intermitjos - (si n'hi ha)",
       type: 'array',
       of: [
         {
@@ -54,7 +54,16 @@ export const stage = defineType({
         },
       ],
       validation: (Rule) => Rule.unique(),
-      description: WayPointsDescription(),
+      description: MultilineDescription([
+        { type: 'text', value: "Punts intermitjos de l'etapa." },
+        { type: 'br' },
+        { type: 'text', value: 'Exemple:' },
+        {
+          type: 'text',
+          value: 'Alpens - Les Llosses - Ripoll -> afegir Les Llosses.',
+        },
+        { type: 'text', value: 'Olost - Sant Boi -> No cal afegir res' },
+      ]),
     }),
     defineField({
       name: 'slug',
@@ -146,7 +155,7 @@ export const stage = defineType({
             Rule.required().error('No pot estar buit. Emplena o elimina.'),
         },
       ],
-      validation: (Rule) => Rule.unique().min(2),
+      validation: (Rule) => Rule.required().unique().min(2),
       description:
         "Punts de referència o d'interès per on passa la ruta. Mínim requereix origen i destí.",
     }),
@@ -155,12 +164,12 @@ export const stage = defineType({
       title: 'Comarques',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'region' }] }],
-      validation: (Rule) => Rule.unique().min(1),
+      validation: (Rule) => Rule.required().unique(),
       description: "Comarques per les que passa l'etapa.",
     }),
     defineField({
       name: 'pois',
-      title: "Punts d'interès",
+      title: "Punts d'interès - (opcional)",
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'poi' }] }],
       validation: (Rule) => Rule.unique(),

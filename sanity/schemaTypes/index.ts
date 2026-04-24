@@ -4,7 +4,8 @@ import { subscription } from './subscription';
 import { stage } from './pelegrinatges/stage';
 import { region } from './pelegrinatges/region';
 import { poi } from './pelegrinatges/poi';
+import { route } from './pelegrinatges/route';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [subscriber, subscription, stage, region, poi],
+  types: [subscriber, subscription, route, stage, region, poi],
 };

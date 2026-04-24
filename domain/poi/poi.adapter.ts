@@ -6,6 +6,7 @@ export const poiFromSanity = (
 ): DomainPoi | null => {
   if (!data) return null;
 
+  // Trusting sanity runtime validation
   return {
     id: data.slug!,
     name: data.name!,

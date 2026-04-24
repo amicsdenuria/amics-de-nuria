@@ -3,11 +3,6 @@ import PageContainer from '@/components/ui/page-container';
 import { TypoP } from '@/components/ui/typo/typoComponents';
 import { getRegionBySlug } from '@/domain/region/region.service';
 import { notFound } from 'next/navigation';
-import { regionsMock } from '@/content/pelegrinatges/data/regions';
-
-export const dynamicParams = false;
-export const generateStaticParams = async () =>
-  regionsMock.map((region) => ({ region: region.id }));
 
 interface RegionPageParams {
   params: Promise<{ slug: string }>;

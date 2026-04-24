@@ -1,4 +1,36 @@
 import { DomainStage, TechnicalDetails } from '../stage/stage.types';
+import {
+  routeFromLocal,
+  routeFromSanity,
+  routesFromLocal,
+  routesFromSanity,
+} from './route.adapter';
+
+import { getAllRoutes as getSanityAllRoutes } from '@/sanity/lib/pelegrinatges/route/getAllRoutes';
+import { getRouteBySlug as getSanityRoute } from '@/sanity/lib/pelegrinatges/route/getRouteBySlug';
+import { routesMock } from '@/content/pelegrinatges/mockData/routes';
+
+const DATA_SOURCE: 'local' | 'sanity' = 'local';
+
+export const getRouteBySlug = async (slug: string) => {
+  if (DATA_SOURCE === 'local') {
+    const route = routesMock.find((r) => r.slug === slug);
+
+    return route ? routeFromLocal(route) : null;
+  }
+
+  const route = await getSanityRoute({ slug });
+  return routeFromSanity(route);
+};
+
+export const getAllRoutes = async () => {
+  if (DATA_SOURCE === 'local') {
+    return routesFromLocal(routesMock);
+  }
+
+  const routes = await getSanityAllRoutes();
+  return routesFromSanity(routes);
+};
 
 export const getRouteStats = (routeStages: DomainStage[]): TechnicalDetails => {
   const routeDistance = routeStages.reduce(

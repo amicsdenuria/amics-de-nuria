@@ -7,7 +7,7 @@ import {
 
 import { getStageBySlug as getSanityStage } from '@/sanity/lib/pelegrinatges/stage/getStageBySlug';
 import { getStagesBySlugs as getSanityStages } from '@/sanity/lib/pelegrinatges/stage/getStagesBySlugs';
-import { stagesMock } from '@/content/pelegrinatges/data/stages';
+import { stagesMock } from '@/content/pelegrinatges/mockData/stages';
 
 const DATA_SOURCE: 'local' | 'sanity' = 'local';
 

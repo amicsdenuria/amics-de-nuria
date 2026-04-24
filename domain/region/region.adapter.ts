@@ -10,6 +10,7 @@ export const regionFromSanity = (
 ): DomainRegion | null => {
   if (!data || !data.name || !data.slug) return null;
 
+  // Trusting sanity runtime validation
   return {
     id: data.slug,
     name: data.name,

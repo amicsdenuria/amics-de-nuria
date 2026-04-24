@@ -1,8 +1,10 @@
-import { Route } from './interfaces/route';
+import { DomainRoute } from '@/domain/route/route.types';
+import { stagesMock } from './stages';
 
-export const routes: Route[] = [
+export const routesMock: DomainRoute[] = [
   {
-    id: 'route-a',
+    id: 'montserrat-nuria-bergueda',
+    slug: 'montserrat-nuria-bergueda',
     origin: 'Montserrat',
     destiny: 'Núria',
     alternativeRoutePoints: ['Berguedà'],
@@ -12,7 +14,7 @@ export const routes: Route[] = [
     ],
     routeMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
-    stages: ['stage-a', 'stage-b', 'stage-c'],
+    stages: [stagesMock[0].slug, stagesMock[1].slug, stagesMock[2].slug],
     notes: [
       'Alguns trams poden resultar relliscosos després de pluges, especialment a les zones boscoses entre Manresa i Navarcles.',
       'Hi ha punts amb poca cobertura mòbil, es recomana portar el track descarregat prèviament.',
@@ -20,7 +22,8 @@ export const routes: Route[] = [
     ],
   },
   {
-    id: 'route-b',
+    id: 'montserrat-nuria-llucanes-campdevanol',
+    slug: 'montserrat-nuria-llucanes-campdevanol',
     origin: 'Montserrat',
     destiny: 'Núria',
     alternativeRoutePoints: ['Lluçanès', 'Campdevànol'],
@@ -29,7 +32,12 @@ export const routes: Route[] = [
     ],
     routeMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
-    stages: ['stage-a', 'stage-b', 'stage-c', 'stage-d'],
+    stages: [
+      stagesMock[0].slug,
+      stagesMock[1].slug,
+      stagesMock[2].slug,
+      stagesMock[3].slug,
+    ],
     notes: [
       'El pas pel Lluçanès pot ser calorós a l’estiu, ja que hi ha trams amb poca ombra.',
       'Algunes cruïlles no estan ben senyalitzades, és important seguir el GPS amb atenció.',
@@ -37,7 +45,8 @@ export const routes: Route[] = [
     ],
   },
   {
-    id: 'route-c',
+    id: 'montserrat-nuria-llucanes-planoles',
+    slug: 'montserrat-nuria-llucanes-planoles',
     origin: 'Montserrat',
     destiny: 'Núria',
     alternativeRoutePoints: ['Lluçanès', 'Planoles'],
@@ -46,7 +55,12 @@ export const routes: Route[] = [
     ],
     routeMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
-    stages: ['stage-a', 'stage-b', 'stage-c', 'stage-d'],
+    stages: [
+      stagesMock[0].slug,
+      stagesMock[1].slug,
+      stagesMock[2].slug,
+      stagesMock[3].slug,
+    ],
     notes: [
       'Ruta amb menor afluència de gent, ideal per a qui busca tranquil·litat però amb menys serveis disponibles.',
       'El tram final des de Planoles presenta un desnivell exigent, cal reservar forces.',

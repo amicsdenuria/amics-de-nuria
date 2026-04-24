@@ -7,7 +7,7 @@ import {
 
 import { getRegionBySlug as getSanityRegion } from '@/sanity/lib/pelegrinatges/region/getRegionBySlug';
 import { getRegionsBySlugs as getSanityRegions } from '@/sanity/lib/pelegrinatges/region/getRegionsBySlugs';
-import { regionsMock } from '@/content/pelegrinatges/data/regions';
+import { regionsMock } from '@/content/pelegrinatges/mockData/regions';
 
 const DATA_SOURCE: 'local' | 'sanity' = 'local';
 

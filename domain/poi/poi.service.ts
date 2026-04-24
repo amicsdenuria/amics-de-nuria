@@ -2,7 +2,7 @@ import { poiFromLocal, poiFromSanity } from './poi.adapter';
 
 import { DomainPoi } from './poi.types';
 import { getPoiBySlug as getSanityPoi } from '@/sanity/lib/pelegrinatges/poi/getPoiBySlug';
-import { poisMock } from '@/content/pelegrinatges/data/pois';
+import { poisMock } from '@/content/pelegrinatges/mockData/pois';
 
 const DATA_SOURCE: 'local' | 'sanity' = 'local';
 

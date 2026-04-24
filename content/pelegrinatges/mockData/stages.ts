@@ -21,7 +21,7 @@ const stageRegions = [
 
 const stagePois = [
   {
-    slug: 'la-moreneta',
+    slug: 'moreneta-de-montserrat',
     name: 'La Moreneta',
     img: {
       url: '/moreneta-montserrat.webp',

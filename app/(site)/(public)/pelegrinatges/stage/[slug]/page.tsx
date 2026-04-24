@@ -4,8 +4,6 @@ import StageContent from './components/StageContent';
 import { getStageBySlug } from '@/domain/stage/stage.service';
 import { notFound } from 'next/navigation';
 
-export const dynamicParams = false;
-
 interface StagePageParams {
   params: Promise<{ slug: string }>;
 }

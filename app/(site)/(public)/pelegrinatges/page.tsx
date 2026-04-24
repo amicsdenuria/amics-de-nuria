@@ -6,7 +6,7 @@ import Link from 'next/link';
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
-import { getAllRoutes } from '@/adapters/pelegrinatges/route/getAllRoutes';
+import { getAllRoutes } from '@/domain/route/route.service';
 import { pelegrinatgesContent } from '@/content/pelegrinatges/pelegrinatgesPage';
 
 const Pelegrinatges = async () => {

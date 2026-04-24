@@ -1,10 +1,11 @@
-export interface Route {
+export interface DomainRoute {
   id: string;
+  slug: string;
   origin: string;
   destiny: string;
   alternativeRoutePoints?: string[];
   routeDesc: string[];
   routeMapUrl: string;
-  stages: string[]; //lista ids de stages
+  stages: string[];
   notes?: string[];
 }

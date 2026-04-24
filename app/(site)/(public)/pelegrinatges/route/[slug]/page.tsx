@@ -1,20 +1,18 @@
+import { getRouteBySlug, getRouteStats } from '@/domain/route/route.service';
+
 import PageContainer from '@/components/ui/page-container';
 import RouteContent from './components/RouteContent';
 import RouteHero from '../../components/RouteHero';
-import { getRouteById } from '@/adapters/pelegrinatges/route/getRouteById';
-import { getRouteStats } from '@/domain/route/region.service';
 import { getStagesBySlugs } from '@/domain/stage/stage.service';
 import { notFound } from 'next/navigation';
 
-export const dynamicParams = false;
-
 interface RoutePageParams {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 const RoutePage = async ({ params }: RoutePageParams) => {
-  const { id } = await params;
-  const route = await getRouteById({ routeId: id });
+  const { slug } = await params;
+  const route = await getRouteBySlug(slug);
 
   if (!route) notFound();
 
