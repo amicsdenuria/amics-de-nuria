@@ -1,18 +1,64 @@
-import { Stage } from './interfaces/stage';
+import { DomainStage } from '@/domain/stage/stage.types';
 
-export const stages: Stage[] = [
+const stageRegions = [
   {
-    id: 'stage-a',
+    slug: 'el-bages',
+    name: 'El Bages',
+    img: {
+      url: '/bages.webp',
+      alt: 'El Bages',
+    },
+  },
+  {
+    slug: 'el-bergueda',
+    name: 'El Berguedà',
+    img: {
+      url: '/bergueda.webp',
+      alt: 'El Berguedà',
+    },
+  },
+];
+
+const stagePois = [
+  {
+    slug: 'la-moreneta',
+    name: 'La Moreneta',
+    img: {
+      url: '/moreneta-montserrat.webp',
+      alt: 'Moreneta de Montserrat',
+    },
+  },
+  {
+    slug: 'monestir-de-montserrat',
+    name: 'Monestir de Montserrat',
+    img: {
+      url: '/monestir-montserrat.webp',
+      alt: 'Monestir de Montserrat',
+    },
+  },
+];
+
+const stageImgs = [
+  {
+    url: '/hero-vall-nuria.webp',
+    alt: 'Santuari de Núria',
+  },
+];
+
+export const stagesMock: DomainStage[] = [
+  {
+    id: 'montserrat-torello-manresa',
+    slug: 'montserrat-torello-manresa',
     origin: 'Montserrat',
     destiny: 'Manresa',
-    stageDesc: [
+    wayPoints: ['Torelló'],
+    stageDesc:
       'Aquesta etapa inicial transcorre per terreny variat, combinant trams de pista ampla amb senders més estrets que s’endinsen en zones boscoses. El recorregut és progressiu i permet agafar ritme sense grans dificultats tècniques, tot gaudint de paisatges oberts i vistes puntuals de l’entorn. És una etapa ideal per començar la ruta amb bones sensacions i preparar-se per als trams següents.',
-    ],
     stageMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
     videoUrl: 'https://placeholdervideo.dev/1920x1080',
-    regions: ['region-1'],
-    pois: ['poi-1'],
+    regions: [stageRegions[0]],
+    pois: [stagePois[0]],
     trailLocations: [
       'Basílica de la Mare de Déu de Montserrat',
       'Monestir de Santa Cecilia',
@@ -30,11 +76,7 @@ export const stages: Stage[] = [
       'Santuari de Cova de Manresa',
       'Rectoria de Sallent',
     ],
-    imgs: [
-      '/hero-vall-nuria.webp',
-      '/hero-vall-nuria.webp',
-      '/hero-vall-nuria.webp',
-    ],
+    imgs: [stageImgs[0], stageImgs[0], stageImgs[0]],
     technicalDetails: {
       distance: 24800,
       duration: 450,
@@ -52,14 +94,17 @@ export const stages: Stage[] = [
     ],
   },
   {
-    id: 'stage-b',
+    id: 'manresa-sallent',
+    slug: 'manresa-sallent',
     origin: 'Manresa',
     destiny: 'Sallent',
+    stageDesc:
+      'Aquesta etapa inicial transcorre per terreny variat, combinant trams de pista ampla amb senders més estrets que s’endinsen en zones boscoses. El recorregut és progressiu i permet agafar ritme sense grans dificultats tècniques, tot gaudint de paisatges oberts i vistes puntuals de l’entorn. És una etapa ideal per començar la ruta amb bones sensacions i preparar-se per als trams següents.',
     stageMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
     videoUrl: 'https://placeholdervideo.dev/1920x1080',
-    regions: ['region-1'],
-    pois: ['poi-2'],
+    regions: [stageRegions[0]],
+    pois: [stagePois[1]],
     trailLocations: [
       'Manresa',
       'Santa Maria de Viladordis',
@@ -73,11 +118,7 @@ export const stages: Stage[] = [
       'Sallent',
     ],
     allocations: ['Hostal Sant Martí', 'Hostal Sant Cristòfol'],
-    imgs: [
-      '/hero-vall-nuria.webp',
-      '/hero-vall-nuria.webp',
-      '/hero-vall-nuria.webp',
-    ],
+    imgs: [stageImgs[0], stageImgs[0], stageImgs[0]],
     technicalDetails: {
       distance: 23600,
       duration: 405,
@@ -90,18 +131,17 @@ export const stages: Stage[] = [
     },
   },
   {
-    id: 'stage-c',
+    id: 'sallent-santa-maria-dolo',
+    slug: 'sallent-santa-maria-dolo',
     origin: 'Sallent',
     destiny: 'Santa Maria d’Oló',
-    stageDesc: [
+    stageDesc:
       'Aquesta segona etapa presenta un perfil més exigent, amb un augment progressiu del desnivell i trams on el camí esdevé més irregular. El recorregut alterna zones ombrívoles amb espais oberts, oferint una gran varietat de paisatges i una experiència més intensa a nivell físic.',
-      'Malgrat l’esforç, el camí està ben definit i permet avançar amb seguretat si es manté un bon ritme. És recomanable gestionar bé l’energia i aprofitar els punts de descans per gaudir de l’entorn abans d’afrontar el tram final de l’etapa.',
-    ],
     stageMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
     videoUrl: 'https://placeholdervideo.dev/1920x1080',
-    regions: ['region-1', 'region-2'],
-    pois: ['poi-1'],
+    regions: [stageRegions[0], stageRegions[1]],
+    pois: [stagePois[0]],
     trailLocations: [
       'Sallent',
       'la Sèquia de Manresa',
@@ -119,11 +159,7 @@ export const stages: Stage[] = [
       'Puig-reig',
     ],
     allocations: ['Refugi de Puigcercós', 'Hotel La Sèquia Molinar'],
-    imgs: [
-      '/hero-vall-nuria.webp',
-      '/hero-vall-nuria.webp',
-      '/hero-vall-nuria.webp',
-    ],
+    imgs: [stageImgs[0], stageImgs[0], stageImgs[0]],
     technicalDetails: {
       distance: 23000,
       duration: 405,
@@ -136,14 +172,17 @@ export const stages: Stage[] = [
     },
   },
   {
-    id: 'stage-d',
+    id: 'santa-maria-dolo-olost',
+    slug: 'santa-maria-dolo-olost',
     origin: 'Santa Maria d’Oló',
     destiny: 'Olost',
+    stageDesc:
+      'Aquesta segona etapa presenta un perfil més exigent, amb un augment progressiu del desnivell i trams on el camí esdevé més irregular. El recorregut alterna zones ombrívoles amb espais oberts, oferint una gran varietat de paisatges i una experiència més intensa a nivell físic.',
     stageMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
     videoUrl: 'https://placeholdervideo.dev/1920x1080',
-    regions: ['region-1', 'region-2'],
-    pois: ['poi-1', 'poi-2'],
+    regions: [stageRegions[0], stageRegions[1]],
+    pois: [stagePois[0], stagePois[1]],
     trailLocations: [
       'Església de Sant Martí de Puig-reig',
       'Riu Llobregat',
@@ -170,11 +209,7 @@ export const stages: Stage[] = [
       'Església de Santa Maria de Merlès',
     ],
     allocations: ['Alberg de la Xanascat'],
-    imgs: [
-      '/hero-vall-nuria.webp',
-      '/hero-vall-nuria.webp',
-      '/hero-vall-nuria.webp',
-    ],
+    imgs: [stageImgs[0], stageImgs[0], stageImgs[0]],
     technicalDetails: {
       distance: 18000,
       duration: 315,

@@ -1,11 +1,7 @@
+import { DomainStage, TechnicalDetails } from '@/domain/stage/stage.types';
 import { InfoIcon, MapIcon, MountainIcon, RouteIcon } from 'lucide-react';
-import {
-  Stage,
-  TechnicalDetails,
-} from '@/content/pelegrinatges/data/interfaces/stage';
 import { TypoH2, TypoP } from '@/components/ui/typo/typoComponents';
 
-import { Region } from '@/content/pelegrinatges/data/interfaces/region';
 import { Route } from '@/content/pelegrinatges/data/interfaces/route';
 import RouteMap from '../../../components/Map';
 import StageTimeline from './StageTimeline';
@@ -13,12 +9,11 @@ import Stats from '../../../components/Stats';
 
 interface RouteContentProps {
   route: Route;
-  stages: Stage[];
-  regions: Region[];
+  stages: DomainStage[];
   stats: TechnicalDetails;
 }
 
-const RouteContent = ({ route, stages, regions, stats }: RouteContentProps) => {
+const RouteContent = ({ route, stages, stats }: RouteContentProps) => {
   const description = route.routeDesc;
 
   return (
@@ -73,10 +68,7 @@ const RouteContent = ({ route, stages, regions, stats }: RouteContentProps) => {
           <RouteIcon className="h-5 w-5" />
           Etapes ({stages.length})
         </TypoH2>
-        <StageTimeline
-          stages={stages}
-          regions={regions}
-        />
+        <StageTimeline stages={stages} />
       </section>
     </div>
   );

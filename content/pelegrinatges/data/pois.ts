@@ -1,11 +1,15 @@
-import { POI } from './interfaces/poi';
+import { DomainPoi } from '@/domain/poi/poi.types';
 
-export const pois: POI[] = [
+export const poisMock: DomainPoi[] = [
   {
-    id: 'poi-1',
+    id: 'moreneta-de-montserrat',
+    slug: 'moreneta-de-montserrat',
     name: 'Moreneta de Montserrat',
     location: 'Montserrat',
-    img: '/moreneta-montserrat.webp',
+    image: {
+      url: '/moreneta-montserrat.webp',
+      alt: 'Moreneta de Montserrat',
+    },
     text: [
       "La Moreneta és una talla romànica del segle XII coneguda pel seu color fosc característic. Està situada al cambril de la Basílica i sosté el nen Jesús i una esfera que simbolitza l'univers.",
       'Com a patrona de Catalunya, la imatge és un símbol espiritual i identitari de primer ordre. Milers de persones pugen cada any al massís per venerar-la en un acte de devoció i tradició arrelada.',
@@ -13,10 +17,14 @@ export const pois: POI[] = [
     ],
   },
   {
-    id: 'poi-2',
+    id: 'monestir-de-montserrat',
+    slug: 'monestir-de-montserrat',
     name: 'Monestir de Montserrat',
     location: 'Montserrat',
-    img: '/monestir-montserrat.webp',
+    image: {
+      url: '/monestir-montserrat.webp',
+      alt: 'Monestir de Montserrat',
+    },
     text: [
       'El Monestir de Montserrat és una abadia benedictina situada en un entorn geològic espectacular. Des de la seva fundació al segle XI, ha estat el cor espiritual i cultural de tot el territori català.',
       "L'arquitectura actual barreja estils que van des del gòtic fins al modernisme. Va ser reconstruït després de les guerres napoleòniques, convertint-se en un centre d'art i cultura d'abast internacional.",

@@ -1,11 +1,14 @@
-import { Region } from './interfaces/region';
+// import { Region } from './interfaces/region';
 
-export const regions: Region[] = [
+import { DomainRegion } from '@/domain/region/region.types';
+
+export const regionsMock: DomainRegion[] = [
   {
     id: 'region-1',
+    slug: 'el-bages',
     name: 'El Bages',
     province: 'Barcelona',
-    img: {
+    image: {
       url: '/bages.webp',
       alt: 'El Bages',
     },
@@ -17,9 +20,10 @@ export const regions: Region[] = [
   },
   {
     id: 'region-2',
+    slug: 'el-bergueda',
     name: 'El Berguedà',
     province: 'Barcelona',
-    img: {
+    image: {
       url: '/bergueda.webp',
       alt: 'El Bergueda',
     },

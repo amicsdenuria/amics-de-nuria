@@ -1,3 +1,3 @@
-export const allRoutes = async () => {
-  return await [];
-};
+// export const allRoutes = async () => {
+//   return await [];
+// };

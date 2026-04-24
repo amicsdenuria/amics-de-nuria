@@ -13,15 +13,15 @@
  */
 
 // Source: schema.json
-export type Region = {
+export type Poi = {
   _id: string;
-  _type: "region";
+  _type: "poi";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   name?: string;
   slug?: Slug;
-  province?: string;
+  location?: string;
   img?: {
     asset?: {
       _ref: string;
@@ -60,6 +60,31 @@ export type Slug = {
   source?: string;
 };
 
+export type Region = {
+  _id: string;
+  _type: "region";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  province?: string;
+  img?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  text?: Array<string>;
+};
+
 export type Stage = {
   _id: string;
   _type: "stage";
@@ -88,6 +113,20 @@ export type Stage = {
     _key: string;
   }>;
   trailLocations?: Array<string>;
+  regions?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "region";
+  }>;
+  pois?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "poi";
+  }>;
   allocations?: Array<string>;
   technicalDetails?: {
     distance?: number;
@@ -243,8 +282,29 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Region | SanityImageCrop | SanityImageHotspot | Slug | Stage | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = Poi | SanityImageCrop | SanityImageHotspot | Slug | Region | Stage | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/pelegrinatges/poi/getPoiBySlug.ts
+// Variable: getPoiBySlugQuery
+// Query: *[_type == 'poi' && slug.current == $slug][0]{        ...,        "slug": slug.current,        img{          asset->{            url          },          alt        }      }
+export type GetPoiBySlugQueryResult = {
+  _id: string;
+  _type: "poi";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug: string | null;
+  location?: string;
+  img: {
+    asset: {
+      url: string | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  text?: Array<string>;
+} | null;
+
 // Source: ./sanity/lib/pelegrinatges/region/getRegionBySlug.ts
 // Variable: getRegionBySlugQuery
 // Query: *[_type == 'region' && slug.current == $slug][0]{    name,    "slug": slug.current,    province,    img{      asset->{        url      },      alt    },    text  }
@@ -263,30 +323,132 @@ export type GetRegionBySlugQueryResult = {
 
 // Source: ./sanity/lib/pelegrinatges/region/getRegionsBySlugs.ts
 // Variable: getRegionsBySlugsQuery
-// Query: *[_type == 'region' && slug.current in $slugs][]
+// Query: *[_type == 'region' && slug.current in $slugs][]{      name,      "slug": slug.current,      province,      img{        asset->{          url        },        alt      },      text    }
 export type GetRegionsBySlugsQueryResult = Array<{
+  name: string | null;
+  slug: string | null;
+  province: string | null;
+  img: {
+    asset: {
+      url: string | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  text: Array<string> | null;
+}>;
+
+// Source: ./sanity/lib/pelegrinatges/stage/getStageBySlug.ts
+// Variable: getStageBySlugQuery
+// Query: *[_type == 'stage' && slug.current == $slug][0]{        ...,        "slug": slug.current,        regions[]->{          "slug": slug.current,          name,          img{            asset->{              url            },            alt          }        },        pois[]->{          "slug": slug.current,          name,          img{            asset->{              url            },            alt          }        },        imgs[]{          asset->{            url          },          alt        }      }
+export type GetStageBySlugQueryResult = {
   _id: string;
-  _type: "region";
+  _type: "stage";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
-  slug?: Slug;
-  province?: string;
-  img?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
+  origin?: string;
+  destiny?: string;
+  wayPoints?: Array<string>;
+  slug: string | null;
+  description?: string;
+  mapUrl?: string;
+  videoUrl?: string;
+  imgs: Array<{
+    asset: {
+      url: string | null;
+    } | null;
+    alt: string | null;
+  }> | null;
+  trailLocations?: Array<string>;
+  regions: Array<{
+    slug: string | null;
+    name: string | null;
+    img: {
+      asset: {
+        url: string | null;
+      } | null;
+      alt: string | null;
+    } | null;
+  }> | null;
+  pois: Array<{
+    slug: string | null;
+    name: string | null;
+    img: {
+      asset: {
+        url: string | null;
+      } | null;
+      alt: string | null;
+    } | null;
+  }> | null;
+  allocations?: Array<string>;
+  technicalDetails?: {
+    distance?: number;
+    duration?: number;
+    initialHeight?: number;
+    finalHeight?: number;
+    minHeight?: number;
+    maxHeight?: number;
+    cumulativeAscent?: number;
+    cumulativeDescent?: number;
   };
-  text?: Array<string>;
+  notes?: Array<string>;
+} | null;
+
+// Source: ./sanity/lib/pelegrinatges/stage/getStagesBySlugs.ts
+// Variable: getStagesBySlugsQuery
+// Query: *[_type == 'stage' && slug.current in $slugs][]{        ...,        "slug": slug.current,        regions[]->{          "slug": slug.current,          name,          img{            asset->{              url            },            alt          }        },        pois[]->{          "slug": slug.current,          name,          img{            asset->{              url            },            alt          }        },        imgs[]{          asset->{            url          },          alt        }      }
+export type GetStagesBySlugsQueryResult = Array<{
+  _id: string;
+  _type: "stage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  origin?: string;
+  destiny?: string;
+  wayPoints?: Array<string>;
+  slug: string | null;
+  description?: string;
+  mapUrl?: string;
+  videoUrl?: string;
+  imgs: Array<{
+    asset: {
+      url: string | null;
+    } | null;
+    alt: string | null;
+  }> | null;
+  trailLocations?: Array<string>;
+  regions: Array<{
+    slug: string | null;
+    name: string | null;
+    img: {
+      asset: {
+        url: string | null;
+      } | null;
+      alt: string | null;
+    } | null;
+  }> | null;
+  pois: Array<{
+    slug: string | null;
+    name: string | null;
+    img: {
+      asset: {
+        url: string | null;
+      } | null;
+      alt: string | null;
+    } | null;
+  }> | null;
+  allocations?: Array<string>;
+  technicalDetails?: {
+    distance?: number;
+    duration?: number;
+    initialHeight?: number;
+    finalHeight?: number;
+    minHeight?: number;
+    maxHeight?: number;
+    cumulativeAscent?: number;
+    cumulativeDescent?: number;
+  };
+  notes?: Array<string>;
 }>;
 
 // Source: ./sanity/lib/subscriber/createSubscriberIfNotExist.ts
@@ -479,8 +641,11 @@ export type GetCurrentSubscriptionByStripeSubscriptionIdQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "\n      *[_type == 'poi' && slug.current == $slug][0]{\n        ...,\n        \"slug\": slug.current,\n        img{\n          asset->{\n            url\n          },\n          alt\n        }\n      }\n    ": GetPoiBySlugQueryResult;
     "\n  *[_type == 'region' && slug.current == $slug][0]{\n    name,\n    \"slug\": slug.current,\n    province,\n    img{\n      asset->{\n        url\n      },\n      alt\n    },\n    text\n  }\n": GetRegionBySlugQueryResult;
-    "*[_type == 'region' && slug.current in $slugs][]": GetRegionsBySlugsQueryResult;
+    "\n    *[_type == 'region' && slug.current in $slugs][]{\n      name,\n      \"slug\": slug.current,\n      province,\n      img{\n        asset->{\n          url\n        },\n        alt\n      },\n      text\n    }\n    ": GetRegionsBySlugsQueryResult;
+    "\n      *[_type == 'stage' && slug.current == $slug][0]{\n        ...,\n        \"slug\": slug.current,\n        regions[]->{\n          \"slug\": slug.current,\n          name,\n          img{\n            asset->{\n              url\n            },\n            alt\n          }\n        },\n        pois[]->{\n          \"slug\": slug.current,\n          name,\n          img{\n            asset->{\n              url\n            },\n            alt\n          }\n        },\n        imgs[]{\n          asset->{\n            url\n          },\n          alt\n        }\n      }\n    ": GetStageBySlugQueryResult;
+    "\n      *[_type == 'stage' && slug.current in $slugs][]{\n        ...,\n        \"slug\": slug.current,\n        regions[]->{\n          \"slug\": slug.current,\n          name,\n          img{\n            asset->{\n              url\n            },\n            alt\n          }\n        },\n        pois[]->{\n          \"slug\": slug.current,\n          name,\n          img{\n            asset->{\n              url\n            },\n            alt\n          }\n        },\n        imgs[]{\n          asset->{\n            url\n          },\n          alt\n        }\n      }\n    ": GetStagesBySlugsQueryResult;
     "*[_type == 'subscriber' && clerkId == $clerkId][0]": ExistingSubscriberQueryResult | GetSubscriberByClerkIdQueryResult;
     "*[_type == 'subscription' && subscriber._ref == $subscriberId && status == 'active'][0]": GetIsEnrolledQueryResult | SubscriberActiveSubscriptionQueryResult;
     "*[_type == 'subscription' && stripeSubscriptionId == $subscriptionId][0]": GetCurrentSubscriptionQueryResult;

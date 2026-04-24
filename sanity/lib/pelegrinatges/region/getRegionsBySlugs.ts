@@ -6,9 +6,20 @@ interface GetRegionsBySlugsParams {
 }
 
 export const getRegionsBySlugs = async ({ slugs }: GetRegionsBySlugsParams) => {
-  const getRegionsBySlugsQuery = defineQuery(
-    `*[_type == 'region' && slug.current in $slugs][]`,
-  );
+  const getRegionsBySlugsQuery = defineQuery(`
+    *[_type == 'region' && slug.current in $slugs][]{
+      name,
+      "slug": slug.current,
+      province,
+      img{
+        asset->{
+          url
+        },
+        alt
+      },
+      text
+    }
+    `);
 
   const regions = await sanityFetch({
     query: getRegionsBySlugsQuery,

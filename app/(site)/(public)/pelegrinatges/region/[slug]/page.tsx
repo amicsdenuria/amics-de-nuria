@@ -1,33 +1,38 @@
 import Hero from '@/components/Hero';
 import PageContainer from '@/components/ui/page-container';
 import { TypoP } from '@/components/ui/typo/typoComponents';
+import { getRegionBySlug } from '@/domain/region/region.service';
 import { notFound } from 'next/navigation';
-import { pois } from '@/content/pelegrinatges/data/pois';
+import { regionsMock } from '@/content/pelegrinatges/data/regions';
 
 export const dynamicParams = false;
 export const generateStaticParams = async () =>
-  pois.map((poi) => ({ poi: poi.id }));
+  regionsMock.map((region) => ({ region: region.id }));
 
 interface RegionPageParams {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 const RegionPage = async ({ params }: RegionPageParams) => {
-  const { id } = await params;
-  const poi = pois.find((poi) => poi.id === id);
+  const { slug } = await params;
+  const region = await getRegionBySlug(slug);
 
-  if (!poi) notFound();
+  if (!region) notFound();
 
   return (
     <>
       <Hero
-        title={poi.name}
-        description={poi.location}
-        img={{ src: poi.img, alt: poi.name, className: 'object-center' }}
+        title={region.name}
+        description={region.province}
+        img={{
+          src: region.image.url,
+          alt: region.image.alt,
+          className: 'object-center',
+        }}
       />
 
       <PageContainer className="mb-12">
-        {poi.text.map((p, i) => (
+        {region.text.map((p, i) => (
           <TypoP key={i}>{p}</TypoP>
         ))}
       </PageContainer>

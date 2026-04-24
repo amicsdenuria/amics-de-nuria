@@ -22,7 +22,7 @@
 ### `domain/region/region.types.ts`
 
 ```
-export type Region = {
+export type DomainRegion = {
   id: string
   name: string
   slug: string
@@ -40,9 +40,12 @@ export type Region = {
 ### `domain/region/region.adapter.ts`
 
 ```
+import { DomainRegion } from './region.types'
+import { GetRegionBySlugQueryResult } from '@/sanity.types';
+
 SANITY → DOMAIN
 
-export function regionFromSanity(data): Region | null {
+export function regionFromSanity(data: GetRegionBySlugQueryResult): DomainRegion | null {
   if (!data || !data.name || !data.slug) return null
 
   return {

@@ -18,27 +18,23 @@ import { formatDistance, formatDuration } from '@/lib/routesLib';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { DomainStage } from '@/domain/stage/stage.types';
 import Link from 'next/link';
-import { Region } from '@/content/pelegrinatges/data/interfaces/region';
-import { Stage } from '@/content/pelegrinatges/data/interfaces/stage';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 
 interface StageTimelineProps {
-  stages: Stage[];
-  regions: Region[];
+  stages: DomainStage[];
 }
 
 interface StageTimelineItemProps {
-  stage: Stage;
-  regions: Region[];
+  stage: DomainStage;
   index: number;
   isLast: boolean;
 }
 
 const StageTimelineItem = ({
   stage,
-  regions,
   index,
   isLast,
 }: StageTimelineItemProps) => {
@@ -101,11 +97,12 @@ const StageTimelineItem = ({
               <div className="flex flex-wrap gap-1.5 mt-3">
                 {stage.regions.map((region) => (
                   <Badge
-                    key={region}
+                    key={region.slug}
+                    variant={'secondary'}
                     className="text-xs"
                   >
                     <MapIcon className="h-3 w-3 mr-1" />
-                    {regions.find((r) => r.id === region)?.name}
+                    {region.name}
                   </Badge>
                 ))}
               </div>
@@ -193,14 +190,13 @@ const StageTimelineItem = ({
   );
 };
 
-const StageTimeline = ({ stages, regions }: StageTimelineProps) => {
+const StageTimeline = ({ stages }: StageTimelineProps) => {
   return (
     <div className="relative">
       {stages.map((s, i) => (
         <StageTimelineItem
           key={s.id}
           stage={s}
-          regions={regions}
           index={i}
           isLast={i === stages.length - 1}
         />
