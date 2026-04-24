@@ -9,11 +9,11 @@ export const generateStaticParams = async () =>
   pois.map((poi) => ({ poi: poi.id }));
 
 interface RegionPageParams {
-  params: Promise<{ poi: string }>;
+  params: Promise<{ id: string }>;
 }
 
 const RegionPage = async ({ params }: RegionPageParams) => {
-  const { poi: id } = await params;
+  const { id } = await params;
   const poi = pois.find((poi) => poi.id === id);
 
   if (!poi) notFound();

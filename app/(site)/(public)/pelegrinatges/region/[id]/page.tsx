@@ -9,11 +9,11 @@ export const generateStaticParams = async () =>
   regions.map((region) => ({ region: region.id }));
 
 interface RegionPageParams {
-  params: Promise<{ region: string }>;
+  params: Promise<{ id: string }>;
 }
 
 const RegionPage = async ({ params }: RegionPageParams) => {
-  const { region: id } = await params;
+  const { id } = await params;
   const region = regions.find((region) => region.id === id);
 
   if (!region) notFound();
@@ -23,7 +23,11 @@ const RegionPage = async ({ params }: RegionPageParams) => {
       <Hero
         title={region.name}
         description={region.province}
-        img={{ src: region.img, alt: region.name, className: 'object-center' }}
+        img={{
+          src: region.img.url,
+          alt: region.img.alt,
+          className: 'object-center',
+        }}
       />
 
       <PageContainer className="mb-12">

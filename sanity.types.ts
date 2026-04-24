@@ -13,6 +13,53 @@
  */
 
 // Source: schema.json
+export type Region = {
+  _id: string;
+  _type: "region";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  province?: string;
+  img?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  text?: Array<string>;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
 export type Stage = {
   _id: string;
   _type: "stage";
@@ -53,28 +100,6 @@ export type Stage = {
     cumulativeDescent?: number;
   };
   notes?: Array<string>;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
 };
 
 export type Subscriber = {
@@ -218,8 +243,52 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Stage | SanityImageCrop | SanityImageHotspot | Slug | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = Region | SanityImageCrop | SanityImageHotspot | Slug | Stage | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/pelegrinatges/region/getRegionBySlug.ts
+// Variable: getRegionBySlugQuery
+// Query: *[_type == 'region' && slug.current == $slug][0]{    name,    "slug": slug.current,    province,    img{      asset->{        url      },      alt    },    text  }
+export type GetRegionBySlugQueryResult = {
+  name: string | null;
+  slug: string | null;
+  province: string | null;
+  img: {
+    asset: {
+      url: string | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  text: Array<string> | null;
+} | null;
+
+// Source: ./sanity/lib/pelegrinatges/region/getRegionsBySlugs.ts
+// Variable: getRegionsBySlugsQuery
+// Query: *[_type == 'region' && slug.current in $slugs][]
+export type GetRegionsBySlugsQueryResult = Array<{
+  _id: string;
+  _type: "region";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  province?: string;
+  img?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  text?: Array<string>;
+}>;
+
 // Source: ./sanity/lib/subscriber/createSubscriberIfNotExist.ts
 // Variable: existingSubscriberQuery
 // Query: *[_type == 'subscriber' && clerkId == $clerkId][0]
@@ -410,6 +479,8 @@ export type GetCurrentSubscriptionByStripeSubscriptionIdQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "\n  *[_type == 'region' && slug.current == $slug][0]{\n    name,\n    \"slug\": slug.current,\n    province,\n    img{\n      asset->{\n        url\n      },\n      alt\n    },\n    text\n  }\n": GetRegionBySlugQueryResult;
+    "*[_type == 'region' && slug.current in $slugs][]": GetRegionsBySlugsQueryResult;
     "*[_type == 'subscriber' && clerkId == $clerkId][0]": ExistingSubscriberQueryResult | GetSubscriberByClerkIdQueryResult;
     "*[_type == 'subscription' && subscriber._ref == $subscriberId && status == 'active'][0]": GetIsEnrolledQueryResult | SubscriberActiveSubscriptionQueryResult;
     "*[_type == 'subscription' && stripeSubscriptionId == $subscriptionId][0]": GetCurrentSubscriptionQueryResult;

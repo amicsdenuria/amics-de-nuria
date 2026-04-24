@@ -6,14 +6,16 @@ import Link from 'next/link';
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
+import { getAllRoutes } from '@/adapters/pelegrinatges/route/getAllRoutes';
 import { pelegrinatgesContent } from '@/content/pelegrinatges/pelegrinatgesPage';
-import { routes } from '@/content/pelegrinatges/data/routes';
 
-const Pelegrinatges = () => {
-  const currentRouteId = routes[0].id;
+const Pelegrinatges = async () => {
   const {
     home: { hero, intro, currentRoute, routes: routesSection },
   } = pelegrinatgesContent;
+
+  const routes = await getAllRoutes();
+  const currentRouteId = routes[0].id;
   return (
     <>
       <PrimaryPageHero

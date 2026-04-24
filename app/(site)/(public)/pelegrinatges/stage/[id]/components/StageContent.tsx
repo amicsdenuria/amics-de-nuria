@@ -199,8 +199,8 @@ const StageContent = ({ stage, regions, pois }: RouteContentProps) => {
                   >
                     <div className="relative aspect-video w-full">
                       <Image
-                        src={region.img}
-                        alt={region.name}
+                        src={region.img.url}
+                        alt={region.img.alt}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         className="relative z-20 aspect-video w-full object-cover"

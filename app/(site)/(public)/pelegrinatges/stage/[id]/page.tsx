@@ -1,9 +1,10 @@
 import PageContainer from '@/components/ui/page-container';
 import RouteHero from '../../components/RouteHero';
 import StageContent from './components/StageContent';
+import { getPoisById } from '@/adapters/pelegrinatges/poi/getPoisById';
+import { getRegionsById } from '@/adapters/pelegrinatges/region/getRegionsById';
+import { getStageById } from '@/adapters/pelegrinatges/stage/getStageById';
 import { notFound } from 'next/navigation';
-import { pois } from '@/content/pelegrinatges/data/pois';
-import { regions } from '@/content/pelegrinatges/data/regions';
 import { stages } from '@/content/pelegrinatges/data/stages';
 
 export const dynamicParams = false;
@@ -11,22 +12,17 @@ export const generateStaticParams = async () =>
   stages.map((stage) => ({ stage: stage.id }));
 
 interface StagePageParams {
-  params: Promise<{ stage: string }>;
+  params: Promise<{ id: string }>;
 }
 
 const StagePage = async ({ params }: StagePageParams) => {
-  const { stage: id } = await params;
-  const stage = stages.find((stage) => stage.id === id);
+  const { id } = await params;
+  const stage = await getStageById({ stageId: id });
 
   if (!stage) notFound();
 
-  const stageRegions = stage.regions
-    .map((stageRegion) => regions.find((region) => region.id === stageRegion))
-    .filter((region) => region !== undefined);
-
-  const stagePois = stage.pois
-    .map((stagePOI) => pois.find((poi) => poi.id === stagePOI))
-    .filter((p) => p !== undefined);
+  const stageRegions = await getRegionsById({ regionIds: stage.regions });
+  const stagePois = await getPoisById({ poisIds: stage.pois });
 
   return (
     <>

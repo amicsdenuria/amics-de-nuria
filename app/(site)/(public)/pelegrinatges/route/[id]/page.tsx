@@ -1,28 +1,27 @@
 import PageContainer from '@/components/ui/page-container';
 import RouteContent from './components/RouteContent';
 import RouteHero from '../../components/RouteHero';
+import { getRouteById } from '@/adapters/pelegrinatges/route/getRouteById';
+import { getStagesById } from '@/adapters/pelegrinatges/stage/getStagesById';
 import { notFound } from 'next/navigation';
 import { regions } from '@/content/pelegrinatges/data/regions';
 import { routes } from '@/content/pelegrinatges/data/routes';
-import { stages } from '@/content/pelegrinatges/data/stages';
 
 export const dynamicParams = false;
 export const generateStaticParams = async () =>
   routes.map((route) => ({ route: route.id }));
 
 interface RoutePageParams {
-  params: Promise<{ route: string }>;
+  params: Promise<{ id: string }>;
 }
 
 const RoutePage = async ({ params }: RoutePageParams) => {
-  const { route: id } = await params;
-  const route = routes.find((route) => route.id === id);
+  const { id } = await params;
+  const route = await getRouteById({ routeId: id });
 
   if (!route) notFound();
 
-  const routeStages = route.stages
-    .map((stageId) => stages.find((s) => s.id === stageId))
-    .filter((s) => s !== undefined);
+  const routeStages = await getStagesById({ stagesIds: route.stages });
 
   const regionIds = new Set(routeStages.flatMap((stage) => stage.regions));
   const routeRegions = regions.filter((region) => regionIds.has(region.id));
