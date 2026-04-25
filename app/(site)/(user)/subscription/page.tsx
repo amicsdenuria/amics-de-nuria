@@ -1,27 +1,18 @@
-import IntervalTabs from '@/components/subscription/IntervalTabs';
 import PageContainer from '@/components/ui/page-container';
+import ProductPrices from '@/components/subscription/ProductPrices';
 import SubscriptionDetails from '@/components/subscription/SubscriptionDetails';
-import SubscriptionGrid from '@/components/subscription/SubscriptionGrid';
 import { currentUser } from '@clerk/nextjs/server';
-import { fetchProductsWithRecurringPrices } from '@/actions/fetchProductsWithRecurringPrices';
+import { fetchAllProductsWithRecurringPrices } from '@/actions/fetchAllProductsWithRecurringPrices';
 import { getIsEnrolled } from '@/sanity/lib/subscriber/getIsEnrolled';
 
-export const dynamic = 'force-dynamic';
-
-interface SubscriptionsPageProps {
-  searchParams: Promise<{ interval?: 'year' }>;
-}
-
-const SubscriptionsPage = async ({ searchParams }: SubscriptionsPageProps) => {
-  const { interval } = await searchParams;
+const SubscriptionsPage = async () => {
   const user = await currentUser();
 
-  const productsWithRecurringPrices = await fetchProductsWithRecurringPrices({
-    interval: interval === 'year' ? 'year' : 'month',
-  });
+  const { month: productsMonth, year: productsYear } =
+    await fetchAllProductsWithRecurringPrices();
   const isEnrolled = await getIsEnrolled({ clerkId: user?.id });
 
-  if (!productsWithRecurringPrices) {
+  if (!productsMonth || !productsYear) {
     return <div>No s&apos;han trobat subscripcions disponibles</div>;
   }
 
@@ -34,13 +25,10 @@ const SubscriptionsPage = async ({ searchParams }: SubscriptionsPageProps) => {
             userEmail={user?.primaryEmailAddress?.emailAddress}
           />
         ) : (
-          <>
-            <IntervalTabs interval={interval ?? 'month'} />
-            <SubscriptionGrid
-              products={productsWithRecurringPrices}
-              interval={interval ?? 'month'}
-            />
-          </>
+          <ProductPrices
+            productsMonth={productsMonth}
+            productsYear={productsYear}
+          />
         )}
       </PageContainer>
     </main>
