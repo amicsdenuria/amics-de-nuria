@@ -8,15 +8,17 @@ import {
   MountainIcon,
   RouteIcon,
 } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TypoH2, TypoP } from '@/components/ui/typo/typoComponents';
 
 import { Button } from '@/components/ui/button';
+import CopyLinkButton from '../../../components/CopyLinkButton';
 import { DomainStage } from '@/domain/stage/stage.types';
 import Image from 'next/image';
 import Link from 'next/link';
 import StageMedia from './StageMedia';
 import Stats from '../../../components/Stats';
+import { TabsContent } from '@/components/ui/tabs';
+import { TabsManager } from './TabsManager';
 import { cn } from '@/lib/utils';
 
 interface RouteContentProps {
@@ -34,8 +36,14 @@ const StageContent = ({ stage }: RouteContentProps) => {
       </section>
 
       {/* MEDIA */}
-      <section>
-        <TypoH2 className="mb-4">Explora el camí</TypoH2>
+      <section
+        id="media-section"
+        className="scroll-m-20"
+      >
+        <TypoH2 className="mb-4">
+          Explora el camí
+          <CopyLinkButton hash="media-section" />
+        </TypoH2>
         <StageMedia
           videoUrl={stage.videoUrl}
           mapUrl={stage.stageMapUrl}
@@ -44,27 +52,40 @@ const StageContent = ({ stage }: RouteContentProps) => {
       </section>
 
       {/* TECH-DATA, TRAIL LOCATIONS & NOTES */}
-      <section className="min-h-60">
-        <TypoH2 className="mb-4">Planifica l&apos;etapa</TypoH2>
-        <Tabs
+      <section
+        id="planifica-section"
+        className="min-h-60 scroll-m-20"
+      >
+        <TypoH2 className="mb-4">
+          Planifica l&apos;etapa
+          <CopyLinkButton hash="planifica-section" />
+        </TypoH2>
+        <TabsManager
+          paramName="planificaTab"
           defaultValue="technical-data"
-          className="space-y-4"
+          sectionId="planifica-section"
+          tabs={[
+            {
+              value: 'technical-data',
+              label: 'Dades tècniques',
+              icon: <MountainIcon className="h-5 w-5" />,
+            },
+            {
+              value: 'trail-locations',
+              label: 'Itinerari',
+              icon: <RouteIcon className="h-5 w-5" />,
+            },
+            ...(stage.notes
+              ? [
+                  {
+                    value: 'notes',
+                    label: 'Notes',
+                    icon: <InfoIcon className="h-5 w-5" />,
+                  },
+                ]
+              : []),
+          ]}
         >
-          <TabsList>
-            <TabsTrigger value="technical-data">
-              <MountainIcon className="h-5 w-5" />
-              Dades tècniques
-            </TabsTrigger>
-            <TabsTrigger value="trail-locations">
-              <RouteIcon className="h-5 w-5" />
-              Itinerari
-            </TabsTrigger>
-            <TabsTrigger value="notes">
-              <InfoIcon className="h-5 w-5" />
-              <span className="hidden md:block">Notes importants</span>
-              <span className="block md:hidden">Notes</span>
-            </TabsTrigger>
-          </TabsList>
           <TabsContent value="technical-data">
             <div>
               <Stats stats={stage.technicalDetails} />
@@ -119,64 +140,56 @@ const StageContent = ({ stage }: RouteContentProps) => {
               </ul>
             </div>
           </TabsContent>
-          <TabsContent value="notes">
-            <div>
-              {stage?.notes?.map((n, i) => <TypoP key={i}>{n}</TypoP>) ?? (
-                <TypoP>Sense notes</TypoP>
-              )}
-            </div>
-          </TabsContent>
-        </Tabs>
-      </section>
-
-      <section className="min-h-64">
-        <TypoH2 className="mb-4">Descobreix l&apos;entorn</TypoH2>
-        <Tabs
-          defaultValue="allocations"
-          className="space-y-4"
-        >
-          <TabsList>
-            {stage.allocations && (
-              <TabsTrigger value="allocations">
-                <HotelIcon className="h-5 w-5" />
-                Allotjaments
-              </TabsTrigger>
-            )}
-            <TabsTrigger value="regions">
-              <MapPinIcon className="h-5 w-5" />
-              Comarques
-            </TabsTrigger>
-            {stage.pois && (
-              <TabsTrigger value="pois">
-                <LocateIcon className="h-5 w-5" />
-                <span className="hidden md:block">Punts d&apos;interès</span>
-                <span className="block md:hidden">P. d&apos;interès</span>
-              </TabsTrigger>
-            )}
-          </TabsList>
-          {stage.allocations && (
-            <TabsContent value="allocations">
-              <ul className="flex flex-col gap-2">
-                {stage.allocations.map((allocation) => (
-                  <li key={allocation}>
-                    <Button
-                      asChild
-                      variant={'outline'}
-                    >
-                      <Link
-                        href={`https://www.google.com/search?q=${encodeURIComponent(allocation)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLinkIcon />
-                        {allocation}
-                      </Link>
-                    </Button>
-                  </li>
-                ))}
+          {stage.notes && (
+            <TabsContent value="notes">
+              <ul className="list-disc pl-12 py-4 space-y-2">
+                {stage?.notes?.map((n, i) => <li key={i}>{n}</li>) ?? (
+                  <li>Sense notes</li>
+                )}
               </ul>
             </TabsContent>
           )}
+        </TabsManager>
+      </section>
+
+      <section
+        id="entorn-section"
+        className="min-h-64 scroll-m-20"
+      >
+        <TypoH2 className="mb-4">
+          Descobreix l&apos;entorn
+          <CopyLinkButton hash="entorn-section" />
+        </TypoH2>
+        <TabsManager
+          paramName="entornTab"
+          defaultValue="regions"
+          sectionId="entorn-section"
+          tabs={[
+            {
+              value: 'regions',
+              label: 'Comarques',
+              icon: <MapPinIcon className="h-5 w-5" />,
+            },
+            ...(stage.allocations
+              ? [
+                  {
+                    value: 'allocations',
+                    label: 'Allotjaments',
+                    icon: <HotelIcon className="h-5 w-5" />,
+                  },
+                ]
+              : []),
+            ...(stage.pois
+              ? [
+                  {
+                    value: 'pois',
+                    label: "P. d'interès",
+                    icon: <LocateIcon className="h-5 w-5" />,
+                  },
+                ]
+              : []),
+          ]}
+        >
           <TabsContent value="regions">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {stage.regions.map((region) => (
@@ -207,6 +220,29 @@ const StageContent = ({ stage }: RouteContentProps) => {
               ))}
             </div>
           </TabsContent>
+          {stage.allocations && (
+            <TabsContent value="allocations">
+              <ul className="flex flex-col gap-2">
+                {stage.allocations.map((allocation) => (
+                  <li key={allocation}>
+                    <Button
+                      asChild
+                      variant={'outline'}
+                    >
+                      <Link
+                        href={`https://www.google.com/search?q=${encodeURIComponent(allocation)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLinkIcon />
+                        {allocation}
+                      </Link>
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            </TabsContent>
+          )}
           {stage.pois && (
             <TabsContent value="pois">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -239,7 +275,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
               </div>
             </TabsContent>
           )}
-        </Tabs>
+        </TabsManager>
       </section>
     </div>
   );

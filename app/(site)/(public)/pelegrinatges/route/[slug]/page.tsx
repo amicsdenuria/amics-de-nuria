@@ -17,6 +17,9 @@ const RoutePage = async ({ params }: RoutePageParams) => {
   if (!route) notFound();
 
   const routeStages = await getStagesBySlugs(route.stages);
+  const orderedRouteStages = route.stages
+    .map((slug) => routeStages.find((s) => s.slug === slug))
+    .filter((stage) => stage !== undefined);
   const routeStats = getRouteStats(routeStages);
 
   return (
@@ -31,7 +34,7 @@ const RoutePage = async ({ params }: RoutePageParams) => {
         {/* CONTENT */}
         <RouteContent
           route={route}
-          stages={routeStages}
+          stages={orderedRouteStages}
           stats={routeStats}
         />
       </PageContainer>

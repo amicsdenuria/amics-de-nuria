@@ -1,8 +1,11 @@
+'use client';
+
 import { ImageIcon, MapIcon, VideoIcon } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import ImgsCarousel from '../../../components/ImgsCarousel';
 import RouteMap from '../../../components/Map';
+import { TabsContent } from '@/components/ui/tabs';
+import { TabsManager } from './TabsManager';
 
 interface StageMediaProps {
   videoUrl: string | undefined;
@@ -11,28 +14,39 @@ interface StageMediaProps {
 }
 
 const StageMedia = ({ videoUrl, mapUrl, imgs }: StageMediaProps) => {
+  const tabs = [
+    {
+      value: 'map',
+      label: 'Mapa',
+      icon: <MapIcon />,
+    },
+    ...(videoUrl
+      ? [
+          {
+            value: 'video',
+            label: 'Vídeo',
+            icon: <VideoIcon />,
+          },
+        ]
+      : []),
+    ...(imgs
+      ? [
+          {
+            value: 'imgs',
+            label: 'Imatges',
+            icon: <ImageIcon />,
+          },
+        ]
+      : []),
+  ];
+
   return (
-    <Tabs defaultValue="map">
-      <div>
-        <TabsList>
-          <TabsTrigger value="map">
-            <MapIcon />
-            Mapa
-          </TabsTrigger>
-          {videoUrl && (
-            <TabsTrigger value="video">
-              <VideoIcon />
-              Vídeo
-            </TabsTrigger>
-          )}
-          {imgs && (
-            <TabsTrigger value="imgs">
-              <ImageIcon />
-              Imatges
-            </TabsTrigger>
-          )}
-        </TabsList>
-      </div>
+    <TabsManager
+      paramName="mediaTab"
+      defaultValue="map"
+      sectionId="media-section"
+      tabs={tabs}
+    >
       <TabsContent value="map">
         <div className="mt-4">
           <RouteMap src={mapUrl} />
@@ -63,7 +77,7 @@ const StageMedia = ({ videoUrl, mapUrl, imgs }: StageMediaProps) => {
           <ImgsCarousel imgs={imgs} />
         </TabsContent>
       )}
-    </Tabs>
+    </TabsManager>
   );
 };
 

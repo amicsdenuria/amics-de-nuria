@@ -111,8 +111,27 @@ export const route = defineType({
       name: 'stages',
       title: 'Etapes',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'stage' }] }],
-      validation: (Rule) => Rule.required().unique(),
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'stage' }],
+        },
+      ],
+      validation: (Rule) =>
+        Rule.required()
+          .min(1)
+          .custom((stages: { _ref?: string }[] | undefined) => {
+            if (!stages) return true;
+
+            const refs = stages.map((item) => item?._ref).filter(Boolean);
+            const uniqueRefs = new Set(refs);
+
+            if (refs.length !== uniqueRefs.size) {
+              return "No pots afegir la mateixa etapa més d'una vegada";
+            }
+
+            return true;
+          }),
     }),
     defineField({
       name: 'notes',

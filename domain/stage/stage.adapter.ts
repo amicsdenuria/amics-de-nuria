@@ -28,7 +28,7 @@ export const stageFromSanity = (
         alt: region.img?.alt ?? '',
       },
     })),
-    pois: (data.pois ?? []).map((poi) => ({
+    pois: data.pois?.map((poi) => ({
       slug: poi.slug ?? '',
       name: poi.name ?? '',
       img: {
@@ -38,7 +38,7 @@ export const stageFromSanity = (
     })),
     trailLocations: data.trailLocations ?? [],
     allocations: data.allocations,
-    imgs: (data.imgs ?? []).map((img) => ({
+    imgs: data.imgs?.map((img) => ({
       url: img.asset?.url ?? '',
       alt: img.alt ?? '',
     })),

@@ -164,7 +164,21 @@ export const stage = defineType({
       title: 'Comarques',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'region' }] }],
-      validation: (Rule) => Rule.required().unique(),
+      validation: (Rule) =>
+        Rule.required()
+          .min(1)
+          .custom((regions: { _ref?: string }[] | undefined) => {
+            if (!regions) return true;
+
+            const refs = regions.map((item) => item?._ref).filter(Boolean);
+            const uniqueRefs = new Set(refs);
+
+            if (refs.length !== uniqueRefs.size) {
+              return "No pots afegir la mateixa comarca més d'una vegada";
+            }
+
+            return true;
+          }),
       description: "Comarques per les que passa l'etapa.",
     }),
     defineField({
@@ -172,7 +186,19 @@ export const stage = defineType({
       title: "Punts d'interès - (opcional)",
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'poi' }] }],
-      validation: (Rule) => Rule.unique(),
+      validation: (Rule) =>
+        Rule.custom((pois: { _ref?: string }[] | undefined) => {
+          if (!pois) return true;
+
+          const refs = pois.map((item) => item?._ref).filter(Boolean);
+          const uniqueRefs = new Set(refs);
+
+          if (refs.length !== uniqueRefs.size) {
+            return "No pots afegir el maitex lloc d'interès més d'una vegada";
+          }
+
+          return true;
+        }),
       description: "Punts d'interès pels que passa l'etapa.",
     }),
     defineField({
@@ -195,6 +221,7 @@ export const stage = defineType({
         collapsible: true,
         collapsed: true,
       },
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: 'distance',

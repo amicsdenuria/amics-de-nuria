@@ -30,9 +30,9 @@ interface DataSource {
 export const dataSource: DataSource = {
   pelegrinatges: {
     regions: 'sanity',
-    pois: 'local',
-    stages: 'local',
-    routes: 'local',
+    pois: 'sanity',
+    stages: 'sanity',
+    routes: 'sanity',
   },
   agenda: {
     activities: 'local',
