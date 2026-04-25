@@ -48,3 +48,11 @@ export function TypoH2({ children, className }: ComponentProps<'h2'>) {
     </h2>
   );
 }
+
+export function TypoSmall({ children, className }: ComponentProps<'span'>) {
+  return (
+    <span className={cn('text-sm text-muted-foreground', className)}>
+      {children}
+    </span>
+  );
+}
