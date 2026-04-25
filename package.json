@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint .",
+    "lint:types": "pnpm exec tsc --noEmit",
+    "lint:all": "pnpm lint && pnpm lint:types",
     "typegen": "sanity schema extract && sanity typegen generate",
     "stripe-listen": "stripe listen --forward-to localhost:3000/api/webhook/stripe",
     "sanity-login": "pnpx sanity@latest login"
