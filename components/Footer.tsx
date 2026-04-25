@@ -163,10 +163,10 @@ const Footer = () => {
 
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Web
+                Autoria web
               </h4>
               <p className="text-sm font-light leading-relaxed text-muted-foreground mb-4">
-                Si t&apos;agrada la web visita&apos;ns aquí:
+                Si vols sol·licitar la teva web visita&apos;ns aquí:
               </p>
               <div className="border-l border-l-primary">
                 <Button
