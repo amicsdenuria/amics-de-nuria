@@ -22,5 +22,8 @@ declare namespace NodeJS {
     STRIPE_SECRET_KEY: string;
     STRIPE_PUBLISHABLE_KEY: string;
     STRIPE_WEBHOOK_SECRET: string;
+
+    // LightWidget
+    LIGHTWIDGET_WIDGET_ID: string;
   }
 }
