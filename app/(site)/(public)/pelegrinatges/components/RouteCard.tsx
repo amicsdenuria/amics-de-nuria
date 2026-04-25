@@ -7,12 +7,12 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Badge } from '@/components/ui/badge';
+import { DomainRoute } from '@/domain/route/route.types';
 import Link from 'next/link';
-import { Route } from '@/content/pelegrinatges/data/interfaces/route';
 import { TypoH2 } from '@/components/ui/typo/typoComponents';
 
 interface RouteCardProps {
-  route: Route;
+  route: DomainRoute;
 }
 const RouteCard = ({ route }: RouteCardProps) => {
   return (
