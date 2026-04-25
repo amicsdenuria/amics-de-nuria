@@ -7,7 +7,6 @@ export const fetchAllProductsWithRecurringPrices = async (): Promise<{
   month: ProductWithRecurringPrices[];
   year: ProductWithRecurringPrices[];
 }> => {
-  console.log('-----> fetching');
   try {
     const products = (await stripe.products.list({ active: true })).data.sort(
       (a, b) => a.created - b.created,
