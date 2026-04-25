@@ -21,7 +21,7 @@ const StagePage = async ({ params }: StagePageParams) => {
         origin={stage.origin}
         destiny={stage.destiny}
         type="stage"
-        alternativeRoutePoints={stage.regions.map((region) => region.name)}
+        alternativeRoutePoints={stage.wayPoints}
       />
       <PageContainer className="pb-8">
         <StageContent stage={stage} />

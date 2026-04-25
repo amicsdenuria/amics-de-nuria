@@ -104,15 +104,9 @@ const RouteHero = ({
             {/* ALTERNATIVE POINTS */}
             {alternativeRoutePoints && alternativeRoutePoints.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">
-                {type === 'route' ? (
-                  <span className="text-sm text-muted-foreground">
-                    Passant per:
-                  </span>
-                ) : (
-                  <span className="text-sm text-muted-foreground">
-                    Passa per:
-                  </span>
-                )}
+                <span className="text-sm text-muted-foreground">
+                  Passant per:
+                </span>
                 {alternativeRoutePoints.map((point) => (
                   <Badge
                     key={point}
