@@ -14,7 +14,7 @@ interface PrimaryActionButtonProps {
   isEnrolled: boolean;
 }
 
-const PrimaryActionButton = ({ isEnrolled }: PrimaryActionButtonProps) => {
+const PrimaryActionButtonHero = ({ isEnrolled }: PrimaryActionButtonProps) => {
   const { openSignIn, loaded } = useClerk();
 
   return (
@@ -76,4 +76,4 @@ const PrimaryActionButton = ({ isEnrolled }: PrimaryActionButtonProps) => {
     </>
   );
 };
-export default PrimaryActionButton;
+export default PrimaryActionButtonHero;
