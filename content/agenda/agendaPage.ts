@@ -25,7 +25,7 @@ interface AgendaContent {
 const agendaCTAs: PrimaryPageNavItem[] = [
   { label: 'Pròxima activitat', href: '/agenda#next-activity' },
   { label: 'Activitat destacada', href: '/agenda#key-activity' },
-  { label: 'Totes les activitats', href: '/agenda#activities' },
+  { label: 'Altres activitats', href: '/agenda#activities' },
 ];
 
 export const agendaContent: AgendaContent = {
@@ -59,7 +59,7 @@ export const agendaContent: AgendaContent = {
     },
 
     activities: {
-      title: 'Totes les activitats',
+      title: 'Altres activitats',
       description:
         "Aquí trobaras totes les activitats organitzades des d'Amics de Núria, o activitats externes.",
     },
