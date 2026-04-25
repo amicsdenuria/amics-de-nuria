@@ -20,7 +20,7 @@ const RoutePage = async ({ params }: RoutePageParams) => {
   const orderedRouteStages = route.stages
     .map((slug) => routeStages.find((s) => s.slug === slug))
     .filter((stage) => stage !== undefined);
-  const routeStats = getRouteStats(routeStages);
+  const routeStats = getRouteStats(orderedRouteStages);
 
   return (
     <>
