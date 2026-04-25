@@ -1,10 +1,10 @@
-import { TextBlock } from '@/content/interfaces/primary-page-interfaces';
+import { TextBlock as TextBlockType } from '@/content/interfaces/primary-page-interfaces';
 
-interface SantuariTextBlockProps {
-  block: TextBlock;
+interface TextBlockProps {
+  block: TextBlockType;
   index?: number;
 }
-const SantuariTextBlock = ({ block, index }: SantuariTextBlockProps) => {
+const TextBlock = ({ block, index }: TextBlockProps) => {
   return (
     <article className="group border-l-2 border-primary/20 pl-6 transition-colors hover:border-primary/40">
       <div className="flex items-start gap-6">
@@ -26,4 +26,4 @@ const SantuariTextBlock = ({ block, index }: SantuariTextBlockProps) => {
   );
 };
 
-export default SantuariTextBlock;
+export default TextBlock;

@@ -1,6 +1,6 @@
 import SantuariPageHero from '../components/SantuariPageHero';
 import SantuariStationsCard from '../components/SantuariStationsCard';
-import SantuariTextBlock from '../components/SantuariTextBlock';
+import TextBlock from '../../components/TextBlock';
 import { TypoH2Var } from '@/components/ui/typo/typoComponents';
 import { santuariContent } from '@/content/santuari/santuariPage';
 
@@ -17,7 +17,7 @@ const ViaCrucisPage = () => {
         <div className="mx-auto max-w-3xl px-6">
           <div className="space-y-12">
             {viaCrucis.blocks.map((block, i) => (
-              <SantuariTextBlock
+              <TextBlock
                 key={i}
                 block={block}
               />

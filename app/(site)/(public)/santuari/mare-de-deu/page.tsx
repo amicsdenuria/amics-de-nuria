@@ -1,5 +1,5 @@
 import SantuariPageHero from '../components/SantuariPageHero';
-import SantuariTextBlock from '../components/SantuariTextBlock';
+import TextBlock from '../../components/TextBlock';
 import { santuariContent } from '@/content/santuari/santuariPage';
 
 const MareDeDeuPage = () => {
@@ -15,7 +15,7 @@ const MareDeDeuPage = () => {
         <div className="mx-auto max-w-3xl px-6">
           <div className="space-y-12">
             {mareDeDeu.blocks.map((block, i) => (
-              <SantuariTextBlock
+              <TextBlock
                 key={i}
                 block={block}
               />
