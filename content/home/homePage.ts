@@ -45,6 +45,7 @@ export const homeSections: HomeSectionItem[] = [
   },
   {
     title: 'Comunitat',
+    // TODO: Cambiar description
     description:
       "Coneix la comunitat que acull els visitants i pelegrins. Una tradició d'hospitalitat i espiritualitat que perdura al llarg dels segles.",
     href: '/comunitat',

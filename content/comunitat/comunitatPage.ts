@@ -44,9 +44,9 @@ export const comunitatContent: ComunitatContent = {
   home: {
     hero: {
       pretitle: 'Coneix-nos',
-      title: "L'associació",
+      title: 'Comunitat',
       subtitle:
-        'Una comunitat que uneix espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
+        'Amics de Núria, una comunitat que uneix espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
       description: '',
       ctas: comunitatCTAs,
       img: {
