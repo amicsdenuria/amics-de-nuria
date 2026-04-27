@@ -157,7 +157,7 @@ export const stage = defineType({
       ],
       validation: (Rule) => Rule.required().unique().min(2),
       description:
-        "Punts de referència o d'interès per on passa la ruta. Mínim requereix origen i destí.",
+        "Punts de referència o d'interès per on passa la ruta o propers. Mínim requereix origen i destí.",
     }),
     defineField({
       name: 'regions',
@@ -183,7 +183,7 @@ export const stage = defineType({
     }),
     defineField({
       name: 'pois',
-      title: "Punts d'interès - (opcional)",
+      title: "Llocs d'interès - (opcional)",
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'poi' }] }],
       validation: (Rule) =>
@@ -199,7 +199,7 @@ export const stage = defineType({
 
           return true;
         }),
-      description: "Punts d'interès pels que passa l'etapa.",
+      description: "Llocs d'interès pels que passa l'etapa o propers.",
     }),
     defineField({
       name: 'allocations',
