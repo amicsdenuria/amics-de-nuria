@@ -63,15 +63,15 @@ export default async function Home() {
         </section>
       </PageContainer>
 
-      {/* Instagram Feed Section */}
-      <section className="bg-secondary/20 py-16 md:py-24">
+      {/* TODO: Instagram Feed Section */}
+      {/* <section className="bg-secondary/20 py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="mb-8 text-center text-2xl md:text-3xl font-medium tracking-tight text-foreground">
             Segueix-nos a Instagram
           </h2>
           <InstagramFeed />
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }
