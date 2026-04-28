@@ -9,7 +9,6 @@ interface ContactaContent {
     info: {
       email: InfoItem;
       phone: InfoItem;
-      web: InfoItem;
     };
   };
 }
@@ -36,11 +35,6 @@ export const contactaContent: ContactaContent = {
       phone: {
         label: 'Telèfon',
         value: '612 34 56 78',
-      },
-      web: {
-        label: 'Web',
-        value: 'Genís Muner',
-        href: 'https://www.gmuner.es',
       },
     },
   },

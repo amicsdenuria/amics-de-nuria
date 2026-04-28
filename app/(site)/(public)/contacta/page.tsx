@@ -1,6 +1,3 @@
-import { Button } from '@/components/ui/button';
-import { ExternalLinkIcon } from 'lucide-react';
-import Link from 'next/link';
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import { contactaContent } from '@/content/contacta/contactaPage';
@@ -29,26 +26,6 @@ const ContactaPage = () => {
             </h2>
             <p className="text-lg">{contactInfo.info.phone.value}</p>
           </div>
-        </div>
-
-        <div className="text-center">
-          <h2 className="text-muted-foreground">
-            {contactInfo.info.web.label}
-          </h2>
-          <Button
-            asChild
-            variant={'ghost'}
-            className="hover:text-primary-foreground transition-colors duration-100 text-lg"
-          >
-            <Link
-              href={contactInfo.info.web.href ?? ''}
-              className="flex gap-2 items-center"
-              target="_blank"
-            >
-              {contactInfo.info.web.value}
-              <ExternalLinkIcon className="w-4 h-4" />
-            </Link>
-          </Button>
         </div>
       </PageContainer>
     </>
