@@ -4,12 +4,13 @@ import PrimaryActionButtonHero from '@/components/navbar/PrimaryActionButtonHero
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import RRSSSection from './components/RRSSSection';
 import TextBlock from '../components/TextBlock';
-import { comunitatContent } from '@/content/comunitat/comunitatPage';
 import { getUserData } from '@/actions/getUserData';
+import { lligaEspiritualContent } from '@/content/lliga-espiritual/lligaEspiritualPage';
 
-const ComunitatPage = async () => {
+const LligaEspiritualPage = async () => {
   const { isEnrolled } = await getUserData();
-  const { hero, intro, subscribe, manifesto, rrss } = comunitatContent.home;
+  const { hero, intro, subscribe, manifesto, rrss } =
+    lligaEspiritualContent.home;
 
   return (
     <>
@@ -75,4 +76,4 @@ const ComunitatPage = async () => {
   );
 };
 
-export default ComunitatPage;
+export default LligaEspiritualPage;

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageContainer from './ui/page-container';
 import { agendaContent } from '@/content/agenda/agendaPage';
-import { comunitatContent } from '@/content/comunitat/comunitatPage';
+import { lligaEspiritualContent } from '@/content/lliga-espiritual/lligaEspiritualPage';
 import { pelegrinatgesContent } from '@/content/pelegrinatges/pelegrinatgesPage';
 import { publicacionsContent } from '@/content/publicacions/publicacionsPage';
 import { santuariContent } from '@/content/santuari/santuariPage';
@@ -14,7 +14,7 @@ const Footer = () => {
   const { nav: santuariNav } = santuariContent;
   const { nav: pelegrinatgesNav } = pelegrinatgesContent;
   const { nav: agendaNav } = agendaContent;
-  const { nav: comunitatNav } = comunitatContent;
+  const { nav: lligaEspiritualNav } = lligaEspiritualContent;
   const { nav: publicacionsNav } = publicacionsContent;
 
   const currentYear = new Date().getFullYear();
@@ -100,10 +100,10 @@ const Footer = () => {
 
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Comunitat
+                Ll. Espiritual
               </h4>
               <ul className="space-y-2">
-                {comunitatNav.map((item) => (
+                {lligaEspiritualNav.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
@@ -166,7 +166,7 @@ const Footer = () => {
                 Autoria web
               </h4>
               <p className="text-sm font-light leading-relaxed text-muted-foreground mb-4">
-                Si vols sol·licitar la teva web visita&apos;ns aquí:
+                Pàgina web feta per:
               </p>
               <div className="border-l border-l-primary">
                 <Button

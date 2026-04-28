@@ -4,7 +4,7 @@ import {
   TypoSmall,
 } from '@/components/ui/typo/typoComponents';
 
-import { SocialLink } from '@/content/comunitat/comunitatPage';
+import { SocialLink } from '@/content/lliga-espiritual/lligaEspiritualPage';
 import SocialLinkCard from './SocialLinkCard';
 
 interface RRSSSectionProps {

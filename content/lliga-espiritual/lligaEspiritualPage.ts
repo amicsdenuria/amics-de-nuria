@@ -18,7 +18,7 @@ export interface SocialLink {
   icon?: LucideIcon;
 }
 
-interface ComunitatContent {
+interface LligaEspiritualContent {
   nav: PrimaryPageNavItem[];
   home: {
     hero: PrimaryPageHeroContent;
@@ -34,21 +34,21 @@ interface ComunitatContent {
   };
 }
 
-const comunitatCTAs: PrimaryPageNavItem[] = [
-  { label: 'Què som?', href: '/comunitat#manifesto' },
-  { label: 'Segueix-nos', href: '/comunitat#rrss' },
+const lligaEspiritualCTAs: PrimaryPageNavItem[] = [
+  { label: 'Què som?', href: '/lliga-espiritual#manifesto' },
+  { label: 'Segueix-nos', href: '/lliga-espiritual#rrss' },
 ];
 
-export const comunitatContent: ComunitatContent = {
-  nav: comunitatCTAs,
+export const lligaEspiritualContent: LligaEspiritualContent = {
+  nav: lligaEspiritualCTAs,
   home: {
     hero: {
       pretitle: 'Coneix-nos',
-      title: 'Comunitat',
+      title: 'Lliga Espiritual',
       subtitle:
-        'Amics de Núria, una comunitat que uneix espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
+        'Espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
       description: '',
-      ctas: comunitatCTAs,
+      ctas: lligaEspiritualCTAs,
       img: {
         src: '/hero-santuari-nuria.webp',
         alt: 'Santuari de Núria',
@@ -58,7 +58,7 @@ export const comunitatContent: ComunitatContent = {
 
     intro: {
       title: 'Qui som',
-      body: 'Som els Amics de Núria, una comunitat de persones vinculades al Santuari que compartim estima, tradició i compromís amb aquest espai únic del país.',
+      body: 'Amics de Núria - Lliga espiritual de la Mare de Déu de Núria volem preservar el llegat de la nostra història i la flama de la fe per cultivar, amb estima i compromís, el sentiment cristià i el vincle profund que ens uneix a la Vall de Núria i a Catalunya.',
     },
 
     subscribe: {
@@ -69,7 +69,7 @@ export const comunitatContent: ComunitatContent = {
     manifesto: {
       title: 'Missió, història i valors',
       intro:
-        'Som una comunitat amb història i propòsit, guiada per una missió clara i uns valors que donen sentit a tot el que fem.',
+        'Som una agrupació amb història i propòsit, guiada per una missió clara i uns valors que donen sentit a tot el que fem.',
       blocks: [
         {
           title: 'Missió',
@@ -81,7 +81,7 @@ export const comunitatContent: ComunitatContent = {
         },
         {
           title: 'Valors',
-          body: 'Arrelament, espiritualitat, comunitat i amor per la natura i la cultura.',
+          body: 'Arrelament, espiritualitat, germanor i amor per la natura i la cultura.',
         },
       ],
     },
@@ -89,7 +89,7 @@ export const comunitatContent: ComunitatContent = {
     rrss: {
       title: 'Xarxes Socials',
       subtitle:
-        'Comparteix la passió per Núria: segueix-nos per viure activitats, pelegrinatges i la vida de la comunitat.',
+        "Comparteix la passió per Núria: segueix-nos per viure activitats, pelegrinatges i altres accions que organitzem des de l'associació.",
       own: [
         {
           label: 'Instagram',

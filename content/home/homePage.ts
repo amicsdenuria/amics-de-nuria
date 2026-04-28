@@ -44,11 +44,11 @@ export const homeSections: HomeSectionItem[] = [
     gridClass: 'md:col-span-3', // 3/3 (full width)
   },
   {
-    title: 'Comunitat',
+    title: 'Lliga Espiritual',
     // TODO: Cambiar description
     description:
-      "Coneix la comunitat que acull els visitants i pelegrins. Una tradició d'hospitalitat i espiritualitat que perdura al llarg dels segles.",
-    href: '/comunitat',
+      'Espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
+    href: '/lliga-espiritual',
     icon: UsersIcon,
     gridClass: 'md:col-span-2', // 2/3
   },
