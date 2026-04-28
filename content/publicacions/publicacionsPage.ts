@@ -8,7 +8,10 @@ interface PublicacionsContent {
   nav: PrimaryPageNavItem[];
   home: {
     hero: PrimaryPageHeroContent;
-    keyPublication: TextBlock;
+    intro: TextBlock;
+    keyPublication: {
+      title: string;
+    };
     magazine: TextBlock;
     gallery: TextBlock;
     books: TextBlock;
@@ -38,29 +41,33 @@ export const publicacionsContent: PublicacionsContent = {
       },
     },
 
+    intro: {
+      title: 'Descobreix les publicacions',
+      body: "Llistem les publicacions més interessants de l'entitat i també publicacions externes.",
+    },
+
     keyPublication: {
       title: 'Publicació recomanada',
-      body: '<Contingut de la publicació recomanada>',
     },
 
     magazine: {
       title: "La revista d'Amics de Núria",
-      body: '<Contingut de la revista>',
+      body: "Aquesta resvista es publica des d'Amics de Núria i conté articles relacionats amb l'entitat i tot el seu entorn",
     },
 
     gallery: {
       title: 'Galería multimedia',
-      body: '<Contingut de la galeria>',
+      body: "Troba aquí el contingut multimedia d'activitats, pelegrinatges i altres esdeveniments d'Amics de Núria",
     },
 
     books: {
       title: 'Llibres',
-      body: '<Contingut dels llibres>',
+      body: 'Aquí trobaràs llibres relacionats amb Núria i tot el seu entorn',
     },
 
     other: {
       title: 'Altres',
-      body: '<Altres continguts>',
+      body: "Troba altres continguts que d'una manera o altra tenen relació amb l'entitat",
     },
   },
 };

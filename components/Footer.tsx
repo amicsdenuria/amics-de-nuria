@@ -3,11 +3,10 @@ import { Button } from './ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import PageContainer from './ui/page-container';
-import { PrimaryPageNavItem } from '@/content/interfaces/primary-page-interfaces';
 import { agendaContent } from '@/content/agenda/agendaPage';
 import { lligaEspiritualContent } from '@/content/lliga-espiritual/lligaEspiritualPage';
 import { pelegrinatgesContent } from '@/content/pelegrinatges/pelegrinatgesPage';
-// import { publicacionsContent } from '@/content/publicacions/publicacionsPage';
+import { publicacionsContent } from '@/content/publicacions/publicacionsPage';
 import { santuariContent } from '@/content/santuari/santuariPage';
 import { site } from '@/config/site.config';
 
@@ -17,9 +16,7 @@ const Footer = () => {
     pelegrinatgesNav: pelegrinatgesContent.nav,
     agendaNav: agendaContent.nav,
     lligaEspiritualNav: lligaEspiritualContent.nav,
-    // TODO: temp publicacions hidden
-    // publicacionsNav: publicacionsContent.nav,
-    publicacionsNav: null as PrimaryPageNavItem[] | null,
+    publicacionsNav: publicacionsContent.nav,
   };
 
   const currentYear = new Date().getFullYear();
@@ -121,25 +118,23 @@ const Footer = () => {
               </ul>
             </div>
 
-            {footerNav.publicacionsNav && (
-              <div>
-                <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                  Publicacions
-                </h4>
-                <ul className="space-y-2">
-                  {footerNav.publicacionsNav.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <div>
+              <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
+                Publicacions
+              </h4>
+              <ul className="space-y-2">
+                {footerNav.publicacionsNav.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
 
           {/* Contact */}
