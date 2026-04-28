@@ -3,19 +3,24 @@ import { Button } from './ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import PageContainer from './ui/page-container';
+import { PrimaryPageNavItem } from '@/content/interfaces/primary-page-interfaces';
 import { agendaContent } from '@/content/agenda/agendaPage';
 import { lligaEspiritualContent } from '@/content/lliga-espiritual/lligaEspiritualPage';
 import { pelegrinatgesContent } from '@/content/pelegrinatges/pelegrinatgesPage';
-import { publicacionsContent } from '@/content/publicacions/publicacionsPage';
+// import { publicacionsContent } from '@/content/publicacions/publicacionsPage';
 import { santuariContent } from '@/content/santuari/santuariPage';
 import { site } from '@/config/site.config';
 
 const Footer = () => {
-  const { nav: santuariNav } = santuariContent;
-  const { nav: pelegrinatgesNav } = pelegrinatgesContent;
-  const { nav: agendaNav } = agendaContent;
-  const { nav: lligaEspiritualNav } = lligaEspiritualContent;
-  const { nav: publicacionsNav } = publicacionsContent;
+  const footerNav = {
+    santuariNav: santuariContent.nav,
+    pelegrinatgesNav: pelegrinatgesContent.nav,
+    agendaNav: agendaContent.nav,
+    lligaEspiritualNav: lligaEspiritualContent.nav,
+    // TODO: temp publicacions hidden
+    // publicacionsNav: publicacionsContent.nav,
+    publicacionsNav: null as PrimaryPageNavItem[] | null,
+  };
 
   const currentYear = new Date().getFullYear();
 
@@ -49,7 +54,7 @@ const Footer = () => {
                 Pelegrinatges
               </h4>
               <ul className="space-y-2">
-                {pelegrinatgesNav.map((item) => (
+                {footerNav.pelegrinatgesNav.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
@@ -67,7 +72,7 @@ const Footer = () => {
                 El Santuari
               </h4>
               <ul className="space-y-2">
-                {santuariNav.map((item) => (
+                {footerNav.santuariNav.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
@@ -85,7 +90,7 @@ const Footer = () => {
                 Agenda
               </h4>
               <ul className="space-y-2">
-                {agendaNav.map((item) => (
+                {footerNav.agendaNav.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
@@ -103,7 +108,7 @@ const Footer = () => {
                 Ll. Espiritual
               </h4>
               <ul className="space-y-2">
-                {lligaEspiritualNav.map((item) => (
+                {footerNav.lligaEspiritualNav.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
@@ -116,23 +121,25 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div>
-              <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Publicacions
-              </h4>
-              <ul className="space-y-2">
-                {publicacionsNav.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {footerNav.publicacionsNav && (
+              <div>
+                <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
+                  Publicacions
+                </h4>
+                <ul className="space-y-2">
+                  {footerNav.publicacionsNav.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </section>
 
           {/* Contact */}

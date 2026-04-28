@@ -45,19 +45,22 @@ export const homeSections: HomeSectionItem[] = [
   },
   {
     title: 'Lliga Espiritual',
-    // TODO: Cambiar description
     description:
       'Espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
     href: '/lliga-espiritual',
     icon: UsersIcon,
-    gridClass: 'md:col-span-2', // 2/3
+    // TODO: temp 3/3
+    gridClass: 'md:col-span-3',
+    // gridClass: 'md:col-span-2', // 2/3
   },
   {
     title: 'Publicacions',
     description: 'Llibres, materials de pregària i recursos espirituals.',
     href: '/publicacions',
     icon: BookOpenIcon,
-    gridClass: 'md:col-span-1', // 1/3
+    // TODO: temp hidden
+    gridClass: 'hidden',
+    // gridClass: 'md:col-span-1', // 1/3
   },
 ];
 
