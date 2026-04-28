@@ -1,4 +1,34 @@
-export const santuariSubpages = {
+import { SantuariSubpages } from './interfaces';
+
+export const santuariSubpages: SantuariSubpages = {
+  basilica: {
+    title: 'La Basílica',
+    intro:
+      'La basílica situada als Pirineus, coneguda pel seu entorn natural i la devoció a la Mare de Déu de Núria.',
+    blocks: [
+      {
+        title: 'Què és la basílica',
+        body: 'La basílica és el cor espiritual de la vall, un lloc de recolliment i trobada per a visitants i pelegrins.',
+      },
+      {
+        title: 'Història i origen',
+        body: 'Construïda al voltant de la devoció a la Mare de Déu, la basílica ha crescut amb el temps com a centre religiós i símbol del territori.',
+      },
+      {
+        title: 'Arquitectura',
+        body: 'L’edifici combina senzillesa i solemnitat, integrant-se amb el paisatge pirinenc i creant un ambient de calma i respecte.',
+      },
+      {
+        title: 'Vida i celebracions',
+        body: 'Al llarg de l’any s’hi celebren misses i actes litúrgics que mantenen viva la tradició i la comunitat.',
+      },
+      {
+        title: 'Espai de silenci',
+        body: 'La basílica convida a la contemplació, al silenci interior i a una experiència espiritual enmig de la natura.',
+      },
+    ],
+  },
+
   mareDeDeu: {
     title: 'La Mare de Déu',
     intro:

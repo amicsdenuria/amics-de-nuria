@@ -3,11 +3,11 @@ import { santuariSubpages } from './santuariSubpages';
 
 export const santuariContent: SantuariContent = {
   nav: [
-    { label: 'Santuari', href: '/santuari' },
+    { label: 'Basílica', href: '/santuari/basilica' },
     { label: 'La Mare de Déu', href: '/santuari/mare-de-deu' },
-    { label: 'Llar Amadeu', href: '/santuari/llar-amadeu' },
     { label: 'Sant Gil', href: '/santuari/sant-gil' },
     { label: 'Via Crucis', href: '/santuari/via-crucis' },
+    { label: 'Llar Amadeu', href: '/santuari/llar-amadeu' },
     { label: 'Com arribar', href: '/santuari/com-arribar' },
   ],
 
@@ -40,16 +40,16 @@ export const santuariContent: SantuariContent = {
       title: 'Descobreix el Santuari',
       items: [
         {
+          title: 'La Basílica',
+          description:
+            'La basílica situada als Pirineus, coneguda pel seu entorn natural i la devoció a la Mare de Déu de Núria.',
+          href: '/santuari/basilica',
+        },
+        {
           title: 'La Mare de Déu',
           description:
             'La devoció mariana és el cor espiritual del Santuari i la seva expressió més antiga i profunda.',
           href: '/santuari/mare-de-deu',
-        },
-        {
-          title: 'Llar Amadeu',
-          description:
-            'Un espai d’acollida, acompanyament i vida comunitària dins l’entorn del Santuari.',
-          href: '/santuari/llar-amadeu',
         },
         {
           title: 'Sant Gil',
@@ -62,6 +62,12 @@ export const santuariContent: SantuariContent = {
           description:
             'Un recorregut de pregària i contemplació que acompanya la visita al Santuari.',
           href: '/santuari/via-crucis',
+        },
+        {
+          title: 'Llar Amadeu',
+          description:
+            'Un espai d’acollida, acompanyament i vida comunitària dins l’entorn del Santuari.',
+          href: '/santuari/llar-amadeu',
         },
         {
           title: 'Com arribar',

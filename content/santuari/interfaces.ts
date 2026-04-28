@@ -8,6 +8,28 @@ import {
   TextBlock,
 } from '../interfaces/primary-page-interfaces';
 
+export interface SantuariSubpages {
+  basilica: BlocksPageContent;
+  mareDeDeu: BlocksPageContent;
+  santGil: BlocksPageContent;
+  viaCrucis: {
+    title: string;
+    intro: string;
+    blocks: TextBlock[];
+    stations: OrderedCardItem[];
+    recommendations: string;
+    closing: string;
+  };
+  llarAmadeu: BlocksPageContent;
+  comArribar: {
+    title: string;
+    intro: string;
+    blocks: TextBlock[];
+    practical: InfoItem[];
+    closing: string;
+  };
+}
+
 export interface SantuariContent {
   nav: PrimaryPageNavItem[];
   home: {
@@ -26,24 +48,5 @@ export interface SantuariContent {
       };
     };
   };
-  pages: {
-    mareDeDeu: BlocksPageContent;
-    llarAmadeu: BlocksPageContent;
-    santGil: BlocksPageContent;
-    viaCrucis: {
-      title: string;
-      intro: string;
-      blocks: TextBlock[];
-      stations: OrderedCardItem[];
-      recommendations: string;
-      closing: string;
-    };
-    comArribar: {
-      title: string;
-      intro: string;
-      blocks: TextBlock[];
-      practical: InfoItem[];
-      closing: string;
-    };
-  };
+  pages: SantuariSubpages;
 }
