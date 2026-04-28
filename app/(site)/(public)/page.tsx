@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 
 import { ArrowRightIcon } from 'lucide-react';
-import { InstagramFeed } from '@/components/instagram/InstagramFeed';
+// import { InstagramFeed } from '@/components/instagram/InstagramFeed';
 import Link from 'next/link';
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from './components/PrimaryPageHero';
