@@ -2,4 +2,29 @@ import type { StructureResolver } from 'sanity/structure';
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
-  S.list().title('Content').items(S.documentTypeListItems());
+  S.list()
+    .title('Seccions')
+    .items([
+      S.listItem()
+        .title('Subscripcions')
+        .child(
+          S.list()
+            .title('Subscripcions')
+            .items([
+              S.documentTypeListItem('subscriber'),
+              S.documentTypeListItem('subscription'),
+            ]),
+        ),
+      S.listItem()
+        .title('Pelegrinatges')
+        .child(
+          S.list()
+            .title('Pelegrinatges')
+            .items([
+              S.documentTypeListItem('route'),
+              S.documentTypeListItem('stage'),
+              S.documentTypeListItem('poi'),
+              S.documentTypeListItem('region'),
+            ]),
+        ),
+    ]);
