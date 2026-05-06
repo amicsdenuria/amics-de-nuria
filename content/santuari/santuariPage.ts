@@ -43,50 +43,42 @@ export const santuariContent: SantuariContent = {
       items: [
         {
           title: 'La Vall de Núria',
-          description:
-            'Refugi de pau i espiritualitat a dos mil metres d’altitud, amb segles d’història, fe, tradició i natura viva.',
+          description: santuariSubpages.vallDeNuria.intro,
           href: '/santuari/vall-de-nuria',
         },
         {
           title: 'La Basílica',
-          description:
-            'Espai de recolliment i de pregària, centre d’acollida i devoció a la Mare de Déu de Núria.',
+          description: santuariSubpages.basilica.intro,
           href: '/santuari/basilica',
         },
         {
           title: 'La Mare de Déu de Núria',
-          description:
-            'Cor espiritual del Santuari: tradició, veneració al cambril i aplec del 8 de setembre.',
+          description: santuariSubpages.mareDeDeu.intro,
           href: '/santuari/mare-de-deu',
         },
         {
           title: 'La Creu, l’Olla i la Campana',
-          description:
-            'Símbols de la identitat de Núria: oració, hospitalitat i acollida, amb tradicions vinculades a la vall.',
+          description: santuariSubpages.creuOllaCampana.intro,
           href: '/santuari/creu-olla-campana',
         },
         {
           title: 'L’Ermita de Sant Gil',
-          description:
-            'Un dels racons més autèntics i carregats de memòria de la vall; diada de l’1 de setembre.',
+          description: santuariSubpages.santGil.intro,
           href: '/santuari/sant-gil',
         },
         {
           title: 'El Via Crucis',
-          description:
-            'Recorregut a l’aire lliure d’un quilòmetre i mig, amb quinze estacions incloent la Resurrecció.',
+          description: santuariSubpages.viaCrucis.intro,
           href: '/santuari/via-crucis',
         },
         {
           title: 'La Llar Amadeu',
-          description:
-            'Centre pastoral i d’acollida per a grups, amb accés directe a la basílica i capacitat per a unes 12 persones.',
+          description: santuariSubpages.llarAmadeu.intro,
           href: '/santuari/llar-amadeu',
         },
         {
           title: 'Com arribar-hi',
-          description:
-            'Accés en cremallera o a peu (Queralbs, Fontalba o Planoles). Informació pràctica i accessibilitat.',
+          description: santuariSubpages.comArribar.intro,
           href: '/santuari/com-arribar',
         },
       ],

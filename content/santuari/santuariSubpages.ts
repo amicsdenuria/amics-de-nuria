@@ -4,7 +4,7 @@ export const santuariSubpages: SantuariSubpages = {
   vallDeNuria: {
     title: 'La Vall de Núria',
     intro:
-      'Refugi de pau i espiritualitat a dos mil metres d’altitud, on la majestuositat dels Pirineus abraça segles d’història, fe, tradició i natura viva.',
+      'Refugi de pau i espiritualitat a dos mil metres d’altitud, amb segles d’història, fe, tradició i natura viva.',
     blocks: [
       {
         title: 'Els orígens: la llegenda de Sant Gil (cap el 700)',
@@ -32,7 +32,7 @@ export const santuariSubpages: SantuariSubpages = {
   basilica: {
     title: 'La Basílica',
     intro:
-      'Espai de recolliment i de pregària per a visitants i pelegrins, i de devoció a la Mare de Déu de Núria.',
+      'Espai de recolliment i de pregària, centre d’acollida i devoció a la Mare de Déu de Núria.',
     blocks: [
       {
         title: 'Origen',
@@ -60,7 +60,7 @@ export const santuariSubpages: SantuariSubpages = {
   mareDeDeu: {
     title: 'La Mare de Déu de Núria',
     intro:
-      'Cor espiritual del Santuari: consol, esperança i acompanyament per a visitants, fidels i pelegrins.',
+      'Cor espiritual del Santuari: tradició, veneració al cambril i aplec del 8 de setembre.',
     blocks: [
       {
         title: 'La troballa',
@@ -88,7 +88,7 @@ export const santuariSubpages: SantuariSubpages = {
   creuOllaCampana: {
     title: 'La Creu, l’Olla i la Campana',
     intro:
-      'Els pilars de la identitat espiritual, cultural i social de la Vall de Núria.',
+      'Símbols de la identitat de Núria: oració, hospitalitat i acollida, amb tradicions vinculades a la vall.',
     blocks: [
       {
         title: 'Els símbols de Núria',
@@ -112,7 +112,7 @@ export const santuariSubpages: SantuariSubpages = {
   santGil: {
     title: 'L’Ermita de Sant Gil',
     intro:
-      'Refugi de la fe, s’alça per acollir qui té set de pau i escalf en la solitud de les muntanyes.',
+      'Un dels racons més autèntics i carregats de memòria de la vall; diada de l’1 de setembre.',
     blocks: [
       {
         title: 'Llegenda',
@@ -132,7 +132,7 @@ export const santuariSubpages: SantuariSubpages = {
   viaCrucis: {
     title: 'El Via Crucis',
     intro:
-      'Camí on el batec de la terra i el de la fe s’uneixen en una sola veu.',
+      'Recorregut a l’aire lliure d’un quilòmetre i mig, amb quinze estacions incloent la Resurrecció.',
     blocks: [
       {
         title: 'L’origen',
@@ -225,7 +225,7 @@ export const santuariSubpages: SantuariSubpages = {
   llarAmadeu: {
     title: 'La Llar Amadeu',
     intro:
-      'En record a la figura d’Amadeu, el pelegrí que l’any 1072 va iniciar la construcció de la primera capella a la vall.',
+      'Centre pastoral i d’acollida per a grups, amb accés directe a la basílica i capacitat per a unes 12 persones.',
     blocks: [
       {
         title: 'Acollida i recolliment',
@@ -241,7 +241,7 @@ export const santuariSubpages: SantuariSubpages = {
   comArribar: {
     title: 'Com arribar-hi',
     intro:
-      'Informació necessària per accedir al Santuari de manera senzilla i segura.',
+      'Accés en cremallera o a peu (Queralbs, Fontalba o Planoles). Informació pràctica i accessibilitat.',
     sections: [
       {
         title: 'Ubicació i accés',

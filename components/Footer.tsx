@@ -82,7 +82,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div>
+            {/* <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
                 Agenda
               </h4>
@@ -98,7 +98,7 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
 
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
@@ -118,7 +118,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div>
+            {/* <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
                 Publicacions
               </h4>
@@ -134,7 +134,7 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
           </section>
 
           {/* Contact */}

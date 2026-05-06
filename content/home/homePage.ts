@@ -1,6 +1,8 @@
+// import {
+//   BookOpenIcon,
+//   CalendarIcon,
+// } from 'lucide-react';
 import {
-  BookOpenIcon,
-  CalendarIcon,
   ChurchIcon,
   RouteIcon,
   UsersIcon,
@@ -27,6 +29,7 @@ export const homeSections: HomeSectionItem[] = [
     icon: ChurchIcon,
     gridClass: 'md:col-span-1', // 1/3
   },
+
   {
     title: 'Pelegrinatges',
     description:
@@ -35,29 +38,42 @@ export const homeSections: HomeSectionItem[] = [
     icon: RouteIcon,
     gridClass: 'md:col-span-2', // 2/3
   },
-  {
-    title: 'Agenda',
-    description:
-      "Celebracions, actes litúrgics, trobades comunitàries i esdeveniments especials al llarg de l'any. Consulta el calendari i no et perdis cap activitat.",
-    href: '/agenda',
-    icon: CalendarIcon,
-    gridClass: 'md:col-span-3', // 3/3 (full width)
-  },
+
+  // {
+  //   title: 'Agenda',
+  //   description:
+  //     "Celebracions, actes litúrgics, trobades comunitàries i esdeveniments especials al llarg de l'any. Consulta el calendari i no et perdis cap activitat.",
+  //   href: '/agenda',
+  //   icon: CalendarIcon,
+  //   gridClass: 'md:col-span-3', // 3/3 (full width)
+  // },
+
+  // TO PROD
+  // {
+  //   title: 'Lliga Espiritual',
+  //   description:
+  //     'Espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
+  //   href: '/lliga-espiritual',
+  //   icon: UsersIcon,
+  //   gridClass: 'md:col-span-2', // 2/3
+  // },
+  // TILL PROD READY
   {
     title: 'Lliga Espiritual',
     description:
       'Espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
     href: '/lliga-espiritual',
     icon: UsersIcon,
-    gridClass: 'md:col-span-2', // 2/3
+    gridClass: 'md:col-span-3', // 2/3
   },
-  {
-    title: 'Publicacions',
-    description: 'Llibres, materials de pregària i recursos espirituals.',
-    href: '/publicacions',
-    icon: BookOpenIcon,
-    gridClass: 'md:col-span-1', // 1/3
-  },
+
+  // {
+  //   title: 'Publicacions',
+  //   description: 'Llibres, materials de pregària i recursos espirituals.',
+  //   href: '/publicacions',
+  //   icon: BookOpenIcon,
+  //   gridClass: 'md:col-span-1', // 1/3
+  // },
 ];
 
 interface HomeContent {
