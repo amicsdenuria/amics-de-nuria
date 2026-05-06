@@ -97,8 +97,8 @@ export const santuariContent: SantuariContent = {
       intro:
         'La vall es pot assolir a peu per rutes emblemàtiques: el Camí Vell de Queralbs (GR11), l’accés panoràmic de Fontalba o la travessa exigent des de Planoles.',
       cta: {
-        label: 'Veure com arribar-hi',
-        href: '/santuari/com-arribar',
+        label: 'Veure pelegrinatges',
+        href: '/pelegrinatges',
       },
     },
   },
