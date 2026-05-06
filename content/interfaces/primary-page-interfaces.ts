@@ -47,3 +47,9 @@ export interface BlocksPageContent {
   intro: string;
   blocks: TextBlock[];
 }
+
+export interface NestedTextBlock {
+  title: string;
+  body: string;
+  items?: NestedTextBlock[]; // subseccions opcionals
+}

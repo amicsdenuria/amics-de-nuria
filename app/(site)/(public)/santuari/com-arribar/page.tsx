@@ -1,3 +1,7 @@
+import NestedTextBlock, {
+  NestedTextBlockType,
+} from '../../components/NestedTextBlock';
+
 import SantuariInfoCard from '../components/SantuariInfoCard';
 import SantuariPageHero from '../components/SantuariPageHero';
 import TextBlock from '../../components/TextBlock';
@@ -6,6 +10,7 @@ import { santuariContent } from '@/content/santuari/santuariPage';
 
 const ComArribarPage = () => {
   const { comArribar } = santuariContent.pages;
+
   return (
     <>
       <SantuariPageHero
@@ -16,12 +21,19 @@ const ComArribarPage = () => {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6">
           <div className="space-y-12">
-            {comArribar.blocks.map((block, i) => (
-              <TextBlock
-                key={i}
-                block={block}
-              />
-            ))}
+            {comArribar.sections.map((block: NestedTextBlockType, i: number) =>
+              block.items?.length ? (
+                <NestedTextBlock
+                  key={i}
+                  block={block}
+                />
+              ) : (
+                <TextBlock
+                  key={i}
+                  block={block}
+                />
+              ),
+            )}
           </div>
         </div>
       </section>
@@ -39,14 +51,6 @@ const ComArribarPage = () => {
               />
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="text-xl font-light italic leading-relaxed text-foreground/80">
-            {comArribar.closing}
-          </p>
         </div>
       </section>
     </>

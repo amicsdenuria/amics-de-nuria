@@ -1,250 +1,229 @@
 import { SantuariSubpages } from './interfaces';
 
 export const santuariSubpages: SantuariSubpages = {
+  vallDeNuria: {
+    title: 'La Vall de Núria',
+    intro:
+      'Refugi de pau i espiritualitat a dos mil metres d’altitud, on la majestuositat dels Pirineus abraça segles d’història, fe, tradició i natura viva.',
+    blocks: [
+      {
+        title: 'Els orígens: la llegenda de Sant Gil (cap el 700)',
+        body: 'Diuen que cap a l’any 700, l’abat sant Gil, originari de Grècia, va arribar a la Vall de Núria i s’hi estigué uns tres o quatre anys. Es va instal·lar en una cova, on meditava i elaborava icones, entre elles la imatge de la Mare de Déu de Núria. Convivia amb els pastors, als qui evangelitzava i amb qui compartia el menjar que cuinava en una olla. Obligat a fugir a la Provença, va amagar la imatge de la Mare de Déu, una creu, l’olla i una campana.',
+      },
+      {
+        title: 'La Troballa: el pelegrí Amadeu (1072–1079)',
+        body: 'L’any 1072 va arribar el pelegrí Amadeu. Segons la tradició, se li va aparèixer un àngel que li encomanà construir una capella dedicada a la Mare de Déu i li indicà que al costat d’una roca blanca trobaria els tresors de sant Gil. Amadeu va morir sense poder completar la tasca, però va demanar als pastors que continuessin la recerca. El 1079, els pastors van observar un bou colpejant insistentment una roca blanca prop d’una balma; van foradar la roca i hi van trobar la imatge de la Mare de Déu, la creu, la campana i l’olla de coure. Algunes restes d’aquesta roca blanca es poden veure a l’interior de la capella de Sant Gil.',
+      },
+      {
+        title: 'L’expansió: el Monestir de Ripoll (1087–1162)',
+        body: 'El 1087, el comte Guillem Ramon de Cerdanya cedeix la vall al Monestir de Ripoll com a terra de pastures. La transhumància i l’activitat dels pastors van ajudar a difondre la devoció per la Mare de Déu i Sant Gil. Amb els recursos del monestir es va poder mantenir l’hospital i la petita capella original en un indret aïllat i perillós. El 1162 apareix la primera referència escrita de Núria com “Annuaria” en una butlla del papa Alexandre III, on s’esmenta l’hospital i es confirmen possessions del monestir.',
+      },
+      {
+        title: 'Refugi d’alta muntanya (segles XIII–XIX)',
+        body: 'Diversos pergamins dels segles XIII i XIV detallen que l’hospital i la capella eren custodiats per un prevere amb funcions d’hospitaler i diversos “donats”. Les Consuetes de Núria (del 1162 al segle XIX) marcaven el seu comportament i un compromís sagrat d’hospitalitat: el deure de no tancar mai la porta a ningú, oferir refugi, foc sempre encès, sostre sec, aigua i sal. En dies de tempesta o boira tancada, s’havia de fer sonar la campana rítmicament per guiar els perduts.',
+      },
+      {
+        title: 'El cremallera (1928–1931)',
+        body: 'El cremallera és un ferrocarril de muntanya que utilitza un sistema de cremallera per superar pendents que un tren convencional no podria pujar. Les obres comencen el 1928 i s’inaugura el març de 1931. Va transformar absolutament la Vall de Núria: va posar fi a l’aïllament i a la dependència dels animals de càrrega per a l’abastament de queviures i materials.',
+      },
+    ],
+  },
+
   basilica: {
     title: 'La Basílica',
     intro:
-      'La basílica situada als Pirineus, coneguda pel seu entorn natural i la devoció a la Mare de Déu de Núria.',
+      'Espai de recolliment i de pregària per a visitants i pelegrins, i de devoció a la Mare de Déu de Núria.',
     blocks: [
       {
-        title: 'Què és la basílica',
-        body: 'La basílica és el cor espiritual de la vall, un lloc de recolliment i trobada per a visitants i pelegrins.',
+        title: 'Origen',
+        body: 'Se sap que durant el segle XII ja hi havia a Núria una capella i un hospital (un alberg d’acollida i refugi) per a viatgers que creuaven els Pirineus i pastors que hi transitaven o hi passaven l’estiu amb els ramats. Aquesta funció d’acollida és la que va acabar donant forma al conjunt d’edificis actual: el santuari va créixer al voltant de la necessitat de donar llit i menjar als qui arribaven a la vall.',
       },
       {
-        title: 'Història i origen',
-        body: 'Construïda al voltant de la devoció a la Mare de Déu, la basílica ha crescut amb el temps com a centre religiós i símbol del territori.',
+        title: 'Història',
+        body: 'L’hospital i la capella han estat refets diverses vegades pels veïns de Queralbs, que des del segle XV tenen cura del santuari. El 1728 s’hi afegeix el primer cambril a l’antiga estructura per acollir la imatge de manera solemne. L’església del Santuari de Núria va ser elevada a la dignitat de Basílica Menor pel papa Francesc el 2014, per la seva rellevància històrica, cultural i espiritual.',
       },
       {
         title: 'Arquitectura',
-        body: 'L’edifici combina senzillesa i solemnitat, integrant-se amb el paisatge pirinenc i creant un ambient de calma i respecte.',
+        body: 'L’església actual i el conjunt del santuari són de factura moderna: s’inicien el 1883 i s’inauguren el 1911. Fins al 1946 no s’acaba la característica façana neoromànica amb el campanar central adossat, per on es realitza l’entrada al temple. Al voltant de l’església s’estructuren diversos pavellons en forma d’una U (Sant Josep, Sant Antoni, Sant Jeroni i Sant Gil), pensats per protegir el recinte dels forts vents i crear una gran plaça central d’acollida.',
       },
       {
-        title: 'Vida i celebracions',
-        body: 'Al llarg de l’any s’hi celebren misses i actes litúrgics que mantenen viva la tradició i la comunitat.',
+        title: 'Vida i acollida',
+        body: 'L’espai manté viva la seva funció d’acollida original gràcies als pavellons laterals i a la gran plaça central que s’estructura al voltant de l’església, avui punt de trobada i acollida per a tots els pelegrins que visiten la vall.',
       },
       {
         title: 'Espai de silenci',
-        body: 'La basílica convida a la contemplació, al silenci interior i a una experiència espiritual enmig de la natura.',
+        body: 'Aïllada a l’alta muntanya, el silenci del recinte i la natura dels Pirineus s’uneixen per oferir un espai de refugi i calma per a la contemplació, el silenci interior i una experiència espiritual enmig de la natura.',
       },
     ],
   },
 
   mareDeDeu: {
-    title: 'La Mare de Déu',
+    title: 'La Mare de Déu de Núria',
     intro:
-      'La devoció a la Mare de Déu és el cor espiritual del Santuari. A través d’ella, generacions de fidels han trobat consol, esperança i acompanyament.',
+      'Cor espiritual del Santuari: consol, esperança i acompanyament per a visitants, fidels i pelegrins.',
     blocks: [
       {
-        title: 'Qui és la Mare de Déu',
-        body: 'Figura central de la devoció del Santuari, símbol de protecció, tendresa i proximitat per als fidels i pelegrins.',
+        title: 'La troballa',
+        body: 'És una “Mare de Déu trobada” que segons la tradició, el 1079 uns pastors van descobrir a l’interior d’una roca blanca que un bou colpejava. Hi van trobar els tresors que sant Gil havia amagat: la talla de la Mare de Déu de Núria, la creu, la campana i l’olla. El 1967 es va decretar l’entronització canònica de la imatge de la Mare de Déu de Núria.',
       },
       {
-        title: 'Història i tradició',
-        body: 'La veneració a la Mare de Déu s’ha transmès de generació en generació com una part essencial de la identitat del lloc.',
+        title: 'La llegenda',
+        body: 'Com en d’altres casos de marededéus trobades, es va negar a abandonar el lloc que l’havia hostatjada durant més de tres-cents anys. Malgrat la voluntat dels habitants de Queralbs de construir-li una capella al poble, la imatge va optar per la capella que li havia construït Amadeu a la solitud de les valls i l’alta muntanya. Una processó que portava la imatge cap a Queralbs es va haver d’aturar en arribar a la Creu d’en Riba: els portadors sentien que el tabernacle es tornava pesadíssim i una “paret invisible” els tallava el pas.',
       },
       {
-        title: 'Celebracions',
-        body: 'Al llarg de l’any, la comunitat es reuneix en moments de pregària, festa i memòria compartida al voltant de la seva figura.',
+        title: 'La talla',
+        body: 'Talla de fusta de noguera policromada dels segles XII–XIII. Durant anys es va conèixer com la “Moreneta del Pirineu” pel seu color fosc degut al fum de llànties i ciris. Seguint la iconografia romànica, la Verge actua com a Sedes Sapientiae (Tron de Saviesa) i serveix de tron a l’Infant Jesús, assegut a la seva falda en actitud de beneir. La restauració de l’any 2000 va recuperar-ne la policromia original.',
       },
       {
-        title: 'L’espai de veneració',
-        body: 'La imatge, l’altar i l’entorn conviden al silenci, la contemplació i la pregària personal.',
+        title: 'Aplec de Núria (8 de setembre)',
+        body: 'La Vall de Núria celebra la seva festa patronal amb un gran aplec que uneix fe i tradició. Centenars de pelegrins pugen a peu pel Camí Vell des de Queralbs per participar en la missa solemne, on el moment més emotiu és la benedicció dels nens, vinculada al do de la fertilitat atribuït a la Verge.',
       },
       {
-        title: 'Text de contemplació',
-        body: 'Acosta-t’hi amb calma. La devoció a la Mare de Déu es viu en el gest senzill, la mirada serena i la pregària compartida.',
+        title: 'El cambril, espai de veneració',
+        body: 'La imatge de la Verge està situada al Cambril, darrere de l’altar major de la basílica. Permet acostar-s’hi per pregar, contemplar-la de prop i retre-li culte de manera íntima i recollida. Amb la inauguració de la nova església neoromànica (1911), el cambril es modernitza i s’integra en el nou absis.',
       },
     ],
   },
 
-  llarAmadeu: {
-    title: 'La Llar Amadeu',
+  creuOllaCampana: {
+    title: 'La Creu, l’Olla i la Campana',
     intro:
-      'La Llar Amadeu forma part de l’entorn del Santuari com un lloc d’acollida, acompanyament i vida comunitària.',
+      'Els pilars de la identitat espiritual, cultural i social de la Vall de Núria.',
     blocks: [
       {
-        title: 'Què és',
-        body: 'Un espai pensat per servir i acollir a qui s’acosta al Santuari.',
+        title: 'Els símbols de Núria',
+        body: 'Cada un d’aquests elements narra una part de la vida del sant a la muntanya. La creu, de fusta i d’estil romànic, simbolitza l’oració i l’evangeli que va portar a aquestes contrades. La campana era l’instrument amb el qual Sant Gil trencava el silenci dels cims per convocar els pastors a la pregària o per oferir-los aixopluc o menjar. L’olla representa la caritat i l’hospitalitat, ja que era el recipient on el sant cuinava el gra per compartir-lo amb els pastors.',
       },
       {
-        title: 'Funció',
-        body: 'Pot actuar com a lloc de trobada, suport, convivència o servei segons les necessitats del projecte.',
+        title: 'De relíquies a icones',
+        body: 'Durant la Renaixença i el segle XX, els tres símbols van deixar de ser només relíquies religioses per esdevenir icones de l’excursionisme català i de l’arrelament a la terra.',
       },
       {
-        title: 'Relació amb el Santuari',
-        body: 'La Llar Amadeu complementa l’experiència espiritual i humana del Santuari, oferint un entorn de proximitat.',
+        title: 'El ritual de fertilitat',
+        body: 'Des de molt antic, l’olla i la campana de Núria s’han relacionat amb la fertilitat. El ritual és ben senzill: la dona ha de ficar el cap dins l’olla mentre la seva parella toca la campana, instant en què és precís formular el desig. La creença diu que cada repic de la campana invoca la benedicció d’un nou fill.',
       },
       {
-        title: 'Text final',
-        body: 'És un lloc on l’atenció a les persones i l’esperit d’acollida tenen un paper protagonista.',
+        title: 'Ubicació actual',
+        body: 'Actualment, l’olla i la campana estan situades dins el santuari, en el replà que dona accés al campanar. La creu va passar a presidir espiritualment i visualment el paisatge de la vall, sent el motiu de la coneguda Creu d’en Riba, mirador clau de l’entrada al santuari.',
       },
     ],
   },
 
   santGil: {
-    title: 'Sant Gil',
+    title: 'L’Ermita de Sant Gil',
     intro:
-      'Sant Gil és una figura molt present en la memòria devocional del Santuari i en la tradició local.',
+      'Refugi de la fe, s’alça per acollir qui té set de pau i escalf en la solitud de les muntanyes.',
     blocks: [
       {
-        title: 'Qui va ser',
-        body: 'Una figura vinculada a la fe, la humilitat i la vida senzilla.',
+        title: 'Llegenda',
+        body: 'Segons la tradició, la capella es va construir a prop de la balma on sant Gil feia vida d’ermità i on, el 1079, un pastor de Queralbs va trobar la imatge de la Mare de Déu, l’olla, la creu i la campana. És un dels racons més autèntics i carregats de memòria de la vall. A Catalunya, Sant Gil és considerat patró dels pastors, especialment dels del Pirineu Oriental.',
       },
       {
-        title: 'Importància al Santuari',
-        body: 'El seu record forma part de la identitat espiritual del lloc.',
+        title: 'Història',
+        body: 'Es va construir el 1615, i el que veiem avui és fruit d’una crida massiva feta el 1951: es van enviar milers de cartes a dones anomenades Núria d’arreu de Catalunya per demanar que “apadrinessin” una pedra o una rajola per aixecar de nou l’ermita, cremada i pràcticament destruïda durant els inicis de la Guerra Civil (1936). En la restauració de 1999 es van aprofitar elements de l’antic santuari del segle XVII (porta adovellada i reixa de ferro) per donar-li l’aspecte històric actual. A la façana s’hi varen construir tres vitralls que simbolitzen la creu, l’olla i la campana.',
       },
       {
-        title: 'Tradició i celebració',
-        body: 'La seva presència es manté viva a través de la devoció i dels actes comunitaris.',
-      },
-      {
-        title: 'Text final',
-        body: 'La figura de Sant Gil recorda la importància de la senzillesa, la entrega i el camí compartit.',
+        title: 'Diada de Sant Gil (1 de setembre)',
+        body: 'L’1 de setembre se celebra la diada de Sant Gil, patró dels pastors, una de les festes tradicionals i religioses més importants de Núria. Durant aquesta diada els pastors ofereixen a la Mare de Déu productes del bestiar: llana, formatges, mantega de llet d’ovella i un cap de bestiar.',
       },
     ],
   },
 
   viaCrucis: {
-    title: 'Via Crucis',
+    title: 'El Via Crucis',
     intro:
-      'El Via Crucis convida a recórrer el camí de la pregària i la contemplació dins l’entorn del Santuari.',
+      'Camí on el batec de la terra i el de la fe s’uneixen en una sola veu.',
     blocks: [
       {
-        title: 'Què és',
-        body: 'Un recorregut de pregària que acompanya el record de la Passió de Crist.',
+        title: 'L’origen',
+        body: 'La proposta sorgeix el 1914 arran d’un congrés franciscà celebrat a la Vall de Núria, amb l’objectiu de connectar les diferents ermites escampades per la muntanya. La construcció s’inicia entre 1915 i 1918 i no s’acabaria fins al 1963, amb la inauguració de la XIV estació. Es va finançar gràcies a donacions de particulars i associacions catòliques.',
       },
       {
-        title: 'Com es recorre',
-        body: 'S’avança estació per estació, aturant-se a cada moment per a la meditació.',
-      },
-      {
-        title: 'Recomanació general',
-        body: 'Cada estació proposa aturar-se, mirar i pregar amb serenor.',
+        title: 'El traçat',
+        body: 'És un recorregut a l’aire lliure d’un quilòmetre i mig. A diferència del Via Crucis tradicional de 14 estacions, el de Núria en té quinze, ja que inclou la Resurrecció de Jesús. El camí s’inicia a la vall, des del santuari fins a la coma del Clot, on s’erigeix un Sant Crist. A mesura que el sender serpenteja muntanya amunt, el paisatge s’obre com un llibre de pedra i silenci, i cada estació sembla voler elevar la mirada cap al cel.',
       },
     ],
-    stations: [
+    stations: [],
+    recommendations: '',
+    closing: '',
+  },
+
+  llarAmadeu: {
+    title: 'La Llar Amadeu',
+    intro:
+      'En record a la figura d’Amadeu, el pelegrí que l’any 1072 va iniciar la construcció de la primera capella a la vall.',
+    blocks: [
       {
-        number: 1,
-        title: 'Primera estació',
-        body: 'Jesús és condemnat a mort. Un moment per contemplar la injustícia i la entrega.',
+        title: 'Acollida i recolliment',
+        body: 'En el cor del santuari, la Llar Amadeu s’ha convertit en un refugi viu que manté l’esperit d’aquell primer pelegrí. Situada sota el cambril de la Verge, permet l’accés directe a l’interior de la Basílica, facilitant estones de pregària nocturna i activitats d’espiritualitat. Funciona com un centre pastoral i d’acollida per a grups que busquen un espai de recolliment i silenci.',
       },
       {
-        number: 2,
-        title: 'Segona estació',
-        body: 'Jesús carrega amb la creu. Un pas d’acceptació, silenci i fidelitat.',
-      },
-      {
-        number: 3,
-        title: 'Tercera estació',
-        body: 'Jesús cau per primera vegada. Una crida a reconèixer la fragilitat humana.',
-      },
-      {
-        number: 4,
-        title: 'Quarta estació',
-        body: 'Jesús es troba amb la seva Mare. Una trobada de dolor, amor i companyia.',
-      },
-      {
-        number: 5,
-        title: 'Cinquena estació',
-        body: 'Simó de Cirene ajuda a portar la creu. Un gest de solidaritat i servei.',
-      },
-      {
-        number: 6,
-        title: 'Sisena estació',
-        body: 'Verònica eixuga el rostre de Jesús. Un signe de compassió i tendresa.',
-      },
-      {
-        number: 7,
-        title: 'Setena estació',
-        body: 'Jesús cau per segona vegada. Una invitació a aixecar-se amb esperança.',
-      },
-      {
-        number: 8,
-        title: 'Vuitena estació',
-        body: 'Jesús consola les dones de Jerusalem. Paraules de veritat i de vida.',
-      },
-      {
-        number: 9,
-        title: 'Novena estació',
-        body: 'Jesús cau per tercera vegada. La perseverança enmig del cansament.',
-      },
-      {
-        number: 10,
-        title: 'Desena estació',
-        body: 'Jesús és despullat de les seves vestidures. La humilitat portada fins a l’extrem.',
-      },
-      {
-        number: 11,
-        title: 'Onzena estació',
-        body: 'Jesús és clavat a la creu. L’amor lliurat completament.',
-      },
-      {
-        number: 12,
-        title: 'Dotzena estació',
-        body: 'Jesús mor a la creu. Silenci, dolor i esperança.',
-      },
-      {
-        number: 13,
-        title: 'Tretzena estació',
-        body: 'Jesús és baixat de la creu. La compassió sosté el cos del Senyor.',
-      },
-      {
-        number: 14,
-        title: 'Catorzena estació',
-        body: 'Jesús és posat al sepulcre. Un final aparent que s’obre a l’esperança.',
+        title: 'Capacitat i espais',
+        body: 'Vinculada al Bisbat d’Urgell, té capacitat per a unes 12 persones i disposa d’habitacions, una sala-menjador amb cuina equipada i sales per a la formació i el diàleg.',
       },
     ],
-    recommendations:
-      'Porta calçat còmode, camina amb calma i mantén una actitud de respecte i silenci durant tot el recorregut.',
-    closing: 'Cada estació proposa aturar-se, mirar i pregar amb serenor.',
   },
 
   comArribar: {
-    title: 'Com arribar',
+    title: 'Com arribar-hi',
     intro:
-      'Aquí trobaràs la informació necessària per accedir al Santuari de manera senzilla i segura.',
-    blocks: [
+      'Informació necessària per accedir al Santuari de manera senzilla i segura.',
+    sections: [
       {
-        title: 'Ubicació',
-        body: 'Indica on es troba el Santuari i com situar-lo al mapa.',
-      },
-      {
-        title: 'En cotxe',
-        body: 'Explica els accessos principals, la senyalització i l’aparcament disponible.',
+        title: 'Ubicació i accés',
+        body: 'El santuari és un refugi de pau on no arriben els cotxes. L’única manera d’accedir-hi és mitjançant l’històric tren cremallera o a peu per camins tan espectaculars com el de Fontalba o el Camí Vell de Queralbs.',
       },
       {
         title: 'A peu',
-        body: 'Descriu els camins d’accés per a pelegrins i visitants.',
+        body: '',
+        items: [
+          {
+            title: 'Des de Queralbs (Camí Vell)',
+            body: 'Núria no té accés viari, de manera que cal oblidar el cotxe. Una bona opció és aparcar el vehicle a Queralbs i pujar-hi a peu, seguint el camí dels pelegrins. Aquest camí arrenca de Queralbs, té una longitud de 6,5 km, salva un desnivell de 700 m i està integrat en el GR11, perfectament senyalitzat. El recorregut no té complicacions, però cal estar en bona forma física, ja que l’excursió requereix prop de dues hores, depenent del ritme de cadascú. El camí, empedrat en molts trams, ressegueix el curs del riu Núria. La primavera i l’estiu són la millor època per fer-lo; el riu baixa engruixit per l’aigua que prové del desglaç i el paisatge es tenyeix d’un verd espectacular. De parada obligada és la Creu d’en Riba, on es gaudeix de la primera vista del santuari emmirallat en el llac del davant, circumdat per un grandiós amfiteatre de muntanyes.',
+          },
+          {
+            title: 'Des de Fontalba',
+            body: 'L’accés des de Fontalba és la ruta més planera i panoràmica per arribar al Santuari. Cal arribar en cotxe fins a l’aparcament de Fontalba (2.095 m), situat al final d’una pista forestal d’11 km que surt des de Queralbs. L’accés a l’aparcament està limitat i requereix reserva prèvia durant la temporada alta. El recorregut és un sender d’uns 5 km sense desnivells importants que flanqueja la muntanya. En lloc de pujar, es va perdent alçada suaument fins a arribar als 1.964 m de la Vall de Núria. Ofereix vistes constants de la Vall de Ribes i el massís del Puigmal. És habitual trobar-hi isards o ramats de vaques i ovelles pasturant. Conflueix amb la ruta que arriba de Queralbs a la Creu d’en Riba.',
+          },
+          {
+            title: 'Des de Planoles',
+            body: "La travessa de Planoles a Núria és una exigent ruta d'alta muntanya que cobreix uns 16,5 quilòmetres i supera un desnivell positiu de gairebé 1.200 metres en unes 6 hores de marxa. El recorregut comença amb una forta pujada des del poble de Planoles per un bosc de pins fins a assolir el Refugi del Corral Blanc i el Collet de les Barraques a 1.900 metres d'altitud. Des d'aquest mirador, el camí planeja cap a la Font de l'Home Mort, on podem optar per la via ràpida cap al Collet d'Estevenís o baixar fins a Queralbs per remuntar després el tradicional Camí Vell de Núria. Finalment, ambdues opcions conflueixen al Pla de Sallent, l'última part de la ruta per entrar directament a la Vall de Núria des de la Creu d'en Riba.",
+          },
+        ],
+      },
+      {
+        title: 'En cremallera',
+        body: 'Pot accedir a la Vall de Núria des de qualsevol de les tres estacions de sortida: a l’estació de Ribes-Enllaç, a l’estació de Ribes-Vila o a l’estació de Queralbs. L’estació de Ribes-Enllaç és la millor opció si arribes amb la línia R3 de Rodalies de Catalunya perquè les andanes estan connectades directament. També pots pujar al centre del poble a l’estació de Ribes-Vila, on trobaràs aparcament per al cotxe. L’última opció és conduir fins al poble de Queralbs i pujar-hi des de la seva estació, que disposa d’un gran aparcament gratuït i redueix el trajecte en tren a la meitat del temps. L’accés amb cremallera també et dona dret a utilitzar també el Telefèric de la Coma del Clot que et portarà fins a l’alberg Pic de l’Àliga.',
       },
       {
         title: 'Accessibilitat',
-        body: 'Informació sobre rutes adaptades, punts d’accés i recomanacions per a la visita.',
+        body: 'L’accés a la Vall de Núria està totalment adaptat per a persones amb mobilitat reduïda a través del Cremallera de Núria. Totes les estacions disposen d’accessos sense barreres arquitectòniques, lavabos adaptats i places d’aparcament reservades a Ribes-Vila i Queralbs. Els trens compten amb vagons de perfil baix a peu pla i espais amplis a l’interior per a cadires de rodes. Un cop a la vall, els camins principals estan pavimentats i un ascensor connecta directament l’estació amb el Telefèric de la Coma del Clot per evitar obstacles. Els gossos guia o d’assistència viatgen gratis i tenen permès l’accés a totes les instal·lacions.',
       },
       {
         title: 'Mapa',
-        body: 'Bloc visual amb mapa integrat per orientar l’arribada al recinte.',
+        body: 'Mapa',
       },
     ],
     practical: [
       {
-        label: 'Adreça',
-        value: 'Afegeix aquí l’adreça exacta del Santuari.',
+        label: 'Accés amb vehicle',
+        value:
+          'Núria no té accés viari: els cotxes no arriben al santuari. L’accés és en cremallera o a peu.',
+      },
+      {
+        label: 'Estacions del cremallera',
+        value: 'Ribes-Enllaç, Ribes-Vila i Queralbs.',
       },
       {
         label: 'Aparcament',
-        value: 'Afegeix informació sobre zones d’estacionament.',
+        value:
+          'Aparcament a Ribes-Vila i Queralbs. Accés a l’aparcament de Fontalba limitat i amb reserva prèvia en temporada alta.',
       },
       {
-        label: 'Accés a peu',
-        value: 'Afegeix rutes d’arribada a peu o des del poble.',
-      },
-      {
-        label: 'Contacte',
-        value: 'Afegeix telèfon, correu o enllaç d’atenció.',
+        label: 'Telefèric de la Coma del Clot',
+        value:
+          'L’accés amb cremallera dona dret a utilitzar el Telefèric de la Coma del Clot, que porta fins a l’alberg Pic de l’Àliga.',
       },
     ],
-    closing:
-      'El camí forma part de l’experiència: arribar al Santuari també és entrar en un espai de calma.',
   },
 };

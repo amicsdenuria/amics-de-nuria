@@ -1,34 +1,13 @@
 import {
   BlocksPageContent,
   InfoItem,
+  NestedTextBlock,
   OrderedCardItem,
   PrimaryPageHeroContent,
   PrimaryPageNavItem,
   SectionCard,
   TextBlock,
 } from '../interfaces/primary-page-interfaces';
-
-export interface SantuariSubpages {
-  basilica: BlocksPageContent;
-  mareDeDeu: BlocksPageContent;
-  santGil: BlocksPageContent;
-  viaCrucis: {
-    title: string;
-    intro: string;
-    blocks: TextBlock[];
-    stations: OrderedCardItem[];
-    recommendations: string;
-    closing: string;
-  };
-  llarAmadeu: BlocksPageContent;
-  comArribar: {
-    title: string;
-    intro: string;
-    blocks: TextBlock[];
-    practical: InfoItem[];
-    closing: string;
-  };
-}
 
 export interface SantuariContent {
   nav: PrimaryPageNavItem[];
@@ -49,4 +28,29 @@ export interface SantuariContent {
     };
   };
   pages: SantuariSubpages;
+}
+
+export interface ComArribarPageContent {
+  title: string;
+  intro: string;
+  sections: NestedTextBlock[];
+  practical: InfoItem[];
+}
+
+export interface SantuariSubpages {
+  vallDeNuria: BlocksPageContent;
+  basilica: BlocksPageContent;
+  mareDeDeu: BlocksPageContent;
+  creuOllaCampana: BlocksPageContent;
+  santGil: BlocksPageContent;
+  viaCrucis: {
+    title: string;
+    intro: string;
+    blocks: TextBlock[];
+    stations: OrderedCardItem[];
+    recommendations: string;
+    closing: string;
+  };
+  llarAmadeu: BlocksPageContent;
+  comArribar: ComArribarPageContent;
 }
