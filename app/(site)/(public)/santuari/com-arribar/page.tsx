@@ -53,6 +53,21 @@ const ComArribarPage = () => {
           </div>
         </div>
       </section>
+
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <TypoH2Var className="mb-10 text-center">Mapa</TypoH2Var>
+
+          <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
+            <iframe
+              src={comArribar.map}
+              className="h-[400px] w-full md:h-[500px]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </section>
     </>
   );
 };

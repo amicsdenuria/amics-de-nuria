@@ -273,10 +273,6 @@ export const santuariSubpages: SantuariSubpages = {
         title: 'Accessibilitat',
         body: 'L’accés a la Vall de Núria està totalment adaptat per a persones amb mobilitat reduïda a través del Cremallera de Núria. Totes les estacions disposen d’accessos sense barreres arquitectòniques, lavabos adaptats i places d’aparcament reservades a Ribes-Vila i Queralbs. Els trens compten amb vagons de perfil baix a peu pla i espais amplis a l’interior per a cadires de rodes. Un cop a la vall, els camins principals estan pavimentats i un ascensor connecta directament l’estació amb el Telefèric de la Coma del Clot per evitar obstacles. Els gossos guia o d’assistència viatgen gratis i tenen permès l’accés a totes les instal·lacions.',
       },
-      {
-        title: 'Mapa',
-        body: 'Mapa',
-      },
     ],
     practical: [
       {
@@ -299,5 +295,7 @@ export const santuariSubpages: SantuariSubpages = {
           'L’accés amb cremallera dona dret a utilitzar el Telefèric de la Coma del Clot, que porta fins a l’alberg Pic de l’Àliga.',
       },
     ],
+
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2946.454448064205!2d2.146!3d42.394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a54294c7435df7%3A0x263ef57c86ecf91d!2sBas%C3%ADlica%20Santuario%20de%20la%20Madre%20de%20Dios%20de%20Nuria!5e0!3m2!1sca!2ses!4v1778066623876!5m2!1sca!2ses',
   },
 };
