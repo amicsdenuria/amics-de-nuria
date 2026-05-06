@@ -42,24 +42,6 @@ const ViaCrucisPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Recomendations & closing */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <div className="mb-10 rounded-lg border border-primary/20 bg-primary/5 p-8">
-            <h3 className="mb-4 text-xl font-medium tracking-tight text-foreground">
-              Recomanacions
-            </h3>
-            <p className="text-base font-light leading-relaxed text-muted-foreground">
-              {viaCrucis.recommendations}
-            </p>
-          </div>
-
-          <p className="text-lg font-light italic leading-relaxed text-foreground/80">
-            {viaCrucis.closing}
-          </p>
-        </div>
-      </section>
     </>
   );
 };

@@ -140,12 +140,86 @@ export const santuariSubpages: SantuariSubpages = {
       },
       {
         title: 'El traçat',
-        body: 'És un recorregut a l’aire lliure d’un quilòmetre i mig. A diferència del Via Crucis tradicional de 14 estacions, el de Núria en té quinze, ja que inclou la Resurrecció de Jesús. El camí s’inicia a la vall, des del santuari fins a la coma del Clot, on s’erigeix un Sant Crist. A mesura que el sender serpenteja muntanya amunt, el paisatge s’obre com un llibre de pedra i silenci, i cada estació sembla voler elevar la mirada cap al cel.',
+        body: 'Conegut com el Camí de les Creus, és un recorregut a l’aire lliure d’un quilòmetre i mig. A diferència del Via Crucis tradicional de 14 estacions, el de Núria en té quinze, ja que inclou la Resurrecció de Jesús. El camí s’inicia a la vall, des del santuari fins a la coma del Clot, on s’erigeix un Sant Crist. A mesura que el sender serpenteja muntanya amunt, el paisatge s’obre com un llibre de pedra i silenci, i cada estació sembla voler elevar la mirada cap al cel.',
       },
     ],
-    stations: [],
-    recommendations: '',
-    closing: '',
+    stations: [
+      {
+        number: 'I',
+        title: 'Jesús és condemnat a mort',
+        body: 'Representa el moment en què Ponç Pilat, pressionat per la multitud, es renta les mans i cedeix a la petició de crucificar Jesús.',
+      },
+      {
+        number: 'II',
+        title: 'Jesús carrega amb la creu',
+        body: "Jesús rep i accepta la pesada creu de fusta sobre les seves espatlles ferides. Simbolitza l'acceptació del patiment per a la redempció.",
+      },
+      {
+        number: 'III',
+        title: 'Jesús cau per primera vegada',
+        body: 'Aclaparat pel cansament físic, la pèrdua de sang i el pes de la fusta, Jesús es desploma a terra per primer cop durant el camí cap al Calvari.',
+      },
+      {
+        number: 'IV',
+        title: 'Jesús es troba amb la seva mare',
+        body: 'Una de les estacions més emotives. Jesús es creua amb la Verge Maria enmig de la multitud. El silenci i la mirada entre mare i fill reflecteixen un profund dolor compartit.',
+      },
+      {
+        number: 'V',
+        title: 'El Cireneu ajuda Jesús a portar la creu',
+        body: 'Davant la feblesa extrema de Jesús, els soldats romans obliguen Simó de Cirene a carregar la creu durant un tram del recorregut.',
+      },
+      {
+        number: 'VI',
+        title: 'Verònica eixuga la cara de Jesús',
+        body: "Una dona de Jerusalem, coneguda com la Verònica, s'apropa a Jesús i li eixuga la cara suada i ensangonada amb un mocador. Segons la tradició, el rostre de Crist queda imprès a la tela.",
+      },
+      {
+        number: 'VII',
+        title: 'Jesús cau per segona vegada',
+        body: "Malgrat l'ajuda del Cireneu, la fatiga extrema provoca una segona caiguda de Jesús en el seu camí de pujada al mont Calvari.",
+      },
+      {
+        number: 'VIII',
+        title: 'Jesús consola les dones de Jerusalem',
+        body: "Un grup de dones plora de compassió en veure el seu patiment. Jesús s'adreça a elles demanant-los que no plorin per ell, sinó per elles mateixes i pels seus fills.",
+      },
+      {
+        number: 'IX',
+        title: 'Jesús cau per tercera vegada',
+        body: "A punt d'arribar al cim del Calvari, Jesús torna a caure per terra. És la mostra del desgast humà màxim abans de la crucifixió.",
+      },
+      {
+        number: 'X',
+        title: 'Jesús és despullat de les seves vestidures',
+        body: "Un cop arriba al lloc de l'execució, els soldats romans el despullen en públic per humiliar-lo. Es reparteixen les seves robes fent-les a la sort.",
+      },
+      {
+        number: 'XI',
+        title: 'Jesús és clavat a la creu',
+        body: 'Els soldats claven els peus i les mans de Jesús a la fusta amb claus de ferro davant de la seva mare i altres testimonis.',
+      },
+      {
+        number: 'XII',
+        title: 'Jesús mor a la creu',
+        body: "Després de tres hores d'agonia i de pronunciar les seves últimes paraules, Jesús inclina el cap i lliura el seu esperit.",
+      },
+      {
+        number: 'XIII',
+        title: 'Jesús és baixat de la creu',
+        body: "Josep d'Arimatea i Nicodem demanen permís per desclavar el cos de Jesús. El baixen de la creu i el dipositen als braços de la seva mare, la Verge Maria.",
+      },
+      {
+        number: 'VIV',
+        title: 'Jesús és dipositat al sepulcre',
+        body: "El cos és embolicat amb un llençol net i col·locat dins d'un sepulcre nou excavat a la roca. Es tanca l'entrada amb una gran pedra.",
+      },
+      {
+        number: 'XV',
+        title: 'La Resurrecció de Jesús',
+        body: "Estació addicional del Via Crucis de la Vall de Núria. Simbolitza el triomf sobre la mort al tercer dia, completant la visió de fe cristiana i d'esperança.",
+      },
+    ],
   },
 
   llarAmadeu: {

@@ -2,9 +2,9 @@ import {
   BlocksPageContent,
   InfoItem,
   NestedTextBlock,
-  OrderedCardItem,
   PrimaryPageHeroContent,
   PrimaryPageNavItem,
+  RomanOrderedCardItem,
   SectionCard,
   TextBlock,
 } from '../interfaces/primary-page-interfaces';
@@ -30,11 +30,19 @@ export interface SantuariContent {
   pages: SantuariSubpages;
 }
 
+export interface ViaCrucisPageContent {
+  title: string;
+  intro: string;
+  blocks: TextBlock[];
+  stations: RomanOrderedCardItem[];
+}
+
 export interface ComArribarPageContent {
   title: string;
   intro: string;
   sections: NestedTextBlock[];
   practical: InfoItem[];
+  map: string;
 }
 
 export interface SantuariSubpages {
@@ -43,14 +51,7 @@ export interface SantuariSubpages {
   mareDeDeu: BlocksPageContent;
   creuOllaCampana: BlocksPageContent;
   santGil: BlocksPageContent;
-  viaCrucis: {
-    title: string;
-    intro: string;
-    blocks: TextBlock[];
-    stations: OrderedCardItem[];
-    recommendations: string;
-    closing: string;
-  };
+  viaCrucis: ViaCrucisPageContent;
   llarAmadeu: BlocksPageContent;
   comArribar: ComArribarPageContent;
 }

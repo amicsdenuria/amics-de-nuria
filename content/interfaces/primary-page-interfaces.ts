@@ -42,6 +42,12 @@ export interface OrderedCardItem {
   body: string;
 }
 
+export interface RomanOrderedCardItem {
+  number: string;
+  title: string;
+  body: string;
+}
+
 export interface BlocksPageContent {
   title: string;
   intro: string;

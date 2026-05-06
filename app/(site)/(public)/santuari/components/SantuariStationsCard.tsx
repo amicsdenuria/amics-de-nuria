@@ -1,7 +1,7 @@
-import { OrderedCardItem } from '@/content/interfaces/primary-page-interfaces';
+import { RomanOrderedCardItem } from '@/content/interfaces/primary-page-interfaces';
 
 interface SantuariStationsCardProps {
-  station: OrderedCardItem;
+  station: RomanOrderedCardItem;
 }
 const SantuariStationsCard = ({ station }: SantuariStationsCardProps) => {
   return (
