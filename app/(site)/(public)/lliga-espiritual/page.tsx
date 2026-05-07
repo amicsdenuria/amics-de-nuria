@@ -1,3 +1,4 @@
+import { Card, CardContent } from '@/components/ui/card';
 import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
 
 import NestedTextBlock from '../components/NestedTextBlock';
@@ -54,22 +55,24 @@ const LligaEspiritualPage = async () => {
           <div className="space-y-12 mx-auto w-fit text-left">
             {manifesto.blocks.map((block, i) => (
               // TODO: Card style
-              <div
+              <Card
                 key={i}
-                className="bg-white/80 p-8 rounded-2xl border border-border"
+                className="px-2 py-8"
               >
-                {block.items?.length ? (
-                  <NestedTextBlock
-                    key={i}
-                    block={block}
-                  />
-                ) : (
-                  <TextBlock
-                    key={i}
-                    block={block}
-                  />
-                )}
-              </div>
+                <CardContent>
+                  {block.items?.length ? (
+                    <NestedTextBlock
+                      key={i}
+                      block={block}
+                    />
+                  ) : (
+                    <TextBlock
+                      key={i}
+                      block={block}
+                    />
+                  )}
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
