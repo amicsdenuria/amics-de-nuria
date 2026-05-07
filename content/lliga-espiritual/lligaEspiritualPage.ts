@@ -1,15 +1,15 @@
 import {
-  BlocksPageContent,
+  InstagramIcon,
+  LucideIcon,
+  MapPinIcon,
+  YoutubeIcon,
+} from 'lucide-react';
+import {
+  NestedTextBlock,
   PrimaryPageHeroContent,
   PrimaryPageNavItem,
   TextBlock,
 } from '../interfaces/primary-page-interfaces';
-import {
-  InstagramIcon,
-  LaptopIcon,
-  LucideIcon,
-  MapPinIcon,
-} from 'lucide-react';
 
 export interface SocialLink {
   label: string;
@@ -24,7 +24,14 @@ interface LligaEspiritualContent {
     hero: PrimaryPageHeroContent;
     intro: TextBlock;
     subscribe: TextBlock;
-    manifesto: BlocksPageContent;
+    manifesto: {
+      title: string;
+      intro: string;
+      blocks: Array<TextBlock & NestedTextBlock>;
+    };
+    // TODO
+    // la creu d'en riba: TextBlock
+    // la font del doctor: TextBlock
     rrss: {
       title: string;
       subtitle: string;
@@ -35,7 +42,7 @@ interface LligaEspiritualContent {
 }
 
 const lligaEspiritualCTAs: PrimaryPageNavItem[] = [
-  { label: 'Què som?', href: '/lliga-espiritual#manifesto' },
+  { label: 'Missió, història i valors', href: '/lliga-espiritual#manifesto' },
   { label: 'Segueix-nos', href: '/lliga-espiritual#rrss' },
 ];
 
@@ -73,15 +80,45 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
       blocks: [
         {
           title: 'Missió',
-          body: 'Promoure i preservar l’esperit, la devoció i el patrimoni de Núria.',
+          body: "Mantenir viva la flama del Santuari de Núria com a referent espiritual, cultural i natural de Catalunya. L'entitat vetlla per projectar els valors de pau i acollida que han definit i defineixen el Santuari, i es mantingui com un espai de recolliment i pregària, tot promovent un esperit de germanor entre els devots i pelegrins que busquen un lloc de trobada cristiana en el cor dels Pirineus.",
         },
         {
           title: 'Història',
-          body: 'Nascuts als anys 50 com un grup de famílies, avui continuem com a hereus d’aquesta tradició compartida.',
+          body: "L'associació és considerada l'hereva actual de l'antiga confraria de la Mare de Déu de Núria, que datava del 1599 i està íntimament lligada a la devoció popular i al desig de preservar la identitat espiritual de la Vall.",
+          // TODO: Break in lines
+          items: [
+            {
+              title: 'Anys 50',
+              body: "L'embrió de l'entitat s'origina a mitjan anys cinquanta, quan un grup de famílies que coincidien durant les seves estades al santuari van començar a organitzar-se.",
+            },
+            {
+              title: '1958',
+              body: 'Aquest grup es va agrupar formalment entorn de la parròquia de Núria a Barcelona.',
+            },
+            {
+              title: '1959',
+              body: 'Davant el creixement del grup, es va constituir oficialment com a Lliga Espiritual de la Mare de Déu de Núria, amb la seu al mateix Santuari i una secretaria a Barcelona per coordinar els socis de la capital.',
+            },
+          ],
         },
         {
           title: 'Valors',
-          body: 'Arrelament, espiritualitat, germanor i amor per la natura i la cultura.',
+          // TODO: break in lines
+          body: '',
+          items: [
+            {
+              title: 'Espiritualitat i fe',
+              body: "L'associació fomenta el Santuari com un espai viu de trobada on la transcendència es fa present a través del silenci i la pregària. Més enllà de la devoció ritual, es busca promoure una espiritualitat que brolli del contacte amb la Mare de Déu de Núria i la natura, convertint cada visita en una experiència de transformació interior i de connexió profunda amb el sentit de la vida enmig de la creació.",
+            },
+            {
+              title: 'Identitat i tradició',
+              body: "Identitat i tradició. Mantenir el Santuari com un pilar de la memòria col·lectiva i un símbol de les arrels catalanes. Preservar i transmetre els costums seculars que han forjat el caràcter d'aquest indret, entenent la tradició no com una herència estàtica, sinó com un vincle viu que cohesiona el país i reforça el sentiment de pertinença a una cultura amb una història mil·lenària.",
+            },
+            {
+              title: 'Natura i país',
+              body: "Natura i país. Un santuari natural on la terra parla de la nostra història. Promoure la consciència profunda de respecte pel medi ambient, entenent que el paisatge pirinenc és un component essencial de la personalitat de Catalunya. D'aquesta manera, l'associació vetlla perquè aquest patrimoni comú segueixi sent un pulmó espiritual i de llibertat per al país, lligam estret entre la terra i la seva gent per tal que el país mantingui vius els seus espais més emblemàtics.",
+            },
+          ],
         },
       ],
     },
@@ -89,7 +126,7 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
     rrss: {
       title: 'Xarxes Socials',
       subtitle:
-        "Comparteix la passió per Núria: segueix-nos per viure activitats, pelegrinatges i altres accions que organitzem des de l'associació.",
+        "Comparteix la passió per Núria: segueix-nos per viure activitats, pelegrinatges i altres iniciatives que organitzem des de l'associació.",
       own: [
         {
           label: 'Instagram',
@@ -103,18 +140,18 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
           subtitle: 'Amics de Núria',
           icon: MapPinIcon,
         },
+        {
+          label: 'Youtube',
+          href: 'https://www.youtube.com/@AmicsdeN%C3%BAria',
+          subtitle: '@AmicsdeNúria',
+          icon: YoutubeIcon,
+        },
       ],
       others: [
         {
-          label: 'Genís Muner',
-          href: 'https://www.gmuner.es',
-          subtitle: 'Webs a mida',
-          icon: LaptopIcon,
-        },
-        {
-          label: 'Embotits de Planoles',
-          href: 'https://www.embotitsdeplanoles.com',
-          subtitle: 'Embotits de la terra',
+          label: "Bisbat d'Urgell",
+          href: 'https://bisbaturgell.org/ca/',
+          subtitle: "Església d'Urgell",
         },
       ],
     },

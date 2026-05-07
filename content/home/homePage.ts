@@ -2,11 +2,7 @@
 //   BookOpenIcon,
 //   CalendarIcon,
 // } from 'lucide-react';
-import {
-  ChurchIcon,
-  RouteIcon,
-  UsersIcon,
-} from 'lucide-react';
+import { ChurchIcon, RouteIcon, UsersIcon } from 'lucide-react';
 import {
   PrimaryPageHeroContent,
   PrimaryPageNavItem,
@@ -17,7 +13,7 @@ import { site } from '@/config/site.config';
 
 const homeCTAs: PrimaryPageNavItem[] = [
   { label: 'Rutes i itineraris', href: '/pelegrinatges' },
-  { label: 'Agenda', href: '/agenda' },
+  { label: 'Lliga Espiritual', href: '/lliga-espiritual' },
 ];
 
 export const homeSections: HomeSectionItem[] = [
@@ -31,7 +27,7 @@ export const homeSections: HomeSectionItem[] = [
   },
 
   {
-    title: 'Pelegrinatges',
+    title: 'Rutes i itineraris',
     description:
       'Rutes, itineraris i variants de camí per arribar al Santuari fent pelegrinatge. Prepara la teva visita espiritual amb tota la informació necessària.',
     href: '/pelegrinatges',

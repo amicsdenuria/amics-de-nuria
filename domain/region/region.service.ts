@@ -6,11 +6,11 @@ import {
 } from './region.adapter';
 
 import { dataSource } from '@/config/site.config';
-import { getRegionBySlug as getSanityRegion } from '@/sanity/lib/pelegrinatges/region/getRegionBySlug';
-import { getRegionsBySlugs as getSanityRegions } from '@/sanity/lib/pelegrinatges/region/getRegionsBySlugs';
-import { regionsMock } from '@/content/pelegrinatges/mockData/regions';
+import { getRegionBySlug as getSanityRegion } from '@/sanity/lib/rutes-itineraris/region/getRegionBySlug';
+import { getRegionsBySlugs as getSanityRegions } from '@/sanity/lib/rutes-itineraris/region/getRegionsBySlugs';
+import { regionsMock } from '@/content/rutes-itineraris/mockData/regions';
 
-const DATA_SOURCE = dataSource.pelegrinatges.regions;
+const DATA_SOURCE = dataSource.rutesItineraris.regions;
 
 export const getRegionBySlug = async (slug: string) => {
   if (DATA_SOURCE === 'local') {

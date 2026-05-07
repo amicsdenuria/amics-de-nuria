@@ -17,7 +17,8 @@ export const contactaContent: ContactaContent = {
   home: {
     hero: {
       title: 'Contacta amb Amics de Núria',
-      subtitle: "Envian's un correu o truca'ns i et resoldrem qualsevol dubte.",
+      subtitle:
+        'Per a més informació sobre sortides, visites, pelegrinatges o col·laboracions, poseu-vos en contacte amb nosaltres.',
       description: '',
       ctas: [],
       img: {

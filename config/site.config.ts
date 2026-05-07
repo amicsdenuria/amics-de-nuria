@@ -13,7 +13,7 @@ export const site = {
 type DataSourceOption = 'local' | 'sanity';
 
 interface DataSource {
-  pelegrinatges: {
+  rutesItineraris: {
     regions: DataSourceOption;
     pois: DataSourceOption;
     stages: DataSourceOption;
@@ -28,7 +28,7 @@ interface DataSource {
 }
 
 export const dataSource: DataSource = {
-  pelegrinatges: {
+  rutesItineraris: {
     regions: 'sanity',
     pois: 'sanity',
     stages: 'sanity',

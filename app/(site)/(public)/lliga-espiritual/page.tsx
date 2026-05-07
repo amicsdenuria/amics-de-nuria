@@ -1,5 +1,6 @@
 import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
 
+import NestedTextBlock from '../components/NestedTextBlock';
 import PrimaryActionButtonHero from '@/components/navbar/PrimaryActionButtonHero';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import RRSSSection from './components/RRSSSection';
@@ -50,12 +51,25 @@ const LligaEspiritualPage = async () => {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <TypoH2Var className="mb-6">{manifesto.title}</TypoH2Var>
           <TypoPVar className="mx-auto mb-8">{manifesto.intro}</TypoPVar>
-          <div className="space-y-12 mx-auto w-fit">
+          <div className="space-y-12 mx-auto w-fit text-left">
             {manifesto.blocks.map((block, i) => (
-              <TextBlock
+              // TODO: Card style
+              <div
                 key={i}
-                block={block}
-              />
+                className="bg-white/80 p-8 rounded-2xl border border-border"
+              >
+                {block.items?.length ? (
+                  <NestedTextBlock
+                    key={i}
+                    block={block}
+                  />
+                ) : (
+                  <TextBlock
+                    key={i}
+                    block={block}
+                  />
+                )}
+              </div>
             ))}
           </div>
         </div>

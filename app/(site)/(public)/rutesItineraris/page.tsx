@@ -7,12 +7,12 @@ import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
 import { getAllRoutes } from '@/domain/route/route.service';
-import { pelegrinatgesContent } from '@/content/pelegrinatges/pelegrinatgesPage';
+import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 
-const Pelegrinatges = async () => {
+const RutesItinerarisPage = async () => {
   const {
     home: { hero, intro, currentRoute, routes: routesSection },
-  } = pelegrinatgesContent;
+  } = rutesItinerarisContent;
 
   const routes = await getAllRoutes();
   const currentRouteId = routes[0].id;
@@ -84,4 +84,4 @@ const Pelegrinatges = async () => {
   );
 };
 
-export default Pelegrinatges;
+export default RutesItinerarisPage;

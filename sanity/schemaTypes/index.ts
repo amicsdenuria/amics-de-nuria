@@ -1,10 +1,10 @@
 import { type SchemaTypeDefinition } from 'sanity';
 import { subscriber } from './subscriber';
 import { subscription } from './subscription';
-import { stage } from './pelegrinatges/stage';
-import { region } from './pelegrinatges/region';
-import { poi } from './pelegrinatges/poi';
-import { route } from './pelegrinatges/route';
+import { stage } from './rutes-itineraris/stage';
+import { region } from './rutes-itineraris/region';
+import { poi } from './rutes-itineraris/poi';
+import { route } from './rutes-itineraris/route';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [subscriber, subscription, route, stage, region, poi],

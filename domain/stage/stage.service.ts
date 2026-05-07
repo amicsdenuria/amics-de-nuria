@@ -6,11 +6,11 @@ import {
 } from './stage.adapter';
 
 import { dataSource } from '@/config/site.config';
-import { getStageBySlug as getSanityStage } from '@/sanity/lib/pelegrinatges/stage/getStageBySlug';
-import { getStagesBySlugs as getSanityStages } from '@/sanity/lib/pelegrinatges/stage/getStagesBySlugs';
-import { stagesMock } from '@/content/pelegrinatges/mockData/stages';
+import { getStageBySlug as getSanityStage } from '@/sanity/lib/rutes-itineraris/stage/getStageBySlug';
+import { getStagesBySlugs as getSanityStages } from '@/sanity/lib/rutes-itineraris/stage/getStagesBySlugs';
+import { stagesMock } from '@/content/rutes-itineraris/mockData/stages';
 
-const DATA_SOURCE = dataSource.pelegrinatges.stages;
+const DATA_SOURCE = dataSource.rutesItineraris.stages;
 
 export const getStageBySlug = async (slug: string) => {
   if (DATA_SOURCE === 'local') {

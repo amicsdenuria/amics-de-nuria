@@ -30,6 +30,12 @@ export interface TextBlock {
   body: string;
 }
 
+export interface NestedTextBlock {
+  title: string;
+  body: string;
+  items?: NestedTextBlock[]; // subseccions opcionals
+}
+
 export interface InfoItem {
   label: string;
   value: string;
@@ -52,10 +58,4 @@ export interface BlocksPageContent {
   title: string;
   intro: string;
   blocks: TextBlock[];
-}
-
-export interface NestedTextBlock {
-  title: string;
-  body: string;
-  items?: NestedTextBlock[]; // subseccions opcionals
 }

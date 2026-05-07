@@ -4,16 +4,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageContainer from './ui/page-container';
 import { agendaContent } from '@/content/agenda/agendaPage';
+import { contactaContent } from '@/content/contacta/contactaPage';
 import { lligaEspiritualContent } from '@/content/lliga-espiritual/lligaEspiritualPage';
-import { pelegrinatgesContent } from '@/content/pelegrinatges/pelegrinatgesPage';
 import { publicacionsContent } from '@/content/publicacions/publicacionsPage';
+import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 import { santuariContent } from '@/content/santuari/santuariPage';
 import { site } from '@/config/site.config';
 
 const Footer = () => {
   const footerNav = {
     santuariNav: santuariContent.nav,
-    pelegrinatgesNav: pelegrinatgesContent.nav,
+    pelegrinatgesNav: rutesItinerarisContent.nav,
     agendaNav: agendaContent.nav,
     lligaEspiritualNav: lligaEspiritualContent.nav,
     publicacionsNav: publicacionsContent.nav,
@@ -48,7 +49,7 @@ const Footer = () => {
           <section className="lg:col-span-7 grid gap-8 grid-cols-1 md:grid-cols-3 xl:grid-cols-5">
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Pelegrinatges
+                {rutesItinerarisContent.home.hero.title}
               </h4>
               <ul className="space-y-2">
                 {footerNav.pelegrinatgesNav.map((item) => (
@@ -66,7 +67,7 @@ const Footer = () => {
 
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                El Santuari
+                {santuariContent.home.hero.title}
               </h4>
               <ul className="space-y-2">
                 {footerNav.santuariNav.map((item) => (
@@ -84,7 +85,7 @@ const Footer = () => {
 
             {/* <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Agenda
+                {agendaContent.home.hero.title}
               </h4>
               <ul className="space-y-2">
                 {footerNav.agendaNav.map((item) => (
@@ -102,7 +103,7 @@ const Footer = () => {
 
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Ll. Espiritual
+                {lligaEspiritualContent.home.hero.title}
               </h4>
               <ul className="space-y-2">
                 {footerNav.lligaEspiritualNav.map((item) => (
@@ -120,7 +121,7 @@ const Footer = () => {
 
             {/* <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Publicacions
+                {publicacionsContent.home.hero.title}
               </h4>
               <ul className="space-y-2">
                 {footerNav.publicacionsNav.map((item) => (
@@ -141,12 +142,11 @@ const Footer = () => {
           <section className="lg:col-span-3 space-y-6">
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Contacte
+                {contactaContent.home.hero.title}
               </h4>
               <address className="not-italic mb-4">
                 <p className="text-sm font-light leading-relaxed text-muted-foreground">
-                  Per a més informació sobre sortides, visites, pelegrinatges o
-                  col·laboracions, poseu-vos en contacte amb nosaltres.
+                  {contactaContent.home.hero.subtitle}
                 </p>
               </address>
 
@@ -165,11 +165,8 @@ const Footer = () => {
 
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                Autoria web
+                Disseny i desenvolupament web
               </h4>
-              <p className="text-sm font-light leading-relaxed text-muted-foreground mb-4">
-                Pàgina web feta per:
-              </p>
               <div className="border-l border-l-primary">
                 <Button
                   asChild

@@ -16,10 +16,10 @@ export const structure: StructureResolver = (S) =>
             ]),
         ),
       S.listItem()
-        .title('Pelegrinatges')
+        .title('Rutes i itineraris')
         .child(
           S.list()
-            .title('Pelegrinatges')
+            .title('Rutes i itineraris')
             .items([
               S.documentTypeListItem('route'),
               S.documentTypeListItem('stage'),

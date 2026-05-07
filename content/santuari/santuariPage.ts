@@ -3,16 +3,16 @@ import { santuariSubpages } from './santuariSubpages';
 
 const santuariNavItems = [
   { label: 'La Vall de Núria', href: '/santuari/vall-de-nuria' },
-  { label: 'Basílica', href: '/santuari/basilica' },
+  { label: 'La Basílica', href: '/santuari/basilica' },
   { label: 'La Mare de Déu', href: '/santuari/mare-de-deu' },
   {
-    label: 'Creu, Olla i Campana',
+    label: "La Creu, l'Olla i la Campana",
     href: '/santuari/creu-olla-campana',
   },
-  { label: 'Sant Gil', href: '/santuari/sant-gil' },
-  { label: 'Via Crucis', href: '/santuari/via-crucis' },
-  { label: 'Llar Amadeu', href: '/santuari/llar-amadeu' },
-  { label: 'Com arribar', href: '/santuari/com-arribar' },
+  { label: "L'Ermita de Sant Gil", href: '/santuari/sant-gil' },
+  { label: 'El Via Crucis', href: '/santuari/via-crucis' },
+  { label: 'La Llar Amadeu', href: '/santuari/llar-amadeu' },
+  { label: 'Com arribar-hi', href: '/santuari/com-arribar' },
 ];
 
 export const santuariContent: SantuariContent = {
