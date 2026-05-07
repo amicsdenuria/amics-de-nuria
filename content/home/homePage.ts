@@ -12,7 +12,7 @@ import { HomeSectionItem } from './interfaces';
 import { site } from '@/config/site.config';
 
 const homeCTAs: PrimaryPageNavItem[] = [
-  { label: 'Rutes i itineraris', href: '/pelegrinatges' },
+  { label: 'Rutes i itineraris', href: '/rutes-itineraris' },
   { label: 'Lliga Espiritual', href: '/lliga-espiritual' },
 ];
 
@@ -30,7 +30,7 @@ export const homeSections: HomeSectionItem[] = [
     title: 'Rutes i itineraris',
     description:
       'Rutes, itineraris i variants de camí per arribar al Santuari fent pelegrinatge. Prepara la teva visita espiritual amb tota la informació necessària.',
-    href: '/pelegrinatges',
+    href: '/rutes-itineraris',
     icon: RouteIcon,
     gridClass: 'md:col-span-2', // 2/3
   },

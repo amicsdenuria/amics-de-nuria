@@ -54,7 +54,6 @@ const LligaEspiritualPage = async () => {
           <TypoPVar className="mx-auto mb-8">{manifesto.intro}</TypoPVar>
           <div className="space-y-12 mx-auto w-fit text-left">
             {manifesto.blocks.map((block, i) => (
-              // TODO: Card style
               <Card
                 key={i}
                 className="px-2 py-8"

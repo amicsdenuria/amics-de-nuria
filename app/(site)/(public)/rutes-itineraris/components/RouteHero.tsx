@@ -71,7 +71,7 @@ const RouteHero = ({
               size={'sm'}
               className="mb-6 -ml-2"
             >
-              <Link href={'/pelegrinatges'}>
+              <Link href={'/rutes-itineraris'}>
                 <ArrowLeftIcon className="h-4 w-4 mr-2" />
                 <span className="text-sm md:text-lg">Tornar a rutes</span>
               </Link>

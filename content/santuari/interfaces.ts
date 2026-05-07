@@ -18,7 +18,7 @@ export interface SantuariContent {
       title: string;
       items: SectionCard[];
     };
-    pilgrimages: {
+    rutesItineraris: {
       title: string;
       intro: string;
       cta: {

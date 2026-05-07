@@ -84,13 +84,13 @@ export const santuariContent: SantuariContent = {
       ],
     },
 
-    pilgrimages: {
-      title: 'Arribar caminant',
+    rutesItineraris: {
+      title: 'Rutes i itineraris',
       intro:
         'La vall es pot assolir a peu per rutes emblemàtiques: el Camí Vell de Queralbs (GR11), l’accés panoràmic de Fontalba o la travessa exigent des de Planoles.',
       cta: {
-        label: 'Veure pelegrinatges',
-        href: '/pelegrinatges',
+        label: 'Veure rutes',
+        href: '/rutes-itineraris',
       },
     },
   },

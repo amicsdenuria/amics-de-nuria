@@ -83,7 +83,7 @@ export function regionFromLocal(data) {
 ```
 import { regionFromSanity, regionFromLocal } from './region.adapter'
 import { getRegionBySlug as getSanityRegion } from '@/sanity/lib/region/getRegionBySlug'
-import { regionsMock } from '@/content/pelegrinatges/region/regions.mock'
+import { regionsMock } from '@/content/rutes-itineraris/region/regions.mock'
 
 const DATA_SOURCE: 'sanity' | 'local' = 'sanity'
 
@@ -102,7 +102,7 @@ export async function getRegionBySlug(slug: string) {
 
 ## 📃 4. Sanity Layer
 
-### `sanity/lib/pelegrinatges/region/getRegionBySlug.ts`
+### `sanity/lib/rutes-itineraris/region/getRegionBySlug.ts`
 
 ```
 QUERY
@@ -136,7 +136,7 @@ export async function getRegionBySlug({ slug }) {
 
 ## 🧪 5. Local Mock Data
 
-### `content/pelegrinatges/region/region.mock.ts`
+### `content/rutes-itineraris/region/region.mock.ts`
 
 ```
 export const regionsMock = [
@@ -156,7 +156,7 @@ export const regionsMock = [
 
 ## 🌐 6. Usage in Next.js Page
 
-### `app/(site)/(public)/pelegrinatges/region/[id]/page.ts`
+### `app/(site)/(public)/rutes-itineraris/region/[id]/page.ts`
 
 ```
 import { getRegionBySlug } from '@/domain/region/region.service'

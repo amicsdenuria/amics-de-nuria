@@ -16,7 +16,7 @@ interface RouteCardProps {
 }
 const RouteCard = ({ route }: RouteCardProps) => {
   return (
-    <Link href={`/pelegrinatges/route/${route.id}`}>
+    <Link href={`/rutes-itineraris/route/${route.id}`}>
       <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1">
         <CardHeader>
           <div className="flex items-start justify-between">

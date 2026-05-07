@@ -195,7 +195,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
               {stage.regions.map((region) => (
                 <Link
                   key={region.slug}
-                  href={`/pelegrinatges/region/${region.slug}`}
+                  href={`/rutes-itineraris/region/${region.slug}`}
                 >
                   <Card
                     className={cn(
@@ -249,7 +249,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
                 {stage.pois.map((poi) => (
                   <Link
                     key={poi.slug}
-                    href={`/pelegrinatges/poi/${poi.slug}`}
+                    href={`/rutes-itineraris/poi/${poi.slug}`}
                   >
                     <Card
                       className={cn(

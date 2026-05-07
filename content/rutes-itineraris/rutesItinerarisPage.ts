@@ -24,8 +24,8 @@ interface RutesItinerarisContent {
 }
 
 const rutesItinerarisCTAs: PrimaryPageNavItem[] = [
-  { label: "Ruta d'enguany", href: '/pelegrinatges#current-route' },
-  { label: 'Altres rutes', href: '/pelegrinatges#routes' },
+  { label: "Ruta d'enguany", href: '/rutes-itineraris#current-route' },
+  { label: 'Altres rutes', href: '/rutes-itineraris#routes' },
 ];
 
 export const rutesItinerarisContent: RutesItinerarisContent = {
@@ -57,7 +57,7 @@ export const rutesItinerarisContent: RutesItinerarisContent = {
         'Aquesta és la ruta que recorrerem plegats en el pelegrinatge d’enguany. T’hi convidem a formar part d’aquesta experiència compartida, oberta a tothom qui vulgui sumar-s’hi i viure el camí amb nosaltres...',
       subscriptionCTA: {
         label: "Apunta't a la ruta",
-        href: '/pelegrinatges/apuntat',
+        href: '/rutes-itineraris/apuntat',
       },
     },
 

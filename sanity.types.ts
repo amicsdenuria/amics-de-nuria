@@ -23,7 +23,7 @@ export type Poi = {
   slug?: Slug;
   location?: string;
   img?: {
-    asset?: {
+    asset: {
       _ref: string;
       _type: "reference";
       _weak?: boolean;
@@ -70,7 +70,7 @@ export type Region = {
   slug?: Slug;
   province?: string;
   img?: {
-    asset?: {
+    asset: {
       _ref: string;
       _type: "reference";
       _weak?: boolean;
@@ -306,7 +306,7 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes = Poi | SanityImageCrop | SanityImageHotspot | Slug | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./sanity/lib/pelegrinatges/poi/getPoiBySlug.ts
+// Source: ./sanity/lib/rutes-itineraris/poi/getPoiBySlug.ts
 // Variable: getPoiBySlugQuery
 // Query: *[_type == 'poi' && slug.current == $slug][0]{        ...,        "slug": slug.current,        img{          asset->{            url          },          alt        }      }
 export type GetPoiBySlugQueryResult = {
@@ -321,13 +321,13 @@ export type GetPoiBySlugQueryResult = {
   img: {
     asset: {
       url: string | null;
-    } | null;
+    };
     alt: string | null;
   } | null;
   text?: Array<string>;
 } | null;
 
-// Source: ./sanity/lib/pelegrinatges/region/getRegionBySlug.ts
+// Source: ./sanity/lib/rutes-itineraris/region/getRegionBySlug.ts
 // Variable: getRegionBySlugQuery
 // Query: *[_type == 'region' && slug.current == $slug][0]{    name,    "slug": slug.current,    province,    img{      asset->{        url      },      alt    },    text  }
 export type GetRegionBySlugQueryResult = {
@@ -337,13 +337,13 @@ export type GetRegionBySlugQueryResult = {
   img: {
     asset: {
       url: string | null;
-    } | null;
+    };
     alt: string | null;
   } | null;
   text: Array<string> | null;
 } | null;
 
-// Source: ./sanity/lib/pelegrinatges/region/getRegionsBySlugs.ts
+// Source: ./sanity/lib/rutes-itineraris/region/getRegionsBySlugs.ts
 // Variable: getRegionsBySlugsQuery
 // Query: *[_type == 'region' && slug.current in $slugs][]{      name,      "slug": slug.current,      province,      img{        asset->{          url        },        alt      },      text    }
 export type GetRegionsBySlugsQueryResult = Array<{
@@ -353,13 +353,13 @@ export type GetRegionsBySlugsQueryResult = Array<{
   img: {
     asset: {
       url: string | null;
-    } | null;
+    };
     alt: string | null;
   } | null;
   text: Array<string> | null;
 }>;
 
-// Source: ./sanity/lib/pelegrinatges/route/getAllRoutes.ts
+// Source: ./sanity/lib/rutes-itineraris/route/getAllRoutes.ts
 // Variable: getAllRoutesQuery
 // Query: *[_type == 'route'][]{        ...,        "slug": slug.current,        stages[]->{          "slug": slug.current        }      }
 export type GetAllRoutesQueryResult = Array<{
@@ -380,7 +380,7 @@ export type GetAllRoutesQueryResult = Array<{
   notes?: Array<string>;
 }>;
 
-// Source: ./sanity/lib/pelegrinatges/route/getRouteBySlug.ts
+// Source: ./sanity/lib/rutes-itineraris/route/getRouteBySlug.ts
 // Variable: getRouteBySlugQuery
 // Query: *[_type == 'route' && slug.current == $slug][0]{        ...,        "slug": slug.current,        stages[]->{          "slug": slug.current        }      }
 export type GetRouteBySlugQueryResult = {
@@ -401,7 +401,7 @@ export type GetRouteBySlugQueryResult = {
   notes?: Array<string>;
 } | null;
 
-// Source: ./sanity/lib/pelegrinatges/stage/getStageBySlug.ts
+// Source: ./sanity/lib/rutes-itineraris/stage/getStageBySlug.ts
 // Variable: getStageBySlugQuery
 // Query: *[_type == 'stage' && slug.current == $slug][0]{        ...,        "slug": slug.current,        regions[]->{          "slug": slug.current,          name,          img{            asset->{              url            },            alt          }        },        pois[]->{          "slug": slug.current,          name,          img{            asset->{              url            },            alt          }        },        imgs[]{          asset->{            url          },          alt        }      }
 export type GetStageBySlugQueryResult = {
@@ -430,7 +430,7 @@ export type GetStageBySlugQueryResult = {
     img: {
       asset: {
         url: string | null;
-      } | null;
+      };
       alt: string | null;
     } | null;
   }> | null;
@@ -440,7 +440,7 @@ export type GetStageBySlugQueryResult = {
     img: {
       asset: {
         url: string | null;
-      } | null;
+      };
       alt: string | null;
     } | null;
   }> | null;
@@ -458,7 +458,7 @@ export type GetStageBySlugQueryResult = {
   notes?: Array<string>;
 } | null;
 
-// Source: ./sanity/lib/pelegrinatges/stage/getStagesBySlugs.ts
+// Source: ./sanity/lib/rutes-itineraris/stage/getStagesBySlugs.ts
 // Variable: getStagesBySlugsQuery
 // Query: *[_type == 'stage' && slug.current in $slugs][]{        ...,        "slug": slug.current,        regions[]->{          "slug": slug.current,          name,          img{            asset->{              url            },            alt          }        },        pois[]->{          "slug": slug.current,          name,          img{            asset->{              url            },            alt          }        },        imgs[]{          asset->{            url          },          alt        }      }
 export type GetStagesBySlugsQueryResult = Array<{
@@ -487,7 +487,7 @@ export type GetStagesBySlugsQueryResult = Array<{
     img: {
       asset: {
         url: string | null;
-      } | null;
+      };
       alt: string | null;
     } | null;
   }> | null;
@@ -497,7 +497,7 @@ export type GetStagesBySlugsQueryResult = Array<{
     img: {
       asset: {
         url: string | null;
-      } | null;
+      };
       alt: string | null;
     } | null;
   }> | null;

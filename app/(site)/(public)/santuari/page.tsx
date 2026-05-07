@@ -8,7 +8,7 @@ import SectionCard from './components/SectionCard';
 import { santuariContent } from '@/content/santuari/santuariPage';
 
 const SantuariPage = () => {
-  const { hero, intro, cards, pilgrimages } = santuariContent.home;
+  const { hero, intro, cards, rutesItineraris } = santuariContent.home;
   return (
     <>
       <PrimaryPageHero
@@ -43,18 +43,18 @@ const SantuariPage = () => {
         </div>
       </section>
 
-      {/* Pelegrinatges */}
+      {/* Rutes i Itineraris */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <TypoH2Var className="mb-6">{pilgrimages.title}</TypoH2Var>
-          <TypoPVar className="mx-auto mb-8">{pilgrimages.intro}</TypoPVar>
+          <TypoH2Var className="mb-6">{rutesItineraris.title}</TypoH2Var>
+          <TypoPVar className="mx-auto mb-8">{rutesItineraris.intro}</TypoPVar>
           <Button
             asChild
             size={'lg'}
             className="font-light tracking-wide"
           >
-            <Link href={pilgrimages.cta.href}>
-              {pilgrimages.cta.label}
+            <Link href={rutesItineraris.cta.href}>
+              {rutesItineraris.cta.label}
               <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Link>
           </Button>

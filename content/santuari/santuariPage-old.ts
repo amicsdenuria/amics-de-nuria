@@ -20,7 +20,7 @@ export const santuariContent: SantuariContent = {
       description:
         'El Santuari és un espai de trobada espiritual, memòria i devoció. Aquí conflueixen la tradició, el paisatge i el camí de qui hi arriba cercant recolliment.',
       ctas: [
-        { label: 'Rutes i itineraris', href: '/pelegrinatges' },
+        { label: 'Rutes i itineraris', href: '/rutes-itineraris' },
         { label: 'Com arribar', href: '/santuari/com-arribar' },
         { label: 'Veure el Via Crucis', href: '/santuari/via-crucis' },
       ],
@@ -78,13 +78,13 @@ export const santuariContent: SantuariContent = {
       ],
     },
 
-    pilgrimages: {
+    rutesItineraris: {
       title: 'Pelegrinatges',
       intro:
         'Descobreix les rutes i itineraris, les variants de camí i tota la informació pràctica per preparar la visita.',
       cta: {
         label: 'Veure rutes i itineraris',
-        href: '/pelegrinatges',
+        href: '/rutes-itineraris',
       },
     },
   },
