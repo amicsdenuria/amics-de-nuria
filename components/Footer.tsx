@@ -49,10 +49,10 @@ const Footer = () => {
           <section className="lg:col-span-7 grid gap-8 grid-cols-1 md:grid-cols-3 xl:grid-cols-5">
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                {rutesItinerarisContent.home.hero.title}
+                {santuariContent.home.hero.title}
               </h4>
               <ul className="space-y-2">
-                {footerNav.pelegrinatgesNav.map((item) => (
+                {footerNav.santuariNav.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
@@ -67,10 +67,10 @@ const Footer = () => {
 
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
-                {santuariContent.home.hero.title}
+                {rutesItinerarisContent.home.hero.title}
               </h4>
               <ul className="space-y-2">
-                {footerNav.santuariNav.map((item) => (
+                {footerNav.pelegrinatgesNav.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}

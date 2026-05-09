@@ -31,11 +31,11 @@ export const contactaContent: ContactaContent = {
     info: {
       email: {
         label: 'Correu',
-        value: 'amicsdenuria@adn.cat',
+        value: 'amicsdenuria.cat@gmail.com',
       },
       phone: {
         label: 'Telèfon',
-        value: '612 34 56 78',
+        value: '607 93 41 11',
       },
     },
   },

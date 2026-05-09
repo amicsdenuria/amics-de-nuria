@@ -11,7 +11,7 @@ import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerar
 
 const RutesItinerarisPage = async () => {
   const {
-    home: { hero, intro, currentRoute, routes: routesSection },
+    home: { hero, intro, currentRoute, sortidesEsperit, routes: routesSection },
   } = rutesItinerarisContent;
 
   const routes = await getAllRoutes();
@@ -33,7 +33,6 @@ const RutesItinerarisPage = async () => {
         <TypoPVar className="mx-auto text-lg">{intro.body}</TypoPVar>
       </PageContainer>
 
-      {/* Routes */}
       <div className="bg-secondary/20">
         <PageContainer className="py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
           <section
@@ -59,16 +58,52 @@ const RutesItinerarisPage = async () => {
               route={routes[0]}
             />
           </section>
+
           <section
-            id="routes"
+            id="sortides-esperit"
             className="scroll-m-20"
           >
-            <TypoH2Var className="mb-2">{routesSection.title}</TypoH2Var>
+            <div className="flex flex-col sm:flex-row justify-between">
+              <TypoH2Var className="mb-2">{sortidesEsperit.title}</TypoH2Var>
+
+              {/* <Button asChild>
+                <Link href={sortidesEsperit.sortidesEsperitCTA.href}>
+                  Veure agenda
+                  <ArrowRightIcon />
+                </Link>
+              </Button> */}
+              <Button asChild>
+                <Link href={'/contacta'}>
+                  Demana més informació
+                  <ArrowRightIcon />
+                </Link>
+              </Button>
+            </div>
+
+            <p className="py-4 max-w-3xl text-muted-foreground">
+              {sortidesEsperit.description}
+            </p>
+
+            <div className="">
+              {/* TODO: add activity card link */}
+              {/* <RouteCard
+                key={`current-route ${routes[0].id}`}
+                route={routes[0]}
+              /> */}
+            </div>
+          </section>
+
+          <section
+            id="routes"
+            className="scroll-m-20 lg:col-span-2"
+          >
+            {/* TODO: Add routes */}
+            {/* <TypoH2Var className="mb-2">{routesSection.title}</TypoH2Var>
             <p className="py-4 max-w-3xl text-muted-foreground">
               {routesSection.description}
             </p>
-            <div className="flex flex-col gap-y-4">
-              {routes
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-8">
+              {mockRoutes
                 .filter((route) => route.id !== currentRouteId)
                 .map((route) => (
                   <RouteCard
@@ -76,7 +111,7 @@ const RutesItinerarisPage = async () => {
                     route={route}
                   />
                 ))}
-            </div>
+            </div> */}
           </section>
         </PageContainer>
       </div>

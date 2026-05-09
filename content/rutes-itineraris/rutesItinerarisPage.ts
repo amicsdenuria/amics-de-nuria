@@ -15,6 +15,11 @@ interface RutesItinerarisContent {
       description: string;
       subscriptionCTA: PrimaryPageNavItem;
     };
+    sortidesEsperit: {
+      title: string;
+      description: string;
+      sortidesEsperitCTA: PrimaryPageNavItem;
+    };
     routes: {
       title: string;
       description: string;
@@ -24,7 +29,11 @@ interface RutesItinerarisContent {
 }
 
 const rutesItinerarisCTAs: PrimaryPageNavItem[] = [
-  { label: "Ruta d'enguany", href: '/rutes-itineraris#current-route' },
+  { label: "Pelegrinatge d'enguany", href: '/rutes-itineraris#current-route' },
+  {
+    label: "Sortides amb l'Esperit",
+    href: '/rutes-itineraris#sortides-esperit',
+  },
   { label: 'Altres rutes', href: '/rutes-itineraris#routes' },
 ];
 
@@ -35,9 +44,9 @@ export const rutesItinerarisContent: RutesItinerarisContent = {
     hero: {
       pretitle: 'Mou-te',
       title: 'Rutes i itineraris',
-      subtitle: 'Vine a caminar amb nosaltres cap a Núria.',
+      subtitle: 'Camina amb el cor',
       description:
-        'El pelegrinatge de Montserrat a Núria per etapes és el trajecte que organitza anualment Amics de Núria.',
+        'Espais on la bellesa natural esdevé lloc de silenci, pregària i trobada interior, i on el paisatge ajuda a obrir la mirada i a escoltar amb més profunditat la grandesa de la creació.',
       ctas: rutesItinerarisCTAs,
       img: {
         src: '/hero-muntanya-nuria.webp',
@@ -47,24 +56,36 @@ export const rutesItinerarisContent: RutesItinerarisContent = {
     },
 
     intro: {
-      title: 'Una ruta que uneix país, fe i natura',
-      body: 'Aquí hi trobaràs una selecció acurada de rutes per descobrir i viure al teu ritme, així com l’oportunitat de compartir el camí amb nosaltres durant el pelegrinatge anual d’Amics de Núria, cada mes d’agost. Tant si prefereixes la quietud d’una experiència personal com la riquesa de caminar en comunitat, aquest espai t’obre les portes a un viatge ple de sentit, natura, tradició i fe',
+      title: 'Camins que uneixen fe, natura i país',
+      body: 'Corriols amagats, senders antics, camins rurals i vies de pelegrinatge que connecten pobles, ermites, santuaris i monestirs, testimonis vius d’una espiritualitat en mig de muntanyes, colls, valls i camps, que arrelada al territori explica la manera com les comunitats han habitat el país, han treballat la terra i han expressat la seva fe.',
     },
 
     currentRoute: {
-      title: "El pelegrinatge d'enguany",
+      title: "Pelegrinatge d'enguany",
       description:
-        'Aquesta és la ruta que recorrerem plegats en el pelegrinatge d’enguany. T’hi convidem a formar part d’aquesta experiència compartida, oberta a tothom qui vulgui sumar-s’hi i viure el camí amb nosaltres...',
+        "Pelegrinatge d'uns 170 km que cada agost fem plegats. Et convidem a formar part durant uns 10 dies d’aquesta experiència compartida i oberta a tothom que vulgui viure amb fe i comunitat el camí.",
       subscriptionCTA: {
-        label: "Apunta't a la ruta",
+        label: 'Inscriu-te',
         href: '/rutes-itineraris/apuntat',
       },
     },
 
-    routes: {
-      title: 'Altres rutes',
+    // TODO: Sortides esperit
+    sortidesEsperit: {
+      title: "Sortides amb l'Esperit",
       description:
-        '…o deixa’t portar pel teu propi ritme i segons les teves preferències. Propostes pensades per gaudir del camí amb llibertat, connectant amb la natura i l’essència del pelegrinatge.',
+        "Si sents la crida, et convidem a compartir plegats les sortides d'un dia que organitzem alguns caps de setmana. Caminem a la llum de l'Evangeli, convertint el sender en un espai de pregària, silenci i paraula compartida.",
+      sortidesEsperitCTA: {
+        // label: 'Veure actitvat' // activitat concreta
+        label: 'Veure activitats', // agenda amb filtre sortides-esperit
+        href: '/rutes-itineraris', // /agenda?tag=sortides-esperit
+      },
+    },
+
+    routes: {
+      title: 'Pelegrinatges espirituals',
+      description:
+        "Itineraris en diverses etapes per arribar a Núria, d'una manera diferent: pregària i silenci, paisatge i territori, memòria i identitat, des de diferents punts del país.",
     },
   },
 };
