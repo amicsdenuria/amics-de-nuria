@@ -1,4 +1,4 @@
-import SantuariPageHero from '../components/SantuariPageHero';
+import PrimaryPageHero from '../../components/PrimaryPageHero';
 import TextBlock from '../../components/TextBlock';
 import { santuariContent } from '@/content/santuari/santuariPage';
 
@@ -6,9 +6,14 @@ const basilicaPage = () => {
   const { basilica } = santuariContent.pages;
   return (
     <>
-      <SantuariPageHero
+      <PrimaryPageHero
         title={basilica.title}
-        intro={basilica.intro}
+        subtitle={basilica.intro}
+        img={{
+          src: '/santuari/basilica.webp',
+          alt: 'Basílica del santuari de Núria',
+          className: 'object-bottom',
+        }}
       />
 
       <section className="py-16 md:py-24">

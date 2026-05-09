@@ -2,8 +2,8 @@ import NestedTextBlock, {
   NestedTextBlockType,
 } from '../../components/NestedTextBlock';
 
+import PrimaryPageHero from '../../components/PrimaryPageHero';
 import SantuariInfoCard from '../components/SantuariInfoCard';
-import SantuariPageHero from '../components/SantuariPageHero';
 import TextBlock from '../../components/TextBlock';
 import { TypoH2Var } from '@/components/ui/typo/typoComponents';
 import { santuariContent } from '@/content/santuari/santuariPage';
@@ -13,9 +13,14 @@ const ComArribarPage = () => {
 
   return (
     <>
-      <SantuariPageHero
+      <PrimaryPageHero
         title={comArribar.title}
-        intro={comArribar.intro}
+        subtitle={comArribar.intro}
+        img={{
+          src: '/santuari/vall-nuria-2.webp',
+          alt: 'Vall de Núria',
+          className: 'object-center',
+        }}
       />
 
       <section className="py-16 md:py-24">

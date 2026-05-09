@@ -1,4 +1,4 @@
-import SantuariPageHero from '../components/SantuariPageHero';
+import PrimaryPageHero from '../../components/PrimaryPageHero';
 import TextBlock from '../../components/TextBlock';
 import { santuariContent } from '@/content/santuari/santuariPage';
 
@@ -6,9 +6,14 @@ const SantGilPage = () => {
   const { santGil } = santuariContent.pages;
   return (
     <>
-      <SantuariPageHero
+      <PrimaryPageHero
         title={santGil.title}
-        intro={santGil.intro}
+        subtitle={santGil.intro}
+        img={{
+          src: '/santuari/sant-gil.webp',
+          alt: 'Ermita de Sant Gil',
+          className: 'object-center',
+        }}
       />
 
       <section className="py-16 md:py-24">

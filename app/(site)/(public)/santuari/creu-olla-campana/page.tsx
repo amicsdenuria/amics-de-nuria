@@ -1,4 +1,4 @@
-import SantuariPageHero from '../components/SantuariPageHero';
+import PrimaryPageHero from '../../components/PrimaryPageHero';
 import TextBlock from '../../components/TextBlock';
 import { santuariContent } from '@/content/santuari/santuariPage';
 
@@ -6,9 +6,13 @@ const creuOllaCampanaPage = () => {
   const { creuOllaCampana } = santuariContent.pages;
   return (
     <>
-      <SantuariPageHero
+      <PrimaryPageHero
         title={creuOllaCampana.title}
-        intro={creuOllaCampana.intro}
+        subtitle={creuOllaCampana.intro}
+        img={{
+          src: '/santuari/creu-olla-campana.webp',
+          alt: "La Creu, l'Olla i la Campana",
+        }}
       />
 
       <section className="py-16 md:py-24">

@@ -1,4 +1,4 @@
-import SantuariPageHero from '../components/SantuariPageHero';
+import PrimaryPageHero from '../../components/PrimaryPageHero';
 import SantuariStationsCard from '../components/SantuariStationsCard';
 import TextBlock from '../../components/TextBlock';
 import { TypoH2Var } from '@/components/ui/typo/typoComponents';
@@ -8,9 +8,14 @@ const ViaCrucisPage = () => {
   const { viaCrucis } = santuariContent.pages;
   return (
     <>
-      <SantuariPageHero
+      <PrimaryPageHero
         title={viaCrucis.title}
-        intro={viaCrucis.intro}
+        subtitle={viaCrucis.intro}
+        img={{
+          src: '/santuari/via-crucis.webp',
+          alt: 'Via Crucis',
+          className: 'object-center',
+        }}
       />
 
       <section className="py-16 md:py-24">

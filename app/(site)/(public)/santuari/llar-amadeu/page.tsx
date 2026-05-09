@@ -1,4 +1,4 @@
-import SantuariPageHero from '../components/SantuariPageHero';
+import PrimaryPageHero from '../../components/PrimaryPageHero';
 import TextBlock from '../../components/TextBlock';
 import { santuariContent } from '@/content/santuari/santuariPage';
 
@@ -6,9 +6,14 @@ const LlarAmadeuPage = () => {
   const { llarAmadeu } = santuariContent.pages;
   return (
     <>
-      <SantuariPageHero
+      <PrimaryPageHero
         title={llarAmadeu.title}
-        intro={llarAmadeu.intro}
+        subtitle={llarAmadeu.intro}
+        img={{
+          src: '/santuari/vall-nuria-2.webp',
+          alt: 'Vall de Núria',
+          className: 'object-center',
+        }}
       />
 
       <section className="py-16 md:py-24">
