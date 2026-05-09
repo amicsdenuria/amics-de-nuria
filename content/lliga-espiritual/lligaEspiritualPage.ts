@@ -88,6 +88,14 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
           // TODO: Break in lines
           items: [
             {
+              title: '1936',
+              body: "Per evitar que la Mare de Déu fos destruïda, el capellà del Santuari la va treure de la vall fins a retornar a Núria l'any 1941. Aquest retorn va ser viscut amb gran intensitat pels devots i va marcar el ressorgiment de les visites al santuari.",
+            },
+            {
+              title: 'Anys 40',
+              body: "Després de la Guerra Civil, Núria es va convertir en un refugi espiritual i de lleure per a moltes famílies, principalment de Barcelona i Sabadell. El Dr. Ramon Bassols, que freqüentava la vall des dels anys 40, va començar a teixir una xarxa informal que compartien l'amor per la muntanya i la fe.",
+            },
+            {
               title: 'Anys 50',
               body: "L'embrió de l'entitat s'origina a mitjan anys cinquanta, quan un grup de famílies que coincidien durant les seves estades al santuari van començar a organitzar-se.",
             },
