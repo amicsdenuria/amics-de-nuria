@@ -11,7 +11,8 @@ const santuariNavItems = [
   },
   { label: "L'Ermita de Sant Gil", href: '/santuari/sant-gil' },
   { label: 'El Via Crucis', href: '/santuari/via-crucis' },
-  { label: 'La Llar Amadeu', href: '/santuari/llar-amadeu' },
+  // TODO: Pendent d'activar (llar amadeu)
+  // { label: 'La Llar Amadeu', href: '/santuari/llar-amadeu' },
   { label: 'Com arribar-hi', href: '/santuari/com-arribar' },
 ];
 
@@ -71,11 +72,12 @@ export const santuariContent: SantuariContent = {
           description: santuariSubpages.viaCrucis.intro,
           href: '/santuari/via-crucis',
         },
-        {
-          title: 'La Llar Amadeu',
-          description: santuariSubpages.llarAmadeu.intro,
-          href: '/santuari/llar-amadeu',
-        },
+        // TODO: Pendent d'activar (llar amadeu)
+        // {
+        //   title: 'La Llar Amadeu',
+        //   description: santuariSubpages.llarAmadeu.intro,
+        //   href: '/santuari/llar-amadeu',
+        // },
         {
           title: 'Com arribar-hi',
           description: santuariSubpages.comArribar.intro,
