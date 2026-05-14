@@ -40,7 +40,7 @@ const Stats = ({ stats }: StatsProps) => {
           icon={<ClockIcon className="h-4 w-4" />}
           label="Durada"
           value={formatDuration(duration)}
-          tooltip="Durada aproximada, calculada sobre una mitjana de 3,5 km/h"
+          tooltip="Durada aproximada, calculada sobre una mitjana de 3,5 km/h i parades de 15-20 minuts"
         />
         <TechnicalStat
           icon={<TrendingUpIcon className="h-4 w-4 text-emerald-600" />}
