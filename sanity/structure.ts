@@ -15,6 +15,7 @@ export const structure: StructureResolver = (S) =>
               S.documentTypeListItem('subscription'),
             ]),
         ),
+
       S.listItem()
         .title('Rutes i itineraris')
         .child(
@@ -26,5 +27,15 @@ export const structure: StructureResolver = (S) =>
               S.documentTypeListItem('poi'),
               S.documentTypeListItem('region'),
             ]),
+        ),
+
+      // SINGLETON
+      S.listItem()
+        .title("Ruta d'Enguany")
+        .id('currentRoute')
+        .child(
+          S.document()
+            .schemaType('currentRoute')
+            .documentId('currentRouteSingleton'),
         ),
     ]);

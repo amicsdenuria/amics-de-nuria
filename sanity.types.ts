@@ -13,6 +13,20 @@
  */
 
 // Source: schema.json
+export type CurrentRoute = {
+  _id: string;
+  _type: "currentRoute";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  currentRoute?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "route";
+  };
+};
+
 export type Poi = {
   _id: string;
   _type: "poi";
@@ -304,7 +318,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Poi | SanityImageCrop | SanityImageHotspot | Slug | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = CurrentRoute | Poi | SanityImageCrop | SanityImageHotspot | Slug | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/rutes-itineraris/poi/getPoiBySlug.ts
 // Variable: getPoiBySlugQuery

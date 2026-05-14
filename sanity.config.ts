@@ -17,6 +17,8 @@ import { structureTool } from 'sanity/structure';
 
 // import { visionTool } from '@sanity/vision';
 
+const singletonTypes = ['currentRoute'];
+
 export default defineConfig({
   basePath: '/admin',
   projectId,
@@ -33,6 +35,17 @@ export default defineConfig({
   studio: {
     components: {
       toolMenu: StudioNavbar,
+    },
+  },
+  document: {
+    newDocumentOptions: (prev, { creationContext }) => {
+      if (creationContext.type === 'global') {
+        return prev.filter(
+          (templateItem) => !singletonTypes.includes(templateItem.templateId),
+        );
+      }
+
+      return prev;
     },
   },
 });
