@@ -7,9 +7,9 @@ export const currentRoute = defineType({
 
   preview: {
     select: {
-      origin: 'origin',
-      destiny: 'destiny',
-      wayPoints: 'wayPoints',
+      origin: 'currentRoute.origin',
+      destiny: 'currentRoute.destiny',
+      wayPoints: 'currentRoute.wayPoints',
     },
     prepare({ origin, destiny, wayPoints }) {
       const cleanWayPoints = Array.isArray(wayPoints)

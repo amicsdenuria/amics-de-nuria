@@ -1,8 +1,27 @@
 import type { StructureResolver } from 'sanity/structure';
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
-export const structure: StructureResolver = (S) =>
-  S.list()
+export const structure: StructureResolver = (S) => {
+  const notEditableListItem = (type: string, title: string) =>
+    S.listItem().title(title).schemaType(type).child(
+      S.documentTypeList(type)
+        .title(title)
+        // Quita el icono "+"
+        .initialValueTemplates([]),
+    );
+
+  const singletonItem = (type: string, title: string, documentId = type) =>
+    S.listItem()
+      .title(title)
+      .schemaType(type)
+      .child(
+        S.document()
+          .schemaType(type)
+          .documentId(`${documentId}-3`)
+          .title(title),
+      );
+
+  return S.list()
     .title('Seccions')
     .items([
       S.listItem()
@@ -11,8 +30,8 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Subscripcions')
             .items([
-              S.documentTypeListItem('subscriber'),
-              S.documentTypeListItem('subscription'),
+              notEditableListItem('subscriber', 'Subscriptors'),
+              notEditableListItem('subscription', 'Subscripcions'),
             ]),
         ),
 
@@ -30,12 +49,6 @@ export const structure: StructureResolver = (S) =>
         ),
 
       // SINGLETON
-      S.listItem()
-        .title("Ruta d'Enguany")
-        .id('currentRoute')
-        .child(
-          S.document()
-            .schemaType('currentRoute')
-            .documentId('currentRouteSingleton'),
-        ),
+      singletonItem('currentRoute', "Ruta d'Enguany"),
     ]);
+};

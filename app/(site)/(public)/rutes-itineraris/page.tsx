@@ -7,15 +7,27 @@ import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
 import { getAllRoutes } from '@/domain/route/route.service';
+import { getCurrentRoute } from '@/domain/currentRoute/currentRoute.service';
 import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 
 const RutesItinerarisPage = async () => {
   const {
-    home: { hero, intro, currentRoute, sortidesEsperit, routes: routesSection },
+    home: {
+      hero,
+      intro,
+      currentRoute: currentRouteSection,
+      sortidesEsperit,
+      routes: routesSection,
+    },
   } = rutesItinerarisContent;
 
   const routes = await getAllRoutes();
-  const currentRouteId = routes[0].id;
+  // const currentRoute = await getCurrentRoute();
+  const currentRoute = await getCurrentRoute();
+  const filteredRoutes = currentRoute
+    ? routes.filter((route) => route.id !== currentRoute?.id)
+    : routes;
+
   return (
     <>
       <PrimaryPageHero
@@ -35,29 +47,33 @@ const RutesItinerarisPage = async () => {
 
       <div className="bg-secondary/20">
         <PageContainer className="py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
-          <section
-            id="current-route"
-            className="scroll-m-20"
-          >
-            <div className="flex flex-col sm:flex-row justify-between">
-              <TypoH2Var className="mb-2">{currentRoute.title}</TypoH2Var>
+          {currentRoute && (
+            <section
+              id="current-route"
+              className="scroll-m-20"
+            >
+              <div className="flex flex-col sm:flex-row justify-between">
+                <TypoH2Var className="mb-2">
+                  {currentRouteSection.title}
+                </TypoH2Var>
 
-              <Button asChild>
-                <Link href={currentRoute.subscriptionCTA.href}>
-                  {currentRoute.subscriptionCTA.label}
-                  <ArrowRightIcon />
-                </Link>
-              </Button>
-            </div>
+                <Button asChild>
+                  <Link href={currentRouteSection.subscriptionCTA.href}>
+                    {currentRouteSection.subscriptionCTA.label}
+                    <ArrowRightIcon />
+                  </Link>
+                </Button>
+              </div>
 
-            <p className="py-4 max-w-3xl text-muted-foreground">
-              {currentRoute.description}
-            </p>
-            <RouteCard
-              key={`current-route ${routes[0].id}`}
-              route={routes[0]}
-            />
-          </section>
+              <p className="py-4 max-w-3xl text-muted-foreground">
+                {currentRouteSection.description}
+              </p>
+              <RouteCard
+                key={`current-route ${currentRoute.id}`}
+                route={currentRoute}
+              />
+            </section>
+          )}
 
           <section
             id="sortides-esperit"
@@ -93,26 +109,25 @@ const RutesItinerarisPage = async () => {
             </div>
           </section>
 
-          <section
-            id="routes"
-            className="scroll-m-20 lg:col-span-2"
-          >
-            {/* TODO: Add routes */}
-            {/* <TypoH2Var className="mb-2">{routesSection.title}</TypoH2Var>
-            <p className="py-4 max-w-3xl text-muted-foreground">
-              {routesSection.description}
-            </p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-8">
-              {mockRoutes
-                .filter((route) => route.id !== currentRouteId)
-                .map((route) => (
+          {filteredRoutes.length ? (
+            <section
+              id="routes"
+              className="scroll-m-20 lg:col-span-2"
+            >
+              <TypoH2Var className="mb-2">{routesSection.title}</TypoH2Var>
+              <p className="py-4 max-w-3xl text-muted-foreground">
+                {routesSection.description}
+              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-8">
+                {filteredRoutes.map((route) => (
                   <RouteCard
                     key={route.id}
                     route={route}
                   />
                 ))}
-            </div> */}
-          </section>
+              </div>
+            </section>
+          ) : null}
         </PageContainer>
       </div>
     </>

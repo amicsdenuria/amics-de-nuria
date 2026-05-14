@@ -18,6 +18,7 @@ interface DataSource {
     pois: DataSourceOption;
     stages: DataSourceOption;
     routes: DataSourceOption;
+    currentRoute: DataSourceOption;
   };
   agenda: {
     activities: DataSourceOption;
@@ -33,6 +34,7 @@ export const dataSource: DataSource = {
     pois: 'sanity',
     stages: 'sanity',
     routes: 'sanity',
+    currentRoute: 'sanity',
   },
   agenda: {
     activities: 'local',

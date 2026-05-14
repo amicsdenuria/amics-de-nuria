@@ -8,16 +8,16 @@
 import { dataset, projectId } from './sanity/env';
 
 import StudioNavbar from './sanity/components/StudioNavbar';
-// import { apiVersion } from './sanity/env';
+import { apiVersion } from './sanity/env';
 import { caESLocale } from '@sanity/locale-ca-es';
 import { defineConfig } from 'sanity';
 import { schema } from './sanity/schemaTypes';
 import { structure } from './sanity/structure';
 import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
 
-// import { visionTool } from '@sanity/vision';
-
-const singletonTypes = ['currentRoute'];
+export const singletonTypes = ['currentRoute'];
+export const notEditableTypes = ['subscriber', 'subscription'];
 
 export default defineConfig({
   basePath: '/admin',
@@ -29,7 +29,7 @@ export default defineConfig({
     structureTool({ structure }),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
-    // visionTool({ defaultApiVersion: apiVersion }),
+    visionTool({ defaultApiVersion: apiVersion }),
     caESLocale(),
   ],
   studio: {
@@ -37,11 +37,36 @@ export default defineConfig({
       toolMenu: StudioNavbar,
     },
   },
+
   document: {
     newDocumentOptions: (prev, { creationContext }) => {
+      // Oculta singletons y notEditable del botón "+" global
       if (creationContext.type === 'global') {
         return prev.filter(
-          (templateItem) => !singletonTypes.includes(templateItem.templateId),
+          (template) =>
+            !singletonTypes.includes(template.templateId) &&
+            !notEditableTypes.includes(template.templateId),
+        );
+      }
+
+      // Oculta el "+" dentro de panes de tipos notEditable
+      if (
+        creationContext.type === 'structure' &&
+        creationContext.schemaType &&
+        notEditableTypes.includes(creationContext.schemaType)
+      ) {
+        return [];
+      }
+
+      return prev;
+    },
+
+    // Oculta "duplicate" de singletons
+    actions: (prev, { schemaType }) => {
+      if (singletonTypes.includes(schemaType)) {
+        return prev.filter(
+          (action) =>
+            action.action !== 'duplicate' && action.action !== 'delete',
         );
       }
 

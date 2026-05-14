@@ -320,6 +320,27 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes = CurrentRoute | Poi | SanityImageCrop | SanityImageHotspot | Slug | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/rutes-itineraris/currentRoute/getCurrentRoute.ts
+// Variable: getCurrentRouteQuery
+// Query: *[_type == 'currentRoute'][0]{      currentRoute->{        ...,        "slug": slug.current,        stages[]->{          "slug": slug.current        }      }    }.currentRoute
+export type GetCurrentRouteQueryResult = {
+  _id: string;
+  _type: "route";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  origin?: string;
+  destiny?: string;
+  wayPoints?: Array<string>;
+  slug: string | null;
+  description?: Array<string>;
+  mapUrl?: string;
+  stages: Array<{
+    slug: string | null;
+  }> | null;
+  notes?: Array<string>;
+} | null;
+
 // Source: ./sanity/lib/rutes-itineraris/poi/getPoiBySlug.ts
 // Variable: getPoiBySlugQuery
 // Query: *[_type == 'poi' && slug.current == $slug][0]{        ...,        "slug": slug.current,        img{          asset->{            url          },          alt        }      }
@@ -719,6 +740,7 @@ export type GetCurrentSubscriptionByStripeSubscriptionIdQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "\n    *[_type == 'currentRoute'][0]{\n      currentRoute->{\n        ...,\n        \"slug\": slug.current,\n        stages[]->{\n          \"slug\": slug.current\n        }\n      }\n    }.currentRoute\n  ": GetCurrentRouteQueryResult;
     "\n      *[_type == 'poi' && slug.current == $slug][0]{\n        ...,\n        \"slug\": slug.current,\n        img{\n          asset->{\n            url\n          },\n          alt\n        }\n      }\n    ": GetPoiBySlugQueryResult;
     "\n  *[_type == 'region' && slug.current == $slug][0]{\n    name,\n    \"slug\": slug.current,\n    province,\n    img{\n      asset->{\n        url\n      },\n      alt\n    },\n    text\n  }\n": GetRegionBySlugQueryResult;
     "\n    *[_type == 'region' && slug.current in $slugs][]{\n      name,\n      \"slug\": slug.current,\n      province,\n      img{\n        asset->{\n          url\n        },\n        alt\n      },\n      text\n    }\n    ": GetRegionsBySlugsQueryResult;
