@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
 import MultilineDescription from '@/sanity/components/MultilineDescription';
+import { apiVersion } from '@/sanity/env';
 
 export const route = defineType({
   name: 'route',
@@ -9,24 +10,65 @@ export const route = defineType({
   preview: {
     select: {
       origin: 'origin',
+      internalCode: 'internalCode',
       destiny: 'destiny',
       wayPoints: 'wayPoints',
     },
-    prepare({ origin, destiny, wayPoints }) {
+    prepare({ origin, destiny, wayPoints, internalCode }) {
       const cleanWayPoints = Array.isArray(wayPoints)
         ? wayPoints.filter(Boolean)
         : [];
 
       return {
         title: [origin, destiny].filter(Boolean).join(' - '),
-        subtitle: cleanWayPoints.length
-          ? cleanWayPoints.join(' - ')
-          : undefined,
+        subtitle: internalCode
+          ? internalCode
+          : cleanWayPoints.length
+            ? cleanWayPoints.join(' - ')
+            : undefined,
       };
     },
   },
 
   fields: [
+    defineField({
+      name: 'internalCode',
+      title: 'Codi Intern',
+      type: 'string',
+      validation: (Rule) =>
+        Rule.max(30).custom(async (internalCode, context) => {
+          if (!internalCode) return true;
+
+          const documentId = context.document?._id as string | undefined;
+
+          if (!documentId) return true;
+
+          const publishedId = documentId.replace(/^drafts\./, '');
+          const draftId = `drafts.${publishedId}`;
+
+          const client = context
+            .getClient({ apiVersion })
+            .withConfig({ perspective: 'raw' });
+
+          const exists = await client.fetch<boolean>(
+            `count(*[
+          _type == "route" &&
+          internalCode == $internalCode &&
+          !(_id in [$publishedId, $draftId]) &&
+          !(_id in path("versions.**"))
+        ]) > 0`,
+            {
+              internalCode,
+              publishedId,
+              draftId,
+            },
+          );
+
+          return exists
+            ? 'Aquest codi intern ja existeix en una altra ruta'
+            : true;
+        }),
+    }),
     defineField({
       name: 'origin',
       title: 'Origen',
