@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import SpanWithLink from '@/sanity/components/SpanWithLink';
+
 export const region = defineType({
   name: 'region',
   title: 'Comarca',
@@ -43,6 +45,11 @@ export const region = defineType({
         }),
       ],
       validation: (Rule) => Rule.required().assetRequired(),
+      description: SpanWithLink([
+        '(Intentar comprimir a ',
+        { type: 'link', href: 'https://squoosh.app/', text: 'Squoosh' },
+        ' abans. Procés: Compress -> WebP -> Descarregar)',
+      ]),
     }),
 
     defineField({

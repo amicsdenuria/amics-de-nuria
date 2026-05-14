@@ -205,7 +205,7 @@ export const stage = defineType({
       description: SpanWithLink([
         "Imatges per mostrar al carrousel de l'etapa. Mínim requereix 1 i màxim 10. (Intentar comprimir a ",
         { type: 'link', href: 'https://squoosh.app/', text: 'Squoosh' },
-        ' abans)',
+        ' abans. Procés: Compress -> WebP -> Descarregar)',
       ]),
     }),
     defineField({
