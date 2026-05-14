@@ -10,6 +10,20 @@ export const stage = defineType({
   name: 'stage',
   title: 'Etapa',
   type: 'document',
+
+  orderings: [
+    {
+      title: 'Origen',
+      name: 'originAsc',
+      by: [{ field: 'origin', direction: 'asc' }],
+    },
+    {
+      title: 'Destí',
+      name: 'destinyAsc',
+      by: [{ field: 'destiny', direction: 'asc' }],
+    },
+  ],
+
   preview: {
     select: {
       origin: 'origin',
@@ -29,6 +43,7 @@ export const stage = defineType({
       };
     },
   },
+
   fields: [
     defineField({
       name: 'origin',

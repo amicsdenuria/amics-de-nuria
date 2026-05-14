@@ -7,6 +7,25 @@ export const route = defineType({
   name: 'route',
   title: 'Ruta',
   type: 'document',
+
+  orderings: [
+    {
+      title: 'Codi intern',
+      name: 'internalCodeAsc',
+      by: [{ field: 'internalCode', direction: 'asc' }],
+    },
+    {
+      title: 'Origen',
+      name: 'originAsc',
+      by: [{ field: 'origin', direction: 'asc' }],
+    },
+    {
+      title: 'Destí',
+      name: 'destinyAsc',
+      by: [{ field: 'destiny', direction: 'asc' }],
+    },
+  ],
+
   preview: {
     select: {
       origin: 'origin',
