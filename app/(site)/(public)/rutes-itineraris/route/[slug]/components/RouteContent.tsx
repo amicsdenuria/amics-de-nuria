@@ -57,21 +57,23 @@ const RouteContent = ({ route, stages, stats }: RouteContentProps) => {
       </section>
 
       {/* NOTES */}
-      <section
-        id="route-notes"
-        className="scroll-m-20"
-      >
-        <TypoH2 className="flex items-center gap-2 mb-4">
-          <InfoIcon className="h-5 w-5" />
-          Notes importants
-          <CopyLinkButton hash="route-notes" />
-        </TypoH2>
-        <ul className="list-disc pl-12 py-4 space-y-2">
-          {route.notes?.map((n, i) => (
-            <li key={i}>{n}</li>
-          ))}
-        </ul>
-      </section>
+      {route.notes && route.notes.length > 0 && (
+        <section
+          id="route-notes"
+          className="scroll-m-20"
+        >
+          <TypoH2 className="flex items-center gap-2 mb-4">
+            <InfoIcon className="h-5 w-5" />
+            Notes importants
+            <CopyLinkButton hash="route-notes" />
+          </TypoH2>
+          <ul className="list-disc pl-12 py-4 space-y-2">
+            {route.notes?.map((n, i) => (
+              <li key={i}>{n}</li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* STAGES */}
       <section
