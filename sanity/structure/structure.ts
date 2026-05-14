@@ -42,7 +42,7 @@ export const structure: StructureResolver = (S, ctx) => {
           S.list()
             .title('Rutes i itineraris')
             .items([
-              S.documentTypeListItem('route'),
+              S.documentTypeListItem('route').title('Rutes'),
               stagesStructure(S, ctx),
               S.documentTypeListItem('poi'),
               S.documentTypeListItem('region'),
