@@ -67,10 +67,6 @@ const RouteContent = ({ route, stages, stats }: RouteContentProps) => {
           <CopyLinkButton hash="route-notes" />
         </TypoH2>
         <ul className="list-disc pl-12 py-4 space-y-2">
-          <li>
-            Cada etapa consta d&apos;informació amb els allotjaments que es
-            poden trobar per la zona.
-          </li>
           {route.notes?.map((n, i) => (
             <li key={i}>{n}</li>
           ))}
