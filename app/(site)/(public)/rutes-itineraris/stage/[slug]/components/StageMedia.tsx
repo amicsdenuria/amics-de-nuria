@@ -1,6 +1,7 @@
 'use client';
 
 import { ImageIcon, MapIcon, VideoIcon } from 'lucide-react';
+import { YoutubeVideoUrlOptions, getEmbedYoutubeVideoUrl } from '@/lib/utils';
 
 import ImgsCarousel from '../../../components/ImgsCarousel';
 import RouteMap from '../../../components/Map';
@@ -14,6 +15,12 @@ interface StageMediaProps {
 }
 
 const StageMedia = ({ videoUrl, mapUrl, imgs }: StageMediaProps) => {
+  const videoConfig: YoutubeVideoUrlOptions = {
+    autoplay: true,
+    muted: true,
+    playsInline: true,
+  };
+
   const tabs = [
     {
       value: 'map',
@@ -56,18 +63,15 @@ const StageMedia = ({ videoUrl, mapUrl, imgs }: StageMediaProps) => {
       {videoUrl && (
         <TabsContent value="video">
           <div className="overflow-hidden w-7xl my-8 mx-auto rounded-xl border bg-black">
-            <video
-              className="block aspect-video w-full"
-              controls
-              preload="metadata"
-              playsInline
-            >
-              <source
-                src={videoUrl}
-                type="video/mp4"
+            <div className="aspect-video w-full">
+              <iframe
+                className="h-full w-full"
+                src={getEmbedYoutubeVideoUrl(videoUrl, videoConfig)}
+                title="Youtube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; piscture-in-picture"
+                allowFullScreen
               />
-              El teu navegador no suporta la reproducció de vídeo.
-            </video>
+            </div>
           </div>
         </TabsContent>
       )}
