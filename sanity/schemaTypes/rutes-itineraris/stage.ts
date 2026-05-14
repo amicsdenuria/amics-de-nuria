@@ -29,22 +29,71 @@ export const stage = defineType({
       origin: 'origin',
       destiny: 'destiny',
       wayPoints: 'wayPoints',
+      internalTag0: 'internalTags.0.tag',
+      internalTag1: 'internalTags.1.tag',
+      internalTag2: 'internalTags.2.tag',
+      internalTag3: 'internalTags.3.tag',
+      internalTag4: 'internalTags.4.tag',
+      internalTag5: 'internalTags.5.tag',
+      // internalTags: 'internalTags',
     },
-    prepare({ origin, destiny, wayPoints }) {
+    prepare({
+      origin,
+      destiny,
+      wayPoints,
+      internalTag0,
+      internalTag1,
+      internalTag2,
+      internalTag3,
+      internalTag4,
+      internalTag5,
+    }) {
       const cleanWayPoints = Array.isArray(wayPoints)
         ? wayPoints.filter(Boolean)
         : [];
 
+      const cleanInternalTags = [
+        internalTag0,
+        internalTag1,
+        internalTag2,
+        internalTag3,
+        internalTag4,
+        internalTag5,
+      ].filter(Boolean);
+
       return {
         title: [origin, destiny].filter(Boolean).join(' - '),
-        subtitle: cleanWayPoints.length
-          ? cleanWayPoints.join(' - ')
-          : undefined,
+        subtitle: cleanInternalTags.length
+          ? cleanInternalTags.join(', ')
+          : cleanWayPoints.length
+            ? cleanWayPoints.join(' - ')
+            : undefined,
+        // subtitle: internalTags,
       };
     },
   },
 
   fields: [
+    defineField({
+      name: 'internalTags',
+      title: "Tags interns d'etapa",
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'stageInternalTag' }] }],
+      validation: (Rule) =>
+        Rule.custom((tags: { _ref?: string }[] | undefined) => {
+          if (!tags) return true;
+
+          const refs = tags.map((item) => item?._ref).filter(Boolean);
+          const uniqueRefs = new Set(refs);
+
+          if (refs.length !== uniqueRefs.size) {
+            return "No pots afegir el mateix tag intern més d'una vegada";
+          }
+
+          return true;
+        }),
+      description: 'Ex: R1, R2, R3',
+    }),
     defineField({
       name: 'origin',
       title: 'Origen',

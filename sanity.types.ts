@@ -13,6 +13,22 @@
  */
 
 // Source: schema.json
+export type StageInternalTag = {
+  _id: string;
+  _type: "stageInternalTag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  tag?: string;
+  slug?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
 export type CurrentRoute = {
   _id: string;
   _type: "currentRoute";
@@ -68,12 +84,6 @@ export type SanityImageHotspot = {
   width?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type Region = {
   _id: string;
   _type: "region";
@@ -105,6 +115,13 @@ export type Stage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  internalTags?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "stageInternalTag";
+  }>;
   origin?: string;
   destiny?: string;
   wayPoints?: Array<string>;
@@ -161,6 +178,7 @@ export type Route = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  internalCode?: string;
   origin?: string;
   destiny?: string;
   wayPoints?: Array<string>;
@@ -318,7 +336,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = CurrentRoute | Poi | SanityImageCrop | SanityImageHotspot | Slug | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = StageInternalTag | Slug | CurrentRoute | Poi | SanityImageCrop | SanityImageHotspot | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/rutes-itineraris/currentRoute/getCurrentRoute.ts
 // Variable: getCurrentRouteQuery
@@ -329,6 +347,7 @@ export type GetCurrentRouteQueryResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  internalCode?: string;
   origin?: string;
   destiny?: string;
   wayPoints?: Array<string>;
@@ -403,6 +422,7 @@ export type GetAllRoutesQueryResult = Array<{
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  internalCode?: string;
   origin?: string;
   destiny?: string;
   wayPoints?: Array<string>;
@@ -424,6 +444,7 @@ export type GetRouteBySlugQueryResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  internalCode?: string;
   origin?: string;
   destiny?: string;
   wayPoints?: Array<string>;
@@ -445,6 +466,13 @@ export type GetStageBySlugQueryResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  internalTags?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "stageInternalTag";
+  }>;
   origin?: string;
   destiny?: string;
   wayPoints?: Array<string>;
@@ -502,6 +530,13 @@ export type GetStagesBySlugsQueryResult = Array<{
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  internalTags?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "stageInternalTag";
+  }>;
   origin?: string;
   destiny?: string;
   wayPoints?: Array<string>;

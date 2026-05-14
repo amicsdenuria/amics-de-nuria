@@ -1,7 +1,8 @@
 import type { StructureResolver } from 'sanity/structure';
+import { stagesStructure } from './stagesStructure';
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
-export const structure: StructureResolver = (S) => {
+export const structure: StructureResolver = (S, ctx) => {
   const notEditableListItem = (type: string, title: string) =>
     S.listItem().title(title).schemaType(type).child(
       S.documentTypeList(type)
@@ -42,7 +43,7 @@ export const structure: StructureResolver = (S) => {
             .title('Rutes i itineraris')
             .items([
               S.documentTypeListItem('route'),
-              S.documentTypeListItem('stage'),
+              stagesStructure(S, ctx),
               S.documentTypeListItem('poi'),
               S.documentTypeListItem('region'),
             ]),
@@ -50,5 +51,19 @@ export const structure: StructureResolver = (S) => {
 
       // SINGLETON
       singletonItem('currentRoute', "Ruta d'Enguany"),
+
+      S.divider(),
+
+      S.listItem()
+        .title('Config [NO TOCAR]')
+        .child(
+          S.list()
+            .title('Config')
+            .items([
+              S.documentTypeListItem('stageInternalTag').title(
+                'stageInternalTag',
+              ),
+            ]),
+        ),
     ]);
 };

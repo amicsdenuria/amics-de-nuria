@@ -12,7 +12,7 @@ import { apiVersion } from './sanity/env';
 import { caESLocale } from '@sanity/locale-ca-es';
 import { defineConfig } from 'sanity';
 import { schema } from './sanity/schemaTypes';
-import { structure } from './sanity/structure';
+import { structure } from './sanity/structure/structure';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 
