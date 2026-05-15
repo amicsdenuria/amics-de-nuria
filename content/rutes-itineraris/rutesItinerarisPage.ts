@@ -34,7 +34,7 @@ const rutesItinerarisCTAs: PrimaryPageNavItem[] = [
     label: "Sortides amb l'Esperit",
     href: '/rutes-itineraris#sortides-esperit',
   },
-  { label: 'Altres rutes', href: '/rutes-itineraris#routes' },
+  { label: 'Pelegrinatges espirituals', href: '/rutes-itineraris#routes' },
 ];
 
 export const rutesItinerarisContent: RutesItinerarisContent = {
