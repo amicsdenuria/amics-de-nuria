@@ -16,7 +16,7 @@ interface ContactaContent {
 export const contactaContent: ContactaContent = {
   home: {
     hero: {
-      title: 'Contacta amb Amics de Núria',
+      title: 'Contacta',
       subtitle:
         'Per a més informació sobre sortides, visites, pelegrinatges o col·laboracions, poseu-vos en contacte amb nosaltres.',
       description: '',

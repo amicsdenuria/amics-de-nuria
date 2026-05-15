@@ -1,6 +1,6 @@
 import { ClerkProvider } from '@clerk/nextjs';
-import { ThemeProvider } from './theme-provider';
 import { ReactNode } from 'react';
+import { ThemeProvider } from './theme-provider';
 import { caES } from '@clerk/localizations';
 
 interface ProvidersProps {
@@ -15,8 +15,8 @@ const Providers = ({ children }: ProvidersProps) => {
     >
       <ThemeProvider
         attribute="class"
-        defaultTheme="system"
-        enableSystem
+        // defaultTheme="system"
+        enableSystem={false}
         disableTransitionOnChange
       >
         {children}

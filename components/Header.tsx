@@ -1,8 +1,9 @@
 import AuthButtons from './navbar/AuthButtons';
 import HomeLink from './navbar/HomeLink';
-import { ModeToggle } from './ui/theme-toggle';
+// import { ModeToggle } from './ui/theme-toggle';
 import PageContainer from './ui/page-container';
 import PrimaryActionButton from './navbar/PrimaryActionButton';
+import { SheetNavMenu } from './navbar/SheetNavMenu';
 import { getUserData } from '@/actions/getUserData';
 
 const Header = async () => {
@@ -27,8 +28,13 @@ const Header = async () => {
             isAdmin={isAdmin}
           />
 
-          {/* Theme Toggle Button */}
-          <ModeToggle />
+          {/* Legacy Theme Toggle Button */}
+          {/* Stays here in case it's reimplemented in the future */}
+          {/* If reimplemented, adress to /components/providers/index.tsx => uncomment defaultTheme='system' / enableSystem={true} */}
+          {/* <ModeToggle /> */}
+
+          {/* Menu */}
+          <SheetNavMenu />
         </div>
       </PageContainer>
     </header>
