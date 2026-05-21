@@ -34,6 +34,7 @@ interface LligaEspiritualContent {
     // Dr. Ramon Bassols
     // La Confraria de la Mare de Déu
     // Origens d'Amics de Núria (historia va fora i s'afegeix el contingut d'aquesta secció)
+    // Carta del president
     rrss: {
       title: string;
       subtitle: string;
