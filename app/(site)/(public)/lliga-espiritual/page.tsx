@@ -1,18 +1,15 @@
-import { Card, CardContent } from '@/components/ui/card';
 import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
 
-import NestedTextBlock from '../components/NestedTextBlock';
 import PrimaryActionButtonHero from '@/components/navbar/PrimaryActionButtonHero';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import RRSSSection from './components/RRSSSection';
-import TextBlock from '../components/TextBlock';
+import SectionCard from '../santuari/components/SectionCard';
 import { getUserData } from '@/actions/getUserData';
 import { lligaEspiritualContent } from '@/content/lliga-espiritual/lligaEspiritualPage';
 
 const LligaEspiritualPage = async () => {
   const { isEnrolled } = await getUserData();
-  const { hero, intro, subscribe, manifesto, rrss } =
-    lligaEspiritualContent.home;
+  const { hero, intro, subscribe, cards, rrss } = lligaEspiritualContent.home;
 
   return (
     <>
@@ -44,34 +41,16 @@ const LligaEspiritualPage = async () => {
         </div>
       </section>
 
-      {/* Manifesto */}
-      <section
-        id="manifesto"
-        className="py-16 md:py-24 scroll-m-20"
-      >
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <TypoH2Var className="mb-6">{manifesto.title}</TypoH2Var>
-          <TypoPVar className="mx-auto mb-8">{manifesto.intro}</TypoPVar>
-          <div className="space-y-12 mx-auto w-fit text-left">
-            {manifesto.blocks.map((block, i) => (
-              <Card
-                key={i}
-                className="px-2 py-8"
-              >
-                <CardContent>
-                  {block.items?.length ? (
-                    <NestedTextBlock
-                      key={i}
-                      block={block}
-                    />
-                  ) : (
-                    <TextBlock
-                      key={i}
-                      block={block}
-                    />
-                  )}
-                </CardContent>
-              </Card>
+      {/* Cards */}
+      <section className="py-16 md:py-24 scroll-m-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <TypoH2Var className="mb-10 text-center">{cards.title}</TypoH2Var>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {cards.items.map((card) => (
+              <SectionCard
+                key={card.href}
+                card={card}
+              />
             ))}
           </div>
         </div>
