@@ -15,8 +15,8 @@ const LlarAmadeuPage = () => {
         title={llarAmadeu.title}
         subtitle={llarAmadeu.intro}
         img={{
-          src: '/santuari/vall-nuria-2.webp',
-          alt: 'Vall de Núria',
+          src: '/santuari/llar-amadeu.webp',
+          alt: 'El pelegrí Amadeu',
           className: 'object-center',
         }}
       />
