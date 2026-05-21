@@ -44,7 +44,7 @@ const StageTimelineItem = ({
     <div className="relative">
       {/* Timeline line */}
       {!isLast && (
-        <div className="absolute left-[19px] top-10 bottom-0 w-0.5 bg-border" />
+        <div className="absolute lg:hidden left-[19px] top-10 bottom-0 w-0.5 bg-border" />
       )}
 
       {/* Timeline dot */}
@@ -192,7 +192,7 @@ const StageTimelineItem = ({
 
 const StageTimeline = ({ stages }: StageTimelineProps) => {
   return (
-    <div className="relative">
+    <div className="relative grid grid-cols-1 lg:grid-cols-3">
       {stages.map((s, i) => (
         <StageTimelineItem
           key={s.id}
