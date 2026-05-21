@@ -129,6 +129,9 @@ export const santuariSubpages: SantuariSubpages = {
     ],
   },
 
+  // TODO
+  // creuRiba: {}
+
   viaCrucis: {
     title: 'El Via Crucis',
     intro:

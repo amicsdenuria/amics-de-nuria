@@ -30,8 +30,10 @@ interface LligaEspiritualContent {
       blocks: Array<TextBlock & NestedTextBlock>;
     };
     // TODO
-    // la creu d'en riba: TextBlock
-    // la font del doctor: TextBlock
+    // Missió i valors (unificar contingut actual)
+    // Dr. Ramon Bassols
+    // La Confraria de la Mare de Déu
+    // Origens d'Amics de Núria (historia va fora i s'afegeix el contingut d'aquesta secció)
     rrss: {
       title: string;
       subtitle: string;

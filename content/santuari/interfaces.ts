@@ -51,6 +51,8 @@ export interface SantuariSubpages {
   mareDeDeu: BlocksPageContent;
   creuOllaCampana: BlocksPageContent;
   santGil: BlocksPageContent;
+  // TOOD
+  // creuRiba
   viaCrucis: ViaCrucisPageContent;
   llarAmadeu: BlocksPageContent;
   comArribar: ComArribarPageContent;
