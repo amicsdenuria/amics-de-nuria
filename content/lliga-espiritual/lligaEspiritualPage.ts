@@ -5,7 +5,23 @@ import { PrimaryPageNavItem } from '../interfaces/primary-page-interfaces';
 import { lligaEspiritualSubpages } from './lligaEspiritualSubpages';
 
 const lligaEspiritualCTAs: PrimaryPageNavItem[] = [
-  { label: 'Missió i valors', href: '/lliga-espiritual/missio-valors' },
+  // TODO: Acabar de decidir els CTAs
+  {
+    label: lligaEspiritualSubpages.missioValors.title,
+    href: '/lliga-espiritual/missio-valors',
+  },
+  {
+    label: lligaEspiritualSubpages.drRamon.title,
+    href: '/lliga-espiritual/dr-ramon-bassols',
+  },
+  {
+    label: lligaEspiritualSubpages.confraria.title,
+    href: '/lliga-espiritual/confraria',
+  },
+  {
+    label: lligaEspiritualSubpages.origens.title,
+    href: '/lliga-espiritual/origens',
+  },
   { label: 'Segueix-nos', href: '/lliga-espiritual#rrss' },
 ];
 
@@ -18,7 +34,10 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
       subtitle:
         'Espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
       description: '',
-      ctas: [lligaEspiritualCTAs[0], lligaEspiritualCTAs[1]],
+      ctas: [
+        lligaEspiritualCTAs[0],
+        lligaEspiritualCTAs[lligaEspiritualCTAs.length - 1],
+      ],
       img: {
         src: '/hero-santuari-nuria.webp',
         alt: 'Santuari de Núria',
@@ -40,9 +59,24 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
       title: 'La Lliga espiritual de la Mare de Déu de Núria',
       items: [
         {
-          title: 'Missió i valors',
+          title: lligaEspiritualSubpages.missioValors.title,
           description: lligaEspiritualSubpages.missioValors.intro,
           href: '/lliga-espiritual/missio-valors',
+        },
+        {
+          title: lligaEspiritualSubpages.drRamon.title,
+          description: lligaEspiritualSubpages.drRamon.intro,
+          href: '/lliga-espiritual/dr-ramon-bassols',
+        },
+        {
+          title: lligaEspiritualSubpages.confraria.title,
+          description: lligaEspiritualSubpages.confraria.intro,
+          href: '/lliga-espiritual/confraria',
+        },
+        {
+          title: lligaEspiritualSubpages.origens.title,
+          description: lligaEspiritualSubpages.origens.intro,
+          href: '/lliga-espiritual/origens',
         },
       ],
     },

@@ -1,5 +1,6 @@
 import {
   BlocksPageContent,
+  NestedBlocksPageContent,
   PrimaryPageHeroContent,
   PrimaryPageNavItem,
   SectionCard,
@@ -17,9 +18,9 @@ export interface SocialLink {
 
 export interface LligaEspiritualSubpages {
   missioValors: BlocksPageContent;
-  // drRamon: BlocksPageContent
-  // confraria: BlocksPageContent
-  // origens: BlocksPageContent
+  drRamon: BlocksPageContent;
+  confraria: BlocksPageContent;
+  origens: NestedBlocksPageContent;
   // cartaPresident: BlocksPageContent
 }
 
@@ -36,10 +37,10 @@ export interface LligaEspiritualContent {
     };
 
     // TODO
-    // Missió i valors (unificar contingut actual)
-    // Dr. Ramon Bassols
-    // La Confraria de la Mare de Déu
-    // Origens d'Amics de Núria (historia va fora i s'afegeix el contingut d'aquesta secció)
+    // ✅ Missió i valors (unificar contingut actual)
+    // ✅ Dr. Ramon Bassols
+    // ✅ La Confraria de la Mare de Déu
+    // ✅ Origens d'Amics de Núria (historia va fora i s'afegeix el contingut d'aquesta secció)
     // -- Fets cronològics (subpàgina)
     // Carta del president
     rrss: {

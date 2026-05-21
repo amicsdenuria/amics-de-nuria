@@ -59,3 +59,9 @@ export interface BlocksPageContent {
   intro: string;
   blocks: TextBlock[];
 }
+
+export interface NestedBlocksPageContent {
+  title: string;
+  intro: string;
+  blocks: Array<TextBlock & NestedTextBlock>;
+}
