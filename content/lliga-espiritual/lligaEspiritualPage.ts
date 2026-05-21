@@ -22,11 +22,11 @@ const lligaEspiritualCTAs: PrimaryPageNavItem[] = [
     label: lligaEspiritualSubpages.origens.title,
     href: '/lliga-espiritual/origens',
   },
-  { label: 'Segueix-nos', href: '/lliga-espiritual#rrss' },
   {
     label: lligaEspiritualSubpages.cartaPresident.title,
     href: '/lliga-espiritual/carta-president',
   },
+  { label: 'Segueix-nos', href: '/lliga-espiritual#rrss' },
 ];
 
 export const lligaEspiritualContent: LligaEspiritualContent = {
