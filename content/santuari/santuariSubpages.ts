@@ -129,8 +129,25 @@ export const santuariSubpages: SantuariSubpages = {
     ],
   },
 
-  // TODO
-  // creuRiba: {}
+  creuRiba: {
+    title: "La Creu d'en Riba",
+    intro:
+      "El Mirador de la Creu d'en Riba deu el seu nom a la seva ubicació en un marge costerut sobre les Gorges de Núria i a la històrica família Riba de Queralbs, antiga propietària de les pastures.",
+    blocks: [
+      {
+        title: 'El doble origen del nom',
+        body: "El mot riba defineix un marge o un pendent costerut en la llengua catalana. De manera que el nom descriu perfectament la ubicació del mirador al capdamunt de la carena on acaben les profundes Gorges de Núria i s'obre la plana de la vall. Aquesta situació geogràfica es combina amb el llinatge històric de la família Riba de Queralbs, una de les més riques i influents de la zona. Com a antiga propietària d'aquestes pastures d'alta muntanya, que s'estenien fins a la collada d'accés al pla de Núria, van donar nom a l'indret. Tot i això, el terme municipal ha estat vinculat també a la comunitat de la Vall de Ribes. Per aquest motiu, en cròniques i documents antics, el monument apareix documentat de vegades com a Creu d'en Ribes fent referència a la vall veïna.",
+      },
+      {
+        title: 'Importància social, ramadera i històrica',
+        body: "Durant segles, la família Riba va utilitzar i llogar els prats de Núria per a la transhumància estiuenca de grans ramats de bestiar oví i boví. Com a grans terratinents locals, mantenien una relació molt estreta amb l'administració de l'antic hospital i el Santuari de Núria. Aquesta col·laboració implicava participar activament en el manteniment dels camins tradicionals, com el Camí Vell. Més endavant, amb la institucionalització del santuari i l'arribada de l'excursionisme, les propietats privades de la família van passar a ser d'ús públic o comunal.",
+      },
+      {
+        title: "L'evolució del Monument",
+        body: "Abans de l'existència de qualsevol símbol cristià, en aquest punt exacte de la carena hi havia un megàlit o menhir de pedra blanca. Conegut popularment com la pedra de Sant Gil, aquest monument s'associava a ritus ancestrals de fertilitat. La tradició dictava que les dones que es fregaven contra la roca s'asseguraven la descendència. Durant l'edat mitjana, l'Església Catòlica va dur a terme una política de reconversió dels llocs de culte pagà. Per aquest motiu, es va decidir retirar el menhir i substituir-lo per una creu de fusta. Aquest canvi buscava erradicar els antics rituals, dotar l'espai d'un nou significat espiritual cristià i marcar el límit sagrat d'entrada al santuari. Amb els anys, la creu de fusta original va desaparèixer i el monument actual es va convertir en una construcció del segle XX. L'associació Amics de Núria va promoure i instal·lar l'estructura actual de ferro i pedra l'any 1958, una iniciativa que va servir per recuperar aquest punt històric de la carena. Aquesta nova construcció va substituir els antics símbols que havien anat desapareixent amb el pas del temps. Finalment, l'any 1983, per commemorar el vint-i-cinquè aniversari de la seva col·locació, s'hi va afegir la placa commemorativa que avui dia es pot llegir a la base.",
+      },
+    ],
+  },
 
   viaCrucis: {
     title: 'El Via Crucis',

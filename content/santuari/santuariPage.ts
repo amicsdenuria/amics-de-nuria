@@ -10,8 +10,7 @@ const santuariNavItems = [
     href: '/santuari/creu-olla-campana',
   },
   { label: "L'Ermita de Sant Gil", href: '/santuari/sant-gil' },
-  // TODO
-  // { label: "La Creu d'en Riba", href: '/santuari/creu-riba'},
+  { label: "La Creu d'en Riba", href: '/santuari/creu-riba' },
   { label: 'El Via Crucis', href: '/santuari/via-crucis' },
   // TODO: Pendent d'activar (llar amadeu)
   // { label: 'La Llar Amadeu', href: '/santuari/llar-amadeu' },
@@ -69,8 +68,11 @@ export const santuariContent: SantuariContent = {
           description: santuariSubpages.santGil.intro,
           href: '/santuari/sant-gil',
         },
-        // TODO
-        // La Creu d'En Riba
+        {
+          title: 'La Creu d’En Riba',
+          description: santuariSubpages.creuRiba.intro,
+          href: '/santuari/creu-riba',
+        },
         {
           title: 'El Via Crucis',
           description: santuariSubpages.viaCrucis.intro,
