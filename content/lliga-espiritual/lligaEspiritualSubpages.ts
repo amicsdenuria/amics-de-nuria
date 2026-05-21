@@ -114,4 +114,19 @@ export const lligaEspiritualSubpages: LligaEspiritualSubpages = {
       },
     ],
   },
+
+  cartaPresident: {
+    title: 'Carta del president',
+    intro:
+      "David Aguilar, president d'Amics de Núria ens dirigeinx unes paraules d'afecte i d'escalf.",
+    content: [
+      "Hi ha llocs que no només es visiten, sinó que es viuen i es porten al cor. La Vall de Núria n'és un d'ells. Durant dècades, l'entitat dels Amics de Núria s'ha encarregat de mantenir viva aquesta flama, connectant persones, natura i espiritualitat. Avui, ens aturem un instant per mirar enrere, honorar les nostres arrels i celebrar l'emocionant moment que estem vivint.",
+      "Tota gran obra neix d'una visió apassionada, i la nostra comença amb el Doctor Bassols, el fundador de l'entitat. Ell va entendre, molt abans que molts altres, que Núria no era només un espai geogràfic enmig del Pirineu, sinó un autèntic santuari de trobada cultural i humana. La seva dedicació va posar la primera pedra d'un camí que, avui dia, segueix guiant els nostres passos.",
+      "Aquest camí, però, no s'hauria pogut traçar ni mantenir sense el lideratge, l'esforç i la constància dels diferents presidents que han passat per l'entitat. A cadascun d'ells els volem expressar el nostre més profund i sincer agraïment. La seva tasca desinteressada, tant en els moments de bonança com en els temps de reptes, ha estat el pal de paller que ha sostingut i fet madurar la nostra comunitat. Gràcies per recollir el testimoni i portar-lo sempre més amunt.",
+      "I on som en l'actualitat? Ens enorgulleix dir que l'entitat està més viva i dinàmica que mai. Estem experimentant un creixement meravellós, impulsat amb força per la potenciació dels pelegrinatges. És emocionant veure com els antics camins es tornen a omplir de passes, d'esforç compartit i de noves generacions de caminants que descobreixen la màgia de la vall.",
+      "Aquest impuls dels pelegrinatges, sumat al ventall d'activitats que omplen la nostra agenda, ens demostra que el llegat del Doctor Bassols no només es manté intacte, sinó que batega amb més força.",
+      'Gràcies a tots, socis, pelegrins i amics, per fer-ho possible. Ens veiem als camins, ens veiem a Núria!',
+      'David Aguilà Solano',
+    ],
+  },
 };

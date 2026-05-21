@@ -23,6 +23,10 @@ const lligaEspiritualCTAs: PrimaryPageNavItem[] = [
     href: '/lliga-espiritual/origens',
   },
   { label: 'Segueix-nos', href: '/lliga-espiritual#rrss' },
+  {
+    label: lligaEspiritualSubpages.cartaPresident.title,
+    href: '/lliga-espiritual/carta-president',
+  },
 ];
 
 export const lligaEspiritualContent: LligaEspiritualContent = {
@@ -77,6 +81,11 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
           title: lligaEspiritualSubpages.origens.title,
           description: lligaEspiritualSubpages.origens.intro,
           href: '/lliga-espiritual/origens',
+        },
+        {
+          title: lligaEspiritualSubpages.cartaPresident.title,
+          description: lligaEspiritualSubpages.cartaPresident.intro,
+          href: '/lliga-espiritual/carta-president',
         },
       ],
     },

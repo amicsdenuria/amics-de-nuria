@@ -21,7 +21,11 @@ export interface LligaEspiritualSubpages {
   drRamon: BlocksPageContent;
   confraria: BlocksPageContent;
   origens: NestedBlocksPageContent;
-  // cartaPresident: BlocksPageContent
+  cartaPresident: {
+    title: string;
+    intro: string;
+    content: string[];
+  };
 }
 
 export interface LligaEspiritualContent {
