@@ -165,6 +165,15 @@ const StageContent = ({ stage }: RouteContentProps) => {
           defaultValue={stage.pois?.length ? 'pois' : 'regions'}
           sectionId="entorn-section"
           tabs={[
+            ...(stage.pois
+              ? [
+                  {
+                    value: 'pois',
+                    label: "P. d'interès",
+                    icon: <LocateIcon className="h-5 w-5" />,
+                  },
+                ]
+              : []),
             {
               value: 'regions',
               label: 'Comarques',
@@ -179,17 +188,40 @@ const StageContent = ({ stage }: RouteContentProps) => {
                   },
                 ]
               : []),
-            ...(stage.pois
-              ? [
-                  {
-                    value: 'pois',
-                    label: "P. d'interès",
-                    icon: <LocateIcon className="h-5 w-5" />,
-                  },
-                ]
-              : []),
           ]}
         >
+          {stage.pois && (
+            <TabsContent value="pois">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {stage.pois.map((poi) => (
+                  <Link
+                    key={poi.slug}
+                    href={`/rutes-itineraris/poi/${poi.slug}`}
+                  >
+                    <Card
+                      className={cn(
+                        'relative w-full pt-0 overflow-hidden',
+                        'group cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1',
+                      )}
+                    >
+                      <div className="relative aspect-video w-full">
+                        <Image
+                          src={poi.img.url}
+                          alt={poi.img.alt}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="relative z-20 aspect-video w-full object-cover"
+                        />
+                      </div>
+                      <CardHeader>
+                        <CardTitle>{poi.name}</CardTitle>
+                      </CardHeader>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </TabsContent>
+          )}
           <TabsContent value="regions">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {stage.regions.map((region) => (
@@ -241,38 +273,6 @@ const StageContent = ({ stage }: RouteContentProps) => {
                   </li>
                 ))}
               </ul>
-            </TabsContent>
-          )}
-          {stage.pois && (
-            <TabsContent value="pois">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {stage.pois.map((poi) => (
-                  <Link
-                    key={poi.slug}
-                    href={`/rutes-itineraris/poi/${poi.slug}`}
-                  >
-                    <Card
-                      className={cn(
-                        'relative w-full pt-0 overflow-hidden',
-                        'group cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1',
-                      )}
-                    >
-                      <div className="relative aspect-video w-full">
-                        <Image
-                          src={poi.img.url}
-                          alt={poi.img.alt}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          className="relative z-20 aspect-video w-full object-cover"
-                        />
-                      </div>
-                      <CardHeader>
-                        <CardTitle>{poi.name}</CardTitle>
-                      </CardHeader>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
             </TabsContent>
           )}
         </TabsManager>
