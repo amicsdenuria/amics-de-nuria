@@ -4,7 +4,13 @@ import Link from 'next/link';
 import PrimaryActionButtonHero from '@/components/navbar/PrimaryActionButtonHero';
 import { cn } from '@/lib/utils';
 
-interface PrimaryPageHeroProps {
+export interface PrimaryPageHeroImage {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+export interface PrimaryPageHeroProps {
   pretitle?: string;
   title: string;
   subtitle?: string;
@@ -13,11 +19,7 @@ interface PrimaryPageHeroProps {
     href: string;
     label: string;
   }[];
-  img?: {
-    src: string;
-    alt: string;
-    className?: string;
-  };
+  img?: PrimaryPageHeroImage;
   showSubscribeCTA?: boolean;
   isEnrolled?: boolean;
 }
@@ -50,7 +52,7 @@ const PrimaryPageHero = ({
         </>
       )}
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 py-24 text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 text-center">
         {img && (
           <>
             <div className="absolute inset-0 bg-radial translate-y-6 from-white/20 via-transparent to-transparent -z-10" />
@@ -75,7 +77,6 @@ const PrimaryPageHero = ({
             {description}
           </p>
         )}
-
         {ctas && ctas.length > 0 && (
           <div className="flex flex-wrap items-center justify-center gap-4">
             {showPrimaryCTAButton && (

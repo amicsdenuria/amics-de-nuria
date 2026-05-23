@@ -1,8 +1,9 @@
 import PageContainer from '@/components/ui/page-container';
-import RouteHero from '../../components/RouteHero';
+import PrimaryPageHero from '../../../components/PrimaryPageHero';
 import StageContent from './components/StageContent';
 import { getStageBySlug } from '@/domain/stage/stage.service';
 import { notFound } from 'next/navigation';
+import { mapStageHero } from '../../heroMappers';
 
 interface StagePageParams {
   params: Promise<{ slug: string }>;
@@ -16,14 +17,8 @@ const StagePage = async ({ params }: StagePageParams) => {
 
   return (
     <>
-      <RouteHero
-        title={`Etapa ${stage.origin} - ${stage.destiny}`}
-        origin={stage.origin}
-        destiny={stage.destiny}
-        type="stage"
-        alternativeRoutePoints={stage.wayPoints}
-      />
-      <PageContainer className="pb-8">
+      <PrimaryPageHero {...mapStageHero(stage)} />
+      <PageContainer className="pt-16 md:pt-24 pb-8">
         <StageContent stage={stage} />
       </PageContainer>
     </>

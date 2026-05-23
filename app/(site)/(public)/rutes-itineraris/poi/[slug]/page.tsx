@@ -1,9 +1,10 @@
-import Hero from '@/components/Hero';
+import PrimaryPageHero from '../../../components/PrimaryPageHero';
 import { ImageLightbox } from '@/components/ImageLightbox';
 import PageContainer from '@/components/ui/page-container';
 import { TypoP } from '@/components/ui/typo/typoComponents';
 import { getPoiBySlug } from '@/domain/poi/poi.service';
 import { notFound } from 'next/navigation';
+import { mapPoiHero } from '../../heroMappers';
 
 interface RegionPageParams {
   params: Promise<{ slug: string }>;
@@ -17,17 +18,9 @@ const RegionPage = async ({ params }: RegionPageParams) => {
 
   return (
     <>
-      <Hero
-        title={poi.name}
-        description={poi.location}
-        img={{
-          src: poi.image.url,
-          alt: poi.image.alt,
-          className: 'object-center',
-        }}
-      />
+      <PrimaryPageHero {...mapPoiHero(poi)} />
 
-      <PageContainer className="mb-12">
+      <PageContainer className="pt-16 md:pt-24 mb-12">
         <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
           <div className="w-full lg:w-3/5">
             {poi.text.map((p, i) => (

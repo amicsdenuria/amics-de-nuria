@@ -1,10 +1,11 @@
 import { getRouteBySlug, getRouteStats } from '@/domain/route/route.service';
 
 import PageContainer from '@/components/ui/page-container';
+import PrimaryPageHero from '../../../components/PrimaryPageHero';
 import RouteContent from './components/RouteContent';
-import RouteHero from '../../components/RouteHero';
 import { getStagesBySlugs } from '@/domain/stage/stage.service';
 import { notFound } from 'next/navigation';
+import { mapRouteHero } from '../../heroMappers';
 
 interface RoutePageParams {
   params: Promise<{ slug: string }>;
@@ -24,13 +25,10 @@ const RoutePage = async ({ params }: RoutePageParams) => {
 
   return (
     <>
-      <RouteHero
-        title={`Ruta ${route.origin} - ${route.destiny}`}
-        origin={route.origin}
-        destiny={route.destiny}
-        alternativeRoutePoints={route.alternativeRoutePoints}
+      <PrimaryPageHero
+        {...mapRouteHero(route)}
       />
-      <PageContainer className="pb-8">
+      <PageContainer className="pt-16 md:pt-24 pb-8">
         {/* CONTENT */}
         <RouteContent
           route={route}
