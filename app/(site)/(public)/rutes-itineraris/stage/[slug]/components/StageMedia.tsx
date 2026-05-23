@@ -62,7 +62,7 @@ const StageMedia = ({ videoUrl, mapUrl, imgs }: StageMediaProps) => {
 
       {videoUrl && (
         <TabsContent value="video">
-          <div className="overflow-hidden w-7xl my-8 mx-auto rounded-xl border bg-black">
+          <div className="overflow-hidden w-full max-w-7xl my-8 mx-auto rounded-xl border bg-black">
             <div className="aspect-video w-full">
               <iframe
                 className="h-full w-full"
