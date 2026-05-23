@@ -192,7 +192,7 @@ const StageTimelineItem = ({
 
 const StageTimeline = ({ stages }: StageTimelineProps) => {
   return (
-    <div className="relative grid grid-cols-1 lg:grid-cols-3">
+    <div className="relative grid grid-cols-1 lg:grid-cols-2">
       {stages.map((s, i) => (
         <StageTimelineItem
           key={s.id}
