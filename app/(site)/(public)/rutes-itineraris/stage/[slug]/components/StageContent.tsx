@@ -162,7 +162,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
         </TypoH2>
         <TabsManager
           paramName="entornTab"
-          defaultValue="regions"
+          defaultValue={stage.pois?.length ? 'pois' : 'regions'}
           sectionId="entorn-section"
           tabs={[
             {
