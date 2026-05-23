@@ -8,7 +8,7 @@ import {
   MountainIcon,
   RouteIcon,
 } from 'lucide-react';
-import { TypoH2, TypoP } from '@/components/ui/typo/typoComponents';
+import { TypoH2Var, TypoP } from '@/components/ui/typo/typoComponents';
 
 import { Button } from '@/components/ui/button';
 import CopyLinkButton from '../../../components/CopyLinkButton';
@@ -27,10 +27,10 @@ interface RouteContentProps {
 
 const StageContent = ({ stage }: RouteContentProps) => {
   return (
-    <div className="flex flex-col gap-y-12">
-      <section>
+    <div className="flex flex-col gap-y-12 md:gap-y-24">
+      <section className="bg-secondary/40 p-8 rounded-sm shadow-sm max-w-5xl mx-auto">
         {/* DESCRIPTION */}
-        <TypoP className="text-muted-foreground leading-relaxed">
+        <TypoP className="text-muted-foreground leading-relaxed border-l-2 border-accent pl-3 text-base">
           {stage.stageDesc}
         </TypoP>
       </section>
@@ -40,10 +40,10 @@ const StageContent = ({ stage }: RouteContentProps) => {
         id="media-section"
         className="scroll-m-20"
       >
-        <TypoH2 className="mb-4">
+        <TypoH2Var className="mb-4 flex items-center gap-4">
           Explora el camí
           <CopyLinkButton hash="media-section" />
-        </TypoH2>
+        </TypoH2Var>
         <StageMedia
           videoUrl={stage.videoUrl}
           mapUrl={stage.stageMapUrl}
@@ -56,10 +56,10 @@ const StageContent = ({ stage }: RouteContentProps) => {
         id="planifica-section"
         className="min-h-60 scroll-m-20"
       >
-        <TypoH2 className="mb-4">
+        <TypoH2Var className="mb-4 flex items-center gap-4">
           Planifica l&apos;etapa
           <CopyLinkButton hash="planifica-section" />
-        </TypoH2>
+        </TypoH2Var>
         <TabsManager
           paramName="planificaTab"
           defaultValue="technical-data"
@@ -156,10 +156,10 @@ const StageContent = ({ stage }: RouteContentProps) => {
         id="entorn-section"
         className="min-h-64 scroll-m-20"
       >
-        <TypoH2 className="mb-4">
+        <TypoH2Var className="mb-4 flex items-center gap-4">
           Descobreix l&apos;entorn
           <CopyLinkButton hash="entorn-section" />
-        </TypoH2>
+        </TypoH2Var>
         <TabsManager
           paramName="entornTab"
           defaultValue={stage.pois?.length ? 'pois' : 'regions'}

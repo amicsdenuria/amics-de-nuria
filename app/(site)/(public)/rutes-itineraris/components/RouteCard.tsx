@@ -1,15 +1,10 @@
-import {
-  ArrowRightIcon,
-  MapPinIcon,
-  MilestoneIcon,
-  RouteIcon,
-} from 'lucide-react';
+import { ArrowRightIcon, MilestoneIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Badge } from '@/components/ui/badge';
 import { DomainRoute } from '@/domain/route/route.types';
 import Link from 'next/link';
-import { TypoH2 } from '@/components/ui/typo/typoComponents';
+import { TypoH3Var } from '@/components/ui/typo/typoComponents';
 
 interface RouteCardProps {
   route: DomainRoute;
@@ -21,30 +16,15 @@ const RouteCard = ({ route }: RouteCardProps) => {
         <CardHeader>
           <div className="flex items-start justify-between">
             <CardTitle className="flex flex-wrap items-center gap-2">
-              <RouteIcon className="h-5 w-5 text-primary" />
-              <TypoH2 className="border-none pb-0">
+              <TypoH3Var className="border-none pb-0 text-secondary-foreground">
                 {route.origin} a {route.destiny}
-              </TypoH2>
-              {route.alternativeRoutePoints &&
-                route.alternativeRoutePoints.length > 0 && (
-                  <span className="text-sm text-muted-foreground/60">
-                    ({route.alternativeRoutePoints[0]})
-                  </span>
-                )}
+              </TypoH3Var>
             </CardTitle>
             <ArrowRightIcon className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
         </CardHeader>
 
         <CardContent className="space-y-4">
-          <div className="flex items-center gap-2 text-sm">
-            <MapPinIcon className="h-4 w-4 text-emerald-600" />
-            <span className="font-medium">{route.origin}</span>
-            <ArrowRightIcon className="h-3 w-3 text-muted-foreground" />
-            <MapPinIcon className="h-4 w-4 text-rose-600" />
-            <span className="font-medium">{route.destiny}</span>
-          </div>
-
           <div className="flex flex-wrap gap-1.5">
             {route.alternativeRoutePoints?.map((point) => (
               <Badge

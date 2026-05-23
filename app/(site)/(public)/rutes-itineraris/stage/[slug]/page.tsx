@@ -2,8 +2,8 @@ import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../../../components/PrimaryPageHero';
 import StageContent from './components/StageContent';
 import { getStageBySlug } from '@/domain/stage/stage.service';
-import { notFound } from 'next/navigation';
 import { mapStageHero } from '../../heroMappers';
+import { notFound } from 'next/navigation';
 
 interface StagePageParams {
   params: Promise<{ slug: string }>;
@@ -18,7 +18,7 @@ const StagePage = async ({ params }: StagePageParams) => {
   return (
     <>
       <PrimaryPageHero {...mapStageHero(stage)} />
-      <PageContainer className="pt-16 md:pt-24 pb-8">
+      <PageContainer className="py-16 md:py-24">
         <StageContent stage={stage} />
       </PageContainer>
     </>

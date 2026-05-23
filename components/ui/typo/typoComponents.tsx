@@ -35,6 +35,19 @@ export function TypoH2Var({ children, className }: ComponentProps<'h2'>) {
   );
 }
 
+export function TypoH3Var({ children, className }: ComponentProps<'h3'>) {
+  return (
+    <h3
+      className={cn(
+        'scroll-m20 text-2xl md:text-3xl font-light tracking-tight text-foreground',
+        className,
+      )}
+    >
+      {children}
+    </h3>
+  );
+}
+
 export function TypoH2({ children, className }: ComponentProps<'h2'>) {
   return (
     <h2

@@ -24,8 +24,8 @@ const RouteMap = ({ src }: RouteMapProps) => {
 
   return (
     <div className="space-y-4 relative">
-      <div className="flex gap-x-4 h-15 justify-end absolute right-0 top-0 bg-linear-to-r from-white via-white to-neutral-200 px-4 border rounded-tr-lg">
-        <div className="right-4 top-3 flex gap-x-4">
+      <div className="flex w-full gap-x-4 h-15 absolute right-0 top-0 bg-white px-4 border rounded-t-lg">
+        <div className="right-4 top-3 flex gap-x-8">
           <ToggleGroup
             type="single"
             variant={'outline'}

@@ -38,7 +38,6 @@ const CopyLinkButton = ({ hash }: CopyLinkButtonProps) => {
       variant={'ghost'}
       size={'icon-sm'}
       onClick={handleCopyLink}
-      className="ml-4"
       title={copied ? 'Copiado!' : 'Copiar enlace'}
     >
       {copied ? <CheckIcon className="text-green-500" /> : <Link2Icon />}
