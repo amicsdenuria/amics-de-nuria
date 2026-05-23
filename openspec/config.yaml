@@ -1,0 +1,74 @@
+schema: spec-driven
+
+project: amics-de-nuria
+persistence: hybrid
+detected_at: 2026-05-23
+strict_tdd: false
+
+context: |
+  Tech stack: Next.js 16 App Router, React 19, TypeScript 5, Tailwind CSS 4, shadcn/ui, Sanity CMS, Clerk auth, Stripe billing.
+  Architecture: App Router route groups for public/user/admin areas, Server Actions in actions/, domain services in domain/, shared libs in lib/.
+  Testing: no configured test runner or test files detected; quality gates are ESLint, TypeScript noEmit, and next build.
+  Package manager: pnpm via pnpm-lock.yaml.
+  Locale/content: Catalan site copy, Sanity Studio mounted at /admin.
+
+testing:
+  strict_tdd: false
+  reason: No project test runner, test script, or test files were detected.
+  runner:
+    framework: null
+    command: null
+  layers:
+    unit:
+      available: false
+      tool: null
+    integration:
+      available: false
+      tool: null
+    e2e:
+      available: false
+      tool: null
+  coverage:
+    available: false
+    command: null
+  quality:
+    linter:
+      available: true
+      command: pnpm lint
+    type_checker:
+      available: true
+      command: pnpm lint:types
+    formatter:
+      available: false
+      command: null
+    build:
+      available: true
+      command: pnpm build
+
+rules:
+  proposal:
+    - Include scope, non-goals, user-visible impact, and rollback plan for risky changes.
+  specs:
+    - Use Given/When/Then scenarios and RFC 2119 keywords.
+    - Keep behavior requirements independent from implementation details.
+  design:
+    - Document data flow across Next.js, Sanity, Clerk, and Stripe when touched.
+    - Call out Server Component vs Client Component boundaries explicitly.
+  tasks:
+    - Group tasks into small reviewable work units; default guard is 400 changed lines.
+    - Keep tests or verification with the behavior they validate.
+  apply:
+    tdd: false
+    test_command: null
+    quality_commands:
+      - pnpm lint
+      - pnpm lint:types
+      - pnpm build
+    notes:
+      - User handles commits manually; do not commit, push, or create PRs.
+  verify:
+    test_command: null
+    build_command: pnpm build
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas into main specs.
