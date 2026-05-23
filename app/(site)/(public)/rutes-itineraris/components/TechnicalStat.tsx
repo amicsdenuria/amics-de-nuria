@@ -1,12 +1,6 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-
 import { InfoIcon } from 'lucide-react';
 import { ReactNode } from 'react';
+import { ResponsiveTooltip } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 
 interface TechnicalStatProps {
@@ -45,14 +39,9 @@ const TechnicalStat = ({
 
   if (tooltip) {
     return (
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>{content}</TooltipTrigger>
-          <TooltipContent className="max-w-xs">
-            <p>{tooltip}</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <ResponsiveTooltip content={tooltip} contentClassName="max-w-xs">
+        {content}
+      </ResponsiveTooltip>
     );
   }
 

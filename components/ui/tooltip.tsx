@@ -1,6 +1,14 @@
 "use client"
 
-import * as React from "react"
+import {
+  type ComponentProps,
+  type KeyboardEvent,
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { Tooltip as TooltipPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -8,7 +16,7 @@ import { cn } from "@/lib/utils"
 function TooltipProvider({
   delayDuration = 0,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
+}: ComponentProps<typeof TooltipPrimitive.Provider>) {
   return (
     <TooltipPrimitive.Provider
       data-slot="tooltip-provider"
@@ -20,13 +28,13 @@ function TooltipProvider({
 
 function Tooltip({
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Root>) {
+}: ComponentProps<typeof TooltipPrimitive.Root>) {
   return <TooltipPrimitive.Root data-slot="tooltip" {...props} />
 }
 
 function TooltipTrigger({
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
+}: ComponentProps<typeof TooltipPrimitive.Trigger>) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
 }
 
@@ -35,7 +43,7 @@ function TooltipContent({
   sideOffset = 0,
   children,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
+}: ComponentProps<typeof TooltipPrimitive.Content>) {
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
@@ -54,4 +62,90 @@ function TooltipContent({
   )
 }
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+interface ResponsiveTooltipProps {
+  children: ReactNode
+  content: ReactNode
+  contentClassName?: string
+  triggerClassName?: string
+}
+
+function ResponsiveTooltip({
+  children,
+  content,
+  contentClassName,
+  triggerClassName,
+}: ResponsiveTooltipProps) {
+  const [open, setOpen] = useState(false)
+  const triggerRef = useRef<HTMLDivElement>(null)
+
+  const toggleOpen = () => setOpen((currentOpen) => !currentOpen)
+
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse") {
+      return
+    }
+
+    event.preventDefault()
+    setOpen(true)
+  }
+
+  useEffect(() => {
+    if (!open) {
+      return
+    }
+
+    const handleOutsidePointerDown = (event: PointerEvent) => {
+      if (
+        event.target instanceof Node &&
+        triggerRef.current?.contains(event.target)
+      ) {
+        return
+      }
+
+      setOpen(false)
+    }
+
+    document.addEventListener("pointerdown", handleOutsidePointerDown)
+
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsidePointerDown)
+    }
+  }, [open])
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return
+    }
+
+    event.preventDefault()
+    toggleOpen()
+  }
+
+  return (
+    <TooltipProvider>
+      <Tooltip open={open} onOpenChange={setOpen}>
+        <TooltipTrigger asChild>
+          <div
+            ref={triggerRef}
+            aria-expanded={open}
+            className={cn(
+              "block cursor-help focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              triggerClassName
+            )}
+            role="button"
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
+            onPointerDown={handlePointerDown}
+          >
+            {children}
+          </div>
+        </TooltipTrigger>
+        <TooltipContent className={contentClassName}>
+          {typeof content === "string" ? <p>{content}</p> : content}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, ResponsiveTooltip }
