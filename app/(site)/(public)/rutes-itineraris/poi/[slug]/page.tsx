@@ -5,6 +5,7 @@ import { TypoP } from '@/components/ui/typo/typoComponents';
 import { getPoiBySlug } from '@/domain/poi/poi.service';
 import { notFound } from 'next/navigation';
 import { mapPoiHero } from '../../heroMappers';
+import { getImageProps } from '@/sanity/lib/image';
 
 interface RegionPageParams {
   params: Promise<{ slug: string }>;
@@ -15,6 +16,19 @@ const RegionPage = async ({ params }: RegionPageParams) => {
   const poi = await getPoiBySlug(slug);
 
   if (!poi) notFound();
+
+  const thumbnailImage = getImageProps(poi.image, {
+    width: 900,
+    height: 675,
+    sizes: '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px',
+    fit: 'crop',
+  });
+  const fullImage = getImageProps(poi.image, {
+    width: 1600,
+    height: 1200,
+    sizes: '90vw',
+    fit: 'clip',
+  });
 
   return (
     <>
@@ -31,10 +45,7 @@ const RegionPage = async ({ params }: RegionPageParams) => {
           {/* Img */}
           <aside className="w-full lg:w-2/5">
             <div className="lg:sticky lg:top-20">
-              <ImageLightbox
-                src={poi.image.url}
-                alt={poi.image.alt}
-              />
+              {thumbnailImage && fullImage ? <ImageLightbox thumbnail={thumbnailImage} full={fullImage} /> : null}
             </div>
           </aside>
         </div>

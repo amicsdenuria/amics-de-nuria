@@ -24,7 +24,13 @@ export const stageFromSanity = (
       slug: region.slug ?? '',
       name: region.name ?? '',
       img: {
-        url: region.img?.asset?.url ?? '',
+        sanity: region.img
+          ? {
+              asset: region.img.asset,
+              crop: region.img.crop,
+              hotspot: region.img.hotspot,
+            }
+          : null,
         alt: region.img?.alt ?? '',
       },
     })),
@@ -32,14 +38,24 @@ export const stageFromSanity = (
       slug: poi.slug ?? '',
       name: poi.name ?? '',
       img: {
-        url: poi.img?.asset?.url ?? '',
+        sanity: poi.img
+          ? {
+              asset: poi.img.asset,
+              crop: poi.img.crop,
+              hotspot: poi.img.hotspot,
+            }
+          : null,
         alt: poi.img?.alt ?? '',
       },
     })),
     trailLocations: data.trailLocations ?? [],
     allocations: data.allocations,
     imgs: data.imgs?.map((img) => ({
-      url: img.asset?.url ?? '',
+      sanity: {
+        asset: img.asset,
+        crop: img.crop,
+        hotspot: img.hotspot,
+      },
       alt: img.alt ?? '',
     })),
     notes: data.notes,

@@ -17,7 +17,13 @@ export const regionFromSanity = (
     slug: data.slug,
     province: data.province ?? '',
     image: {
-      url: data.img?.asset?.url ?? '',
+      sanity: data.img
+        ? {
+            asset: data.img.asset,
+            crop: data.img.crop,
+            hotspot: data.img.hotspot,
+          }
+        : null,
       alt: data.img?.alt ?? '',
     },
     text: data.text ?? [],

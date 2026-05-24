@@ -11,9 +11,9 @@ export const getPoiBySlug = async ({ slug }: GetPoiBySlugParams) => {
         ...,
         "slug": slug.current,
         img{
-          asset->{
-            url
-          },
+          asset,
+          crop,
+          hotspot,
           alt
         }
       }

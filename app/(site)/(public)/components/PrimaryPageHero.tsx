@@ -8,6 +8,7 @@ export interface PrimaryPageHeroImage {
   src: string;
   alt: string;
   className?: string;
+  sizes?: string;
 }
 
 export interface PrimaryPageHeroProps {
@@ -44,7 +45,8 @@ const PrimaryPageHero = ({
             src={img.src}
             alt={img.alt}
             fill
-            className={cn('object-cover object-top', img.className)}
+            sizes={img.sizes}
+            className={cn('object-cover', img.className)}
           />
           <div className="absolute inset-0 bg-black/20" />
           <div className="absolute inset-0 bg-white/75" />

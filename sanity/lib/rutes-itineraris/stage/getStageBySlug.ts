@@ -13,9 +13,9 @@ export const getStageBySlug = async ({ slug }: GetStageBySlugParams) => {
           "slug": slug.current,
           name,
           img{
-            asset->{
-              url
-            },
+            asset,
+            crop,
+            hotspot,
             alt
           }
         },
@@ -23,16 +23,16 @@ export const getStageBySlug = async ({ slug }: GetStageBySlugParams) => {
           "slug": slug.current,
           name,
           img{
-            asset->{
-              url
-            },
+            asset,
+            crop,
+            hotspot,
             alt
           }
         },
         imgs[]{
-          asset->{
-            url
-          },
+          asset,
+          crop,
+          hotspot,
           alt
         }
       }

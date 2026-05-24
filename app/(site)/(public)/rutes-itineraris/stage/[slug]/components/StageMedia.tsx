@@ -7,11 +7,12 @@ import ImgsCarousel from '../../../components/ImgsCarousel';
 import RouteMap from '../../../components/Map';
 import { TabsContent } from '@/components/ui/tabs';
 import { TabsManager } from './TabsManager';
+import type { DomainImage } from '@/domain/shared/image.types';
 
 interface StageMediaProps {
   videoUrl: string | undefined;
   mapUrl: string;
-  imgs: { url: string; alt: string }[] | undefined;
+  imgs: DomainImage[] | undefined;
 }
 
 const StageMedia = ({ videoUrl, mapUrl, imgs }: StageMediaProps) => {

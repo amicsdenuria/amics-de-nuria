@@ -20,6 +20,7 @@ import Stats from '../../../components/Stats';
 import { TabsContent } from '@/components/ui/tabs';
 import { TabsManager } from './TabsManager';
 import { cn } from '@/lib/utils';
+import { getImageProps } from '@/sanity/lib/image';
 
 interface RouteContentProps {
   stage: DomainStage;
@@ -204,15 +205,32 @@ const StageContent = ({ stage }: RouteContentProps) => {
                         'group cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1',
                       )}
                     >
-                      <div className="relative aspect-video w-full">
-                        <Image
-                          src={poi.img.url}
-                          alt={poi.img.alt}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          className="relative z-20 aspect-video w-full object-cover"
-                        />
-                      </div>
+                      {(() => {
+                        const imageProps = getImageProps(poi.img, {
+                          fill: true,
+                          sizes:
+                            '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw',
+                          fit: 'crop',
+                          targetWidth: 768,
+                          targetHeight: 432,
+                        });
+
+                        if (!imageProps) {
+                          return null;
+                        }
+
+                        return (
+                          <div className="relative aspect-video w-full">
+                            <Image
+                              src={imageProps.src}
+                              alt={imageProps.alt}
+                              fill
+                              sizes={imageProps.sizes}
+                              className="relative z-20 aspect-video w-full object-cover"
+                            />
+                          </div>
+                        );
+                      })()}
                       <CardHeader>
                         <CardTitle>{poi.name}</CardTitle>
                       </CardHeader>
@@ -235,15 +253,32 @@ const StageContent = ({ stage }: RouteContentProps) => {
                       'group cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1',
                     )}
                   >
-                    <div className="relative aspect-video w-full">
-                      <Image
-                        src={region.img.url}
-                        alt={region.img.alt}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="relative z-20 aspect-video w-full object-cover"
-                      />
-                    </div>
+                    {(() => {
+                      const imageProps = getImageProps(region.img, {
+                        fill: true,
+                        sizes:
+                          '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw',
+                        fit: 'crop',
+                        targetWidth: 768,
+                        targetHeight: 432,
+                      });
+
+                      if (!imageProps) {
+                        return null;
+                      }
+
+                      return (
+                        <div className="relative aspect-video w-full">
+                          <Image
+                            src={imageProps.src}
+                            alt={imageProps.alt}
+                            fill
+                            sizes={imageProps.sizes}
+                            className="relative z-20 aspect-video w-full object-cover"
+                          />
+                        </div>
+                      );
+                    })()}
                     <CardHeader>
                       <CardTitle>{region.name}</CardTitle>
                     </CardHeader>

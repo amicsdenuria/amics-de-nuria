@@ -12,9 +12,9 @@ export const getRegionBySlug = async ({ slug }: GetRegionBySlugParams) => {
     "slug": slug.current,
     province,
     img{
-      asset->{
-        url
-      },
+      asset,
+      crop,
+      hotspot,
       alt
     },
     text

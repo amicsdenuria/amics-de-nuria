@@ -12,14 +12,15 @@ import { XIcon, ZoomInIcon } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import type { SafeImageProps } from '@/sanity/lib/image';
 
 interface ImageLightboxProps {
-  src: string;
-  alt: string;
+  thumbnail: SafeImageProps;
+  full: SafeImageProps;
   className?: string;
 }
 
-export const ImageLightbox = ({ src, alt, className }: ImageLightboxProps) => {
+export const ImageLightbox = ({ thumbnail, full, className }: ImageLightboxProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -39,11 +40,11 @@ export const ImageLightbox = ({ src, alt, className }: ImageLightboxProps) => {
         )}
       >
         <Image
-          src={src}
-          alt={alt}
-          width={0}
-          height={0}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+          src={thumbnail.src}
+          alt={thumbnail.alt}
+          width={'width' in thumbnail ? thumbnail.width : 0}
+          height={'height' in thumbnail ? thumbnail.height : 0}
+          sizes={thumbnail.sizes ?? '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px'}
           className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           style={{ width: '100%', height: 'auto' }}
         />
@@ -69,7 +70,7 @@ export const ImageLightbox = ({ src, alt, className }: ImageLightboxProps) => {
             'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
           )}
         >
-          <DialogTitle className="sr-only">{alt}</DialogTitle>
+          <DialogTitle className="sr-only">{full.alt}</DialogTitle>
 
           {/* Close button - fixed position, always visible */}
           <DialogClose
@@ -89,11 +90,11 @@ export const ImageLightbox = ({ src, alt, className }: ImageLightboxProps) => {
             className="relative max-h-[90vh] max-w-[90vw] cursor-default"
           >
             <Image
-              src={src}
-              alt={alt}
-              width={0}
-              height={0}
-              sizes="90vw"
+              src={full.src}
+              alt={full.alt}
+              width={'width' in full ? full.width : 0}
+              height={'height' in full ? full.height : 0}
+              sizes={full.sizes ?? '90vw'}
               className="h-auto max-h-[90vh] w-auto max-w-[90vw] rounded-lg object-contain shadow-2xl"
               style={{ width: 'auto', height: 'auto' }}
               priority

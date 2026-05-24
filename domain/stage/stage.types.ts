@@ -12,19 +12,13 @@ export interface TechnicalDetails {
 export interface StageRegion {
   slug: string;
   name: string;
-  img: {
-    url: string;
-    alt: string;
-  };
+  img: DomainImage;
 }
 
 export interface StagePoi {
   slug: string;
   name: string;
-  img: {
-    url: string;
-    alt: string;
-  };
+  img: DomainImage;
 }
 
 export interface DomainStage {
@@ -41,9 +35,7 @@ export interface DomainStage {
   technicalDetails: TechnicalDetails;
   allocations?: string[];
   pois?: StagePoi[];
-  imgs?: {
-    url: string;
-    alt: string;
-  }[];
+  imgs?: DomainImage[];
   notes?: string[];
 }
+import type { DomainImage } from '../shared/image.types';
