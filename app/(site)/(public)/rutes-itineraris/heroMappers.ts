@@ -1,8 +1,8 @@
-import type { PrimaryPageHeroProps } from '../components/PrimaryPageHero';
-import type { DomainRoute } from '@/domain/route/route.types';
-import type { DomainStage } from '@/domain/stage/stage.types';
 import type { DomainPoi } from '@/domain/poi/poi.types';
 import type { DomainRegion } from '@/domain/region/region.types';
+import type { DomainRoute } from '@/domain/route/route.types';
+import type { DomainStage } from '@/domain/stage/stage.types';
+import type { PrimaryPageHeroProps } from '../components/PrimaryPageHero';
 import { getImageProps } from '@/sanity/lib/image';
 
 const HERO_IMAGE_SRC = '/hero-muntanya-nuria.webp';
@@ -12,7 +12,8 @@ const mapPointsDescription = (points?: string[]): string | undefined =>
   points?.length ? points.join(' - ') : undefined;
 
 export const mapRouteHero = (route: DomainRoute): PrimaryPageHeroProps => ({
-  title: `Ruta ${route.origin} - ${route.destiny}`,
+  pretitle: 'Ruta',
+  title: `${route.origin} - ${route.destiny}`,
   description: mapPointsDescription(route.alternativeRoutePoints),
   img: {
     src: HERO_IMAGE_SRC,
@@ -22,7 +23,8 @@ export const mapRouteHero = (route: DomainRoute): PrimaryPageHeroProps => ({
 });
 
 export const mapStageHero = (stage: DomainStage): PrimaryPageHeroProps => ({
-  title: `Etapa ${stage.origin} - ${stage.destiny}`,
+  pretitle: 'Etapa',
+  title: `${stage.origin} - ${stage.destiny}`,
   description: mapPointsDescription(stage.wayPoints),
   img: {
     src: HERO_IMAGE_SRC,
@@ -32,23 +34,27 @@ export const mapStageHero = (stage: DomainStage): PrimaryPageHeroProps => ({
 });
 
 export const mapPoiHero = (poi: DomainPoi): PrimaryPageHeroProps => ({
+  pretitle: "Punt d'interès",
   title: poi.name,
   description: poi.location,
-  img: getImageProps(poi.image, {
-    fill: true,
-    sizes: '100vw',
-    targetWidth: 1920,
-    targetHeight: 1080,
-  }) ?? undefined,
+  img:
+    getImageProps(poi.image, {
+      fill: true,
+      sizes: '100vw',
+      targetWidth: 1920,
+      targetHeight: 1080,
+    }) ?? undefined,
 });
 
 export const mapRegionHero = (region: DomainRegion): PrimaryPageHeroProps => ({
+  pretitle: 'Comarca',
   title: region.name,
   description: region.province,
-  img: getImageProps(region.image, {
-    fill: true,
-    sizes: '100vw',
-    targetWidth: 1920,
-    targetHeight: 1080,
-  }) ?? undefined,
+  img:
+    getImageProps(region.image, {
+      fill: true,
+      sizes: '100vw',
+      targetWidth: 1920,
+      targetHeight: 1080,
+    }) ?? undefined,
 });

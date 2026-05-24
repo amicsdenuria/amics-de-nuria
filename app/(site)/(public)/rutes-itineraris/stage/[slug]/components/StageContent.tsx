@@ -41,7 +41,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
         id="media-section"
         className="scroll-m-20"
       >
-        <TypoH2Var className="mb-4 flex items-center gap-4">
+        <TypoH2Var className="mb-4 flex items-center gap-4 text-primary">
           Explora el camí
           <CopyLinkButton hash="media-section" />
         </TypoH2Var>
@@ -57,7 +57,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
         id="planifica-section"
         className="min-h-60 scroll-m-20"
       >
-        <TypoH2Var className="mb-4 flex items-center gap-4">
+        <TypoH2Var className="mb-4 flex items-center gap-4 text-primary">
           Planifica l&apos;etapa
           <CopyLinkButton hash="planifica-section" />
         </TypoH2Var>
@@ -157,7 +157,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
         id="entorn-section"
         className="min-h-64 scroll-m-20"
       >
-        <TypoH2Var className="mb-4 flex items-center gap-4">
+        <TypoH2Var className="mb-4 flex items-center gap-4 text-primary">
           Descobreix l&apos;entorn
           <CopyLinkButton hash="entorn-section" />
         </TypoH2Var>

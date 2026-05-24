@@ -35,8 +35,8 @@ const RouteContent = ({ route, stages, stats }: RouteContentProps) => {
         id="technical-details"
         className="scroll-m-20"
       >
-        <TypoH2Var className="flex items-center gap-4 mb-4">
-          <MountainIcon className="h-9 w-9 border-2 border-black/70 p-1 rounded-sm" />
+        <TypoH2Var className="flex items-center gap-4 mb-4 text-primary">
+          <MountainIcon className="h-9 w-9 border-2 border-primary/70 p-1 rounded-sm" />
           Dades tècniques
           <CopyLinkButton hash="technical-details" />
         </TypoH2Var>
@@ -48,8 +48,8 @@ const RouteContent = ({ route, stages, stats }: RouteContentProps) => {
         id="route-map"
         className="scroll-m-20"
       >
-        <TypoH2Var className="flex items-center gap-4 mb-4">
-          <MapIcon className="h-9 w-9 border-2 border-black/70 p-1 rounded-sm" />
+        <TypoH2Var className="flex items-center gap-4 mb-4 text-primary">
+          <MapIcon className="h-9 w-9 border-2 border-primary/70 p-1 rounded-sm" />
           Mapa de la ruta
           <CopyLinkButton hash="route-map" />
         </TypoH2Var>
@@ -62,8 +62,8 @@ const RouteContent = ({ route, stages, stats }: RouteContentProps) => {
           id="route-notes"
           className="scroll-m-20"
         >
-          <TypoH2Var className="flex items-center gap-4 mb-4">
-            <InfoIcon className="h-9 w-9 border-2 border-black/70 p-1 rounded-sm" />
+          <TypoH2Var className="flex items-center gap-4 mb-4 text-primary">
+            <InfoIcon className="h-9 w-9 border-2 border-primary/70 p-1 rounded-sm" />
             Notes importants
             <CopyLinkButton hash="route-notes" />
           </TypoH2Var>
@@ -80,8 +80,8 @@ const RouteContent = ({ route, stages, stats }: RouteContentProps) => {
         id="route-stages"
         className="scroll-m-20"
       >
-        <TypoH2Var className="flex items-center gap-4 mb-4">
-          <RouteIcon className="h-9 w-9 border-2 border-black/70 p-1 rounded-sm" />
+        <TypoH2Var className="flex items-center gap-4 mb-4 text-primary">
+          <RouteIcon className="h-9 w-9 border-2 border-primary/70 p-1 rounded-sm" />
           Etapes ({stages.length})
           <CopyLinkButton hash="route-stages" />
         </TypoH2Var>

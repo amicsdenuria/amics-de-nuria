@@ -1,5 +1,11 @@
 import { ArrowRightIcon, MilestoneIcon } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 import { Badge } from '@/components/ui/badge';
 import { DomainRoute } from '@/domain/route/route.types';
@@ -22,6 +28,7 @@ const RouteCard = ({ route }: RouteCardProps) => {
             </CardTitle>
             <ArrowRightIcon className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
+          <CardDescription>{route.routeDesc[0]}</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">

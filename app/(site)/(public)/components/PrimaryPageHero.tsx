@@ -37,6 +37,12 @@ const PrimaryPageHero = ({
 }: PrimaryPageHeroProps) => {
   const showPrimaryCTAButton = showSubscribeCTA && !isEnrolled;
 
+  const isRutesItinerarisSubpage =
+    pretitle === 'Ruta' ||
+    pretitle === 'Etapa' ||
+    pretitle === "Punt d'interès" ||
+    pretitle === 'Comarca';
+
   return (
     <section className="relative flex min-h-[70vh] items-center justify-center font-serif overflow-hidden bg-secondary/30">
       {img && (
@@ -66,7 +72,12 @@ const PrimaryPageHero = ({
             {pretitle}
           </p>
         )}
-        <h1 className="mb-6 text-balance text-5xl font-light leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
+        <h1
+          className={cn(
+            'mb-6 text-balance text-5xl font-light leading-tight tracking-tight md:text-6xl lg:text-7xl',
+            isRutesItinerarisSubpage ? 'text-primary' : 'text-foreground',
+          )}
+        >
           {title}
         </h1>
         {subtitle && (
