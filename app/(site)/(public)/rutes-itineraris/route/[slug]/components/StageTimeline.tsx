@@ -7,8 +7,8 @@ import {
   ChevronRightIcon,
   ClockIcon,
   ExternalLinkIcon,
-  MapIcon,
   MapPinIcon,
+  MilestoneIcon,
   MountainIcon,
   RulerIcon,
   TrendingDownIcon,
@@ -94,18 +94,20 @@ const StageTimelineItem = ({
                 </span>
               </div>
 
-              <div className="flex flex-wrap gap-1.5 mt-3">
-                {stage.regions.map((region) => (
-                  <Badge
-                    key={region.slug}
-                    variant={'secondary'}
-                    className="text-xs"
-                  >
-                    <MapIcon className="h-3 w-3 mr-1" />
-                    {region.name}
-                  </Badge>
-                ))}
-              </div>
+              {stage.wayPoints && stage.wayPoints.length && (
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {stage.wayPoints.map((point) => (
+                    <Badge
+                      key={point}
+                      variant={'secondary'}
+                      className="text-xs"
+                    >
+                      <MilestoneIcon className="h-3 w-3 mr-1" />
+                      {point}
+                    </Badge>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </button>
