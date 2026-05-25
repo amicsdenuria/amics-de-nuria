@@ -32,7 +32,7 @@ export const lligaEspiritualSubpages: LligaEspiritualSubpages = {
   drRamon: {
     title: 'El Dr. Ramón Bassols',
     intro:
-      'El Dr. Ramon Bassols i Genís (1919-1959) va ser un metge sabadellenc i muntanyenc amb una gran vocació social. Fou l’impulsor de la creació d’Amics de Núria - Lliga espiritual de la Mare de Déu de Núria.',
+      'El Dr. Ramon Bassols i Genís (1919-1959) metge i impulsor de la creació d’Amics de Núria - Lliga espiritual de la Mare de Déu de Núria.',
     blocks: [
       {
         title: 'Estudis de medicina',
@@ -56,7 +56,7 @@ export const lligaEspiritualSubpages: LligaEspiritualSubpages = {
   confraria: {
     title: 'La Confraria',
     intro:
-      "Amics de Núria- Lliga espiritual de la Mare de Déu de Núria va néixer amb la intenció de ser hereva i guardiana de l'esperit de la secular Confraria de la Mare de Déu de Núria, íntimament lligada a la devoció popular i al desig de preservar la identitat espiritual de la Vall.",
+      "Amics de Núria- Lliga espiritual de la Mare de Déu de Núria va néixer amb la intenció de ser hereva i guardiana de l'esperit de la Confraria de la Mare de Déu de Núria.",
     blocks: [
       {
         title: "Referència històrica d'Amics de Núria",
@@ -76,7 +76,7 @@ export const lligaEspiritualSubpages: LligaEspiritualSubpages = {
   origens: {
     title: 'Orígens',
     intro:
-      "Darrere dels orígens d’Amics de Núria - Lliga espiritual de la Mare de Déu de Núria hi ha una història familiar que és la clau per entendre com va sobreviure i prosperar l'entitat. No va néixer com una organització civil burocràtica, sinó com un teixit de llinatges familiars de la burgesia i classes professionals barcelonines que compartien l'estiueig al Pirineu.",
+      "Amics de Núria - Lliga espiritual de la Mare de Déu de Núria va néixer amb la intenció de ser hereva i guardiana de l'esperit de la Confraria de la Mare de Déu de Núria.",
     blocks: [
       {
         title: "Les colònies d'estiueig",

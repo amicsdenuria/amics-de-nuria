@@ -132,7 +132,7 @@ export const santuariSubpages: SantuariSubpages = {
   creuRiba: {
     title: "La Creu d'en Riba",
     intro:
-      "El Mirador de la Creu d'en Riba deu el seu nom a la seva ubicació en un marge costerut sobre les Gorges de Núria i a la històrica família Riba de Queralbs, antiga propietària de les pastures.",
+      "Mirador custodi de la pau del santuari i guardià dels cims, on la bellesa de la vall eleva l'esperit i el silenci pregària.",
     blocks: [
       {
         title: 'El doble origen del nom',
@@ -144,7 +144,11 @@ export const santuariSubpages: SantuariSubpages = {
       },
       {
         title: "L'evolució del Monument",
-        body: "Abans de l'existència de qualsevol símbol cristià, en aquest punt exacte de la carena hi havia un megàlit o menhir de pedra blanca. Conegut popularment com la pedra de Sant Gil, aquest monument s'associava a ritus ancestrals de fertilitat. La tradició dictava que les dones que es fregaven contra la roca s'asseguraven la descendència. Durant l'edat mitjana, l'Església Catòlica va dur a terme una política de reconversió dels llocs de culte pagà. Per aquest motiu, es va decidir retirar el menhir i substituir-lo per una creu de fusta. Aquest canvi buscava erradicar els antics rituals, dotar l'espai d'un nou significat espiritual cristià i marcar el límit sagrat d'entrada al santuari. Amb els anys, la creu de fusta original va desaparèixer i el monument actual es va convertir en una construcció del segle XX. L'associació Amics de Núria va promoure i instal·lar l'estructura actual de ferro i pedra l'any 1958, una iniciativa que va servir per recuperar aquest punt històric de la carena. Aquesta nova construcció va substituir els antics símbols que havien anat desapareixent amb el pas del temps. Finalment, l'any 1983, per commemorar el vint-i-cinquè aniversari de la seva col·locació, s'hi va afegir la placa commemorativa que avui dia es pot llegir a la base.",
+        body: "Abans de l'existència de qualsevol símbol cristià, en aquest punt exacte de la carena hi havia un megàlit o menhir de pedra blanca. Conegut popularment com la pedra de Sant Gil, aquest monument s'associava a ritus ancestrals de fertilitat. La tradició dictava que les dones que es fregaven contra la roca s'asseguraven la descendència. Durant l'edat mitjana, l'Església Catòlica va dur a terme una política de reconversió dels llocs de culte pagà. Per aquest motiu, es va decidir retirar el menhir i substituir-lo per una creu de fusta. Aquest canvi buscava erradicar els antics rituals, dotar l'espai d'un nou significat espiritual cristià i marcar el límit sagrat d'entrada al santuari. Amb els anys, la creu de fusta original va desaparèixer i el monument actual es va convertir en una construcció del segle XX.",
+      },
+      {
+        title: 'La Creu actual',
+        body: "L'associació Amics de Núria va promoure i instal·lar l'estructura actual de ferro i pedra l'any 1958, una iniciativa que va servir per recuperar aquest punt històric de la carena. Aquesta nova construcció va substituir els antics símbols que havien anat desapareixent amb el pas del temps. Finalment, l'any 1983, per commemorar el vint-i-cinquè aniversari de la seva col·locació, s'hi va afegir la placa commemorativa que avui dia es pot llegir a la base.",
       },
     ],
   },
