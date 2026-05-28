@@ -25,9 +25,13 @@ const RutesItinerarisPage = async () => {
 
   const routes = await getAllRoutes();
   const currentRoute = await getCurrentRoute();
-  const filteredRoutes = currentRoute
-    ? routes.filter((route) => route.id !== currentRoute?.id)
-    : routes;
+  const filteredRoutes = (
+    currentRoute
+      ? routes.filter((route) => route.id !== currentRoute?.id)
+      : routes
+  )
+    // TODO: adaptar solicitud a sanity de getFeaturedRoutes (les 6 rutes preferides) enlloc de demanar totes les rutes getAllRoutes i fer slice de 6
+    .slice(0, 6);
 
   const spiritActivity = await getSpiritActivity();
 
@@ -55,12 +59,15 @@ const RutesItinerarisPage = async () => {
               id="current-route"
               className="scroll-m-20"
             >
-              <div className="flex flex-col sm:flex-row justify-between">
+              <div className="flex justify-between">
                 <TypoH2Var className="mb-2">
                   {currentRouteSection.title}
                 </TypoH2Var>
 
-                <Button asChild>
+                <Button
+                  asChild
+                  className="hidden sm:flex"
+                >
                   <Link href={currentRouteSection.subscriptionCTA.href}>
                     {currentRouteSection.subscriptionCTA.label}
                     <ArrowRightIcon />
@@ -75,6 +82,17 @@ const RutesItinerarisPage = async () => {
                 key={`current-route ${currentRoute.id}`}
                 route={currentRoute}
               />
+
+              {/* PHONE BUTTON */}
+              <Button
+                asChild
+                className="flex sm:hidden mt-4"
+              >
+                <Link href={currentRouteSection.subscriptionCTA.href}>
+                  {currentRouteSection.subscriptionCTA.label}
+                  <ArrowRightIcon />
+                </Link>
+              </Button>
             </section>
           )}
 
@@ -82,18 +100,16 @@ const RutesItinerarisPage = async () => {
             id="sortides-esperit"
             className="scroll-m-20"
           >
-            <div className="flex flex-col sm:flex-row justify-between">
+            <div className="flex justify-between">
               <TypoH2Var className="mb-2">{sortidesEsperit.title}</TypoH2Var>
-
-              {/* <Button asChild>
-                <Link href={sortidesEsperit.sortidesEsperitCTA.href}>
-                  Veure agenda
-                  <ArrowRightIcon />
-                </Link>
-              </Button> */}
-              <Button asChild>
+              {/* PC BUTTON */}
+              <Button
+                asChild
+                variant={'outline'}
+                className="hidden sm:flex"
+              >
                 <Link href={'/contacta'}>
-                  Demana més informació
+                  Més informació
                   <ArrowRightIcon />
                 </Link>
               </Button>
@@ -110,6 +126,18 @@ const RutesItinerarisPage = async () => {
                 href="#"
               />
             )}
+
+            {/* PHONE BUTTON */}
+            <Button
+              asChild
+              variant={'outline'}
+              className="flex sm:hidden mt-4"
+            >
+              <Link href={'/contacta'}>
+                Més informació
+                <ArrowRightIcon />
+              </Link>
+            </Button>
           </section>
 
           {filteredRoutes.length ? (
@@ -121,7 +149,7 @@ const RutesItinerarisPage = async () => {
               <p className="py-4 max-w-3xl text-muted-foreground">
                 {routesSection.description}
               </p>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {filteredRoutes.map((route) => (
                   <RouteCard
                     key={route.id}
@@ -129,6 +157,19 @@ const RutesItinerarisPage = async () => {
                   />
                 ))}
               </div>
+
+              {filteredRoutes.length > 6 && (
+                <Button
+                  asChild
+                  variant={'default'}
+                  className="flex sm:w-2xs sm:mx-auto mt-10"
+                >
+                  <Link href={'/rutes-itineraris/routes'}>
+                    Veure totes
+                    <ArrowRightIcon />
+                  </Link>
+                </Button>
+              )}
             </section>
           ) : null}
         </PageContainer>
