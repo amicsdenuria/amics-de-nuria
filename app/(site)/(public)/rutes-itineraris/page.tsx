@@ -1,5 +1,6 @@
 import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
 
+import { ActivityCard } from '../agenda/components/ActivityCard';
 import { ArrowRightIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
 import { getAllRoutes } from '@/domain/route/route.service';
 import { getCurrentRoute } from '@/domain/currentRoute/currentRoute.service';
+import { getSpiritActivity } from '@/domain/activity/activity.service';
 import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 
 const RutesItinerarisPage = async () => {
@@ -22,11 +24,12 @@ const RutesItinerarisPage = async () => {
   } = rutesItinerarisContent;
 
   const routes = await getAllRoutes();
-  // const currentRoute = await getCurrentRoute();
   const currentRoute = await getCurrentRoute();
   const filteredRoutes = currentRoute
     ? routes.filter((route) => route.id !== currentRoute?.id)
     : routes;
+
+  const spiritActivity = await getSpiritActivity();
 
   return (
     <>
@@ -100,13 +103,13 @@ const RutesItinerarisPage = async () => {
               {sortidesEsperit.description}
             </p>
 
-            <div className="">
-              {/* TODO: add activity card link */}
-              {/* <RouteCard
-                key={`current-route ${routes[0].id}`}
-                route={routes[0]}
-              /> */}
-            </div>
+            {spiritActivity && (
+              // TODO: afegir link a activitat
+              <ActivityCard
+                activity={spiritActivity}
+                href="#"
+              />
+            )}
           </section>
 
           {filteredRoutes.length ? (

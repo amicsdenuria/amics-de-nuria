@@ -37,7 +37,7 @@ export const dataSource: DataSource = {
     currentRoute: 'sanity',
   },
   agenda: {
-    activities: 'local',
+    activities: 'sanity',
   },
   publicacions: {
     publications: 'local',

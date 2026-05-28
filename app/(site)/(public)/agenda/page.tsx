@@ -1,6 +1,6 @@
 import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
 
-import ActivityCard from './components/ActivityCard';
+import { ActivityCard } from './components/ActivityCard';
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import { activities } from '@/content/agenda/data/activities';

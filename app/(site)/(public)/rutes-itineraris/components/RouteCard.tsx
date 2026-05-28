@@ -5,7 +5,7 @@ import {
   TrendingDownIcon,
   TrendingUpIcon,
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { getRouteRegions, getRouteStats } from '@/domain/route/route.service';
 
 import { Badge } from '@/components/ui/badge';
@@ -25,31 +25,32 @@ const RouteCard = ({ route }: RouteCardProps) => {
 
   return (
     <Link href={`/rutes-itineraris/route/${route.id}`}>
-      <Card className="group h-full cursor-pointer border-border/60 py-0 transition-all duration-200 hover:border-primary/30 hover:shadow-md">
+      <Card className="group cursor-pointer border-border/60 py-0 transition-all duration-200 hover:border-primary/30 hover:shadow-md">
         <CardContent className="flex h-full flex-col gap-4 p-5">
-          {/* Header: Type badge + Status */}
-          <div className="flex items-start justify-between gap-3">
-            <Badge
-              variant="outline"
-              className="text-xs font-normal"
-            >
-              Ruta
-            </Badge>
-          </div>
-
-          {/* Title: Origin → Destiny */}
-          <div className="flex items-start justify-between gap-3">
-            <div className="flex min-w-0 flex-1 items-center gap-2">
-              <RouteIcon className="size-4 shrink-0 text-primary" />
-              <h3 className="truncate font-serif text-lg font-semibold text-primary">
-                {route.origin}
-              </h3>
-              <ArrowRightIcon className="size-4 shrink-0 text-muted-foreground" />
-              <h3 className="truncate font-serif text-lg font-semibold text-primary">
-                {route.destiny}
-              </h3>
+          <div className="flex items-center justify-between">
+            {/* Title: Origin → Destiny */}
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex min-w-0 flex-1 items-center gap-2">
+                <RouteIcon className="size-4 shrink-0 text-primary" />
+                <h3 className="truncate font-serif text-lg font-semibold text-primary">
+                  {route.origin}
+                </h3>
+                <ArrowRightIcon className="size-4 shrink-0 text-muted-foreground" />
+                <h3 className="truncate font-serif text-lg font-semibold text-primary">
+                  {route.destiny}
+                </h3>
+              </div>
             </div>
-            <ArrowRightIcon className="size-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+
+            {/* Type badge + Status */}
+            <div className="flex items-start justify-between gap-3">
+              <Badge
+                variant="outline"
+                className="text-xs font-normal"
+              >
+                Ruta
+              </Badge>
+            </div>
           </div>
 
           {/* Alternative route points */}
@@ -82,9 +83,11 @@ const RouteCard = ({ route }: RouteCardProps) => {
               <span>{`${stats.cumulativeDescent} m`}</span>
             </div>
           </div>
+        </CardContent>
 
+        <CardFooter className="mb-6 border-t">
           {/* Regions badges */}
-          <div className="mt-auto flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {visibleRegions.map((region) => (
               <Badge
                 key={region.slug}
@@ -103,7 +106,7 @@ const RouteCard = ({ route }: RouteCardProps) => {
               </Badge>
             )}
           </div>
-        </CardContent>
+        </CardFooter>
       </Card>
     </Link>
   );
