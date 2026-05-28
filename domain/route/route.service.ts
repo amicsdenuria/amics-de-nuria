@@ -1,4 +1,8 @@
-import { DomainStage, TechnicalDetails } from '../stage/stage.types';
+import {
+  DomainStage,
+  StageRegion,
+  TechnicalDetails,
+} from '../stage/stage.types';
 import {
   routeFromLocal,
   routeFromSanity,
@@ -34,6 +38,19 @@ export const getAllRoutes = async () => {
 };
 
 export const getRouteStats = (routeStages: DomainStage[]): TechnicalDetails => {
+  if (routeStages.length === 0) {
+    return {
+      distance: 0,
+      duration: 0,
+      initialHeight: 0,
+      finalHeight: 0,
+      minHeight: 0,
+      maxHeight: 0,
+      cumulativeAscent: 0,
+      cumulativeDescent: 0,
+    };
+  }
+
   const routeDistance = routeStages.reduce(
     (acc, curr) => curr.technicalDetails.distance + acc,
     0,
@@ -72,4 +89,16 @@ export const getRouteStats = (routeStages: DomainStage[]): TechnicalDetails => {
   };
 
   return routeStats;
+};
+
+export const getRouteRegions = (routeStages: DomainStage[]): StageRegion[] => {
+  const regionsMap = new Map<string, StageRegion>();
+
+  routeStages.forEach((stage) => {
+    stage.regions.forEach((region) => {
+      regionsMap.set(region.slug, region);
+    });
+  });
+
+  return Array.from(regionsMap.values());
 };

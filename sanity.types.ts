@@ -340,7 +340,7 @@ export type AllSanitySchemaTypes = StageInternalTag | Slug | CurrentRoute | Poi 
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/rutes-itineraris/currentRoute/getCurrentRoute.ts
 // Variable: getCurrentRouteQuery
-// Query: *[_type == 'currentRoute'][0]{      currentRoute->{        ...,        "slug": slug.current,        stages[]->{          "slug": slug.current        }      }    }.currentRoute
+// Query: *[_type == 'currentRoute'][0]{      currentRoute->{        ...,        "slug": slug.current,        stages[]->{          ...,          "slug": slug.current,          regions[]->{            "slug": slug.current,            name,            img{              asset,              crop,              hotspot,              alt            }          },          pois[]->{            "slug": slug.current,            name,            img{              asset,              crop,              hotspot,              alt            }          },          imgs[]{            asset,            crop,            hotspot,            alt          }        }      }    }.currentRoute
 export type GetCurrentRouteQueryResult = {
   _id: string;
   _type: "route";
@@ -355,7 +355,79 @@ export type GetCurrentRouteQueryResult = {
   description?: Array<string>;
   mapUrl?: string;
   stages: Array<{
+    _id: string;
+    _type: "stage";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    internalTags?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "stageInternalTag";
+    }>;
+    origin?: string;
+    destiny?: string;
+    wayPoints?: Array<string>;
     slug: string | null;
+    description?: string;
+    mapUrl?: string;
+    videoUrl?: string;
+    imgs: Array<{
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      } | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    }> | null;
+    trailLocations?: Array<string>;
+    regions: Array<{
+      slug: string | null;
+      name: string | null;
+      img: {
+        asset: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        crop: SanityImageCrop | null;
+        hotspot: SanityImageHotspot | null;
+        alt: string | null;
+      } | null;
+    }> | null;
+    pois: Array<{
+      slug: string | null;
+      name: string | null;
+      img: {
+        asset: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        crop: SanityImageCrop | null;
+        hotspot: SanityImageHotspot | null;
+        alt: string | null;
+      } | null;
+    }> | null;
+    allocations?: Array<string>;
+    technicalDetails?: {
+      distance?: number;
+      duration?: number;
+      initialHeight?: number;
+      finalHeight?: number;
+      minHeight?: number;
+      maxHeight?: number;
+      cumulativeAscent?: number;
+      cumulativeDescent?: number;
+    };
+    notes?: Array<string>;
   }> | null;
   notes?: Array<string>;
 } | null;
@@ -430,7 +502,7 @@ export type GetRegionsBySlugsQueryResult = Array<{
 
 // Source: ./sanity/lib/rutes-itineraris/route/getAllRoutes.ts
 // Variable: getAllRoutesQuery
-// Query: *[_type == 'route'][]{        ...,        "slug": slug.current,        stages[]->{          "slug": slug.current        }      }
+// Query: *[_type == 'route'][]{        ...,        "slug": slug.current,        stages[]->{          ...,          "slug": slug.current,          regions[]->{            "slug": slug.current,            name,            img{              asset,              crop,              hotspot,              alt            }          },          pois[]->{            "slug": slug.current,            name,            img{              asset,              crop,              hotspot,              alt            }          },          imgs[]{            asset,            crop,            hotspot,            alt          }        }      }
 export type GetAllRoutesQueryResult = Array<{
   _id: string;
   _type: "route";
@@ -445,14 +517,86 @@ export type GetAllRoutesQueryResult = Array<{
   description?: Array<string>;
   mapUrl?: string;
   stages: Array<{
+    _id: string;
+    _type: "stage";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    internalTags?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "stageInternalTag";
+    }>;
+    origin?: string;
+    destiny?: string;
+    wayPoints?: Array<string>;
     slug: string | null;
+    description?: string;
+    mapUrl?: string;
+    videoUrl?: string;
+    imgs: Array<{
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      } | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    }> | null;
+    trailLocations?: Array<string>;
+    regions: Array<{
+      slug: string | null;
+      name: string | null;
+      img: {
+        asset: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        crop: SanityImageCrop | null;
+        hotspot: SanityImageHotspot | null;
+        alt: string | null;
+      } | null;
+    }> | null;
+    pois: Array<{
+      slug: string | null;
+      name: string | null;
+      img: {
+        asset: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        crop: SanityImageCrop | null;
+        hotspot: SanityImageHotspot | null;
+        alt: string | null;
+      } | null;
+    }> | null;
+    allocations?: Array<string>;
+    technicalDetails?: {
+      distance?: number;
+      duration?: number;
+      initialHeight?: number;
+      finalHeight?: number;
+      minHeight?: number;
+      maxHeight?: number;
+      cumulativeAscent?: number;
+      cumulativeDescent?: number;
+    };
+    notes?: Array<string>;
   }> | null;
   notes?: Array<string>;
 }>;
 
 // Source: ./sanity/lib/rutes-itineraris/route/getRouteBySlug.ts
 // Variable: getRouteBySlugQuery
-// Query: *[_type == 'route' && slug.current == $slug][0]{        ...,        "slug": slug.current,        stages[]->{          "slug": slug.current        }      }
+// Query: *[_type == 'route' && slug.current == $slug][0]{        ...,        "slug": slug.current,        stages[]->{          ...,          "slug": slug.current,          regions[]->{            "slug": slug.current,            name,            img{              asset,              crop,              hotspot,              alt            }          },          pois[]->{            "slug": slug.current,            name,            img{              asset,              crop,              hotspot,              alt            }          },          imgs[]{            asset,            crop,            hotspot,            alt          }        }      }
 export type GetRouteBySlugQueryResult = {
   _id: string;
   _type: "route";
@@ -467,7 +611,79 @@ export type GetRouteBySlugQueryResult = {
   description?: Array<string>;
   mapUrl?: string;
   stages: Array<{
+    _id: string;
+    _type: "stage";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    internalTags?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "stageInternalTag";
+    }>;
+    origin?: string;
+    destiny?: string;
+    wayPoints?: Array<string>;
     slug: string | null;
+    description?: string;
+    mapUrl?: string;
+    videoUrl?: string;
+    imgs: Array<{
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      } | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    }> | null;
+    trailLocations?: Array<string>;
+    regions: Array<{
+      slug: string | null;
+      name: string | null;
+      img: {
+        asset: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        crop: SanityImageCrop | null;
+        hotspot: SanityImageHotspot | null;
+        alt: string | null;
+      } | null;
+    }> | null;
+    pois: Array<{
+      slug: string | null;
+      name: string | null;
+      img: {
+        asset: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        crop: SanityImageCrop | null;
+        hotspot: SanityImageHotspot | null;
+        alt: string | null;
+      } | null;
+    }> | null;
+    allocations?: Array<string>;
+    technicalDetails?: {
+      distance?: number;
+      duration?: number;
+      initialHeight?: number;
+      finalHeight?: number;
+      minHeight?: number;
+      maxHeight?: number;
+      cumulativeAscent?: number;
+      cumulativeDescent?: number;
+    };
+    notes?: Array<string>;
   }> | null;
   notes?: Array<string>;
 } | null;
@@ -820,12 +1036,12 @@ export type GetCurrentSubscriptionByStripeSubscriptionIdQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n    *[_type == 'currentRoute'][0]{\n      currentRoute->{\n        ...,\n        \"slug\": slug.current,\n        stages[]->{\n          \"slug\": slug.current\n        }\n      }\n    }.currentRoute\n  ": GetCurrentRouteQueryResult;
+    "\n    *[_type == 'currentRoute'][0]{\n      currentRoute->{\n        ...,\n        \"slug\": slug.current,\n        stages[]->{\n          ...,\n          \"slug\": slug.current,\n          regions[]->{\n            \"slug\": slug.current,\n            name,\n            img{\n              asset,\n              crop,\n              hotspot,\n              alt\n            }\n          },\n          pois[]->{\n            \"slug\": slug.current,\n            name,\n            img{\n              asset,\n              crop,\n              hotspot,\n              alt\n            }\n          },\n          imgs[]{\n            asset,\n            crop,\n            hotspot,\n            alt\n          }\n        }\n      }\n    }.currentRoute\n  ": GetCurrentRouteQueryResult;
     "\n      *[_type == 'poi' && slug.current == $slug][0]{\n        ...,\n        \"slug\": slug.current,\n        img{\n          asset,\n          crop,\n          hotspot,\n          alt\n        }\n      }\n    ": GetPoiBySlugQueryResult;
     "\n  *[_type == 'region' && slug.current == $slug][0]{\n    name,\n    \"slug\": slug.current,\n    province,\n    img{\n      asset,\n      crop,\n      hotspot,\n      alt\n    },\n    text\n  }\n": GetRegionBySlugQueryResult;
     "\n    *[_type == 'region' && slug.current in $slugs][]{\n      name,\n      \"slug\": slug.current,\n      province,\n      img{\n        asset,\n        crop,\n        hotspot,\n        alt\n      },\n      text\n    }\n    ": GetRegionsBySlugsQueryResult;
-    "\n      *[_type == 'route'][]{\n        ...,\n        \"slug\": slug.current,\n        stages[]->{\n          \"slug\": slug.current\n        }\n      }\n    ": GetAllRoutesQueryResult;
-    "\n      *[_type == 'route' && slug.current == $slug][0]{\n        ...,\n        \"slug\": slug.current,\n        stages[]->{\n          \"slug\": slug.current\n        }\n      }\n    ": GetRouteBySlugQueryResult;
+    "\n      *[_type == 'route'][]{\n        ...,\n        \"slug\": slug.current,\n        stages[]->{\n          ...,\n          \"slug\": slug.current,\n          regions[]->{\n            \"slug\": slug.current,\n            name,\n            img{\n              asset,\n              crop,\n              hotspot,\n              alt\n            }\n          },\n          pois[]->{\n            \"slug\": slug.current,\n            name,\n            img{\n              asset,\n              crop,\n              hotspot,\n              alt\n            }\n          },\n          imgs[]{\n            asset,\n            crop,\n            hotspot,\n            alt\n          }\n        }\n      }\n    ": GetAllRoutesQueryResult;
+    "\n      *[_type == 'route' && slug.current == $slug][0]{\n        ...,\n        \"slug\": slug.current,\n        stages[]->{\n          ...,\n          \"slug\": slug.current,\n          regions[]->{\n            \"slug\": slug.current,\n            name,\n            img{\n              asset,\n              crop,\n              hotspot,\n              alt\n            }\n          },\n          pois[]->{\n            \"slug\": slug.current,\n            name,\n            img{\n              asset,\n              crop,\n              hotspot,\n              alt\n            }\n          },\n          imgs[]{\n            asset,\n            crop,\n            hotspot,\n            alt\n          }\n        }\n      }\n    ": GetRouteBySlugQueryResult;
     "\n      *[_type == 'stage' && slug.current == $slug][0]{\n        ...,\n        \"slug\": slug.current,\n        regions[]->{\n          \"slug\": slug.current,\n          name,\n          img{\n            asset,\n            crop,\n            hotspot,\n            alt\n          }\n        },\n        pois[]->{\n          \"slug\": slug.current,\n          name,\n          img{\n            asset,\n            crop,\n            hotspot,\n            alt\n          }\n        },\n        imgs[]{\n          asset,\n          crop,\n          hotspot,\n          alt\n        }\n      }\n    ": GetStageBySlugQueryResult;
     "\n      *[_type == 'stage' && slug.current in $slugs][]{\n        ...,\n        \"slug\": slug.current,\n        regions[]->{\n          \"slug\": slug.current,\n          name,\n          img{\n            asset,\n            crop,\n            hotspot,\n            alt\n          }\n        },\n        pois[]->{\n          \"slug\": slug.current,\n          name,\n          img{\n            asset,\n            crop,\n            hotspot,\n            alt\n          }\n        },\n        imgs[]{\n          asset,\n          crop,\n          hotspot,\n          alt\n        }\n      }\n    ": GetStagesBySlugsQueryResult;
     "*[_type == 'subscriber' && clerkId == $clerkId][0]": ExistingSubscriberQueryResult | GetSubscriberByClerkIdQueryResult;

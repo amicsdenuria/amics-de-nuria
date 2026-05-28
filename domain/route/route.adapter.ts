@@ -3,6 +3,7 @@ import {
   GetRouteBySlugQueryResult,
 } from '@/sanity.types';
 
+import { stageFromSanity } from '../stage/stage.adapter';
 import { DomainRoute } from './route.types';
 
 export const routeFromSanity = (
@@ -19,7 +20,9 @@ export const routeFromSanity = (
     alternativeRoutePoints: data.wayPoints,
     routeDesc: data.description!,
     routeMapUrl: data.mapUrl!,
-    stages: data.stages!.map((stage) => stage.slug!),
+    stages: (data.stages ?? [])
+      .map((stage) => stageFromSanity(stage))
+      .filter((stage) => stage !== null),
     notes: data.notes,
   };
 };

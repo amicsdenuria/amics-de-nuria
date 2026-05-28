@@ -8,7 +8,34 @@ export const getCurrentRoute = async () => {
         ...,
         "slug": slug.current,
         stages[]->{
-          "slug": slug.current
+          ...,
+          "slug": slug.current,
+          regions[]->{
+            "slug": slug.current,
+            name,
+            img{
+              asset,
+              crop,
+              hotspot,
+              alt
+            }
+          },
+          pois[]->{
+            "slug": slug.current,
+            name,
+            img{
+              asset,
+              crop,
+              hotspot,
+              alt
+            }
+          },
+          imgs[]{
+            asset,
+            crop,
+            hotspot,
+            alt
+          }
         }
       }
     }.currentRoute

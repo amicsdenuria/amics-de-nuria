@@ -1,3 +1,5 @@
+import type { DomainStage } from '../stage/stage.types';
+
 export interface DomainRoute {
   id: string;
   slug: string;
@@ -6,6 +8,6 @@ export interface DomainRoute {
   alternativeRoutePoints?: string[];
   routeDesc: string[];
   routeMapUrl: string;
-  stages: string[];
+  stages: DomainStage[];
   notes?: string[];
 }

@@ -14,7 +14,7 @@ export const routesMock: DomainRoute[] = [
     ],
     routeMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
-    stages: [stagesMock[0].slug, stagesMock[1].slug, stagesMock[2].slug],
+    stages: [stagesMock[0], stagesMock[1], stagesMock[2]],
     notes: [
       'Alguns trams poden resultar relliscosos després de pluges, especialment a les zones boscoses entre Manresa i Navarcles.',
       'Hi ha punts amb poca cobertura mòbil, es recomana portar el track descarregat prèviament.',
@@ -33,10 +33,10 @@ export const routesMock: DomainRoute[] = [
     routeMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
     stages: [
-      stagesMock[0].slug,
-      stagesMock[1].slug,
-      stagesMock[2].slug,
-      stagesMock[3].slug,
+      stagesMock[0],
+      stagesMock[1],
+      stagesMock[2],
+      stagesMock[3],
     ],
     notes: [
       'El pas pel Lluçanès pot ser calorós a l’estiu, ja que hi ha trams amb poca ombra.',
@@ -56,10 +56,10 @@ export const routesMock: DomainRoute[] = [
     routeMapUrl:
       'https://ca.wikiloc.com/wikiloc/embedv2.do?id=198826999&elevation=on&images=off&maptype=M',
     stages: [
-      stagesMock[0].slug,
-      stagesMock[1].slug,
-      stagesMock[2].slug,
-      stagesMock[3].slug,
+      stagesMock[0],
+      stagesMock[1],
+      stagesMock[2],
+      stagesMock[3],
     ],
     notes: [
       'Ruta amb menor afluència de gent, ideal per a qui busca tranquil·litat però amb menys serveis disponibles.',

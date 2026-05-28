@@ -3,7 +3,6 @@ import { getRouteBySlug, getRouteStats } from '@/domain/route/route.service';
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../../../components/PrimaryPageHero';
 import RouteContent from './components/RouteContent';
-import { getStagesBySlugs } from '@/domain/stage/stage.service';
 import { mapRouteHero } from '../../heroMappers';
 import { notFound } from 'next/navigation';
 
@@ -17,11 +16,7 @@ const RoutePage = async ({ params }: RoutePageParams) => {
 
   if (!route) notFound();
 
-  const routeStages = await getStagesBySlugs(route.stages);
-  const orderedRouteStages = route.stages
-    .map((slug) => routeStages.find((s) => s.slug === slug))
-    .filter((stage) => stage !== undefined);
-  const routeStats = getRouteStats(orderedRouteStages);
+  const routeStats = getRouteStats(route.stages);
 
   return (
     <>
@@ -30,7 +25,7 @@ const RoutePage = async ({ params }: RoutePageParams) => {
         {/* CONTENT */}
         <RouteContent
           route={route}
-          stages={orderedRouteStages}
+          stages={route.stages}
           stats={routeStats}
         />
       </PageContainer>

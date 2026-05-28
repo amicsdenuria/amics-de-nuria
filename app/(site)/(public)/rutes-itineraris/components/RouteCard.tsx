@@ -1,52 +1,107 @@
-import { ArrowRightIcon, MilestoneIcon } from 'lucide-react';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+  ArrowRightIcon,
+  MapPinIcon,
+  RouteIcon,
+  TrendingDownIcon,
+  TrendingUpIcon,
+} from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { getRouteRegions, getRouteStats } from '@/domain/route/route.service';
 
 import { Badge } from '@/components/ui/badge';
 import { DomainRoute } from '@/domain/route/route.types';
 import Link from 'next/link';
-import { TypoH3Var } from '@/components/ui/typo/typoComponents';
+import { formatDistance } from '@/lib/routesLib';
 
 interface RouteCardProps {
   route: DomainRoute;
 }
 const RouteCard = ({ route }: RouteCardProps) => {
+  const stats = getRouteStats(route.stages);
+  const regions = getRouteRegions(route.stages);
+  const maxRegionsToShow = 3;
+  const visibleRegions = regions.slice(0, maxRegionsToShow);
+  const remainingCount = regions.length - maxRegionsToShow;
+
   return (
     <Link href={`/rutes-itineraris/route/${route.id}`}>
-      <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1">
-        <CardHeader>
-          <div className="flex items-start justify-between">
-            <CardTitle className="flex flex-wrap items-center gap-2">
-              <TypoH3Var className="border-none pb-0 text-secondary-foreground">
-                {route.origin} a {route.destiny}
-              </TypoH3Var>
-            </CardTitle>
-            <ArrowRightIcon className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+      <Card className="group h-full cursor-pointer border-border/60 py-0 transition-all duration-200 hover:border-primary/30 hover:shadow-md">
+        <CardContent className="flex h-full flex-col gap-4 p-5">
+          {/* Header: Type badge + Status */}
+          <div className="flex items-start justify-between gap-3">
+            <Badge
+              variant="outline"
+              className="text-xs font-normal"
+            >
+              Ruta
+            </Badge>
           </div>
-          <CardDescription>{route.routeDesc[0]}</CardDescription>
-        </CardHeader>
 
-        <CardContent className="space-y-4">
-          <div className="flex flex-wrap gap-1.5">
-            {route.alternativeRoutePoints?.map((point) => (
+          {/* Title: Origin → Destiny */}
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex min-w-0 flex-1 items-center gap-2">
+              <RouteIcon className="size-4 shrink-0 text-primary" />
+              <h3 className="truncate font-serif text-lg font-semibold text-primary">
+                {route.origin}
+              </h3>
+              <ArrowRightIcon className="size-4 shrink-0 text-muted-foreground" />
+              <h3 className="truncate font-serif text-lg font-semibold text-primary">
+                {route.destiny}
+              </h3>
+            </div>
+            <ArrowRightIcon className="size-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+          </div>
+
+          {/* Alternative route points */}
+          {route.alternativeRoutePoints &&
+            route.alternativeRoutePoints.length > 0 && (
+              <p className="text-sm text-muted-foreground">
+                via {route.alternativeRoutePoints[0]}
+              </p>
+            )}
+
+          {/* Stats row */}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-1.5 text-sm text-foreground">
+              <MapPinIcon className="size-3.5 text-muted-foreground" />
+              <span>{formatDistance(stats.distance)}</span>
+            </div>
+            <div className="h-3 w-px bg-border" />
+            <div className="flex items-center gap-1.5 text-sm text-foreground">
+              <span className="font-medium">{route.stages.length}</span>
+              <span className="text-muted-foreground">etapes</span>
+            </div>
+            <div className="h-3 w-px bg-border" />
+            <div className="flex items-center gap-1.5 text-sm text-foreground">
+              <TrendingUpIcon className="size-3.5 text-muted-foreground" />
+              <span>{`${stats.cumulativeAscent} m`}</span>
+            </div>
+            <div className="h-3 w-px bg-border" />
+            <div className="flex items-center gap-1.5 text-sm text-foreground">
+              <TrendingDownIcon className="size-3.5 text-muted-foreground" />
+              <span>{`${stats.cumulativeDescent} m`}</span>
+            </div>
+          </div>
+
+          {/* Regions badges */}
+          <div className="mt-auto flex flex-wrap items-center gap-2">
+            {visibleRegions.map((region) => (
               <Badge
-                key={point}
-                variant={'secondary'}
-                className="text-xs"
+                key={region.slug}
+                variant="secondary"
+                className="text-xs font-normal"
               >
-                <MilestoneIcon className="h-3 w-3 mr-1" />
-                {point}
+                {region.name}
               </Badge>
             ))}
-          </div>
-
-          <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2 border-t">
-            <span>{route.stages.length} etapes</span>
+            {remainingCount > 0 && (
+              <Badge
+                variant="outline"
+                className="text-xs font-normal"
+              >
+                +{remainingCount}
+              </Badge>
+            )}
           </div>
         </CardContent>
       </Card>
