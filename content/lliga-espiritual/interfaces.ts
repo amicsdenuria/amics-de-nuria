@@ -40,13 +40,6 @@ export interface LligaEspiritualContent {
       items: SectionCard[];
     };
 
-    // TODO
-    // ✅ Missió i valors (unificar contingut actual)
-    // ✅ Dr. Ramon Bassols
-    // ✅ La Confraria de la Mare de Déu
-    // ✅ Origens d'Amics de Núria (historia va fora i s'afegeix el contingut d'aquesta secció)
-    // -- Fets cronològics (subpàgina)
-    // Carta del president
     rrss: {
       title: string;
       subtitle: string;
