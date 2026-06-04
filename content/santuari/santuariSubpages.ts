@@ -8,11 +8,11 @@ export const santuariSubpages: SantuariSubpages = {
     blocks: [
       {
         title: 'Els orígens: la llegenda de Sant Gil (cap el 700)',
-        body: 'Diuen que cap a l’any 700, l’abat sant Gil, originari de Grècia, va arribar a la Vall de Núria i s’hi estigué uns tres o quatre anys. Es va instal·lar en una cova, on meditava i elaborava icones, entre elles la imatge de la Mare de Déu de Núria. Convivia amb els pastors, als qui evangelitzava i amb qui compartia el menjar que cuinava en una olla. Obligat a fugir a la Provença, va amagar la imatge de la Mare de Déu, una creu, l’olla i una campana.',
+        body: "Diuen que cap a l’any 700, l’abat sant Gil, originari de Grècia, va arribar a la Vall de Núria i s’hi estigué uns tres o quatre anys. Es va instal·lar en una cova, on meditava i elaborava icones, entre elles la imatge de la Mare de Déu de Núria. Convivia amb els pastors, als qui evangelitzava i amb qui compartia el menjar que cuinava en una olla aplegant-los al voltant amb els repics d'una campana. Obligat a fugir a la Provença, va amagar la imatge de la Mare de Déu, una creu, l’olla i una campana.",
       },
       {
         title: 'La Troballa: el pelegrí Amadeu (1072–1079)',
-        body: 'L’any 1072 va arribar el pelegrí Amadeu. Segons la tradició, se li va aparèixer un àngel que li encomanà construir una capella dedicada a la Mare de Déu i li indicà que al costat d’una roca blanca trobaria els tresors de sant Gil. Amadeu va morir sense poder completar la tasca, però va demanar als pastors que continuessin la recerca. El 1079, els pastors van observar un bou colpejant insistentment una roca blanca prop d’una balma; van foradar la roca i hi van trobar la imatge de la Mare de Déu, la creu, la campana i l’olla de coure. Algunes restes d’aquesta roca blanca es poden veure a l’interior de la capella de Sant Gil.',
+        body: 'L’any 1072 va arribar el pelegrí Amadeu. Segons la tradició, se li va aparèixer un àngel que li encomanà construir una capella dedicada a la Mare de Déu i li indicà que al costat d’una roca blanca trobaria els tresors de sant Gil. Amadeu va morir sense poder completar la tasca, però va demanar als pastors que continuessin la recerca. El 1079, els pastors van observar un bou colpejant insistentment una roca blanca prop d’una balma; van foradar la roca i hi van trobar la imatge de la Mare de Déu, la creu, la campana i l’olla de coure. Algunes restes d’aquesta roca blanca es poden veure a l’interior de la capella integrats a sota altar principal on es recolza la imatge del Sant',
       },
       {
         title: 'L’expansió: el Monestir de Ripoll (1087–1162)',
@@ -40,7 +40,7 @@ export const santuariSubpages: SantuariSubpages = {
       },
       {
         title: 'Història',
-        body: 'L’hospital i la capella han estat refets diverses vegades pels veïns de Queralbs, que des del segle XV tenen cura del santuari. El 1728 s’hi afegeix el primer cambril a l’antiga estructura per acollir la imatge de manera solemne. L’església del Santuari de Núria va ser elevada a la dignitat de Basílica Menor pel papa Francesc el 2014, per la seva rellevància històrica, cultural i espiritual.',
+        body: "L’hospital i la capella han estat refets diverses vegades pels veïns de Queralbs, que des del segle XV tenen cura del santuari. El 1728 s’afegeix el primer cambril a l’antiga estructura de l'església per acollir la imatge de la Mare de Déu de manera solemne. L’església del Santuari de Núria va ser elevada a la dignitat de Basílica Menor pel papa Francesc el 2014, per la seva rellevància històrica, cultural i espiritual.",
       },
       {
         title: 'Arquitectura',
@@ -92,19 +92,19 @@ export const santuariSubpages: SantuariSubpages = {
     blocks: [
       {
         title: 'Els símbols de Núria',
-        body: 'Cada un d’aquests elements narra una part de la vida del sant a la muntanya. La creu, de fusta i d’estil romànic, simbolitza l’oració i l’evangeli que va portar a aquestes contrades. La campana era l’instrument amb el qual Sant Gil trencava el silenci dels cims per convocar els pastors a la pregària o per oferir-los aixopluc o menjar. L’olla representa la caritat i l’hospitalitat, ja que era el recipient on el sant cuinava el gra per compartir-lo amb els pastors.',
+        body: 'Cada un d’aquests elements narra una part de la vida de Sant Gil a la muntanya. La creu, de fusta i d’estil romànic, simbolitza l’oració i l’evangeli que va portar a aquestes contrades. La campana era l’instrument amb el qual Sant Gil trencava el silenci dels cims per convocar els pastors a la pregària o per oferir-los aixopluc o menjar. L’olla representa la caritat i l’hospitalitat, ja que era el recipient on el sant cuinava el gra per compartir-lo amb els pastors.',
       },
       {
         title: 'De relíquies a icones',
         body: 'Durant la Renaixença i el segle XX, els tres símbols van deixar de ser només relíquies religioses per esdevenir icones de l’excursionisme català i de l’arrelament a la terra.',
       },
       {
-        title: 'El ritual de fertilitat',
-        body: 'Des de molt antic, l’olla i la campana de Núria s’han relacionat amb la fertilitat. El ritual és ben senzill: la dona ha de ficar el cap dins l’olla mentre la seva parella toca la campana, instant en què és precís formular el desig. La creença diu que cada repic de la campana invoca la benedicció d’un nou fill.',
-      },
-      {
         title: 'Ubicació actual',
         body: 'Actualment, l’olla i la campana estan situades dins el santuari, en el replà que dona accés al campanar. La creu va passar a presidir espiritualment i visualment el paisatge de la vall, sent el motiu de la coneguda Creu d’en Riba, mirador clau de l’entrada al santuari.',
+      },
+      {
+        title: 'El ritual de fertilitat',
+        body: 'Des de molt antic, l’olla i la campana de Núria s’han relacionat amb la fertilitat. El ritual és ben senzill: la dona ha de ficar el cap dins l’olla mentre la seva parella toca la campana, instant en què és precís formular el desig. La creença diu que cada repic de la campana invoca la benedicció d’un nou fill.',
       },
     ],
   },
@@ -112,7 +112,7 @@ export const santuariSubpages: SantuariSubpages = {
   santGil: {
     title: 'L’Ermita de Sant Gil',
     intro:
-      "Refugi de la fe, s'alça per acollir qui té set de pau i escalf en la solitud de les muntanyes.",
+      "Refugi de la fe, s'alça per acollir qui té set de pau i escalf en la solitud de les muntanyes. Diada de Sant Gil 1 de setembre.",
     blocks: [
       {
         title: 'Llegenda',
@@ -148,7 +148,7 @@ export const santuariSubpages: SantuariSubpages = {
       },
       {
         title: 'La Creu actual',
-        body: "L'associació Amics de Núria va promoure i instal·lar l'estructura actual de ferro i pedra l'any 1958, una iniciativa que va servir per recuperar aquest punt històric de la carena. Aquesta nova construcció va substituir els antics símbols que havien anat desapareixent amb el pas del temps. Finalment, l'any 1983, per commemorar el vint-i-cinquè aniversari de la seva col·locació, s'hi va afegir la placa commemorativa que avui dia es pot llegir a la base.",
+        body: "L'associació Amics de Núria va promoure i instal·lar l'estructura actual de ferro i pedra l'any 1958, una iniciativa que va servir per recuperar aquest punt històric de la carena. Aquesta nova construcció va substituir els antics símbols que havien anat desapareixent amb el pas del temps. L'any 1983, per commemorar el vint-i-cinquè aniversari de la seva col·locació i de la fundació d'Amics de Núria, s'hi va afegir la placa commemorativa que avui dia es pot llegir a la base: 'Creu d'en Riba, ofrena dels Amics de Núria en el seu XXV aniversari, 1958-1983'.",
       },
     ],
   },
@@ -156,7 +156,7 @@ export const santuariSubpages: SantuariSubpages = {
   viaCrucis: {
     title: 'El Via Crucis',
     intro:
-      'Camí de la Creu on el batec de la terra i el de la fe s’uneixen en una sola veu.',
+      'Camí de la Creu on el batec de la terra i el de la fe s’uneixen en una sola veu per encendre una flama en el cor de la muntanya.',
     blocks: [
       {
         title: 'L’origen',
