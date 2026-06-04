@@ -179,7 +179,10 @@ const StageTimelineItem = ({
                 size="sm"
                 variant="default"
               >
-                <Link href={`/rutes-itineraris/stage/${stage.id}`}>
+                <Link
+                  href={`/rutes-itineraris/stage/${stage.id}`}
+                  target="_blank"
+                >
                   <ExternalLinkIcon className="h-4 w-4 mr-2" />
                   Veure etapa completa
                 </Link>

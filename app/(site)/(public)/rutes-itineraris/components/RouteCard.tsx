@@ -21,7 +21,7 @@ interface RouteCardProps {
 const RouteCard = ({ route }: RouteCardProps) => {
   const stats = getRouteStats(route.stages);
   const regions = getRouteRegions(route.stages);
-  const maxRegionsToShow = 3;
+  const maxRegionsToShow = 5;
   const visibleRegions = regions.slice(0, maxRegionsToShow);
   const remainingCount = regions.length - maxRegionsToShow;
 
@@ -57,7 +57,7 @@ const RouteCard = ({ route }: RouteCardProps) => {
           {route.alternativeRoutePoints &&
             route.alternativeRoutePoints.length > 0 && (
               <p className="text-sm text-muted-foreground">
-                via {route.alternativeRoutePoints[0]}
+                via {route.alternativeRoutePoints.join(' - ')}
               </p>
             )}
 

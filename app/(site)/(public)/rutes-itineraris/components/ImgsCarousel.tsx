@@ -5,10 +5,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { getImageProps } from '@/sanity/lib/image';
-import type { DomainImage } from '@/domain/shared/image.types';
 
+import type { DomainImage } from '@/domain/shared/image.types';
 import Image from 'next/image';
+import { getImageProps } from '@/sanity/lib/image';
 
 interface ImgsCarouselProps {
   imgs: DomainImage[];
@@ -41,6 +41,7 @@ const ImgsCarousel = ({ imgs }: ImgsCarouselProps) => {
 
             return (
               <CarouselItem key={index}>
+                {/* TODO: ImageLightBox component as a subcomponent of carousel */}
                 <Image
                   src={props.src}
                   alt={props.alt}
