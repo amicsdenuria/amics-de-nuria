@@ -66,7 +66,7 @@ export const rutesItinerarisContent: RutesItinerarisContent = {
         "Pelegrinatge d'uns 170 km que cada agost fem plegats. Et convidem a formar part durant uns 10 dies d’aquesta experiència compartida i oberta a tothom que vulgui viure amb fe i comunitat el camí.",
       subscriptionCTA: {
         label: 'Inscriu-te',
-        href: '/rutes-itineraris/apuntat',
+        href: 'https://forms.gle/LwS3Gij8aa84gUNdA',
       },
     },
 

@@ -54,13 +54,13 @@ export const lligaEspiritualSubpages: LligaEspiritualSubpages = {
   },
 
   confraria: {
-    title: 'La Confraria',
+    title: 'La Confraria de Núria',
     intro:
-      "Amics de Núria- Lliga espiritual de la Mare de Déu de Núria va néixer amb la intenció de ser hereva i guardiana de l'esperit de la Confraria de la Mare de Déu de Núria.",
+      'Sota el mantell de Núria, els confrares teixeixen devoció eterna amb els peus a terra i el cor a la muntanya, units per una mateixa fé i esperit de servei.',
     blocks: [
       {
         title: "Referència històrica d'Amics de Núria",
-        body: "La confraria és una una associació pública de fidels laics que s'uneixen voluntàriament per promoure i estendre la devoció a la Mare de Déu de Núria. Els membres d'aquesta associació s'anomenen confrares i, a diferència dels monjos, les monges, no fan vots religiosos ni viuen en comunitat, tampoc lliuraven la seva vida i béns al servei del santuari com els donats. Els membres confrares continuen amb la seva vida civil, familiar i professional. Les confraries es regeixen per uns estatuts oficials, anomenats històricament \"capítols.\"",
+        body: "La confraria de la Mare de Déu de Núria era una associació pública de fidels laics que s'unien voluntàriament per promoure i estendre la devoció a la Mare de Déu de Núria. Els membres d'aquesta associació s'anomenaven confrares i, a diferència dels monjos i les monges, no feien vots religiosos ni vivien en comunitat, tampoc lliuraven la seva vida i béns al servei del santuari com els donats. Els membres confrares continuaven amb la seva vida civil, familiar i professional. Les confraries es regien per uns estatuts oficials, anomenats històricament \"capítols.\"",
       },
       {
         title: 'Reconeixement papal de la confraria',
@@ -68,15 +68,15 @@ export const lligaEspiritualSubpages: LligaEspiritualSubpages = {
       },
       {
         title: 'Creació legal de la confraria',
-        body: "El 21 de novembre de 1598 quan el bisbe d'Urgell, Fra Andreu Capella, a petició del rector, els cònsols i els prohoms de Queralbs, va promulgar el decret on es creava legalment la Confraria de la Mare de Déu de Núria instituïda al mateix santuari. El bisbe va estendre nous privilegis en pergamí i va aprovar-ne els capítols oficials amb l'objectiu primordial d'afavorir el culte i regular la riuada de pelegrins que hi acudien. És la confraria més antiga de la Vall de Ribes.",
+        body: "El 21 de novembre de 1598 el bisbe d'Urgell, Fra Andreu Capella, a petició del rector, els cònsols i els prohoms de Queralbs, va promulgar el decret on es creava legalment la Confraria de la Mare de Déu de Núria instituïda al mateix santuari. El bisbe va estendre nous privilegis en pergamí i va aprovar-ne els capítols oficials amb l'objectiu primordial d'afavorir el culte i regular la riuada de pelegrins que hi acudien. És la confraria més antiga de la Vall de Ribes.",
       },
     ],
   },
 
   origens: {
-    title: 'Orígens',
+    title: 'Orígens de la Lliga',
     intro:
-      "Amics de Núria - Lliga espiritual de la Mare de Déu de Núria va néixer amb la intenció de ser hereva i guardiana de l'esperit de la Confraria de la Mare de Déu de Núria.",
+      "Amics de Núria - Lliga espiritual de la Mare de Déu de Núria va néixer amb la intenció de ser hereva i guardiana de l'esperit de la Confraria de Núria.",
     blocks: [
       {
         title: "Les colònies d'estiueig",
@@ -91,24 +91,32 @@ export const lligaEspiritualSubpages: LligaEspiritualSubpages = {
         body: '',
         items: [
           {
-            title: '1936',
+            title: '1936 (Guerra civil)',
             body: "Per evitar que la Mare de Déu fos destruïda, el capellà del Santuari la va treure de la vall fins a retornar a Núria l'any 1941. Aquest retorn va ser viscut amb gran intensitat pels devots i va marcar el ressorgiment de les visites al santuari.",
           },
           {
-            title: 'Anys 40',
+            title: 'Anys 40 (Postguerra)',
             body: "Després de la Guerra Civil, Núria es va convertir en un refugi espiritual i de lleure per a moltes famílies, principalment de Barcelona i Sabadell. El Dr. Ramon Bassols, que freqüentava la vall des dels anys 40, va començar a teixir una xarxa informal que compartien l'amor per la muntanya i la fe.",
           },
           {
-            title: 'Anys 50',
+            title: "Anys 50 (L'embrió)",
             body: "L'embrió de l'entitat s'origina a mitjan anys cinquanta, quan un grup de famílies que coincidien durant les seves estades al santuari van començar a organitzar-se.",
           },
           {
-            title: '1956',
-            body: "Un grup entusiasta de famílies devotes de la vall s'organitza i constitueix la Confraria de la Mare de Déu de Núria i l'Associació de Núries, assentant formalment les bases de la futura associació Amics de Núria.",
+            title: "1956 (L'organització original)",
+            body: "Un grup entusiasta de famílies devotes de la vall i excursionistes encapçalades pel Dr. Ramon Bassols, s'organitza i constitueix la Confraria de la Mare de Déu de Núria i l'Associació de Núries, assentant formalment les bases de la futura associació Amics de Núria.",
           },
           {
-            title: '1958',
-            body: "Amb l'aprovació del Bisbat d'Urgell, es constitueix formalment la Lliga Espiritual de la Mare de Déu de Núria, coneguda popularment com els Amics de Núria.",
+            title: "1957 (El nom d'Amics de Núria)",
+            body: "L'estiu de 1957 sorgeix formalment el grup sota el nom d'Amics de Núria.",
+          },
+          {
+            title: '1958 (La Constitució social)',
+            body: "Els membres fundadors, després de començar l'estiu de 1957 a la vall, s'estructuren de forma oficial i estable a Barcelona celebrant la primera gran reunió a la Parròquia de Núria de Barcelona. Es redacten els estatuts definitius sota el nom de Lliga Espiritual de la Mare de Déu de Núria",
+          },
+          {
+            title: '1959 (La consolidació oficial)',
+            body: 'El bisbe d\'Urgell, Dr. Ramon Iglésias i Navarri, va signar el decret d\'aprovació eclesiàstica i canònica dels estatuts: "Estatuts de la Lliga Espiritual de la Mare de Déu de Núria", com una associació de fidels vinculada legalment al Santuari',
           },
         ],
       },
@@ -118,7 +126,7 @@ export const lligaEspiritualSubpages: LligaEspiritualSubpages = {
   cartaPresident: {
     title: 'Carta del president',
     intro:
-      "David Aguilar, president d'Amics de Núria ens dirigeinx unes paraules d'afecte i d'escalf.",
+      "David Aguilà, president d'Amics de Núria ens dirigeix unes paraules d'afecte i d'escalf en un missatge ple d'esperança per a tota la comunitat.",
     content: [
       "Hi ha llocs que no només es visiten, sinó que es viuen i es porten al cor. La Vall de Núria n'és un d'ells. Durant dècades, l'entitat dels Amics de Núria s'ha encarregat de mantenir viva aquesta flama, connectant persones, natura i espiritualitat. Avui, ens aturem un instant per mirar enrere, honorar les nostres arrels i celebrar l'emocionant moment que estem vivint.",
       "Tota gran obra neix d'una visió apassionada, i la nostra comença amb el Doctor Bassols, el fundador de l'entitat. Ell va entendre, molt abans que molts altres, que Núria no era només un espai geogràfic enmig del Pirineu, sinó un autèntic santuari de trobada cultural i humana. La seva dedicació va posar la primera pedra d'un camí que, avui dia, segueix guiant els nostres passos.",

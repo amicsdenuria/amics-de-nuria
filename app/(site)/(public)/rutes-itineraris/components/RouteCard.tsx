@@ -1,6 +1,5 @@
 import {
   ArrowRightIcon,
-  InfoIcon,
   MapPinIcon,
   RouteIcon,
   TrendingDownIcon,
@@ -12,7 +11,6 @@ import { getRouteRegions, getRouteStats } from '@/domain/route/route.service';
 import { Badge } from '@/components/ui/badge';
 import { DomainRoute } from '@/domain/route/route.types';
 import Link from 'next/link';
-import { ResponsiveTooltip } from '@/components/ui/tooltip';
 import { formatDistance } from '@/lib/routesLib';
 
 interface RouteCardProps {
@@ -63,17 +61,10 @@ const RouteCard = ({ route }: RouteCardProps) => {
 
           {/* Stats row */}
           <div className="flex flex-wrap items-center gap-3">
-            <ResponsiveTooltip
-              content={
-                'Distància calculada a partir de les etapes. Pot diferir de la distància a Wikiloc'
-              }
-            >
-              <div className="flex items-center gap-1.5 text-sm text-foreground">
-                <MapPinIcon className="size-3.5 text-muted-foreground" />
-                <span>{formatDistance(stats.distance)}</span>
-                <InfoIcon className="h-3 w-3 text-muted-foreground/60" />
-              </div>
-            </ResponsiveTooltip>
+            <div className="flex items-center gap-1.5 text-sm text-foreground">
+              <MapPinIcon className="size-3.5 text-muted-foreground" />
+              <span>{formatDistance(stats.distance)}</span>
+            </div>
 
             <div className="h-3 w-px bg-border" />
 
@@ -84,31 +75,17 @@ const RouteCard = ({ route }: RouteCardProps) => {
 
             <div className="h-3 w-px bg-border" />
 
-            <ResponsiveTooltip
-              content={
-                'Suma de tot el desnivell positiu (de pujada) de tot el recorregut'
-              }
-            >
-              <div className="flex items-center gap-1.5 text-sm text-foreground">
-                <TrendingUpIcon className="size-3.5 text-muted-foreground" />
-                <span>{`${stats.cumulativeAscent} m`}</span>
-                <InfoIcon className="h-3 w-3 text-muted-foreground/60" />
-              </div>
-            </ResponsiveTooltip>
+            <div className="flex items-center gap-1.5 text-sm text-foreground">
+              <TrendingUpIcon className="size-3.5 text-muted-foreground" />
+              <span>{`${stats.cumulativeAscent} m`}</span>
+            </div>
 
             <div className="h-3 w-px bg-border" />
 
-            <ResponsiveTooltip
-              content={
-                'Suma de tot el desnivell negatiu (de baixada) de tot el recorregut'
-              }
-            >
-              <div className="flex items-center gap-1.5 text-sm text-foreground">
-                <TrendingDownIcon className="size-3.5 text-muted-foreground" />
-                <span>{`${stats.cumulativeDescent} m`}</span>
-                <InfoIcon className="h-3 w-3 text-muted-foreground/60" />
-              </div>
-            </ResponsiveTooltip>
+            <div className="flex items-center gap-1.5 text-sm text-foreground">
+              <TrendingDownIcon className="size-3.5 text-muted-foreground" />
+              <span>{`${stats.cumulativeDescent} m`}</span>
+            </div>
           </div>
         </CardContent>
 

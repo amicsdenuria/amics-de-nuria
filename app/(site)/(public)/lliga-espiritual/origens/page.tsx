@@ -38,12 +38,11 @@ const origensPage = () => {
 
             <div className="rounded-2xl my-16 md:my-24 bg-secondary/20 p-6 text-center">
               <h2 className="mb-3 text-2xl font-light tracking-tight text-foreground">
-                Fets cronològics rellevants
+                Cronologia de fets
               </h2>
               <p className="mx-auto mb-6 max-w-2xl text-base font-light leading-relaxed text-muted-foreground">
-                Consulta la cronologia completa dels fets, pelegrinatges i
-                moments destacats vinculats a la Vall de Núria i a la Lliga
-                Espiritual.
+                Consulta la cronologia de fets, pelegrinatges i moments
+                destacats vinculats a la Vall de Núria i a la Lliga Espiritual.
               </p>
               <Button
                 asChild
@@ -52,7 +51,7 @@ const origensPage = () => {
                 className="font-light tracking-wide"
               >
                 <Link href="/lliga-espiritual/origens/fets-cronologics">
-                  Veure els fets cronològics
+                  Veure fets cronològics
                   <ArrowRightIcon />
                 </Link>
               </Button>

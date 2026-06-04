@@ -247,17 +247,19 @@ Aquí tens la cronologia unificada definitiva des del segle VIII fins al segle X
 ### Dècada del 1930 (Anys 1930-1939):
 
 - **El Tren Cremallera de Núria (1931)**: S'inaugura oficialment el mitjà de transport d'alta muntanya, un fet que revoluciona l'accés a la vall, obrint les portes al turisme de masses, el culte massiu i l'esquí.
-- pagesos de Sant Vicenç de Cabrera (1933), l'Ateneu Montserrat d'Hostafrancs, col·legis de Jesuïtes, portants del Crist de Terrassa, excursionistes de França pel camí d'Eina, i pelegrins del Santuari de Salgà (tots l'any 1934).
-- **L’Estatut de Núria 1931)**: Es redacta a l'hotel del santuari el primer projecte d'autogovern de la Generalitat moderna de Catalunya.
-- **Romiatges multitudinaris**: El tren facilita un increment d'aplecs institucionals: els pagesos de Sant Vicenç de Cabrera (1933), l'Ateneu Montserrat d'Hostafrancs, col·legis de Jesuïtes, els portants del Crist de Terrassa, excursionistes de França pel camí d'Eina, i els pelegrins del Santuari de Salgà (tots l'any 1934).
+- **L’Estatut de Núria (1931)**: Es redacta a l'hotel del santuari el primer projecte d'autogovern de la Generalitat moderna de Catalunya.
+- **Romiatges multitudinaris (1933 - 1934)**: El tren facilita un increment d'aplecs institucionals: els pagesos de Sant Vicenç de Cabrera (1933), l'Ateneu Montserrat d'Hostafrancs, col·legis de Jesuïtes, els portants del Crist de Terrassa, excursionistes de França pel camí d'Eina, i els pelegrins del Santuari de Salgà (tots l'any 1934).
 
 ### Dècada del 1950 (Anys 1950-1959):
 
-- **Construcció del llac artificial (1950)**: _Pendent de redactar. Cal completar aquesta secció amb contingut verificat abans de publicar._
-- **Inauguració Ermita de Sant Gil (1951)**: _Pendent de redactar. Cal completar aquesta secció amb contingut verificat abans de publicar._
-  - Font pendent de revisió: https://infocamimn.wixsite.com/nuriapedia/copia-de-documents
-- **L'embrió d’Amics de Núria (1956)**: Un grup entusiasta de famílies devotes de la vall s'organitza i constitueix la Confraria de la Mare de Déu de Núria i l'Associació de Núries, assentant formalment les bases de la futura associació Amics de Núria.
-- **La Fundació d’Amics de Núria (1958)**: Amb l'aprovació del Bisbat d'Urgell, es constitueix formalment la Lliga Espiritual de la Mare de Déu de Núria, coneguda popularment com els Amics de Núria, sota l'impuls del Dr. Ramon Bassols.
+- **Construcció del llac artificial (1950 - 1955)**: Construcció de l'embassament artificial davant l'esplanada del Santuari.
+- **Inauguració Ermita de Sant Gil (1951)**: Inauguració de l'ermita de Sant Gil, restaurada gràcies a les ofrenes de les Núries, Radio Barcelona i «La Caixa».
+- **Amics de Núria: L’embrió (1950)**: L'embrió de l'entitat s'origina a mitjan anys cinquanta, quan un grup de famílies que coincidien durant les seves estades al santuari van començar a organitzar-se.
+- **Amics de Núria: L’organització original (1956)**: Un grup entusiasta de famílies devotes de la vall i excursionistes, encapçalades pel Dr. Ramon Bassols, s’organitza i constitueix la Confraria de la Mare de Déu de Núria i l'Associació de Núries.
+- **Amics de Núria: Sorgeix el nom (1957)**: L'estiu de 1957 sorgeix formalment el grup sota el nom d'Amics de Núria.
+- **Amics de Núria: Constitució social i estatus (1958)**: Els membres fundadors, després de començar l'estiu de 1957 a la vall, s'estructuren de forma oficial i estable a Barcelona celebrant la primera gran reunió a la Parròquia de Núria de Barcelona. Es redacten els estatuts definitius sota el nom de «Lliga Espiritual de la Mare de Déu de Núria».
+- **Amics de Núria: Instal·lació de la Creu d’en Riba (1958)**: Treball col·lectiu promogut pel Dr. Ramon Bassols, dissenyat per l’arquitecte Josep Maria Nuer i forjat per Marià Liarte. En el disseny es varen utilitzar caixes de cartró per calcular l’impacte visual i l’estructura es va reforçar amb un carril del Cremallera que alhora fa de parallamps.
+- **Amics de Núria: La consolidació oficial (1959)**: El bisbe d'Urgell, Dr. Ramon Iglésias i Navarri, va signar el decret d'aprovació eclesiàstica i canònica dels estatuts: «Estatuts de la Lliga Espiritual de la Mare de Déu de Núria», com una associació de fidels vinculada legalment al Santuari.
 
 ### Dècada del 1960 (Anys 1960-1969):
 
@@ -270,47 +272,58 @@ Aquí tens la cronologia unificada definitiva des del segle VIII fins al segle X
 
 ### Dècada del 1970 (Anys 1970-1979):
 
-- **Donatiu de l'enllosat de pedra (1970)**: El 28 de juny s'inaugura formalment el paviment d'enllosat de pedra de l'esplanada exterior d'entrada al Santuari i l'Hostatgeria, sufragat com a donatiu generós dels Amics de Núria. El desembre del mateix any s'organitza una exposició de pintures als salons de l'hotel.
-- **Retorn de la Verge (1972)**: El 29 de gener finalitza l'exili de la imatge autèntica de la Verge, retornant finalment al cambril de la vall. S'inaugura la nova terminal del cremallera a Queralbs (1971).
+- **Amics de Núria: Donatiu de l'enllosat de pedra (1970)**: El 28 de juny s'inaugura formalment el paviment d'enllosat de pedra de l'esplanada exterior d'entrada al Santuari i a l'Hostatgeria. El desembre del mateix any s'organitza una exposició de pintures als salons de l'hotel.
+- **Nova terminal del cremallera a Queralbs (1971)**: Inauguració de la nova terminal del Cremallera a Queralbs.
+- **Retorn de la Verge (1972)**: El 29 de gener finalitza l'exili de la imatge autèntica de la Verge, retornant finalment al cambril de la vall.
 
 ### Dècada del 1980 (Anys 1980-1989):
 
-- **Ofrena de Vitralls (1980)**: L'1 de juliol, l'associació dels Amics de Núria fa l'entrega i col·locació de dos grans vitralls artístics per a la façana principal del temple: un dedicat a Sant Gil i l'altre al fundador històric, Amadeu.
-- **Concurs Fotogràfic i Literari (1983-1984)**: Es fan certàmens públics per difondre l'advocació de la Regina del Pirineu pel 25è aniversari dels Amics de Núria.
-- **Ofrenes de la Creu d'en Riba (1984)**: Col·locació i ofrena d'una gran creu de terme de pedra al Turó d'en Riba amb motiu dels 25 anys de la fundació d’Amics de Núria.
-- **Creació del Patronat de Núria (1988)**: El 28 de novembre, el Decret 333/1988 de la Generalitat de Catalunya formalitza el Patronat de la Vall de Núria; els Amics de Núria passen a formar part oficial de la seva Junta Directiva.
-- **Romiatge d'Horta (1988)**: La Parròquia de Sant Joan d'Horta dóna continuïtat a la devoció barcelonina organitzant un romiatge oficial a la vall el 4 de juny.
+- **Amics de Núria: Ofrena de vitralls (1980)**: L'1 de juliol, l'associació fa l'entrega i col·locació de dos grans vitralls artístics per a la façana principal del temple: un dedicat a Sant Gil i l'altre a Amadeu, fundador històric del santuari.
+- **Amics de Núria: Concurs Fotogràfic i Literari (1983 - 1984)**: Se celebren certàmens públics per difondre l'advocació de la Regina del Pirineu amb motiu del 25è aniversari dels Amics de Núria.
+- **Amics de Núria: Ofrena a la Creu d'en Riba (1984)**: Col·locació d’una placa commemorativa a la Creu d’en Riba amb motiu dels 25 anys dels Amics de Núria. La inscripció diu: «Creu d'en Riba, ofrena dels Amics de Núria en el seu XXV aniversari, 1958-1983». Durant l'acte s'estrenen els Goigs de la Creu d'en Riba, amb lletra del poeta Enric Balaguer i Mestres i música del mestre Josep Ricart Tassies.
+- **Creació del Patronat de Núria (1988)**: El 28 de novembre, el Decret 333/1988 de la Generalitat de Catalunya formalitza el Patronat de la Vall de Núria. Els Amics de Núria passen a formar part oficial de la seva Junta Directiva.
+- **Romiatge d'Horta (1988)**: La Parròquia de Sant Joan d'Horta dona continuïtat a la devoció barcelonina organitzant un romiatge oficial a la vall el 4 de juny.
 
 ### Dècada del 1990 (Anys 1990-1999):
 
-- **Col·locació dels Símbols al Puigmal (1990)**: El 12 d'agost de 1990, els Amics de Núria basteixen i planten de forma monumental al cim del Puigmal les grans reproduccions de ferro dels tres símbols nuriencs: la Creu, la Campana i l'Olla.
+- **Amics de Núria: Col·locació dels Símbols al Puigmal (1990)**: El 12 d'agost de 1990, els Amics de Núria basteixen i planten de forma monumental al cim del Puigmal les grans reproduccions de ferro dels tres símbols nuriencs: la Creu, la Campana i l'Olla.
 - **Pelegrinatge penitencial contra la sequera (1994)**: El 21 de juliol, els pagesos i fidels de Sant Joan de les Abadesses organitzen una desesperada pujada penitencial a peu demanant pluja a la Verge davant d'una sequera històrica.
-- **Pelegrinatge de Sant Pere (1997)**: Els Amics de Núria fixen el seu tradicional romiatge anual propi a la vall coincidint de forma regular amb la festivitat de Sant Pere, recolzats pels nous custodis Mn. Josep Mas (1992) i Mn. Rafael Orri (1997).
+- **Amics de Núria: Pelegrinatge de Sant Pere (1997)**: Els Amics de Núria fixen el seu tradicional romiatge anual propi a la vall coincidint de forma regular amb la festivitat de Sant Pere, recolzats pels nous custodis Mn. Josep Mas (1992) i Mn. Rafael Orri (1997).
 
 ## Segle XXI: El camí de la pau, obertura transfronterera i el quart de segle de pelegrinatge marià
 
 ### Dècada del 2000 (Anys 2000-2009):
 
-- **X Pujada de Queralbs a Núria (2000)**: El 29 de juny es realitza la desena edició de la Pujada a peu de Queralbs a Núria, una activitat històrica de senderisme devocional recuperada íntegramente pels Amics de Núria. L'1 de juliol s'inaugura la placa identificativa a la Font del Dr. Bassols.
-- **El Camí de Montserrat a Núria (2001)**: Els Amics de Núria dissenyen i completen per primera vegada la gran travessa a peu que uneix de forma continuada els dos santuaris marians més rellevants del territori català. Aquesta serà la ruta originària de Montserrat a Núria: Salselles - Ribes de Freser, que l’entitat farà durant 25 anys.
-- **Restauració de la Creu del Puigmal (2004)**: Els Amics de Núria restauren integralment l'estructura dels símbols del cim muntanyenc malmesos pel clima.
-- **El Camí Montserrat-Núria-Roma**: Pel 50è aniversari de l'entitat, s'organitza la Primera gran ruta de pelegrinatge internacional "Montserrat – Núria – Roma".
-- **Restauració de la Creu d’en Riba (2007)**: Els Amics de Núria restauren també la creu de terme del Turó d'en Riba.
-- **Marxa Mundial per la Pau (2009)**: El 30 d'agost de 2009, Amics de Núria impulsa la Pujada a peu en solidaritat amb la Marxa Mundial per la Pau. El 4 de juliol, la Parròquia de la Mare de Déu de Núria de Barcelona realitza el seu romiatge oficial, seguit de la 45a Festa de la Cançó de Muntanya organitzada per la Coral de la UEC.
-- **Pelegrinatges anuals de Montserrat a Núria (2001 - 2009)**: des del seu inici el 2001, Amics de Núria  ha fet el pelegrinatge de Montserrat a Núria.
+- **Restauració de la Mare de Déu (2000)**: La històrica talla romànica de la Mare de Déu de Núria és sotmesa a una restauració profunda i científica per garantir-ne la conservació.
+- **Amics de Núria: Xa Pujada de Queralbs a Núria (2000)**: El 29 de juny se celebra la desena edició de la Pujada a peu de Queralbs a Núria, una activitat històrica de senderisme devocional recuperada íntegrament pels Amics de Núria.
+- **Amics de Núria: Placa identificativa a la Font del Dr. Ramon Bassols (2000)**: L'1 de juliol s'inaugura la placa identificativa de la «Font del Dr. Bassols», erigida l'any 1962 en honor al fundador d'Amics de Núria - Lliga Espiritual de la Mare de Déu de Núria.
+- **Amics de Núria: Camí de Montserrat a Núria (2001)**: Els Amics de Núria dissenyen i completen per primera vegada la gran travessa a peu que uneix de forma continuada els santuaris de Montserrat i Núria. Aquesta serà la ruta originària, entre Salselles i Ribes de Freser, que l'entitat recorrerà durant vint-i-cinc anys.
+- **Amics de Núria: Pelegrinatges anuals de Montserrat a Núria (2001 - 2009)**: Des del seu inici l'any 2001, Amics de Núria organitza anualment el pelegrinatge a peu entre Montserrat i Núria.
+- **Amics de Núria: Restauració de la Creu del Puigmal (2004)**: Els Amics de Núria restauren integralment l'estructura dels símbols situats al cim del Puigmal, afectats pel pas del temps i les inclemències meteorològiques.
+- **75è aniversari del Cremallera (2006)**: Se celebren actes commemoratius, incloent-hi viatges amb el cotxe saló històric de 1931 i personal vestit d'època.
+- **Amics de Núria: Camí Montserrat-Núria-Roma (2007)**: Amb motiu del 50è aniversari de l'entitat, s'organitza el pelegrinatge internacional «Montserrat – Núria – Roma».
+- **Amics de Núria: Restauració de la Creu d'en Riba (2007)**: Els Amics de Núria restauren la Creu del Turó d'en Riba.
+- **Naixement de l'Olla de Núria (2007)**: Es funda aquesta emblemàtica cursa d'alta muntanya, amb inici i arribada a l'esplanada del Santuari de Núria.
+- **Amics de Núria: Marxa Mundial per la Pau (2009)**: El 30 d'agost, Amics de Núria impulsa una Pujada a peu en solidaritat amb la Marxa Mundial per la Pau.
+- **Romiatge de la Parròquia de Núria de Barcelona (2009)**: El 4 de juliol, la Parròquia de la Mare de Déu de Núria de Barcelona celebra el seu romiatge oficial a la vall.
+- **45a Festa de la Cançó de Muntanya (2009)**: La Coral de la UEC organitza la quaranta-cinquena edició d'aquest esdeveniment tradicional.
 
 ### Dècada del 2010 (Anys 2010-2020):
 
-- **Pelegrinatges anuals de Montserrat a Núria (2010 - 2020)**: Amics de Núria  fa anualment el pelegrinatge de Montserrat a Núria.
-- **Llançament del blog d’Amics de Núria (2017)**: Renovació de la presència digital amb el llançament del blog oficial per facilitar la comunicació amb els socis i el públic jove.
-- **Celebració del 60è aniversari de l’entitat (2019)**: consolidant la seva seu a la Parròquia de Crist Redemptor de Barcelona.
+- **Amics de Núria: Pelegrinatges anuals de Montserrat a Núria (2010 - 2020)**: Amics de Núria continua organitzant anualment el pelegrinatge a peu entre Montserrat i Núria.
+- **Concessió del títol de Basílica Menor (2014)**: El papa Francesc atorga al Santuari de Núria la dignitat de Basílica Menor, convertint-lo en el segon santuari marià de Catalunya amb aquest reconeixement després de Montserrat.
+- **Creació del Parc Natural (2015)**: El Govern de la Generalitat de Catalunya aprova el decret de declaració del Parc Natural de les Capçaleres del Ter i del Freser.
+- **Amics de Núria: Llançament del blog d'Amics de Núria (2017)**: L'entitat renova la seva presència digital amb la creació del blog oficial per facilitar la comunicació amb els socis i les noves generacions.
+- **Amics de Núria: Celebració del 60è aniversari de l'entitat (2019)**: L'associació commemora sis dècades d'activitat, consolidant la seva seu a la Parròquia de Crist Redemptor de Barcelona.
 
 ### Dècada del 2020 (Anys 2020-2026):
 
-- **Pelegrinatges anuals de Montserrat a Núria (2020 - 2025)**: Amics de Núria manté els el pelegrinatges anuals de Montserrat a Núria.
-- **Revista Flordeneu (2020)**: la revista, de periodicitat semestral, substitueix el full informatiu La Lliga informa es va publicar regularment fins al febrer de l'any 2020
-- **25a Edició del Pelegrinatge de la Lliga (2025)**: s’organitza la 25a edició del pelegrinatge on s'estrena oficialment una nova ruta: Campdevànol - Planoles. Els pelegrins van ser rebuts a la missa de cloenda pel nou Bisbe d'Urgell, Mons. Josep-Lluís Serrano.
-- **26è Pelegrinatge Diocesà d'Urgell (2026)**: Com a fita històrica, el Bisbat d'Urgell s'integra de forma oficial organitzant una branca pròpia que arrenca des del Seminari de la Seu d'Urgell, i que s’uneix al pelegrinatge d’Amics de Núria estrenant una nova ruta: Santa Maria d’Oló - Ribes de Freser, i al pelegrinatge provinent de Perpinyà, obrint a més vincles d'agermanament i rutes transfrontereres amb la Catalunya nord. L'esdeveniment destaca perquè els tres pelegrinatges coincideixen en l’arribada a Núria i pel fet que el propi Bisbe Mons. Josep-Lluís Serrano realitza tota la ruta a peu des de la Seu al costat dels pelegrins.
+- **Amics de Núria: Pelegrinatges anuals de Montserrat a Núria (2020 - 2026)**: Amics de Núria manté els pelegrinatges anuals de Montserrat a Núria, incorporant diferents variants de recorregut i formats de participació.
+- **Amics de Núria: Revista _Flordeneu_ (2020)**: La revista semestral _Flordeneu_ substitueix el full informatiu «La Lliga informa», que s'havia publicat regularment fins al febrer de 2020.
+- **90è aniversari del Cremallera (2021)**: Se celebren exposicions temporals i activitats familiars per commemorar els noranta anys del Cremallera de Núria. Coincidint amb l'efemèride, es consolida el projecte perquè el servei funcioni íntegrament amb energia solar.
+- **Amics de Núria: Nova ruta de pelegrinatge (2025)**: S'estrena la ruta Campdevànol - Planoles i un nou enfocament espiritual del pelegrinatge. Els participants són rebuts a la missa de cloenda pel bisbe d'Urgell, Mons. Josep-Lluís Serrano.
+- **Troballa del jaciment prehistòric de la Cova 338 (2026)**: Un equip d'arqueòlegs documenta, a més de 2.000 metres d'altitud, un campament miner prehistòric que certifica l'explotació de coure (malaquita) més antiga coneguda d'Europa. La troballa inclou també joies i altres objectes que aporten noves perspectives sobre l'economia prehistòrica als Pirineus.
+- **Amics de Núria: Pelegrinatge diocesà d'Urgell i de Perpinyà des de la Catalunya Nord (2026)**: El Bisbat d'Urgell s'integra oficialment en l'organització dels pelegrinatges amb una branca pròpia que s'inicia al Seminari de la Seu d'Urgell i s'uneix al pelegrinatge d'Amics de Núria. Paral·lelament, s'estrena la ruta Santa Maria d'Oló - Ribes de Freser i es reforcen els vincles amb el pelegrinatge procedent de Perpinyà. Com a fet destacat, els tres pelegrinatges coincideixen en l'arribada a Núria, i el bisbe Mons. Josep-Lluís Serrano realitza íntegrament a peu la ruta des de la Seu d'Urgell juntament amb els pelegrins.
 
 ## Per saber-ne més
 

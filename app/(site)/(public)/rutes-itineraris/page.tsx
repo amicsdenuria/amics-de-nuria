@@ -68,7 +68,10 @@ const RutesItinerarisPage = async () => {
                   asChild
                   className="hidden sm:flex"
                 >
-                  <Link href={currentRouteSection.subscriptionCTA.href}>
+                  <Link
+                    href={currentRouteSection.subscriptionCTA.href}
+                    target="_blank"
+                  >
                     {currentRouteSection.subscriptionCTA.label}
                     <ArrowRightIcon />
                   </Link>
@@ -88,7 +91,10 @@ const RutesItinerarisPage = async () => {
                 asChild
                 className="flex sm:hidden mt-4"
               >
-                <Link href={currentRouteSection.subscriptionCTA.href}>
+                <Link
+                  href={currentRouteSection.subscriptionCTA.href}
+                  target="_blank"
+                >
                   {currentRouteSection.subscriptionCTA.label}
                   <ArrowRightIcon />
                 </Link>

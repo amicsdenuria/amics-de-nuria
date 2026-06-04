@@ -22,7 +22,7 @@ const FetsCronologicsPage = () => {
                 className="space-y-8"
               >
                 <header className="border-l-2 border-primary/30 pl-6">
-                  <h2 className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
+                  <h2 className="text-xl font-light tracking-tight text-foreground md:text-2xl">
                     {section.title}
                   </h2>
                 </header>
@@ -33,7 +33,7 @@ const FetsCronologicsPage = () => {
                       key={`${section.title}-${decade.title}`}
                       className="rounded-2xl border border-border/70 bg-background/70 p-6 shadow-sm"
                     >
-                      <h3 className="mb-5 text-xl font-medium tracking-tight text-foreground md:text-2xl">
+                      <h3 className="mb-5 text-lg font-semibold tracking-tight text-foreground md:text-xl">
                         {decade.title}
                       </h3>
 
