@@ -16,9 +16,9 @@ interface ImgsCarouselProps {
 
 const ImgsCarousel = ({ imgs }: ImgsCarouselProps) => {
   return (
-    <div className="w-full mt-8 px-12">
+    <div className="w-full mt-8 px-4 sm:px-6 lg:px-12">
       <Carousel
-        className="w-3xl mx-auto"
+        className="mx-auto w-full max-w-4xl"
         opts={{
           loop: true,
         }}
@@ -31,30 +31,28 @@ const ImgsCarousel = ({ imgs }: ImgsCarouselProps) => {
               fit: 'crop',
             });
 
-            if (!props) {
-              return null;
-            }
-
-            if (!('width' in props) || !('height' in props)) {
+            if (!props || !('width' in props) || !('height' in props)) {
               return null;
             }
 
             return (
               <CarouselItem key={index}>
-                {/* TODO: ImageLightBox component as a subcomponent of carousel */}
-                <Image
-                  src={props.src}
-                  alt={props.alt}
-                  width={props.width}
-                  height={props.height}
-                  className="w-full h-full object-cover"
-                />
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                  <Image
+                    src={props.src}
+                    alt={props.alt ?? ''}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 768px"
+                    className="object-cover"
+                  />
+                </div>
               </CarouselItem>
             );
           })}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+
+        <CarouselPrevious className="left-2 opacity-60 hover:opacity-100 hover:bg-background" />
+        <CarouselNext className="right-2 opacity-60 hover:opacity-100 hover:bg-background" />
       </Carousel>
     </div>
   );
