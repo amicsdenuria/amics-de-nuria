@@ -2,13 +2,13 @@ import { SantuariSubpages } from './interfaces';
 
 export const santuariSubpages: SantuariSubpages = {
   vallDeNuria: {
-    title: 'La Vall de Núria',
+    title: 'Núria',
     intro:
       "Refugi de pau i espiritualitat a dos mil metres d'altitud, on la majestuositat dels Pirineus abraça segles d'història, fe, tradició i natura viva.",
     blocks: [
       {
         title: 'Els orígens: la llegenda de Sant Gil (cap el 700)',
-        body: "Diuen que cap a l’any 700, l’abat sant Gil, originari de Grècia, va arribar a la Vall de Núria i s’hi estigué uns tres o quatre anys. Es va instal·lar en una cova, on meditava i elaborava icones, entre elles la imatge de la Mare de Déu de Núria. Convivia amb els pastors, als qui evangelitzava i amb qui compartia el menjar que cuinava en una olla aplegant-los al voltant amb els repics d'una campana. Obligat a fugir a la Provença, va amagar la imatge de la Mare de Déu, una creu, l’olla i una campana.",
+        body: "Diuen que cap a l’any 700, l’abat sant Gil, originari de Grècia, va arribar a Núria i s’hi estigué uns tres o quatre anys. Es va instal·lar en una cova, on meditava i elaborava icones, entre elles la imatge de la Mare de Déu de Núria. Convivia amb els pastors, als qui evangelitzava i amb qui compartia el menjar que cuinava en una olla aplegant-los al voltant amb els repics d'una campana. Obligat a fugir a la Provença, va amagar la imatge de la Mare de Déu, una creu, l’olla i una campana.",
       },
       {
         title: 'La Troballa: el pelegrí Amadeu (1072–1079)',
@@ -24,7 +24,7 @@ export const santuariSubpages: SantuariSubpages = {
       },
       {
         title: 'El cremallera (1928–1931)',
-        body: 'El cremallera és un ferrocarril de muntanya que utilitza un sistema de cremallera per superar pendents que un tren convencional no podria pujar. Les obres comencen el 1928 i s’inaugura el març de 1931. Va transformar absolutament la Vall de Núria: va posar fi a l’aïllament i a la dependència dels animals de càrrega per a l’abastament de queviures i materials.',
+        body: 'El cremallera és un ferrocarril de muntanya que utilitza un sistema de cremallera per superar pendents que un tren convencional no podria pujar. Les obres comencen el 1928 i s’inaugura el març de 1931. Va transformar absolutament Núria: va posar fi a l’aïllament i a la dependència dels animals de càrrega per a l’abastament de queviures i materials.',
       },
     ],
   },
@@ -76,7 +76,7 @@ export const santuariSubpages: SantuariSubpages = {
       },
       {
         title: 'Aplec de Núria (8 de setembre)',
-        body: 'La Vall de Núria celebra la seva festa patronal amb un gran aplec que uneix fe i tradició. Centenars de pelegrins pugen a peu pel Camí Vell des de Queralbs per participar en la missa solemne, on el moment més emotiu és la benedicció dels nens, vinculada al do de la fertilitat atribuït a la Verge.',
+        body: 'Núria celebra la seva festa patronal amb un gran aplec que uneix fe i tradició. Centenars de pelegrins pugen a peu pel Camí Vell des de Queralbs per participar en la missa solemne, on el moment més emotiu és la benedicció dels nens, vinculada al do de la fertilitat atribuït a la Verge.',
       },
       {
         title: 'El cambril, espai de veneració',
@@ -88,7 +88,7 @@ export const santuariSubpages: SantuariSubpages = {
   creuOllaCampana: {
     title: 'La Creu, l’Olla i la Campana',
     intro:
-      'Oració, hospitalitat i acollida, símbols de la identitat espiritual, cultural i social de la Vall de Núria.',
+      'Oració, hospitalitat i acollida, símbols de la identitat espiritual, cultural i social de Núria.',
     blocks: [
       {
         title: 'Els símbols de Núria',
@@ -160,7 +160,7 @@ export const santuariSubpages: SantuariSubpages = {
     blocks: [
       {
         title: 'L’origen',
-        body: 'La proposta sorgeix el 1914 arran d’un congrés franciscà celebrat a la Vall de Núria, amb l’objectiu de connectar les diferents ermites escampades per la muntanya. A Núria es respongué ràpidament a la proposta, el 1915 es posà la primera pedra i no s’acabaria fins a 1963, amb la inauguració de la XIV estació. La construcció  es va finançar gràcies a donacions de particulars i associacions catòliques.',
+        body: 'La proposta sorgeix el 1914 arran d’un congrés franciscà celebrat a Núria, amb l’objectiu de connectar les diferents ermites escampades per la muntanya. A Núria es respongué ràpidament a la proposta, el 1915 es posà la primera pedra i no s’acabaria fins a 1963, amb la inauguració de la XIV estació. La construcció  es va finançar gràcies a donacions de particulars i associacions catòliques.',
       },
       {
         title: 'El traçat',
@@ -241,7 +241,7 @@ export const santuariSubpages: SantuariSubpages = {
       {
         number: 'XV',
         title: 'La Resurrecció de Jesús',
-        body: "Estació addicional del Via Crucis de la Vall de Núria. Simbolitza el triomf sobre la mort al tercer dia, completant la visió de fe cristiana i d'esperança.",
+        body: "Estació addicional del Via Crucis de Núria. Simbolitza el triomf sobre la mort al tercer dia, completant la visió de fe cristiana i d'esperança.",
       },
     ],
   },
@@ -249,7 +249,7 @@ export const santuariSubpages: SantuariSubpages = {
   llarAmadeu: {
     title: 'La Llar Amadeu',
     intro:
-      'Centre d’acollida i refugi per a pelegrins en record de Sant Amadeu (1072) pelegrí i ermità de la Vall de Núria.',
+      'Centre d’acollida i refugi per a pelegrins en record de Sant Amadeu (1072) pelegrí i ermità de Núria.',
     blocks: [
       {
         title: 'Acollida i recolliment',
@@ -281,21 +281,21 @@ export const santuariSubpages: SantuariSubpages = {
           },
           {
             title: 'Des de Fontalba',
-            body: 'L’accés des de Fontalba és la ruta més planera i panoràmica per arribar al Santuari. Cal arribar en cotxe fins a l’aparcament de Fontalba (2.095 m), situat al final d’una pista forestal d’11 km que surt des de Queralbs. L’accés a l’aparcament està limitat i requereix reserva prèvia durant la temporada alta. El recorregut és un sender d’uns 5 km sense desnivells importants que flanqueja la muntanya. En lloc de pujar, es va perdent alçada suaument fins a arribar als 1.964 m de la Vall de Núria. Ofereix vistes constants de la Vall de Ribes i el massís del Puigmal. És habitual trobar-hi isards o ramats de vaques i ovelles pasturant. Conflueix amb la ruta que arriba de Queralbs a la Creu d’en Riba.',
+            body: 'L’accés des de Fontalba és la ruta més planera i panoràmica per arribar al Santuari. Cal arribar en cotxe fins a l’aparcament de Fontalba (2.095 m), situat al final d’una pista forestal d’11 km que surt des de Queralbs. L’accés a l’aparcament està limitat i requereix reserva prèvia durant la temporada alta. El recorregut és un sender d’uns 5 km sense desnivells importants que flanqueja la muntanya. En lloc de pujar, es va perdent alçada suaument fins a arribar als 1.964 m de Núria. Ofereix vistes constants de la Vall de Ribes i el massís del Puigmal. És habitual trobar-hi isards o ramats de vaques i ovelles pasturant. Conflueix amb la ruta que arriba de Queralbs a la Creu d’en Riba.',
           },
           {
             title: 'Des de Planoles',
-            body: "La travessa de Planoles a Núria és una exigent ruta d'alta muntanya que cobreix uns 16,5 quilòmetres i supera un desnivell positiu de gairebé 1.200 metres en unes 6 hores de marxa. El recorregut comença amb una forta pujada des del poble de Planoles per un bosc de pins fins a assolir el Refugi del Corral Blanc i el Collet de les Barraques a 1.900 metres d'altitud. Des d'aquest mirador, el camí planeja cap a la Font de l'Home Mort, on podem optar per la via ràpida cap al Collet d'Estevenís o baixar fins a Queralbs per remuntar després el tradicional Camí Vell de Núria. Finalment, ambdues opcions conflueixen al Pla de Sallent, l'última part de la ruta per entrar directament a la Vall de Núria des de la Creu d'en Riba.",
+            body: "La travessa de Planoles a Núria és una exigent ruta d'alta muntanya que cobreix uns 16,5 quilòmetres i supera un desnivell positiu de gairebé 1.200 metres en unes 6 hores de marxa. El recorregut comença amb una forta pujada des del poble de Planoles per un bosc de pins fins a assolir el Refugi del Corral Blanc i el Collet de les Barraques a 1.900 metres d'altitud. Des d'aquest mirador, el camí planeja cap a la Font de l'Home Mort, on podem optar per la via ràpida cap al Collet d'Estevenís o baixar fins a Queralbs per remuntar després el tradicional Camí Vell de Núria. Finalment, ambdues opcions conflueixen al Pla de Sallent, l'última part de la ruta per entrar directament a Núria des de la Creu d'en Riba.",
           },
         ],
       },
       {
         title: 'En cremallera',
-        body: 'Pot accedir a la Vall de Núria des de qualsevol de les tres estacions de sortida: a l’estació de Ribes-Enllaç, a l’estació de Ribes-Vila o a l’estació de Queralbs. L’estació de Ribes-Enllaç és la millor opció si arribes amb la línia R3 de Rodalies de Catalunya perquè les andanes estan connectades directament. També pots pujar al centre del poble a l’estació de Ribes-Vila, on trobaràs aparcament per al cotxe. L’última opció és conduir fins al poble de Queralbs i pujar-hi des de la seva estació, que disposa d’un gran aparcament gratuït i redueix el trajecte en tren a la meitat del temps. L’accés amb cremallera també et dona dret a utilitzar també el Telefèric de la Coma del Clot que et portarà fins a l’alberg Pic de l’Àliga.',
+        body: 'Pot accedir a Núria des de qualsevol de les tres estacions de sortida: a l’estació de Ribes-Enllaç, a l’estació de Ribes-Vila o a l’estació de Queralbs. L’estació de Ribes-Enllaç és la millor opció si arribes amb la línia R3 de Rodalies de Catalunya perquè les andanes estan connectades directament. També pots pujar al centre del poble a l’estació de Ribes-Vila, on trobaràs aparcament per al cotxe. L’última opció és conduir fins al poble de Queralbs i pujar-hi des de la seva estació, que disposa d’un gran aparcament gratuït i redueix el trajecte en tren a la meitat del temps. L’accés amb cremallera també et dona dret a utilitzar també el Telefèric de la Coma del Clot que et portarà fins a l’alberg Pic de l’Àliga.',
       },
       {
         title: 'Accessibilitat',
-        body: 'L’accés a la Vall de Núria està totalment adaptat per a persones amb mobilitat reduïda a través del Cremallera de Núria. Totes les estacions disposen d’accessos sense barreres arquitectòniques, lavabos adaptats i places d’aparcament reservades a Ribes-Vila i Queralbs. Els trens compten amb vagons de perfil baix a peu pla i espais amplis a l’interior per a cadires de rodes. Un cop a la vall, els camins principals estan pavimentats i un ascensor connecta directament l’estació amb el Telefèric de la Coma del Clot per evitar obstacles. Els gossos guia o d’assistència viatgen gratis i tenen permès l’accés a totes les instal·lacions.',
+        body: 'L’accés a Núria està totalment adaptat per a persones amb mobilitat reduïda a través del Cremallera de Núria. Totes les estacions disposen d’accessos sense barreres arquitectòniques, lavabos adaptats i places d’aparcament reservades a Ribes-Vila i Queralbs. Els trens compten amb vagons de perfil baix a peu pla i espais amplis a l’interior per a cadires de rodes. Un cop a la vall, els camins principals estan pavimentats i un ascensor connecta directament l’estació amb el Telefèric de la Coma del Clot per evitar obstacles. Els gossos guia o d’assistència viatgen gratis i tenen permès l’accés a totes les instal·lacions.',
       },
     ],
     practical: [

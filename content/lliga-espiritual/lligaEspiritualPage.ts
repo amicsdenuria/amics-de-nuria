@@ -51,7 +51,7 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
 
     intro: {
       title: 'Qui som',
-      body: 'Amics de Núria - Lliga espiritual de la Mare de Déu de Núria volem preservar el llegat de la nostra història i la flama de la fe per cultivar, amb estima i compromís, el sentiment cristià i el vincle profund que ens uneix a la Vall de Núria i a Catalunya.',
+      body: 'Amics de Núria - Lliga espiritual de la Mare de Déu de Núria volem preservar el llegat de la nostra història i la flama de la fe per cultivar, amb estima i compromís, el sentiment cristià i el vincle profund que ens uneix a Núria i a Catalunya.',
     },
 
     subscribe: {

@@ -42,7 +42,7 @@ const origensPage = () => {
               </h2>
               <p className="mx-auto mb-6 max-w-2xl text-base font-light leading-relaxed text-muted-foreground">
                 Consulta la cronologia de fets, pelegrinatges i moments
-                destacats vinculats a la Vall de Núria i a la Lliga Espiritual.
+                destacats vinculats a Núria i a la Lliga Espiritual.
               </p>
               <Button
                 asChild

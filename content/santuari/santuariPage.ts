@@ -2,7 +2,7 @@ import { SantuariContent } from './interfaces';
 import { santuariSubpages } from './santuariSubpages';
 
 const santuariNavItems = [
-  { label: 'La Vall de Núria', href: '/santuari/vall-de-nuria' },
+  { label: 'Núria', href: '/santuari/vall-de-nuria' },
   { label: 'La Basílica', href: '/santuari/basilica' },
   { label: 'La Mare de Déu', href: '/santuari/mare-de-deu' },
   {
@@ -44,7 +44,7 @@ export const santuariContent: SantuariContent = {
       title: 'Descobreix el Santuari',
       items: [
         {
-          title: 'La Vall de Núria',
+          title: 'Núria',
           description: santuariSubpages.vallDeNuria.intro,
           href: '/santuari/vall-de-nuria',
         },
