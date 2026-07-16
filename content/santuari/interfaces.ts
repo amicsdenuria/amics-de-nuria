@@ -54,5 +54,6 @@ export interface SantuariSubpages {
   creuRiba: BlocksPageContent;
   viaCrucis: ViaCrucisPageContent;
   llarAmadeu: BlocksPageContent;
+  transhumancia: BlocksPageContent;
   comArribar: ComArribarPageContent;
 }
