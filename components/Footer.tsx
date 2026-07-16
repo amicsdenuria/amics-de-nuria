@@ -174,7 +174,7 @@ const Footer = () => {
                   size={'sm'}
                 >
                   <Link
-                    href={'https://www.gmuner.es'}
+                    href={'https://www.instagram.com/munergenis/'}
                     target="_blank"
                   >
                     Genís Muner <ArrowRightIcon className="h-3 w-3" />
