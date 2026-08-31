@@ -44,16 +44,6 @@ export const homeSections: HomeSectionItem[] = [
   //   gridClass: 'md:col-span-3', // 3/3 (full width)
   // },
 
-  // TO PROD
-  // {
-  //   title: 'Lliga Espiritual',
-  //   description:
-  //     'Espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
-  //   href: '/lliga-espiritual',
-  //   icon: UsersIcon,
-  //   gridClass: 'md:col-span-2', // 2/3
-  // },
-  // TILL PROD READY
   {
     title: 'Lliga Espiritual',
     description:

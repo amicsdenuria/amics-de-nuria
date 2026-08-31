@@ -11,9 +11,9 @@ const santuariNavItems = [
   },
   { label: "L'Ermita de Sant Gil", href: '/santuari/sant-gil' },
   { label: "La Creu d'en Riba", href: '/santuari/creu-riba' },
+  { label: 'La Transhumància', href: '/santuari/transhumancia' },
   { label: 'El Via Crucis', href: '/santuari/via-crucis' },
   { label: 'La Llar Amadeu', href: '/santuari/llar-amadeu' },
-  { label: 'La transhumància', href: '/santuari/transhumancia' },
   { label: 'Com arribar-hi', href: '/santuari/com-arribar' },
 ];
 
@@ -74,6 +74,11 @@ export const santuariContent: SantuariContent = {
           href: '/santuari/creu-riba',
         },
         {
+          title: 'La Transhumància a Núria',
+          description: santuariSubpages.transhumancia.intro,
+          href: '/santuari/transhumancia',
+        },
+        {
           title: 'El Via Crucis',
           description: santuariSubpages.viaCrucis.intro,
           href: '/santuari/via-crucis',
@@ -82,11 +87,6 @@ export const santuariContent: SantuariContent = {
           title: 'La Llar Amadeu',
           description: santuariSubpages.llarAmadeu.intro,
           href: '/santuari/llar-amadeu',
-        },
-        {
-          title: 'La transhumància a Núria',
-          description: santuariSubpages.transhumancia.intro,
-          href: '/santuari/transhumancia',
         },
         {
           title: 'Com arribar-hi',

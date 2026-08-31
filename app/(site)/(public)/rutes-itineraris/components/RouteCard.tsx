@@ -43,7 +43,7 @@ const RouteCard = ({ route }: RouteCardProps) => {
             {/* Type badge + Status */}
             <div className="min-w-fit flex items-start justify-between gap-3">
               <Badge
-                variant="outline"
+                // variant="outline"
                 className="text-xs font-normal"
               >
                 Ruta

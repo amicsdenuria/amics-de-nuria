@@ -263,7 +263,7 @@ export const santuariSubpages: SantuariSubpages = {
   },
 
   transhumancia: {
-    title: 'La transhumància a Núria',
+    title: 'La Transhumància a Núria',
     intro:
       'A Núria batega des de temps immemorials una de les tradicions més antigues de la nostra terra: la transhumància.',
     blocks: [
