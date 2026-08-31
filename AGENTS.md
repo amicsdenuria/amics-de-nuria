@@ -19,6 +19,15 @@ Read this file before changing the repository.
   `specs/` before modifying code. Read `exploration.md` when present.
 - Execute only the requested phase, update `tasks.md`, run that phase's
   validation gate, and stop before starting the next phase.
+- After the agent validation gate passes, keep the phase changes uncommitted
+  and give the user an exact manual verification checklist. Commit only after
+  the user explicitly confirms that verification. Any subsequent fix requires
+  repeating agent validation and obtaining a new approval before committing.
+- Include any important, non-obvious instructions required for manual
+  verification, such as prerequisite data, special application state, unusual
+  commands, credentials, or environment constraints. Omit routine instructions
+  the user can reasonably infer, such as starting the development server with
+  `pnpm dev`.
 - Do not perform remote or destructive operations documented by a change
   without the approval required by its runbook.
 - Tasks that do not match an existing OpenSpec change follow the normal

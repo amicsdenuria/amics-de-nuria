@@ -9,6 +9,7 @@
 | PR strategy | One branch; ask before chained PRs |
 | Test runner | None; use lint, types, build, schema and manual scenarios |
 | Remote writes | Exact dataset and explicit approval required |
+| Commit approval | Agent validation, then explicit user manual approval |
 
 ## Phase 0: branch and specification
 
@@ -45,7 +46,10 @@
 - [ ] Verify 0–6 preview behavior, search accents/case, dynamic type options,
   filters, clear action, responsive keyboard use, statuses, empty states, 404,
   and local images.
-- [ ] Gate: lint/types/build/manual routes; commit before Sanity work.
+- [ ] Agent gate: lint/types/build plus documented manual route checklist; stop
+  with the phase uncommitted.
+- [ ] User gate: receive explicit approval after the user's manual verification.
+- [ ] Commit the approved phase before beginning Sanity work.
 
 ## Phase 3: Sanity editorial model
 
@@ -54,7 +58,10 @@
 - [ ] Register schema types and Agenda Studio structure; protect the singleton.
 - [ ] Add deterministic predefined-type NDJSON without executing a remote write.
 - [ ] Run schema validation and type generation.
-- [ ] Gate: Studio walkthrough plus lint/types; commit before data integration.
+- [ ] Agent gate: Studio checklist plus lint/types; stop with the phase
+  uncommitted.
+- [ ] User gate: receive explicit approval after the user's manual verification.
+- [ ] Commit the approved phase before beginning data integration.
 
 ## Phase 4: Sanity reads and cutover
 
@@ -64,5 +71,7 @@
 - [ ] Switch Agenda sources to Sanity and validate the empty dataset.
 - [ ] With approval, back up the target dataset and import missing type seeds.
 - [ ] Validate documents, populate content in Studio, and verify Sanity Live.
-- [ ] Gate: all quality commands, direct-CDN image checks, manual acceptance,
-  verification report, and rollback readiness.
+- [ ] Agent gate: all quality commands, direct-CDN image checklist,
+  verification report, and rollback readiness; stop uncommitted.
+- [ ] User gate: receive explicit approval after manual acceptance.
+- [ ] Commit only the manually approved final integration.

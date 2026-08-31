@@ -6,10 +6,35 @@
    `.agents/skills/sanity-images/SKILL.md` fully.
 2. Work only on `codex/agenda-activities`; preserve unrelated user changes.
 3. Complete one phase gate before beginning the next. Keep each review slice
-   at or below 400 changed lines; ask before creating chained PRs.
+   at or below 400 changed lines; ask before creating chained PRs. Agent
+   validation does not authorize a commit: wait for the user's manual approval.
 4. Never run remote Sanity create/import/migration/delete/deploy commands
    without the exact dataset and explicit user approval.
 5. Use `apply_patch` for edits and update `tasks.md` as work completes.
+
+## Manual verification before every commit
+
+This approval gate applies to every future commit in this change, including
+documentation-only commits. A request to implement a phase is not by itself
+permission to commit it.
+
+1. Finish the scoped work and run every automated validation required by the
+   phase.
+2. Run `git diff --check` and inspect the complete diff. Keep all phase changes
+   uncommitted and preferably unstaged.
+3. Report the automated results, known limitations, affected routes, and an
+   exact manual checklist to the user. Include only important or non-obvious
+   setup instructions needed to reproduce the verification, such as required
+   fixtures, a special application state, credentials, unusual commands, or
+   environment constraints. Do not pad the checklist with routine steps such as
+   starting the development server with `pnpm dev`. Leave the actual acceptance
+   decision to the user.
+4. Stop and wait for an explicit user confirmation that manual verification has
+   passed.
+5. Only after approval, recheck `git status` and `git diff --check`, stage only
+   the approved scope, and create the phase commit.
+6. If any code or documentation changes after approval, repeat validation and
+   request a fresh manual approval before committing.
 
 ## Start and baseline
 
@@ -101,7 +126,8 @@ git status --short --branch
 git diff --check
 ```
 
-Manually inspect `/agenda`, `/agenda/activitats`, a known and unknown activity
+Give the following checks to the user and wait for their explicit result before
+committing: inspect `/agenda`, `/agenda/activitats`, a known and unknown activity
 detail, `/rutes-itineraris`, and `/admin` at 360, 768, and 1280 px. On the
 complete browser, verify case- and accent-insensitive search, every type/status
 filter, clear, result count, and zero matches using only local interactions. For
