@@ -1,4 +1,8 @@
+import { ArrowRightIcon } from 'lucide-react';
+import Link from 'next/link';
+
 import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
+import { Button } from '@/components/ui/button';
 
 import PrimaryActionButtonHero from '@/components/navbar/PrimaryActionButtonHero';
 import PrimaryPageHero from '../components/PrimaryPageHero';
@@ -9,7 +13,8 @@ import { lligaEspiritualContent } from '@/content/lliga-espiritual/lligaEspiritu
 
 const LligaEspiritualPage = async () => {
   const { isEnrolled } = await getUserData();
-  const { hero, intro, subscribe, cards, rrss } = lligaEspiritualContent.home;
+  const { hero, intro, subscribe, cards, chronology, rrss } =
+    lligaEspiritualContent.home;
 
   return (
     <>
@@ -56,9 +61,30 @@ const LligaEspiritualPage = async () => {
         </div>
       </section>
 
+      {/* Chronology */}
+      <section className="bg-secondary/20 py-16 md:py-24 scroll-m-20">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <TypoH2Var className="mb-6">{chronology.title}</TypoH2Var>
+          <TypoPVar className="mx-auto mb-8 max-w-2xl">
+            {chronology.body}
+          </TypoPVar>
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="font-light tracking-wide"
+          >
+            <Link href={chronology.href}>
+              {chronology.ctaLabel}
+              <ArrowRightIcon />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
       <section
         id="rrss"
-        className="bg-secondary/20 py-16 md:py-24 scroll-m-20"
+        className="py-16 md:py-24 scroll-m-20"
       >
         <RRSSSection
           title={rrss.title}

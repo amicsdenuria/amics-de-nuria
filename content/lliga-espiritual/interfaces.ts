@@ -40,6 +40,11 @@ export interface LligaEspiritualContent {
       items: SectionCard[];
     };
 
+    chronology: TextBlock & {
+      ctaLabel: string;
+      href: string;
+    };
+
     rrss: {
       title: string;
       subtitle: string;

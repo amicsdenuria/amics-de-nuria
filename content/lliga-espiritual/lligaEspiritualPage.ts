@@ -90,6 +90,13 @@ export const lligaEspiritualContent: LligaEspiritualContent = {
       ],
     },
 
+    chronology: {
+      title: 'Cronologia de fets',
+      body: 'Consulta la cronologia de fets, pelegrinatges i moments destacats vinculats a Núria i a la Lliga Espiritual.',
+      ctaLabel: 'Veure fets cronològics',
+      href: '/lliga-espiritual/origens/fets-cronologics',
+    },
+
     rrss: {
       title: 'Xarxes Socials',
       subtitle:
