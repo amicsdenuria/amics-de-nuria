@@ -13,7 +13,7 @@ import { TypoH2Var, TypoP } from '@/components/ui/typo/typoComponents';
 import { Button } from '@/components/ui/button';
 import CopyLinkButton from '../../../components/CopyLinkButton';
 import { DomainStage } from '@/domain/stage/stage.types';
-import Image from 'next/image';
+import OptimizedImage from '@/components/OptimizedImage';
 import Link from 'next/link';
 import StageMedia from './StageMedia';
 import Stats from '../../../components/Stats';
@@ -221,7 +221,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
 
                         return (
                           <div className="relative aspect-video w-full">
-                            <Image
+                            <OptimizedImage
                               src={imageProps.src}
                               alt={imageProps.alt}
                               fill
@@ -269,7 +269,7 @@ const StageContent = ({ stage }: RouteContentProps) => {
 
                       return (
                         <div className="relative aspect-video w-full">
-                          <Image
+                          <OptimizedImage
                             src={imageProps.src}
                             alt={imageProps.alt}
                             fill

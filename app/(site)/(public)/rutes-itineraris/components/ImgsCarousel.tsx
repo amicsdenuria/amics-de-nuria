@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/carousel';
 
 import type { DomainImage } from '@/domain/shared/image.types';
-import Image from 'next/image';
+import OptimizedImage from '@/components/OptimizedImage';
 import { getImageProps } from '@/sanity/lib/image';
 
 interface ImgsCarouselProps {
@@ -38,7 +38,7 @@ const ImgsCarousel = ({ imgs }: ImgsCarouselProps) => {
             return (
               <CarouselItem key={index}>
                 <div className="relative aspect-video w-full overflow-hidden rounded-xl">
-                  <Image
+                  <OptimizedImage
                     src={props.src}
                     alt={props.alt ?? ''}
                     fill

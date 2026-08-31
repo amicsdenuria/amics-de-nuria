@@ -9,7 +9,7 @@ import {
 } from './ui/dialog';
 import { XIcon, ZoomInIcon } from 'lucide-react';
 
-import Image from 'next/image';
+import OptimizedImage from './OptimizedImage';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import type { SafeImageProps } from '@/sanity/lib/image';
@@ -39,7 +39,7 @@ export const ImageLightbox = ({ thumbnail, full, className }: ImageLightboxProps
           className,
         )}
       >
-        <Image
+        <OptimizedImage
           src={thumbnail.src}
           alt={thumbnail.alt}
           width={'width' in thumbnail ? thumbnail.width : 0}
@@ -89,7 +89,7 @@ export const ImageLightbox = ({ thumbnail, full, className }: ImageLightboxProps
             onClick={(e) => e.stopPropagation()}
             className="relative max-h-[90vh] max-w-[90vw] cursor-default"
           >
-            <Image
+            <OptimizedImage
               src={full.src}
               alt={full.alt}
               width={'width' in full ? full.width : 0}

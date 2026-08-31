@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+import OptimizedImage from '@/components/OptimizedImage';
 import Link from 'next/link';
 import PrimaryActionButtonHero from '@/components/navbar/PrimaryActionButtonHero';
 import { cn } from '@/lib/utils';
@@ -47,7 +47,7 @@ const PrimaryPageHero = ({
     <section className="relative flex min-h-[70vh] items-center justify-center font-serif overflow-hidden bg-secondary/30">
       {img && (
         <>
-          <Image
+          <OptimizedImage
             src={img.src}
             alt={img.alt}
             fill
