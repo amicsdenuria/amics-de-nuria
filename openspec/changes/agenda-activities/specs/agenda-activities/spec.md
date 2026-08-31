@@ -73,6 +73,35 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 - **When** the detail route is requested
 - **Then** the nearest Next.js not-found page MUST render
 
+## Requirement: agenda preview and complete browser
+
+### Scenario: preview no more than six upcoming activities
+
+- **Given** next and featured activities have already been rendered on
+  `/agenda`
+- **When** the remaining upcoming preview is rendered
+- **Then** it MUST exclude those rendered activities
+- **And** it MUST show the earliest six remaining activities at most
+- **And** it MUST render every available activity when fewer than six remain
+- **And** a primary-action link MUST navigate to `/agenda/activitats`
+
+### Scenario: browse all activities
+
+- **Given** upcoming and archived activities exist
+- **When** `/agenda/activitats` is rendered
+- **Then** it MUST make every activity reachable through its detail link
+- **And** upcoming activities MUST precede the newest-first archive
+
+### Scenario: search and filter activities
+
+- **Given** the complete activity browser has received activities
+- **When** a visitor searches by text or selects a type or status
+- **Then** results MUST update without a navigation or network request
+- **And** text matching MUST ignore case and diacritics
+- **And** type options MUST be derived from the received reusable types
+- **And** clearing controls MUST restore the complete result set
+- **And** zero matches MUST render an accessible no-results state
+
 ## Requirement: persistent spirit activity
 
 ### Scenario: find by stable slug

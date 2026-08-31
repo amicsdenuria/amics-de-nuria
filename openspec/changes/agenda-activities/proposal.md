@@ -11,8 +11,9 @@ level remain controlled vocabularies.
 
 - English domain contracts and local fixtures for activities and types.
 - Upcoming, next, featured, and archived activity selection.
-- Public agenda, detail route, navigation, empty states, and the existing
-  “Sortides amb l’Esperit” consumer.
+- Public agenda preview, complete searchable/filterable activity browser,
+  detail route, navigation, empty states, and the existing “Sortides amb
+  l’Esperit” consumer.
 - `activity`, `activityType`, and `featuredActivity` Sanity schemas and Studio
   structure.
 - GROQ reads, generated types, adapters, source switching, and image metadata.
@@ -21,7 +22,7 @@ level remain controlled vocabularies.
 ## Out of scope
 
 - Public REST endpoints, activity mutations from the website, registrations,
-  payments, attendance counts, and interactive type filters.
+  payments, attendance counts, pagination, and advanced faceted filtering.
 - Automated creation, replacement, or deletion of remote Sanity documents.
 - A new test framework or unrelated redesigns.
 

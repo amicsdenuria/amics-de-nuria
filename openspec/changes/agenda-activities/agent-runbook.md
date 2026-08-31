@@ -30,7 +30,7 @@ than changing fonts as part of this feature.
 Before adding or using a registry component, inspect project-aware docs:
 
 ```bash
-pnpm dlx shadcn@latest docs empty card badge button
+pnpm dlx shadcn@latest docs input select field empty card badge button
 pnpm dlx shadcn@latest add empty --dry-run
 pnpm dlx shadcn@latest add empty
 ```
@@ -101,10 +101,12 @@ git status --short --branch
 git diff --check
 ```
 
-Manually inspect `/agenda`, a known and unknown activity detail,
-`/rutes-itineraris`, and `/admin` at 360, 768, and 1280 px. For Sanity images,
-inspect `src/srcSet`: they must point directly to `cdn.sanity.io` with responsive
-width and `auto=format`, never a nested `/_next/image` URL.
+Manually inspect `/agenda`, `/agenda/activitats`, a known and unknown activity
+detail, `/rutes-itineraris`, and `/admin` at 360, 768, and 1280 px. On the
+complete browser, verify case- and accent-insensitive search, every type/status
+filter, clear, result count, and zero matches using only local interactions. For
+Sanity images, inspect `src/srcSet`: they must point directly to `cdn.sanity.io`
+with responsive width and `auto=format`, never a nested `/_next/image` URL.
 
 Rollback is code-only: return Agenda data sources to `local` and redeploy. Do
 not delete schemas, seed types, activities, or assets during rollback.

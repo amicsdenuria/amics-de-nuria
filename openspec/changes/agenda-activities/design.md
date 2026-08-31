@@ -121,11 +121,28 @@ shown under the Agenda Studio section.
 ## UI and server boundaries
 
 - `/agenda` is an async Server Component and starts activities and featured
-  fetches together. It renders hero, next, featured, remaining upcoming,
+  fetches together. It renders hero, next, featured, an upcoming preview,
   archive, and an accessible empty state.
+- The `/agenda` upcoming preview removes activities already rendered as next or
+  featured, keeps chronological order, and renders at most six cards. If fewer
+  than six remain, it renders the available cards without placeholders. A
+  primary button links to `/agenda/activitats`.
+- `/agenda/activitats` is an async Server Component that fetches all activities
+  once and delegates only interactive filtering to a focused Client Component.
+  It displays upcoming activities first in ascending order followed by the
+  newest archived activities.
+- The complete browser supports a case- and accent-insensitive text search over
+  title, description, type, location, city, and organizer plus optional
+  single-value filters for the reusable type and closed status vocabularies.
+  Type options are derived from the received activities so editorial additions
+  require no UI code change. Changing a control filters immediately, a clear
+  action restores all results, and zero matches render an accessible state.
 - `/agenda/activity/[slug]` is a Server Component with dynamic metadata and
   `notFound()` for an unknown slug.
-- Cards use a calendar-editorial visual direction within existing fonts,
+- Server data passed to the browser Client Component is reduced to the fields
+  required by search, filters, and cards; dates cross the boundary as ISO
+  strings and are converted only where required for display.
+- Pages use a simple calendar-editorial direction within existing fonts,
   semantic tokens, shadcn composition, responsive grids, and visible focus.
 - `/rutes-itineraris` calls `getActivityBySlug` with a shared constant for
   `sortides-amb-esperit`; missing data leaves the placeholder section intact.

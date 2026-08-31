@@ -31,13 +31,20 @@
 
 ## Phase 2: local public UI
 
-- [ ] Fetch Agenda through domain services and implement next/featured/upcoming,
-  archive, and empty behavior.
-- [ ] Redesign activity cards and add detail, metadata, 404, image, and optional
+- [ ] Fetch Agenda through domain services and implement next, featured,
+  archive, empty behavior, and a deduplicated preview of at most six upcoming
+  activities.
+- [ ] Add the primary `/agenda/activitats` CTA and build that complete activity
+  page with immediate text search, reusable-type filter, closed-status filter,
+  clear action, result count, and no-results state.
+- [ ] Redesign activity cards with a simple responsive treatment and add the
+  `/agenda/activity/[slug]` detail page with metadata, 404, image, and optional
   field rendering.
 - [ ] Unhide Agenda navigation, replace placeholder copy, and reconnect the
-  routes page by slug.
-- [ ] Verify responsive, keyboard, status, empty, and local image scenarios.
+  routes page to the persistent activity detail by slug.
+- [ ] Verify 0–6 preview behavior, search accents/case, dynamic type options,
+  filters, clear action, responsive keyboard use, statuses, empty states, 404,
+  and local images.
 - [ ] Gate: lint/types/build/manual routes; commit before Sanity work.
 
 ## Phase 3: Sanity editorial model
