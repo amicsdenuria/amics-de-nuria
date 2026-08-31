@@ -22,12 +22,12 @@
 
 ## Phase 1: English domain and local data
 
-- [ ] Replace Catalan activity properties with the documented domain contract.
-- [ ] Add reusable local activity types and replacement fixtures, including the
+- [x] Replace Catalan activity properties with the documented domain contract.
+- [x] Add reusable local activity types and replacement fixtures, including the
   stable “Sortides amb l’Esperit” activity.
-- [ ] Implement local adapters, services, selectors, and local featured choice.
-- [ ] Migrate every existing activity consumer and set Agenda sources to local.
-- [ ] Gate: lint/types plus selector review; commit before UI work.
+- [x] Implement local adapters, services, selectors, and local featured choice.
+- [x] Migrate every existing activity consumer and set Agenda sources to local.
+- [x] Gate: lint/types plus selector review; commit before UI work.
 
 ## Phase 2: local public UI
 

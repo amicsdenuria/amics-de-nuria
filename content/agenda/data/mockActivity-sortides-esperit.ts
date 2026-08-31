@@ -1,40 +1,49 @@
-import { DomainActivity } from '@/domain/activity/activity.types';
+import type { DomainActivity } from '@/domain/activity/activity.types';
+import { SPIRIT_ACTIVITY_SLUG } from '@/domain/activity/activity.constants';
+import { activityTypes } from './activityTypes';
 
 export const spiritActivity: DomainActivity = {
-  slug: 'spirit-activity',
-  id: 'spirit-activity',
-  titol: "Sortida amb l'Esperit - Cami de la Llum",
-  descripcio:
+  slug: SPIRIT_ACTIVITY_SLUG,
+  id: 'activity-sortides-amb-esperit',
+  title: "Sortides amb l'Esperit: camí de la llum",
+  description:
     'Una jornada de caminar i pregar, convertint el sender en un espai de silenci i paraula compartida.',
-  tipus: 'natura',
-  estat: 'agendada',
-  horari: {
-    dataInici: new Date('2026-06-14T08:00:00'),
-    dataFi: new Date('2026-06-14T18:00:00'),
-    duradaMinuts: 600,
+  type: activityTypes.nature,
+  status: 'scheduled',
+  schedule: {
+    startDate: new Date('2026-09-20T08:00:00+02:00'),
+    endDate: new Date('2026-09-20T18:00:00+02:00'),
+    durationMinutes: 600,
   },
-  ubicacio: {
-    nom: 'Santuari de Montserrat',
-    ciutat: 'Monistrol de Montserrat',
-    provincia: 'Barcelona',
-    esOnline: false,
+  location: {
+    name: 'Santuari de Montserrat',
+    city: 'Monistrol de Montserrat',
+    province: 'Barcelona',
+    isOnline: false,
   },
-  organitzador: {
-    nom: 'Pelegrinatge a Nuria',
+  organizer: {
+    name: 'Amics de Núria',
   },
   participants: {
-    minimParticipants: 5,
-    maximParticipants: 25,
+    minParticipants: 5,
+    maxParticipants: 25,
   },
-  inscripcio: {
-    requereixInscripcio: true,
-    dataLimitInscripcio: new Date('2026-06-10'),
+  registration: {
+    requiresRegistration: true,
+    registrationDeadline: new Date('2026-09-16T23:59:59+02:00'),
   },
-  preu: {
-    esGratuita: true,
+  price: {
+    isFree: true,
   },
-  requisits: {
-    nivell: 'qualsevol',
-    observacions: 'Portar calçat comodo i aigua',
+  requirements: {
+    level: 'any',
+    requiredMaterials: ['Calçat de muntanya', 'Aigua', 'Dinar'],
+    notes: 'Cal tenir una condició física adequada per caminar tot el dia.',
+  },
+  content: {
+    mainImage: {
+      url: '/monestir-montserrat.webp',
+      alt: 'Monestir de Montserrat envoltat de muntanya',
+    },
   },
 };

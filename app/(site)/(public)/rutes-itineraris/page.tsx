@@ -9,7 +9,8 @@ import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
 import { getAllRoutes } from '@/domain/route/route.service';
 import { getCurrentRoute } from '@/domain/currentRoute/currentRoute.service';
-import { getSpiritActivity } from '@/domain/activity/activity.service';
+import { getActivityBySlug } from '@/domain/activity/activity.service';
+import { SPIRIT_ACTIVITY_SLUG } from '@/domain/activity/activity.constants';
 import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 
 const RutesItinerarisPage = async () => {
@@ -33,7 +34,7 @@ const RutesItinerarisPage = async () => {
     // TODO: adaptar solicitud a sanity de getFeaturedRoutes (les 6 rutes preferides) enlloc de demanar totes les rutes getAllRoutes i fer slice de 6
     .slice(0, 6);
 
-  const spiritActivity = await getSpiritActivity();
+  const spiritActivity = await getActivityBySlug(SPIRIT_ACTIVITY_SLUG);
 
   return (
     <>

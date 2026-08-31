@@ -3,13 +3,13 @@ import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
 import { ActivityCard } from './components/ActivityCard';
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
-import { activities } from '@/content/agenda/data/activities';
+import { localActivities } from '@/content/agenda/data/activities';
 import { agendaContent } from '@/content/agenda/agendaPage';
 
 const AgendaPage = () => {
-  const nextActivity = activities[0];
-  const keyActivity = activities[1];
-  const otherActivities = activities.filter(
+  const nextActivity = localActivities[0];
+  const keyActivity = localActivities[1];
+  const otherActivities = localActivities.filter(
     (activity) =>
       activity.id !== nextActivity.id && activity.id !== keyActivity.id,
   );
@@ -48,7 +48,7 @@ const AgendaPage = () => {
 
             <ActivityCard
               activity={nextActivity}
-              href={`/agenda/activity/${nextActivity.id}`}
+              href={`/agenda/activity/${nextActivity.slug}`}
             />
           </section>
 
@@ -61,7 +61,7 @@ const AgendaPage = () => {
 
             <ActivityCard
               activity={keyActivity}
-              href={`/agenda/activity/${keyActivity.id}`}
+              href={`/agenda/activity/${keyActivity.slug}`}
             />
           </section>
         </PageContainer>
@@ -83,7 +83,7 @@ const AgendaPage = () => {
               <ActivityCard
                 key={activity.id}
                 activity={activity}
-                href={`/agenda/activity/${activity.id}`}
+                href={`/agenda/activity/${activity.slug}`}
               />
             ))}
           </div>

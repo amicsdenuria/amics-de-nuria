@@ -17,17 +17,17 @@ const statusVariants: Record<
   ActivityStatus,
   'default' | 'secondary' | 'destructive' | 'outline'
 > = {
-  agendada: 'default',
-  completa: 'secondary',
-  'cancel·lada': 'destructive',
-  finalitzada: 'outline',
+  scheduled: 'default',
+  full: 'secondary',
+  cancelled: 'destructive',
+  finished: 'outline',
 };
 
 const statusLabels: Record<ActivityStatus, string> = {
-  agendada: 'Agendada',
-  completa: 'Completa',
-  'cancel·lada': 'Cancel·lada',
-  finalitzada: 'Finalitzada',
+  scheduled: 'Agendada',
+  full: 'Completa',
+  cancelled: 'Cancel·lada',
+  finished: 'Finalitzada',
 };
 
 function formatDate(date: Date): string {
@@ -47,7 +47,7 @@ function formatDuration(minutes: number): string {
 }
 
 export function ActivityCard({ activity, href = '#' }: ActivityCardProps) {
-  const { horari, ubicacio, preu, participants } = activity;
+  const { schedule, location, price, participants } = activity;
 
   return (
     <Link href={href}>
@@ -57,7 +57,7 @@ export function ActivityCard({ activity, href = '#' }: ActivityCardProps) {
             {/* Title */}
             <div className="flex items-start justify-between gap-3">
               <h3 className="font-serif text-lg font-semibold text-primary leading-snug text-pretty">
-                {activity.titol}
+                {activity.title}
               </h3>
             </div>
 
@@ -68,14 +68,14 @@ export function ActivityCard({ activity, href = '#' }: ActivityCardProps) {
                   variant="outline"
                   className="text-xs font-normal"
                 >
-                  Activitat
+                  {activity.type.name}
                 </Badge>
-                {activity.estat !== 'agendada' && (
+                {activity.status !== 'scheduled' && (
                   <Badge
-                    variant={statusVariants[activity.estat]}
+                    variant={statusVariants[activity.status]}
                     className="text-xs"
                   >
-                    {statusLabels[activity.estat]}
+                    {statusLabels[activity.status]}
                   </Badge>
                 )}
               </div>
@@ -86,14 +86,14 @@ export function ActivityCard({ activity, href = '#' }: ActivityCardProps) {
           <div className="flex flex-wrap items-center gap-3 text-sm">
             <div className="flex items-center gap-1.5 text-foreground">
               <CalendarIcon className="size-3.5 text-muted-foreground" />
-              <span>{formatDate(horari.dataInici)}</span>
+              <span>{formatDate(schedule.startDate)}</span>
             </div>
-            {horari.duradaMinuts && (
+            {schedule.durationMinutes && (
               <>
                 <div className="h-3 w-px bg-border" />
                 <div className="flex items-center gap-1.5 text-foreground">
                   <ClockIcon className="size-3.5 text-muted-foreground" />
-                  <span>{formatDuration(horari.duradaMinuts)}</span>
+                  <span>{formatDuration(schedule.durationMinutes)}</span>
                 </div>
               </>
             )}
@@ -103,8 +103,8 @@ export function ActivityCard({ activity, href = '#' }: ActivityCardProps) {
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <MapPinIcon className="size-3.5 shrink-0" />
             <span className="truncate">
-              {ubicacio.esOnline ? 'Online' : ubicacio.nom}
-              {ubicacio.ciutat && !ubicacio.esOnline && `, ${ubicacio.ciutat}`}
+              {location.isOnline ? 'Online' : location.name}
+              {location.city && !location.isOnline && `, ${location.city}`}
             </span>
           </div>
         </CardContent>
@@ -113,12 +113,12 @@ export function ActivityCard({ activity, href = '#' }: ActivityCardProps) {
           {/* Footer: Price + Participants */}
           <div className="w-full flex items-center justify-between gap-3">
             <span className="text-sm font-medium text-foreground">
-              {preu.esGratuita ? 'Gratuita' : `${preu.import?.toFixed(2)} €`}
+              {price.isFree ? 'Gratuïta' : `${price.amount?.toFixed(2)} €`}
             </span>
-            {participants.maximParticipants && (
+            {participants.maxParticipants && (
               <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                 <UsersIcon className="size-3.5" />
-                <span>Max. {participants.maximParticipants}</span>
+                <span>Màx. {participants.maxParticipants}</span>
               </div>
             )}
           </div>

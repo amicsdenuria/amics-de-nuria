@@ -1,90 +1,90 @@
-// Activity types
-export type ActivityType =
-  | 'esport'
-  | 'gastronomia'
-  | 'cultura'
-  | 'musica'
-  | 'natura'
-  | 'jocs'
-  | 'festa'
-  | 'taller'
-  | 'altre';
+import type { DomainImage } from '../shared/image.types';
+
+export interface ActivityType {
+  id: string;
+  slug: string;
+  name: string;
+}
 
 export type ActivityStatus =
-  | 'agendada'
-  | 'completa'
-  | 'cancel·lada'
-  | 'finalitzada';
+  | 'scheduled'
+  | 'full'
+  | 'cancelled'
+  | 'finished';
 
-export type ActivityLevel = 'iniciacio' | 'intermedi' | 'avancat' | 'qualsevol';
+export type ActivityLevel =
+  | 'beginner'
+  | 'intermediate'
+  | 'advanced'
+  | 'any';
 
 export interface ActivitySchedule {
-  dataInici: Date;
-  dataFi?: Date;
-  duradaMinuts?: number;
+  startDate: Date;
+  endDate?: Date;
+  durationMinutes?: number;
 }
 
 export interface ActivityLocation {
-  nom: string;
-  adreca?: string;
-  ciutat?: string;
-  provincia?: string;
-  esOnline: boolean;
+  name: string;
+  address?: string;
+  city?: string;
+  province?: string;
+  isOnline: boolean;
 }
 
 export interface ActivityOrganizer {
-  nom: string;
-  urlOrganitzador?: string;
+  name: string;
+  organizerUrl?: string;
 }
 
 export interface ActivityParticipants {
-  minimParticipants?: number;
-  maximParticipants?: number;
+  minParticipants?: number;
+  maxParticipants?: number;
 }
 
 export interface ActivityRegistration {
-  requereixInscripcio: boolean;
-  dataLimitInscripcio?: Date;
-  urlInscripcio?: string;
+  requiresRegistration: boolean;
+  registrationDeadline?: Date;
+  registrationUrl?: string;
 }
 
-export interface ActivityPricing {
-  esGratuita: boolean;
-  import?: number;
+export interface ActivityPrice {
+  isFree: boolean;
+  amount?: number;
 }
 
 export interface ActivityRequirements {
-  edatMinima?: number;
-  edatMaxima?: number;
-  nivell?: ActivityLevel;
-  materialNecessari?: string[];
-  observacions?: string;
+  minAge?: number;
+  maxAge?: number;
+  level?: ActivityLevel;
+  requiredMaterials?: string[];
+  notes?: string;
 }
 
 export interface ActivityContent {
-  imatgePrincipalUrl?: string;
-  galeriaUrls?: string[];
+  mainImage?: DomainImage;
+  images?: DomainImage[];
 }
 
 export interface ActivityMetadata {
-  cancelladaEl?: Date;
-  motiuCancellacio?: string;
+  cancelledAt?: Date;
+  cancellationReason?: string;
 }
 
 export interface DomainActivity {
-  slug: string;
   id: string;
-  titol: string;
-  descripcio?: string;
-  tipus: ActivityType;
-  estat: ActivityStatus;
-  horari: ActivitySchedule;
-  ubicacio: ActivityLocation;
-  organitzador: ActivityOrganizer;
+  slug: string;
+  title: string;
+  description: string;
+  type: ActivityType;
+  status: ActivityStatus;
+  schedule: ActivitySchedule;
+  location: ActivityLocation;
+  organizer: ActivityOrganizer;
   participants: ActivityParticipants;
-  inscripcio: ActivityRegistration;
-  preu: ActivityPricing;
-  requisits?: ActivityRequirements;
-  contingut?: ActivityContent;
-  metadades?: ActivityMetadata;
+  registration: ActivityRegistration;
+  price: ActivityPrice;
+  requirements?: ActivityRequirements;
+  content?: ActivityContent;
+  metadata?: ActivityMetadata;
 }
