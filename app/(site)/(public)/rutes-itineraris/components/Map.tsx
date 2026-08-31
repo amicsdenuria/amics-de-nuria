@@ -17,7 +17,7 @@ const RouteMap = ({ src }: RouteMapProps) => {
   const [mapType, setMapType] = useState<'M' | 'T'>('M');
   const [showElevationProfile, setshowElevationProfile] = useState(true);
   const [interactive, setInteractive] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const interactionBoundaryRef = useRef<HTMLDivElement>(null);
 
   const url = useMemo(() => {
     const mapUrl = new URL(src);
@@ -36,8 +36,8 @@ const RouteMap = ({ src }: RouteMapProps) => {
     const handlePointerDown = (event: MouseEvent) => {
       if (
         interactive &&
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        interactionBoundaryRef.current &&
+        !interactionBoundaryRef.current.contains(event.target as Node)
       ) {
         setInteractive(false);
       }
@@ -53,7 +53,10 @@ const RouteMap = ({ src }: RouteMapProps) => {
   }, [interactive]);
 
   return (
-    <div className="space-y-4 relative">
+    <div
+      ref={interactionBoundaryRef}
+      className="space-y-4 relative"
+    >
       <div className="flex w-full gap-x-4 h-15 absolute right-0 top-0 bg-white px-4 border rounded-t-lg z-20">
         <div className="right-4 top-3 flex gap-x-8 items-center">
           <ToggleGroup
@@ -101,7 +104,6 @@ const RouteMap = ({ src }: RouteMapProps) => {
       </div>
 
       <div
-        ref={containerRef}
         className="relative lg:aspect-video h-[600px] lg:h-auto rounded-sm overflow-hidden border"
       >
         {!interactive && (
