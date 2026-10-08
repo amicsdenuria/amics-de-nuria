@@ -32,7 +32,7 @@
 
 ## Phase 2: local public UI
 
-- [ ] Fetch Agenda through domain services and implement next, featured,
+- [x] Fetch Agenda through domain services and implement next, featured,
   archive, empty behavior, and a deduplicated preview of at most six upcoming
   activities.
 - [ ] Add the primary `/agenda/activitats` CTA and build that complete activity

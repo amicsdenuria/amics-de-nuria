@@ -12,10 +12,18 @@ interface AgendaContent {
     nextActivity: {
       title: string;
     };
-    keyActivity: {
+    featuredActivity: {
       title: string;
     };
     activities: {
+      title: string;
+      description: string;
+    };
+    archive: {
+      title: string;
+      description: string;
+    };
+    empty: {
       title: string;
       description: string;
     };
@@ -24,8 +32,8 @@ interface AgendaContent {
 
 const agendaCTAs: PrimaryPageNavItem[] = [
   { label: 'Pròxima activitat', href: '/agenda#next-activity' },
-  { label: 'Activitat destacada', href: '/agenda#key-activity' },
-  { label: 'Altres activitats', href: '/agenda#activities' },
+  { label: 'Activitat destacada', href: '/agenda#featured-activity' },
+  { label: 'Properes activitats', href: '/agenda#activities' },
 ];
 
 export const agendaContent: AgendaContent = {
@@ -54,14 +62,26 @@ export const agendaContent: AgendaContent = {
       title: 'Pròxima activitat',
     },
 
-    keyActivity: {
+    featuredActivity: {
       title: 'Activitat destacada',
     },
 
     activities: {
-      title: 'Altres activitats',
+      title: 'Properes activitats',
       description:
-        "Aquí trobaras totes les activitats organitzades des d'Amics de Núria, o activitats externes.",
+        "Descobreix les properes trobades organitzades per Amics de Núria i les activitats amb què col·laborem.",
+    },
+
+    archive: {
+      title: "Arxiu d'activitats",
+      description:
+        "Consulta les activitats que ja hem celebrat i els moments compartits amb la comunitat.",
+    },
+
+    empty: {
+      title: 'Encara no hi ha activitats publicades',
+      description:
+        'Torna aviat per descobrir les properes propostes dels Amics de Núria.',
     },
   },
 };

@@ -1,26 +1,68 @@
-import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
+import { CalendarX2Icon } from 'lucide-react';
 
-import { ActivityCard } from './components/ActivityCard';
 import PageContainer from '@/components/ui/page-container';
-import PrimaryPageHero from '../components/PrimaryPageHero';
-import { localActivities } from '@/content/agenda/data/activities';
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '@/components/ui/empty';
+import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
 import { agendaContent } from '@/content/agenda/agendaPage';
+import { selectAgendaActivities } from '@/domain/activity/activity.selectors';
+import {
+  getActivities,
+  getFeaturedActivity,
+} from '@/domain/activity/activity.service';
+import { cn } from '@/lib/utils';
 
-const AgendaPage = () => {
-  const nextActivity = localActivities[0];
-  const keyActivity = localActivities[1];
-  const otherActivities = localActivities.filter(
-    (activity) =>
-      activity.id !== nextActivity.id && activity.id !== keyActivity.id,
+import PrimaryPageHero from '../components/PrimaryPageHero';
+import { ActivityCard } from './components/ActivityCard';
+
+const AgendaPage = async () => {
+  const [activities, featuredActivity] = await Promise.all([
+    getActivities(),
+    getFeaturedActivity(),
+  ]);
+  const { nextActivity, upcomingActivities, archivedActivities } =
+    selectAgendaActivities(activities, new Date());
+  const visibleFeaturedActivity =
+    featuredActivity?.id === nextActivity?.id ? null : featuredActivity;
+  const highlightedActivityIds = new Set(
+    [nextActivity?.id, visibleFeaturedActivity?.id].filter(
+      (id): id is string => Boolean(id),
+    ),
+  );
+  const upcomingPreview = upcomingActivities
+    .filter((activity) => !highlightedActivityIds.has(activity.id))
+    .slice(0, 6);
+  const visibleArchivedActivities = archivedActivities.filter(
+    (activity) => !highlightedActivityIds.has(activity.id),
   );
 
   const {
     hero,
     intro,
     nextActivity: nextActivityUI,
-    keyActivity: keyActivityUI,
+    featuredActivity: featuredActivityUI,
     activities: activitiesUI,
+    archive,
+    empty,
   } = agendaContent.home;
+  const highlightedActivities = [
+    nextActivity
+      ? { activity: nextActivity, content: nextActivityUI, id: 'next-activity' }
+      : null,
+    visibleFeaturedActivity
+      ? {
+          activity: visibleFeaturedActivity,
+          content: featuredActivityUI,
+          id: 'featured-activity',
+        }
+      : null,
+  ].filter((item) => item !== null);
+
   return (
     <>
       <PrimaryPageHero
@@ -32,63 +74,92 @@ const AgendaPage = () => {
         img={hero.img}
       />
 
-      <PageContainer className="py-16 md:py-24 text-center px-6">
+      <PageContainer className="px-6 py-16 text-center md:py-24">
         <TypoH2Var className="mb-6 text-balance">{intro.title}</TypoH2Var>
         <TypoPVar className="mx-auto text-lg">{intro.body}</TypoPVar>
       </PageContainer>
 
-      <div className="bg-secondary/20">
-        <PageContainer className="py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
-          {/* Next Activity */}
-          <section
-            id="next-activity"
-            className="scroll-m-20"
-          >
-            <TypoH2Var className="mb-6">{nextActivityUI.title}</TypoH2Var>
-
-            <ActivityCard
-              activity={nextActivity}
-              href={`/agenda/activity/${nextActivity.slug}`}
-            />
-          </section>
-
-          {/* Key Activity */}
-          <section
-            id="key-activity"
-            className="scroll-m-20"
-          >
-            <TypoH2Var className="mb-6">{keyActivityUI.title}</TypoH2Var>
-
-            <ActivityCard
-              activity={keyActivity}
-              href={`/agenda/activity/${keyActivity.slug}`}
-            />
+      {activities.length === 0 ? (
+        <PageContainer className="pb-16 md:pb-24">
+          <section aria-labelledby="empty-agenda-title" id="activities">
+            <Empty className="border bg-secondary/20 py-16" role="status">
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <CalendarX2Icon aria-hidden="true" />
+                </EmptyMedia>
+                <EmptyTitle id="empty-agenda-title">{empty.title}</EmptyTitle>
+                <EmptyDescription>{empty.description}</EmptyDescription>
+              </EmptyHeader>
+            </Empty>
           </section>
         </PageContainer>
-      </div>
+      ) : (
+        <>
+          {highlightedActivities.length > 0 ? (
+            <div className="bg-secondary/20">
+              <PageContainer
+                className={cn(
+                  'grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-2 lg:gap-24',
+                  highlightedActivities.length === 1 &&
+                    'lg:max-w-3xl lg:grid-cols-1',
+                )}
+              >
+                {highlightedActivities.map(({ activity, content, id }) => (
+                  <section className="scroll-m-20" id={id} key={activity.id}>
+                    <TypoH2Var className="mb-6">{content.title}</TypoH2Var>
+                    <ActivityCard
+                      activity={activity}
+                      href={`/agenda/activity/${activity.slug}`}
+                    />
+                  </section>
+                ))}
+              </PageContainer>
+            </div>
+          ) : null}
 
-      {/* Other Activities */}
-      <PageContainer className="py-16 md:py-24">
-        <section
-          id="activities"
-          className="scroll-m-20"
-        >
-          <TypoH2Var className="mb-6">{activitiesUI.title}</TypoH2Var>
-          <p className="py-4 text-muted-foreground">
-            {activitiesUI.description}
-          </p>
+          {upcomingPreview.length > 0 ? (
+            <PageContainer className="py-16 md:py-24">
+              <section className="scroll-m-20" id="activities">
+                <TypoH2Var className="mb-4">{activitiesUI.title}</TypoH2Var>
+                <p className="mb-8 max-w-2xl text-muted-foreground">
+                  {activitiesUI.description}
+                </p>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {upcomingPreview.map((activity) => (
+                    <ActivityCard
+                      key={activity.id}
+                      activity={activity}
+                      href={`/agenda/activity/${activity.slug}`}
+                    />
+                  ))}
+                </div>
+              </section>
+            </PageContainer>
+          ) : null}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {otherActivities.map((activity) => (
-              <ActivityCard
-                key={activity.id}
-                activity={activity}
-                href={`/agenda/activity/${activity.slug}`}
-              />
-            ))}
-          </div>
-        </section>
-      </PageContainer>
+          {visibleArchivedActivities.length > 0 ? (
+            <div className="bg-muted/30">
+              <PageContainer className="py-16 md:py-24">
+                <section className="scroll-m-20" id="archive">
+                  <TypoH2Var className="mb-4">{archive.title}</TypoH2Var>
+                  <p className="mb-8 max-w-2xl text-muted-foreground">
+                    {archive.description}
+                  </p>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    {visibleArchivedActivities.map((activity) => (
+                      <ActivityCard
+                        key={activity.id}
+                        activity={activity}
+                        href={`/agenda/activity/${activity.slug}`}
+                      />
+                    ))}
+                  </div>
+                </section>
+              </PageContainer>
+            </div>
+          ) : null}
+        </>
+      )}
     </>
   );
 };
