@@ -65,6 +65,25 @@ Inspect installed components first; `empty` already exists. The final add is a
 code mutation and may require network approval. Review the added source and
 imports; never use `--overwrite` without approval.
 
+## Slices 2C and 2D manual verification
+
+Both slices are implemented in the user's explicitly requested sequential delivery
+of 2026-10-08. Slice 2C passed its agent gate before 2D started. The user then
+accepted the delivery and explicitly authorized closing commits, a merge to
+`preview` and pushes of both branches on 2026-10-08. Include the user's additional
+Agenda card in the home page. Closure revalidation passed lint/types/build,
+diff review and 591 fresh assertions; no implementation fix followed acceptance.
+
+Use `verification-report-2c-2d.md` together with `verification-report-load-more.md`
+as the complete manual checklist. The former records the initial 480 passing
+assertions; the load-more amendment records a fresh 851 with the button boundaries
+and regressions. Both give fixture/clock prerequisites, production verification,
+local environment constraints and the recorded manual acceptance.
+The development scenarios additionally include `browser` for reproducible search,
+dynamic types, every display status and combined period filters.
+The amendment adds `load-more-0/1/12/13/24/25/60` for repeatable button checks.
+The older 2B checklist below remains useful for the detail regression matrix.
+
 ## Slice 2B manual verification
 
 The detail page and Agenda card links are implemented. Review this slice only;
@@ -133,6 +152,17 @@ Production ignores both variables. The 2B gate leaves changes unstaged and
 uncommitted until the user explicitly accepts this checklist or requests fixes.
 
 ## Sanity schema and type generation
+
+### Optional later migration
+
+The optional phase 5 in `tasks.md` and `design.md` tracks future server-side
+search/filtering and cursor batches. It is highly recommended as the dataset
+grows, not a blocker for the required phases 2–4 or their acceptance/commit gates.
+Documenting it does not authorize starting it. Measure around 200 published
+activities; consider it around 300–500 including archives, based on payload and
+mobile behavior. Preserve search/date/status parity before any future cutover.
+
+### Required schema commands
 
 Run after schema or GROQ changes:
 

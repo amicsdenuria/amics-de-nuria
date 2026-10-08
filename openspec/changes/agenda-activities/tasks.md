@@ -35,7 +35,7 @@
 Slice 2A and its card/preview refinements were manually accepted and closed by
 the user on 2026-10-08, including the user's final cancellation styling.
 The original slice and the visual amendment were reviewed separately.
-Commit is explicitly approved; subsequent slices remain unimplemented.
+Slices 2B, 2C and 2D are now complete as recorded below; Sanity remains pending.
 Work in individually reviewable slices of at most 400 changed lines, validating
 and obtaining manual approval before committing each slice or proceeding.
 
@@ -81,19 +81,48 @@ and obtaining manual approval before committing each slice or proceeding.
   were explicitly approved on 2026-10-08.
   Gate passed: lint/types/build and browser checks for subtitle, omitted
   description, preserved introduction/card order and 360/768/1280 px layouts.
-- [ ] Slice 2C: add the primary `/agenda/activitats` CTA and complete activity
+- [x] Slice 2C: add the primary `/agenda/activitats` CTA and complete activity
   page with immediate text search, reusable-type filter, derived-display-status filter,
   URL-initialized upcoming/archived period filter, clear action, result count,
   and no-results state. Activate the two prepared preview buttons in this slice.
-- [ ] Slice 2D: unhide Agenda navigation and reconnect
+- [x] 2C agent gate: lint/types/build, 79 domain/render assertions and 141 browser
+  assertions passed before starting 2D. The user explicitly requested sequential
+  implementation of both slices in one uncommitted delivery on 2026-10-08.
+- [x] Slice 2D: unhide Agenda navigation and reconnect
   the routes page to the automatically selected latest spirit edition's detail.
-- [ ] Verify 0–6 preview behavior, search accents/case, dynamic type options,
+  Restore the Agenda footer links as well; both information CTAs use the selected
+  detail or retain contact when no marked activity exists.
+- [x] Verify 0–6 preview behavior, search accents/case, dynamic type options,
   filters, clear action, responsive keyboard use, statuses, empty states, 404,
   and local images, using the fixed-clock matrix in the runbook.
-- [ ] Agent gate: lint/types/build plus documented manual route checklist; stop
+- [x] Agent gate: lint/types/build plus documented manual route checklist; stop
   with the phase uncommitted.
-- [ ] User gate: receive explicit approval after the user's manual verification.
-- [ ] Commit the approved phase before beginning Sanity work.
+  Initial 2C/2D results: 480 assertions passed (79 domain/render, 401 browser), including
+  production, empty data, spirit selection, detail regressions and calendar clocks.
+  See `verification-report-2c-2d.md` for exact PASS/FAIL results, limitations,
+  reproduction commands and the complete manual checklist. Each review block is
+  below 400 changed lines. The final uncommitted delivery was then accepted below.
+- [x] User gate: the user accepted the delivery and explicitly authorized staging,
+  commits, merge to `preview`, and pushes of both branches on 2026-10-08.
+- [x] Close the approved phase in reviewable commits before Sanity work. Include
+  the user's additional Agenda home card. Final closure gate passed lint/types/build,
+  diff review and 591 fresh assertions (79 domain, 473 load-more, 23 production,
+  16 home-to-Agenda); no implementation fix was needed after acceptance.
+
+### Slice 2C amendment: manual load more (2026-10-08)
+
+- [x] At the user's request, show the first 12 matching activities and append
+  at most 12 per `Veure'n més` activation. Search/filter the complete dataset,
+  reset the visible limit on every control/clear, hide the button at the end,
+  announce visible counts and focus the first newly added card.
+- [x] Amendment agent gate: lint/types/build and diff review passed; 851 assertions
+  passed, 0 failed (588 load-more, 79 domain, 161 browser/rollout, 23 production).
+  Boundary datasets 0/1/12/13/24/25/60, every reset, keyboard, responsive and no
+  automatic loading passed. See `verification-report-load-more.md` for results
+  and the supplementary manual checklist. Review this amendment's implementation,
+  verification script, and documentation as separate blocks below 400 lines.
+- [x] Amendment user gate: delivery accepted and closing commits/merge/push
+  explicitly authorized on 2026-10-08; the optional phase 5 remains unimplemented.
 
 ## Phase 3: Sanity editorial model
 
@@ -127,3 +156,28 @@ Each slice requires validation and manual approval before its commit.
   verification report, and rollback readiness; stop uncommitted.
 - [ ] User gate: receive explicit approval after manual acceptance.
 - [ ] Commit only the manually approved final integration.
+
+## Phase 5: optional server-filtered browsing
+
+Highly recommended future improvement, explicitly requested for documentation
+on 2026-10-08. It does not block phases 2–4, their gates, commits, acceptance or
+Sanity rollout. No implementation of this phase is authorized by documenting it.
+Measure around 200 published activities and consider it around 300–500 (including
+archives), or earlier if payload/mobile performance warrants it; these are
+planning estimates, not Sanity limits.
+
+- [ ] Measure current list payload, initial loading and filter response on mobile;
+  decide when the migration is justified.
+- [ ] Design parameterized GROQ queries for search, type, derived status and Madrid
+  period; preserve text normalization and existing order through source parity.
+- [ ] Add stable date/ID cursors with the upcoming/archive boundary accounted for,
+  12-item batches, complete dynamic type options, total matches and `hasMore`.
+- [ ] Connect the existing button and controls to server reads; debounce text,
+  reset pagination on filter/clear, and cancel or discard stale responses.
+- [ ] Add loading/retry behavior, preserve visible counts, keyboard focus, URL
+  presets and responsive layouts, and keep private credentials server-side.
+- [ ] Validate query performance, payload improvement, equal dates, all filters,
+  empty/partial pages, no duplicates/omissions, slow/error/stale responses and
+  published read/cache/Live behavior. Run lint/types/build and document results.
+- [ ] Future user gate: accept the specific manual checklist before committing
+  this optional migration. Until then, retain the validated client-filtered browser.
