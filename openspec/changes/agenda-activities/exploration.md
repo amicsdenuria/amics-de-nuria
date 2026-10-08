@@ -41,13 +41,16 @@
   automatically selects the greatest start date, preserving all earlier editions.
 - Archive placement follows completed Madrid calendar days, not elapsed start
   times or editorial status. Registration is an optional external URL only.
+- Persist only scheduled/full/cancelled; derive completion and display status
+  from end/duration/last Madrid day. Cancellation keeps its visible label.
 
 ## Implementation checkpoint (2026-10-08)
 
 Phase 1 and the initial agenda preview exist with English contracts and local
 sources. Detail/browser routes and Sanity integration remain pending. Current
-selectors still use timestamps and routes still resolves the original fixed slug;
-Phase 2A must migrate both to the revised rules before continuing UI work.
+slice 2A derives completion and Madrid archive placement, selects spirit editions
+by marker/date, and shows start/end dates and times. Slice 2A and its card/preview
+refinements were manually accepted and closed on 2026-10-08; commit is approved.
 
 ## Baseline verification
 

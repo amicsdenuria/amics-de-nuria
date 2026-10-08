@@ -1,13 +1,13 @@
 import type { DomainActivity } from '@/domain/activity/activity.types';
-import { SPIRIT_ACTIVITY_SLUG } from '@/domain/activity/activity.constants';
 import { activityTypes } from './activityTypes';
 
 export const spiritActivity: DomainActivity = {
-  slug: SPIRIT_ACTIVITY_SLUG,
+  slug: 'sortides-amb-esperit',
   id: 'activity-sortides-amb-esperit',
   title: "Sortides amb l'Esperit: camí de la llum",
   description:
     'Una jornada de caminar i pregar, convertint el sender en un espai de silenci i paraula compartida.',
+  isSpiritActivity: true,
   type: activityTypes.nature,
   status: 'scheduled',
   schedule: {
@@ -28,10 +28,7 @@ export const spiritActivity: DomainActivity = {
     minParticipants: 5,
     maxParticipants: 25,
   },
-  registration: {
-    requiresRegistration: true,
-    registrationDeadline: new Date('2026-09-16T23:59:59+02:00'),
-  },
+  registration: {},
   price: {
     isFree: true,
   },

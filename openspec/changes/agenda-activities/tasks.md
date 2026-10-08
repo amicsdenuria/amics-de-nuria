@@ -32,8 +32,10 @@
 
 ## Phase 2: local public UI
 
-Product decisions revised 2026-10-08; implementation and manual document review
-remain pending.
+Slice 2A and its card/preview refinements were manually accepted and closed by
+the user on 2026-10-08, including the user's final cancellation styling.
+The original slice and the visual amendment were reviewed separately.
+Commit is explicitly approved; subsequent slices remain unimplemented.
 Work in individually reviewable slices of at most 400 changed lines, validating
 and obtaining manual approval before committing each slice or proceeding.
 
@@ -43,16 +45,28 @@ and obtaining manual approval before committing each slice or proceeding.
 - [x] Validate planning/cleanup: lint, types, build, diff check, and removed GET returns 404.
 - [x] Fetch Agenda through domain services and implement next, featured,
   archive, empty behavior, and a deduplicated preview of at most six upcoming
-  activities (initial behavior; revised archive rules remain pending in 2A).
-- [ ] Slice 2A: revise domain/local fixtures for `isSpiritActivity`, implement
+  activities (archive rules and preview are completed in 2A below).
+- [x] Slice 2A: revise domain/local fixtures for `isSpiritActivity`, implement
   latest-edition selection and calendar-day selectors, and simplify registration
-  to its optional URL. Update consumers without introducing broken detail links.
-- [ ] Slice 2B: redesign activity cards with a responsive treatment and add the
+  to its optional URL. Derive completion/display status without storing finished;
+  show start date/time and optional end date/time. Update consumers without broken detail links.
+  Manual verification was accepted; its completed checklist was removed.
+- [x] 2A refinement: separate date/time/duration stacks, cap archive at six after
+  deduplication, and prepare both period-filtered browser buttons (disabled until 2C).
+  Additional archive verification fixtures cover 0/1/6/8 entries and featured exclusion.
+  Keep type right of title; status replaces capacity. Cancelled cards use a muted
+  grey card background and original red status pill while retaining future detail navigation.
+- [x] 2A agent gate: lint/types/build, domain/card assertions, preview scenarios,
+  and diff review. Preserve the user's final styling and remove the unused CSS token.
+  Passed: 157 assertions, 17 page-render scenarios and 2 prepared-filter-link checks.
+- [x] 2A user gate: manual acceptance and commit explicitly approved on 2026-10-08.
+- [ ] Slice 2B: add the
   `/agenda/activity/[slug]` detail page with metadata, 404, image, and optional
   field rendering, including the simple external registration CTA.
 - [ ] Slice 2C: add the primary `/agenda/activitats` CTA and complete activity
-  page with immediate text search, reusable-type filter, closed-status filter,
-  clear action, result count, and no-results state.
+  page with immediate text search, reusable-type filter, derived-display-status filter,
+  URL-initialized upcoming/archived period filter, clear action, result count,
+  and no-results state. Activate the two prepared preview buttons in this slice.
 - [ ] Slice 2D: unhide Agenda navigation, replace placeholder copy, and reconnect
   the routes page to the automatically selected latest spirit edition's detail.
 - [ ] Verify 0–6 preview behavior, search accents/case, dynamic type options,

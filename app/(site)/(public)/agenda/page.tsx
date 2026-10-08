@@ -1,6 +1,9 @@
-import { CalendarX2Icon } from 'lucide-react';
+import { ArrowRightIcon, CalendarX2Icon } from 'lucide-react';
+import Link from 'next/link';
+import { connection } from 'next/server';
 
 import PageContainer from '@/components/ui/page-container';
+import { Button } from '@/components/ui/button';
 import {
   Empty,
   EmptyDescription,
@@ -9,10 +12,12 @@ import {
   EmptyTitle,
 } from '@/components/ui/empty';
 import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
-import { agendaContent } from '@/content/agenda/agendaPage';
+import { activityBrowserAvailable, activityBrowserComingSoon, agendaContent } from '@/content/agenda/agendaPage';
+import type { PrimaryPageNavItem } from '@/content/interfaces/primary-page-interfaces';
 import { selectAgendaActivities } from '@/domain/activity/activity.selectors';
 import {
   getActivities,
+  getAgendaNow,
   getFeaturedActivity,
 } from '@/domain/activity/activity.service';
 import { cn } from '@/lib/utils';
@@ -20,13 +25,32 @@ import { cn } from '@/lib/utils';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import { ActivityCard } from './components/ActivityCard';
 
+function BrowseActivitiesButton({ cta }: { cta: PrimaryPageNavItem }) {
+  return (
+    <div className="mt-8 flex flex-col items-center gap-2">
+      {activityBrowserAvailable ? (
+        <Button asChild size="lg" className="h-auto min-h-10 whitespace-normal text-center">
+          <Link href={cta.href}>{cta.label}<ArrowRightIcon aria-hidden="true" data-icon="inline-end" /></Link>
+        </Button>
+      ) : (
+        <>
+          <Button disabled size="lg" className="h-auto min-h-10 whitespace-normal text-center">{cta.label}</Button>
+          <p className="text-sm text-muted-foreground">{activityBrowserComingSoon}</p>
+        </>
+      )}
+    </div>
+  );
+}
+
 const AgendaPage = async () => {
+  await connection();
+  const now = getAgendaNow();
   const [activities, featuredActivity] = await Promise.all([
     getActivities(),
     getFeaturedActivity(),
   ]);
   const { nextActivity, upcomingActivities, archivedActivities } =
-    selectAgendaActivities(activities, new Date());
+    selectAgendaActivities(activities, now);
   const visibleFeaturedActivity =
     featuredActivity?.id === nextActivity?.id ? null : featuredActivity;
   const highlightedActivityIds = new Set(
@@ -37,9 +61,9 @@ const AgendaPage = async () => {
   const upcomingPreview = upcomingActivities
     .filter((activity) => !highlightedActivityIds.has(activity.id))
     .slice(0, 6);
-  const visibleArchivedActivities = archivedActivities.filter(
-    (activity) => !highlightedActivityIds.has(activity.id),
-  );
+  const archivedPreview = archivedActivities
+    .filter((activity) => !highlightedActivityIds.has(activity.id))
+    .slice(0, 6);
 
   const {
     hero,
@@ -109,7 +133,7 @@ const AgendaPage = async () => {
                     <TypoH2Var className="mb-6">{content.title}</TypoH2Var>
                     <ActivityCard
                       activity={activity}
-                      href={`/agenda/activity/${activity.slug}`}
+                      now={now}
                     />
                   </section>
                 ))}
@@ -129,15 +153,16 @@ const AgendaPage = async () => {
                     <ActivityCard
                       key={activity.id}
                       activity={activity}
-                      href={`/agenda/activity/${activity.slug}`}
+                      now={now}
                     />
                   ))}
                 </div>
+                <BrowseActivitiesButton cta={activitiesUI.cta} />
               </section>
             </PageContainer>
           ) : null}
 
-          {visibleArchivedActivities.length > 0 ? (
+          {archivedPreview.length > 0 ? (
             <div className="bg-muted/30">
               <PageContainer className="py-16 md:py-24">
                 <section className="scroll-m-20" id="archive">
@@ -146,14 +171,15 @@ const AgendaPage = async () => {
                     {archive.description}
                   </p>
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                    {visibleArchivedActivities.map((activity) => (
+                    {archivedPreview.map((activity) => (
                       <ActivityCard
                         key={activity.id}
                         activity={activity}
-                        href={`/agenda/activity/${activity.slug}`}
+                        now={now}
                       />
                     ))}
                   </div>
+                  <BrowseActivitiesButton cta={archive.cta} />
                 </section>
               </PageContainer>
             </div>

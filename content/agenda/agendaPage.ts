@@ -18,10 +18,12 @@ interface AgendaContent {
     activities: {
       title: string;
       description: string;
+      cta: PrimaryPageNavItem;
     };
     archive: {
       title: string;
       description: string;
+      cta: PrimaryPageNavItem;
     };
     empty: {
       title: string;
@@ -29,6 +31,10 @@ interface AgendaContent {
     };
   };
 }
+
+// Activate the prepared links only when slice 2C implements the browser route.
+export const activityBrowserAvailable = false;
+export const activityBrowserComingSoon = 'Disponible properament';
 
 const agendaCTAs: PrimaryPageNavItem[] = [
   { label: 'Pròxima activitat', href: '/agenda#next-activity' },
@@ -70,12 +76,14 @@ export const agendaContent: AgendaContent = {
       title: 'Properes activitats',
       description:
         "Descobreix les properes trobades organitzades per Amics de Núria i les activitats amb què col·laborem.",
+      cta: { label: 'Veure totes les properes activitats', href: '/agenda/activitats?period=upcoming' },
     },
 
     archive: {
       title: "Arxiu d'activitats",
       description:
         "Consulta les activitats que ja hem celebrat i els moments compartits amb la comunitat.",
+      cta: { label: "Veure tot l’arxiu d’activitats", href: '/agenda/activitats?period=archived' },
     },
 
     empty: {

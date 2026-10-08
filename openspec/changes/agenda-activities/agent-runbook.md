@@ -139,14 +139,18 @@ Pass the clock into selectors and the browser; never change the system clock.
 | Eight non-archived activities, two different highlights | Six preview cards, no duplicates |
 | Same next and featured | One highlight; no duplicate card |
 | Today at 10:30, now today 23:59:59 then next midnight | Upcoming then archive |
-| Ends tomorrow; status finished today | Outside archive through tomorrow |
+| Ends tomorrow / ends today before now | Unfinished through end / finished today, archive next day |
 | Madrid DST on 2026-03-29 and 2026-10-25 | Archive changes at local midnight |
 | Spirit editions, renamed title, tied dates, invalid latest | Latest valid marked edition; ID tie-break |
 | Latest spirit edition is future or cancelled | That edition remains the routes selection |
-| No URL / URL + scheduled or full / cancelled, finished, archive | No CTA / CTA / no CTA |
+| No URL / URL + unfinished scheduled or full / cancelled or completed | No CTA / CTA / no CTA |
 | Empty read / invalid record / network error / unpublished | Empty / discard / retry UI / omitted |
 
 Prepare these repeatable fixtures in slice 2A without a new test framework.
+Development fixtures use `AGENDA_VERIFY` (calendar, spirit, preview-0/1/6/8,
+archive-0/1/6/8, archive-featured, same-highlight, empty) and optional
+`AGENDA_VERIFY_NOW`. Production ignores both keys. Slice 2A acceptance is
+recorded in `tasks.md`; its completed manual checklist was removed.
 
 ```bash
 pnpm lint

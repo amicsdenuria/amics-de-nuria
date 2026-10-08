@@ -9,8 +9,7 @@ import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
 import { getAllRoutes } from '@/domain/route/route.service';
 import { getCurrentRoute } from '@/domain/currentRoute/currentRoute.service';
-import { getActivityBySlug } from '@/domain/activity/activity.service';
-import { SPIRIT_ACTIVITY_SLUG } from '@/domain/activity/activity.constants';
+import { getAgendaNow, getLatestSpiritActivity } from '@/domain/activity/activity.service';
 import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 
 const RutesItinerarisPage = async () => {
@@ -24,8 +23,10 @@ const RutesItinerarisPage = async () => {
     },
   } = rutesItinerarisContent;
 
-  const routes = await getAllRoutes();
-  const currentRoute = await getCurrentRoute();
+  const now = getAgendaNow();
+  const [routes, currentRoute, spiritActivity] = await Promise.all([
+    getAllRoutes(), getCurrentRoute(), getLatestSpiritActivity(),
+  ]);
   const filteredRoutes = (
     currentRoute
       ? routes.filter((route) => route.id !== currentRoute?.id)
@@ -33,8 +34,6 @@ const RutesItinerarisPage = async () => {
   )
     // TODO: adaptar solicitud a sanity de getFeaturedRoutes (les 6 rutes preferides) enlloc de demanar totes les rutes getAllRoutes i fer slice de 6
     .slice(0, 6);
-
-  const spiritActivity = await getActivityBySlug(SPIRIT_ACTIVITY_SLUG);
 
   return (
     <>
@@ -130,7 +129,7 @@ const RutesItinerarisPage = async () => {
               // TODO: afegir link a activitat
               <ActivityCard
                 activity={spiritActivity}
-                href="#"
+                now={now}
               />
             )}
 

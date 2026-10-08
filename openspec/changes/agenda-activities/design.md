@@ -15,7 +15,8 @@ interface ActivityType {
   name: string;
 }
 
-type ActivityStatus = 'scheduled' | 'full' | 'cancelled' | 'finished';
+type ActivityStatus = 'scheduled' | 'full' | 'cancelled';
+type ActivityDisplayStatus = ActivityStatus | 'finished';
 type ActivityLevel = 'beginner' | 'intermediate' | 'advanced' | 'any';
 
 interface DomainActivity {
@@ -64,16 +65,27 @@ the latest-spirit selector only needs activities.
   start plus duration when present, otherwise `startDate`.
 - Archive contains activities whose last Madrid calendar day is before today,
   newest start date first. Today's activities remain outside the archive until
-  the following midnight, including those marked `finished`.
+  the following midnight, including those already finished by the domain clock.
 - Upcoming contains every non-archived activity, including today and all statuses,
   in ascending start order. Next is its earliest `scheduled` or `full` activity,
-  including one that started today. Status does not override calendar placement.
+  that has not finished, including one that started today. Status does not override archive placement.
 - A rendered next or featured activity is removed from the remaining list.
 - If featured equals next, only next renders. Missing featured data hides its
   section.
 - Detail remains addressable for every valid slug regardless of status.
 - All date sorts break ties by `id` ascending. Compute `now` once per server render
   and pass its ISO value to interactive consumers; recalculate on a new render.
+
+Completion is derived at `now >= endDate`, otherwise start plus a supplied
+duration; with neither, at the next Madrid calendar day. Cancellation remains
+the visible label after completion; other completed activities display `finished`.
+Never persist `finished`, completion/archive flags, or registration eligibility.
+Cards show separate Inici, optional Fi, and optional Durada stacks. Each date
+stack separates the calendar date from its Madrid time (24-hour clock).
+Card headers keep the title left and type pill right. A non-scheduled display
+status replaces capacity in the footer. Cancelled cards use the existing muted
+theme tokens, faded text and a struck-through title, keeping the red status pill. They retain
+their detail link and keyboard focus; never disable navigation.
 
 ## Spirit editions and registration
 
@@ -109,7 +121,7 @@ the external service owns availability. Remove `requiresRegistration` and
   defaults to false and registration URL is optional.
 - Studio groups: General; Horari; Ubicació i organització; Inscripció i preu;
   Requisits; Contingut; Cancel·lació.
-- Status options: Agendada, Completa, Cancel·lada, Finalitzada.
+- Editorial status options: Agendada (default), Completa, Cancel·lada.
 - Level options: Iniciació, Intermedi, Avançat, Qualsevol.
 - End MUST follow start. If end and duration exist, their minute difference
   MUST match. Participant and age minima MUST NOT exceed maxima.
@@ -158,20 +170,24 @@ Any valid referenced activity may be featured, including an archived one.
 - `/agenda` is an async Server Component and starts activities and featured
   fetches together. It renders hero, next, featured, an upcoming preview,
   archive, and an accessible empty state.
-- The `/agenda` upcoming preview removes activities already rendered as next or
-  featured, keeps chronological order, and renders at most six cards. If fewer
-  than six remain, it renders the available cards without placeholders. A
-  primary button links to `/agenda/activitats`.
+- Both `/agenda` previews exclude rendered highlights before limiting to six
+  cards: upcoming is chronological, archive newest first. Fewer entries render
+  without placeholders. Each nonempty section has a button below its cards.
+  Destinations are `/agenda/activitats?period=upcoming` and `?period=archived`.
+  Until 2C implements that route, show disabled buttons with Disponible properament;
+  activate the prepared links together with the browser, never send visitors to a 404.
 - `/agenda/activitats` is an async Server Component that fetches all activities
   once and delegates only interactive filtering to a focused Client Component.
   It displays upcoming activities first in ascending order followed by the
   newest archived activities.
 - The complete browser supports a case- and accent-insensitive text search over
   title, description, type, location, city, and organizer plus optional
-  single-value filters for the reusable type and closed status vocabularies.
+  single-value filters for the reusable type and derived display status, including finished.
   Type options are derived from the received activities so editorial additions
   require no UI code change. Changing a control filters immediately, a clear
   action restores all results, and zero matches render an accessible state.
+  The period filter initializes from upcoming/archived URL presets using the
+  same Madrid archive rule; absent/unknown values and clear restore all periods.
 - `/agenda/activity/[slug]` is a Server Component with dynamic metadata and
   `notFound()` for an unknown slug.
 - Server data passed to the browser Client Component is reduced to the fields

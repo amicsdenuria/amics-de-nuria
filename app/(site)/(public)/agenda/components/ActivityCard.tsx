@@ -1,20 +1,30 @@
-import {
-  ActivityStatus,
+import type {
+  ActivityDisplayStatus,
   DomainActivity,
 } from '@/domain/activity/activity.types';
 import { CalendarIcon, ClockIcon, MapPinIcon, UsersIcon } from 'lucide-react';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
+import { ACTIVITY_TIME_ZONE } from '@/domain/activity/activity.constants';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import { getActivityDisplayStatus } from '@/domain/activity/activity.selectors';
 
 interface ActivityCardProps {
   activity: DomainActivity;
+  now: Date;
   href?: string;
 }
 
 const statusVariants: Record<
-  ActivityStatus,
+  ActivityDisplayStatus,
   'default' | 'secondary' | 'destructive' | 'outline'
 > = {
   scheduled: 'default',
@@ -22,108 +32,163 @@ const statusVariants: Record<
   cancelled: 'destructive',
   finished: 'outline',
 };
-
-const statusLabels: Record<ActivityStatus, string> = {
+const statusLabels: Record<ActivityDisplayStatus, string> = {
   scheduled: 'Agendada',
   full: 'Completa',
   cancelled: 'Cancel·lada',
   finished: 'Finalitzada',
 };
-
-function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat('ca-ES', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  }).format(date);
-}
+const dateFormatter = new Intl.DateTimeFormat('ca-ES', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  timeZone: ACTIVITY_TIME_ZONE,
+});
+const timeFormatter = new Intl.DateTimeFormat('ca-ES', {
+  hour: '2-digit',
+  minute: '2-digit',
+  hourCycle: 'h23',
+  timeZone: ACTIVITY_TIME_ZONE,
+});
 
 function formatDuration(minutes: number): string {
   const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
   if (hours === 0) return `${minutes} min`;
-  const mins = minutes % 60;
-  if (mins === 0) return `${hours}h`;
-  return `${hours}h ${mins}min`;
+  return remainingMinutes === 0
+    ? `${hours} h`
+    : `${hours} h ${remainingMinutes} min`;
 }
 
-export function ActivityCard({ activity, href = '#' }: ActivityCardProps) {
-  const { schedule, location, price, participants } = activity;
-
+function ScheduleDate({ label, date }: { label: string; date: Date }) {
   return (
-    <Link href={href}>
-      <Card className="group cursor-pointer border-border/60 py-0 transition-all duration-200 hover:border-primary/30 hover:shadow-md">
-        <CardContent className="flex h-full flex-col gap-4 p-5">
-          <div className="flex items-start justify-between">
-            {/* Title */}
-            <div className="flex items-start justify-between gap-3">
-              <h3 className="font-serif text-lg font-semibold text-primary leading-snug text-pretty">
-                {activity.title}
-              </h3>
-            </div>
+    <div className="flex min-w-0 flex-col gap-1.5">
+      <dt className="flex items-center gap-1.5 text-xs text-muted-foreground">
+        <CalendarIcon
+          aria-hidden="true"
+          className="size-3.5"
+        />
+        {label}
+      </dt>
+      <dd>
+        <time
+          dateTime={date.toISOString()}
+          className="flex flex-col gap-1"
+        >
+          <span className="text-sm font-medium">
+            {dateFormatter.format(date)}
+          </span>
+          <span className="text-lg font-semibold tabular-nums">
+            {timeFormatter.format(date)}
+          </span>
+        </time>
+      </dd>
+    </div>
+  );
+}
 
-            {/* Type badge + Status */}
-            <div className="flex items-start justify-between gap-3 min-w-fit">
-              <div className="space-x-2">
-                <Badge
-                  variant="outline"
-                  className="text-xs font-normal"
-                >
-                  {activity.type.name}
-                </Badge>
-                {activity.status !== 'scheduled' && (
-                  <Badge
-                    variant={statusVariants[activity.status]}
-                    className="text-xs"
-                  >
-                    {statusLabels[activity.status]}
-                  </Badge>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Info row */}
-          <div className="flex flex-wrap items-center gap-3 text-sm">
-            <div className="flex items-center gap-1.5 text-foreground">
-              <CalendarIcon className="size-3.5 text-muted-foreground" />
-              <span>{formatDate(schedule.startDate)}</span>
-            </div>
-            {schedule.durationMinutes && (
-              <>
-                <div className="h-3 w-px bg-border" />
-                <div className="flex items-center gap-1.5 text-foreground">
-                  <ClockIcon className="size-3.5 text-muted-foreground" />
-                  <span>{formatDuration(schedule.durationMinutes)}</span>
-                </div>
-              </>
+export function ActivityCard({ activity, now, href }: ActivityCardProps) {
+  const { schedule, location, price, participants } = activity;
+  const displayStatus = getActivityDisplayStatus(activity, now);
+  const isCancelled = displayStatus === 'cancelled';
+  const card = (
+    <Card
+      className={cn(
+        'gap-5 border-border/60 py-5',
+        isCancelled && 'border-dashed bg-muted/30 text-muted-foreground/50',
+        href &&
+          'h-full transition-shadow hover:border-primary/30 hover:shadow-md',
+      )}
+    >
+      <CardHeader className="flex flex-row items-start justify-between gap-3 px-5">
+        <CardTitle className="min-w-0 flex-1">
+          <h3
+            className={cn(
+              'font-serif text-lg leading-snug text-pretty',
+              isCancelled
+                ? 'text-muted-foreground/50 line-through'
+                : 'text-primary',
             )}
-          </div>
-
-          {/* Location */}
-          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-            <MapPinIcon className="size-3.5 shrink-0" />
-            <span className="truncate">
-              {location.isOnline ? 'Online' : location.name}
-              {location.city && !location.isOnline && `, ${location.city}`}
-            </span>
-          </div>
-        </CardContent>
-
-        <CardFooter className="mb-6 border-t">
-          {/* Footer: Price + Participants */}
-          <div className="w-full flex items-center justify-between gap-3">
-            <span className="text-sm font-medium text-foreground">
-              {price.isFree ? 'Gratuïta' : `${price.amount?.toFixed(2)} €`}
-            </span>
-            {participants.maxParticipants && (
-              <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                <UsersIcon className="size-3.5" />
-                <span>Màx. {participants.maxParticipants}</span>
-              </div>
+          >
+            {activity.title}
+          </h3>
+        </CardTitle>
+        <div className="flex max-w-1/2 shrink-0 flex-wrap justify-end gap-2">
+          <Badge variant="outline">{activity.type.name}</Badge>
+        </div>
+      </CardHeader>
+      <CardContent className="flex flex-1 flex-col gap-5 px-5">
+        <dl className="grid grid-cols-1 gap-x-6 gap-y-4 rounded-lg bg-muted/40 p-4 sm:grid-cols-2">
+          <ScheduleDate
+            label="Inici"
+            date={schedule.startDate}
+          />
+          {schedule.endDate && (
+            <ScheduleDate
+              label="Fi"
+              date={schedule.endDate}
+            />
+          )}
+          {schedule.durationMinutes !== undefined && (
+            <div className="flex flex-col gap-1.5 sm:col-span-2">
+              <dt className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <ClockIcon
+                  aria-hidden="true"
+                  className="size-3.5"
+                />
+                Durada
+              </dt>
+              <dd className="text-sm font-medium">
+                {formatDuration(schedule.durationMinutes)}
+              </dd>
+            </div>
+          )}
+        </dl>
+        <div className="flex items-start gap-2 text-sm text-muted-foreground">
+          <MapPinIcon
+            aria-hidden="true"
+            className="mt-0.5 size-3.5 shrink-0"
+          />
+          <span
+            className={cn(
+              isCancelled
+                ? 'text-muted-foreground/50'
+                : 'text-muted-foreground',
             )}
-          </div>
-        </CardFooter>
-      </Card>
+          >
+            {location.isOnline ? 'Online' : location.name}
+            {location.city && !location.isOnline && `, ${location.city}`}
+          </span>
+        </div>
+      </CardContent>
+      <CardFooter className="flex-wrap justify-between gap-3 border-t px-5 [.border-t]:pt-4">
+        <span className="text-sm font-medium">
+          {price.isFree ? 'Gratuïta' : `${price.amount?.toFixed(2)} €`}
+        </span>
+        {displayStatus !== 'scheduled' ? (
+          <Badge variant={statusVariants[displayStatus]}>
+            {statusLabels[displayStatus]}
+          </Badge>
+        ) : participants.maxParticipants ? (
+          <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+            <UsersIcon
+              aria-hidden="true"
+              className="size-3.5"
+            />
+            Màx. {participants.maxParticipants}
+          </span>
+        ) : null}
+      </CardFooter>
+    </Card>
+  );
+  return href ? (
+    <Link
+      href={href}
+      className="block rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    >
+      {card}
     </Link>
+  ) : (
+    card
   );
 }

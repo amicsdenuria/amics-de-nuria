@@ -9,8 +9,9 @@ export interface ActivityType {
 export type ActivityStatus =
   | 'scheduled'
   | 'full'
-  | 'cancelled'
-  | 'finished';
+  | 'cancelled';
+
+export type ActivityDisplayStatus = ActivityStatus | 'finished';
 
 export type ActivityLevel =
   | 'beginner'
@@ -43,8 +44,6 @@ export interface ActivityParticipants {
 }
 
 export interface ActivityRegistration {
-  requiresRegistration: boolean;
-  registrationDeadline?: Date;
   registrationUrl?: string;
 }
 
@@ -76,6 +75,7 @@ export interface DomainActivity {
   slug: string;
   title: string;
   description: string;
+  isSpiritActivity: boolean;
   type: ActivityType;
   status: ActivityStatus;
   schedule: ActivitySchedule;

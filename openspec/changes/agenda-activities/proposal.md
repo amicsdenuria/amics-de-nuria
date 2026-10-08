@@ -11,6 +11,7 @@ level remain controlled vocabularies.
 
 - English domain contracts and local fixtures for activities and types.
 - Today/upcoming, next, featured, and archived activity selection by Madrid day.
+- Domain-derived completion; editorial status stores only scheduled/full/cancelled.
 - Public agenda preview, complete searchable/filterable activity browser,
   detail route, navigation, empty states, and the existing “Sortides amb
   l’Esperit” consumer, automatically selecting the latest separate edition.

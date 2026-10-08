@@ -27,18 +27,30 @@ activity MUST contain exactly one required strong reference to it.
 
 ## Requirement: closed status and level vocabularies
 
-Status MUST be one of `scheduled`, `full`, `cancelled`, or `finished`. Level,
+Persisted status MUST be one of `scheduled`, `full`, or `cancelled`. Level,
 when present, MUST be one of `beginner`, `intermediate`, `advanced`, or `any`.
 Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
+
+Completion MUST be derived from `now >= endDate`, else start plus duration,
+else the next Madrid day. It MUST NOT require database updates. Display status
+MUST preserve cancelled; otherwise completed activities display finished.
+Archive placement and registration eligibility MUST also be computed, not stored.
+Cards MUST show startDate/time and optional endDate/time, even on the same day,
+using ca-ES, a 24-hour clock and Europe/Madrid. Current dates are datetime values.
+Inici, optional Fi and optional Durada MUST occupy separate stacks; each date
+stack MUST place the time on a separate line from the date.
+Card headers MUST retain the title left and type pill right. A cancelled/full/finished
+pill MUST replace capacity in the footer. Cancelled cards MUST look muted while
+retaining their detail link and keyboard accessibility when details are implemented.
 
 ## Requirement: agenda selection
 
 ### Scenario: choose the next activity
 
-- **Given** today's and future scheduled, full, cancelled, and finished activities
+- **Given** today's and future activities with editorial status and computed completion
 - **When** the agenda is rendered
-- **Then** next MUST be the earliest non-archived scheduled or full activity
-- **And** an activity that started today MUST remain eligible
+- **Then** next MUST be the earliest non-archived, unfinished scheduled or full activity
+- **And** an activity that started today MUST remain eligible until completion
 - **And** a cancelled or finished activity MUST NOT become next
 
 ### Scenario: render archive
@@ -47,7 +59,7 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 - **When** the agenda is rendered
 - **Then** only activities whose last day is before today MUST enter the archive
 - **And** today's activities MUST remain outside it until the next Madrid midnight
-  even when marked finished, including across daylight-saving transitions
+  even when already completed, including across daylight-saving transitions
 - **And** multi-day activities MUST remain outside it through their final day
 - **And** non-archived cancelled activities MUST remain visible with their status
 
@@ -97,7 +109,18 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 - **Then** it MUST exclude those rendered activities
 - **And** it MUST show the earliest six remaining activities at most
 - **And** it MUST render every available activity when fewer than six remain
-- **And** a primary-action link MUST navigate to `/agenda/activitats`
+- **And** a button below the cards MUST open `/agenda/activitats?period=upcoming`
+  once the complete browser is implemented
+
+### Scenario: preview no more than six archived activities
+
+- **Given** archived activities, including a rendered featured activity
+- **When** the archive preview on `/agenda` is rendered
+- **Then** it MUST exclude rendered highlights before selecting the six newest at most
+- **And** fewer remaining activities MUST render without placeholders
+- **And** a button below the cards MUST open `/agenda/activitats?period=archived`
+  once the browser is implemented; pending buttons MUST be visibly unavailable
+  and MUST NOT navigate to an unimplemented route
 
 ### Scenario: browse all activities
 
@@ -105,6 +128,8 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 - **When** `/agenda/activitats` is rendered
 - **Then** it MUST make every activity reachable through its detail link
 - **And** upcoming activities MUST precede the newest-first archive
+- **And** valid period URL presets MUST initialize the corresponding filter;
+  absent/unknown values and clearing MUST restore all periods
 
 ### Scenario: search and filter activities
 
@@ -114,6 +139,7 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 - **And** text matching MUST ignore case and diacritics
 - **And** type options MUST be derived from the received reusable types
 - **And** clearing controls MUST restore the complete result set
+- **And** status filtering MUST use derived display status, including finished
 - **And** zero matches MUST render an accessible no-results state
 
 ## Requirement: automatic latest spirit edition
