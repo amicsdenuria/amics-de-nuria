@@ -462,6 +462,294 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes = CurrentSpiritActivity | FeaturedActivity | Activity | SanityImageCrop | SanityImageHotspot | Slug | ActivityType | StageInternalTag | CurrentRoute | Poi | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/agenda/queries.ts
+// Variable: activitiesQuery
+// Query: *[_type == "activity"] | order(schedule.startDate asc, _id asc){  _id, title, description, "slug": slug.current, status, isSpiritActivity,  type->{_id, name, "slug": slug.current},  schedule{startDate, endDate, durationMinutes},  location{name, address, city, province, isOnline},  organizer{name, organizerUrl},  participants{minParticipants, maxParticipants},  registration{registrationUrl},  price{isFree, amount},  content{mainImage{asset, crop, hotspot, alt}}}
+export type ActivitiesQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  description: string | null;
+  slug: string | null;
+  status: "cancelled" | "full" | "scheduled" | null;
+  isSpiritActivity: boolean | null;
+  type: {
+    _id: string;
+    name: string | null;
+    slug: string | null;
+  } | null;
+  schedule: {
+    startDate: string | null;
+    endDate: string | null;
+    durationMinutes: number | null;
+  } | null;
+  location: {
+    name: string | null;
+    address: string | null;
+    city: string | null;
+    province: string | null;
+    isOnline: boolean | null;
+  } | null;
+  organizer: {
+    name: string | null;
+    organizerUrl: string | null;
+  } | null;
+  participants: {
+    minParticipants: number | null;
+    maxParticipants: number | null;
+  } | null;
+  registration: {
+    registrationUrl: string | null;
+  } | null;
+  price: {
+    isFree: boolean | null;
+    amount: number | null;
+  } | null;
+  content: {
+    mainImage: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    } | null;
+  } | null;
+}>;
+// Variable: activityBySlugQuery
+// Query: *[_type == "activity" && slug.current == $slug] | order(_id asc)[0]{    _id, title, description, "slug": slug.current, status, isSpiritActivity,  type->{_id, name, "slug": slug.current},  schedule{startDate, endDate, durationMinutes},  location{name, address, city, province, isOnline},  organizer{name, organizerUrl},  participants{minParticipants, maxParticipants},  registration{registrationUrl},  price{isFree, amount},  content{mainImage{asset, crop, hotspot, alt}},  requirements{minAge, maxAge, level, requiredMaterials, notes},  metadata{cancelledAt, cancellationReason},  content{mainImage{asset, crop, hotspot, alt}, images[]{asset, crop, hotspot, alt}}}
+export type ActivityBySlugQueryResult = {
+  _id: string;
+  title: string | null;
+  description: string | null;
+  slug: string | null;
+  status: "cancelled" | "full" | "scheduled" | null;
+  isSpiritActivity: boolean | null;
+  type: {
+    _id: string;
+    name: string | null;
+    slug: string | null;
+  } | null;
+  schedule: {
+    startDate: string | null;
+    endDate: string | null;
+    durationMinutes: number | null;
+  } | null;
+  location: {
+    name: string | null;
+    address: string | null;
+    city: string | null;
+    province: string | null;
+    isOnline: boolean | null;
+  } | null;
+  organizer: {
+    name: string | null;
+    organizerUrl: string | null;
+  } | null;
+  participants: {
+    minParticipants: number | null;
+    maxParticipants: number | null;
+  } | null;
+  registration: {
+    registrationUrl: string | null;
+  } | null;
+  price: {
+    isFree: boolean | null;
+    amount: number | null;
+  } | null;
+  content: {
+    mainImage: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    } | null;
+    images: Array<{
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      } | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    }> | null;
+  } | null;
+  requirements: {
+    minAge: number | null;
+    maxAge: number | null;
+    level: "advanced" | "any" | "beginner" | "intermediate" | null;
+    requiredMaterials: Array<string> | null;
+    notes: string | null;
+  } | null;
+  metadata: {
+    cancelledAt: string | null;
+    cancellationReason: string | null;
+  } | null;
+} | null;
+// Variable: featuredActivityQuery
+// Query: *[_type == "featuredActivity" && _id == $singletonId][0]    .featuredActivity->{    _id, title, description, "slug": slug.current, status, isSpiritActivity,  type->{_id, name, "slug": slug.current},  schedule{startDate, endDate, durationMinutes},  location{name, address, city, province, isOnline},  organizer{name, organizerUrl},  participants{minParticipants, maxParticipants},  registration{registrationUrl},  price{isFree, amount},  content{mainImage{asset, crop, hotspot, alt}},  requirements{minAge, maxAge, level, requiredMaterials, notes},  metadata{cancelledAt, cancellationReason},  content{mainImage{asset, crop, hotspot, alt}, images[]{asset, crop, hotspot, alt}}}
+export type FeaturedActivityQueryResult = {
+  _id: string;
+  title: string | null;
+  description: string | null;
+  slug: string | null;
+  status: "cancelled" | "full" | "scheduled" | null;
+  isSpiritActivity: boolean | null;
+  type: {
+    _id: string;
+    name: string | null;
+    slug: string | null;
+  } | null;
+  schedule: {
+    startDate: string | null;
+    endDate: string | null;
+    durationMinutes: number | null;
+  } | null;
+  location: {
+    name: string | null;
+    address: string | null;
+    city: string | null;
+    province: string | null;
+    isOnline: boolean | null;
+  } | null;
+  organizer: {
+    name: string | null;
+    organizerUrl: string | null;
+  } | null;
+  participants: {
+    minParticipants: number | null;
+    maxParticipants: number | null;
+  } | null;
+  registration: {
+    registrationUrl: string | null;
+  } | null;
+  price: {
+    isFree: boolean | null;
+    amount: number | null;
+  } | null;
+  content: {
+    mainImage: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    } | null;
+    images: Array<{
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      } | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    }> | null;
+  } | null;
+  requirements: {
+    minAge: number | null;
+    maxAge: number | null;
+    level: "advanced" | "any" | "beginner" | "intermediate" | null;
+    requiredMaterials: Array<string> | null;
+    notes: string | null;
+  } | null;
+  metadata: {
+    cancelledAt: string | null;
+    cancellationReason: string | null;
+  } | null;
+} | null;
+// Variable: currentSpiritActivityQuery
+// Query: *[_type == "currentSpiritActivity" && _id == $singletonId][0]    .currentSpiritActivity->{    _id, title, description, "slug": slug.current, status, isSpiritActivity,  type->{_id, name, "slug": slug.current},  schedule{startDate, endDate, durationMinutes},  location{name, address, city, province, isOnline},  organizer{name, organizerUrl},  participants{minParticipants, maxParticipants},  registration{registrationUrl},  price{isFree, amount},  content{mainImage{asset, crop, hotspot, alt}},  requirements{minAge, maxAge, level, requiredMaterials, notes},  metadata{cancelledAt, cancellationReason},  content{mainImage{asset, crop, hotspot, alt}, images[]{asset, crop, hotspot, alt}}}
+export type CurrentSpiritActivityQueryResult = {
+  _id: string;
+  title: string | null;
+  description: string | null;
+  slug: string | null;
+  status: "cancelled" | "full" | "scheduled" | null;
+  isSpiritActivity: boolean | null;
+  type: {
+    _id: string;
+    name: string | null;
+    slug: string | null;
+  } | null;
+  schedule: {
+    startDate: string | null;
+    endDate: string | null;
+    durationMinutes: number | null;
+  } | null;
+  location: {
+    name: string | null;
+    address: string | null;
+    city: string | null;
+    province: string | null;
+    isOnline: boolean | null;
+  } | null;
+  organizer: {
+    name: string | null;
+    organizerUrl: string | null;
+  } | null;
+  participants: {
+    minParticipants: number | null;
+    maxParticipants: number | null;
+  } | null;
+  registration: {
+    registrationUrl: string | null;
+  } | null;
+  price: {
+    isFree: boolean | null;
+    amount: number | null;
+  } | null;
+  content: {
+    mainImage: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    } | null;
+    images: Array<{
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      } | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      alt: string | null;
+    }> | null;
+  } | null;
+  requirements: {
+    minAge: number | null;
+    maxAge: number | null;
+    level: "advanced" | "any" | "beginner" | "intermediate" | null;
+    requiredMaterials: Array<string> | null;
+    notes: string | null;
+  } | null;
+  metadata: {
+    cancelledAt: string | null;
+    cancellationReason: string | null;
+  } | null;
+} | null;
+
 // Source: ./sanity/lib/rutes-itineraris/currentRoute/getCurrentRoute.ts
 // Variable: getCurrentRouteQuery
 // Query: *[_type == 'currentRoute'][0]{      currentRoute->{        ...,        "slug": slug.current,        stages[]->{          ...,          "slug": slug.current,          regions[]->{            "slug": slug.current,            name,            img{              asset,              crop,              hotspot,              alt            }          },          pois[]->{            "slug": slug.current,            name,            img{              asset,              crop,              hotspot,              alt            }          },          imgs[]{            asset,            crop,            hotspot,            alt          }        }      }    }.currentRoute
@@ -1160,6 +1448,10 @@ export type GetCurrentSubscriptionByStripeSubscriptionIdQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "\n  *[_type == \"activity\"] | order(schedule.startDate asc, _id asc){\n  _id, title, description, \"slug\": slug.current, status, isSpiritActivity,\n  type->{_id, name, \"slug\": slug.current},\n  schedule{startDate, endDate, durationMinutes},\n  location{name, address, city, province, isOnline},\n  organizer{name, organizerUrl},\n  participants{minParticipants, maxParticipants},\n  registration{registrationUrl},\n  price{isFree, amount},\n  content{mainImage{asset, crop, hotspot, alt}}\n}\n": ActivitiesQueryResult;
+    "\n  *[_type == \"activity\" && slug.current == $slug] | order(_id asc)[0]{\n  \n  _id, title, description, \"slug\": slug.current, status, isSpiritActivity,\n  type->{_id, name, \"slug\": slug.current},\n  schedule{startDate, endDate, durationMinutes},\n  location{name, address, city, province, isOnline},\n  organizer{name, organizerUrl},\n  participants{minParticipants, maxParticipants},\n  registration{registrationUrl},\n  price{isFree, amount},\n  content{mainImage{asset, crop, hotspot, alt}}\n,\n  requirements{minAge, maxAge, level, requiredMaterials, notes},\n  metadata{cancelledAt, cancellationReason},\n  content{mainImage{asset, crop, hotspot, alt}, images[]{asset, crop, hotspot, alt}}\n}\n": ActivityBySlugQueryResult;
+    "\n  *[_type == \"featuredActivity\" && _id == $singletonId][0]\n    .featuredActivity->{\n  \n  _id, title, description, \"slug\": slug.current, status, isSpiritActivity,\n  type->{_id, name, \"slug\": slug.current},\n  schedule{startDate, endDate, durationMinutes},\n  location{name, address, city, province, isOnline},\n  organizer{name, organizerUrl},\n  participants{minParticipants, maxParticipants},\n  registration{registrationUrl},\n  price{isFree, amount},\n  content{mainImage{asset, crop, hotspot, alt}}\n,\n  requirements{minAge, maxAge, level, requiredMaterials, notes},\n  metadata{cancelledAt, cancellationReason},\n  content{mainImage{asset, crop, hotspot, alt}, images[]{asset, crop, hotspot, alt}}\n}\n": FeaturedActivityQueryResult;
+    "\n  *[_type == \"currentSpiritActivity\" && _id == $singletonId][0]\n    .currentSpiritActivity->{\n  \n  _id, title, description, \"slug\": slug.current, status, isSpiritActivity,\n  type->{_id, name, \"slug\": slug.current},\n  schedule{startDate, endDate, durationMinutes},\n  location{name, address, city, province, isOnline},\n  organizer{name, organizerUrl},\n  participants{minParticipants, maxParticipants},\n  registration{registrationUrl},\n  price{isFree, amount},\n  content{mainImage{asset, crop, hotspot, alt}}\n,\n  requirements{minAge, maxAge, level, requiredMaterials, notes},\n  metadata{cancelledAt, cancellationReason},\n  content{mainImage{asset, crop, hotspot, alt}, images[]{asset, crop, hotspot, alt}}\n}\n": CurrentSpiritActivityQueryResult;
     "\n    *[_type == 'currentRoute'][0]{\n      currentRoute->{\n        ...,\n        \"slug\": slug.current,\n        stages[]->{\n          ...,\n          \"slug\": slug.current,\n          regions[]->{\n            \"slug\": slug.current,\n            name,\n            img{\n              asset,\n              crop,\n              hotspot,\n              alt\n            }\n          },\n          pois[]->{\n            \"slug\": slug.current,\n            name,\n            img{\n              asset,\n              crop,\n              hotspot,\n              alt\n            }\n          },\n          imgs[]{\n            asset,\n            crop,\n            hotspot,\n            alt\n          }\n        }\n      }\n    }.currentRoute\n  ": GetCurrentRouteQueryResult;
     "\n      *[_type == 'poi' && slug.current == $slug][0]{\n        ...,\n        \"slug\": slug.current,\n        img{\n          asset,\n          crop,\n          hotspot,\n          alt\n        }\n      }\n    ": GetPoiBySlugQueryResult;
     "\n  *[_type == 'region' && slug.current == $slug][0]{\n    name,\n    \"slug\": slug.current,\n    province,\n    img{\n      asset,\n      crop,\n      hotspot,\n      alt\n    },\n    text\n  }\n": GetRegionBySlugQueryResult;
