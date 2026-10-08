@@ -134,6 +134,7 @@ const AgendaPage = async () => {
                     <ActivityCard
                       activity={activity}
                       now={now}
+                      href={`/agenda/activity/${activity.slug}`}
                     />
                   </section>
                 ))}
@@ -154,6 +155,7 @@ const AgendaPage = async () => {
                       key={activity.id}
                       activity={activity}
                       now={now}
+                      href={`/agenda/activity/${activity.slug}`}
                     />
                   ))}
                 </div>
@@ -176,6 +178,7 @@ const AgendaPage = async () => {
                         key={activity.id}
                         activity={activity}
                         now={now}
+                        href={`/agenda/activity/${activity.slug}`}
                       />
                     ))}
                   </div>

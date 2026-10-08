@@ -49,8 +49,8 @@ export const agendaContent: AgendaContent = {
     hero: {
       pretitle: "Activa't",
       title: "Agenda d'activitats",
-      subtitle: 'Subtitol a mirar',
-      description: 'Description a mirar',
+      subtitle: 'Trobem-nos i fem comunitat',
+      description: '',
       ctas: agendaCTAs,
       img: {
         src: '/hero-santuari-nuria.webp',

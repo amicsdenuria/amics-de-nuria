@@ -104,7 +104,7 @@ export function ActivityCard({ activity, now, href }: ActivityCardProps) {
         <CardTitle className="min-w-0 flex-1">
           <h3
             className={cn(
-              'font-serif text-lg leading-snug text-pretty',
+              'font-serif text-lg leading-snug text-pretty line-clamp-1',
               isCancelled
                 ? 'text-muted-foreground/50 line-through'
                 : 'text-primary',
@@ -118,7 +118,36 @@ export function ActivityCard({ activity, now, href }: ActivityCardProps) {
         </div>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col gap-5 px-5">
-        <dl className="grid grid-cols-1 gap-x-6 gap-y-4 rounded-lg bg-muted/40 p-4 sm:grid-cols-2">
+        {/* UBI */}
+        <div className="flex items-start gap-2 text-sm text-muted-foreground">
+          <MapPinIcon
+            aria-hidden="true"
+            className="mt-0.5 size-3.5 shrink-0"
+          />
+          <span
+            className={cn(
+              isCancelled
+                ? 'text-muted-foreground/50'
+                : 'text-muted-foreground',
+            )}
+          >
+            {location.isOnline ? 'Online' : location.name}
+            {location.city && !location.isOnline && `, ${location.city}`}
+          </span>
+        </div>
+
+        {/* DESC */}
+        <p
+          className={cn(
+            'line-clamp-3 text-sm leading-relaxed',
+            isCancelled ? 'text-muted-foreground/50' : 'text-muted-foreground',
+          )}
+        >
+          {activity.description}
+        </p>
+
+        {/* SCHED */}
+        <dl className="grow grid grid-cols-1 gap-x-6 gap-y-4 rounded-lg bg-muted/40 p-4 sm:grid-cols-2">
           <ScheduleDate
             label="Inici"
             date={schedule.startDate}
@@ -144,22 +173,6 @@ export function ActivityCard({ activity, now, href }: ActivityCardProps) {
             </div>
           )}
         </dl>
-        <div className="flex items-start gap-2 text-sm text-muted-foreground">
-          <MapPinIcon
-            aria-hidden="true"
-            className="mt-0.5 size-3.5 shrink-0"
-          />
-          <span
-            className={cn(
-              isCancelled
-                ? 'text-muted-foreground/50'
-                : 'text-muted-foreground',
-            )}
-          >
-            {location.isOnline ? 'Online' : location.name}
-            {location.city && !location.isOnline && `, ${location.city}`}
-          </span>
-        </div>
       </CardContent>
       <CardFooter className="flex-wrap justify-between gap-3 border-t px-5 [.border-t]:pt-4">
         <span className="text-sm font-medium">
