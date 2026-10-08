@@ -21,6 +21,7 @@ interface ActivityCardProps {
   activity: DomainActivity;
   now: Date;
   href?: string;
+  prefetch?: boolean;
 }
 
 const statusVariants: Record<
@@ -87,7 +88,7 @@ function ScheduleDate({ label, date }: { label: string; date: Date }) {
   );
 }
 
-export function ActivityCard({ activity, now, href }: ActivityCardProps) {
+export function ActivityCard({ activity, now, href, prefetch }: ActivityCardProps) {
   const { schedule, location, price, participants } = activity;
   const displayStatus = getActivityDisplayStatus(activity, now);
   const isCancelled = displayStatus === 'cancelled';
@@ -197,6 +198,7 @@ export function ActivityCard({ activity, now, href }: ActivityCardProps) {
   return href ? (
     <Link
       href={href}
+      prefetch={prefetch}
       className="block rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
     >
       {card}

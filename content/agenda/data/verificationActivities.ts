@@ -188,6 +188,34 @@ export const getAgendaVerification = () => {
       { ...make('Edició invàlida', 'invalid'), isSpiritActivity: true },
       make('Sortides amb l’Esperit (sense marca)', '2028-05-09T08:00:00+02:00'),
     ];
+  } else if (scenario === 'browser') {
+    activities = [
+      { ...make('Música a Núria', '2026-10-07T18:00:00+02:00'),
+        type: { id: 'verify-music', slug: 'music', name: 'Música' } },
+      { ...make('Passejada d’avui', '2026-10-08T10:00:00+02:00'),
+        location: { name: 'Refugi del Bosc', city: 'Ribes de Freser', isOnline: false } },
+      { ...make('Finalitzada aquest matí', '2026-10-08T08:00:00+02:00', 'scheduled', '2026-10-08T09:00:00+02:00'),
+        description: 'Observació de les constel·lacions.' },
+      make('Trobada completa', '2026-10-09T09:00:00+02:00', 'full'),
+      { ...make('Trobada cancel·lada', '2026-10-09T10:00:00+02:00', 'cancelled'),
+        organizer: { name: 'Associació Camins' } },
+      { ...make('Taller de descobertes', '2026-10-09T11:00:00+02:00'),
+        type: { id: 'verify-new-type', slug: 'astronomy', name: 'Astronomia' },
+        location: { name: 'Videoconferència', isOnline: true } },
+      make('Camí de dos dies', '2026-10-07T09:00:00+02:00', 'scheduled', '2026-10-09T17:00:00+02:00'),
+      make('Cancel·lada anterior', '2026-10-06T10:00:00+02:00', 'cancelled'),
+    ];
+  } else if (/^load-more-(0|1|12|13|24|25|60)$/.test(scenario)) {
+    activities = Array.from({ length: Number(scenario.slice(10)) }, (_, index) => ({
+      ...make(
+        `Activitat de prova ${index + 1}`,
+        new Date(Date.UTC(index < 37 ? 2027 : 2026, index < 37 ? 4 : 8, 1, 7, index)).toISOString(),
+        index % 3 === 0 ? 'full' : 'scheduled',
+      ),
+      type: index % 2 === 0
+        ? { id: 'verify-music', slug: 'music', name: 'Música' }
+        : spiritActivity.type,
+    }));
   } else if (
     /^preview-(0|1|6|8)$/.test(scenario) ||
     scenario === 'same-highlight'

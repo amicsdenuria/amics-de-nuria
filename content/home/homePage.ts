@@ -1,8 +1,4 @@
-// import {
-//   BookOpenIcon,
-//   CalendarIcon,
-// } from 'lucide-react';
-import { ChurchIcon, RouteIcon, UsersIcon } from 'lucide-react';
+import { CalendarIcon, ChurchIcon, RouteIcon, UsersIcon } from 'lucide-react';
 import {
   PrimaryPageHeroContent,
   PrimaryPageNavItem,
@@ -35,14 +31,14 @@ export const homeSections: HomeSectionItem[] = [
     gridClass: 'md:col-span-2', // 2/3
   },
 
-  // {
-  //   title: 'Agenda',
-  //   description:
-  //     "Celebracions, actes litúrgics, trobades comunitàries i esdeveniments especials al llarg de l'any. Consulta el calendari i no et perdis cap activitat.",
-  //   href: '/agenda',
-  //   icon: CalendarIcon,
-  //   gridClass: 'md:col-span-3', // 3/3 (full width)
-  // },
+  {
+    title: 'Agenda',
+    description:
+      "Celebracions, actes litúrgics, trobades comunitàries i esdeveniments especials al llarg de l'any. Consulta el calendari i no et perdis cap activitat.",
+    href: '/agenda',
+    icon: CalendarIcon,
+    gridClass: 'md:col-span-3', // 3/3 (full width)
+  },
 
   {
     title: 'Lliga Espiritual',

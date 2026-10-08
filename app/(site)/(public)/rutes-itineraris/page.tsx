@@ -4,6 +4,7 @@ import { ActivityCard } from '../agenda/components/ActivityCard';
 import { ArrowRightIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { connection } from 'next/server';
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
@@ -13,6 +14,7 @@ import { getAgendaNow, getLatestSpiritActivity } from '@/domain/activity/activit
 import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 
 const RutesItinerarisPage = async () => {
+  await connection();
   const {
     home: {
       hero,
@@ -27,6 +29,9 @@ const RutesItinerarisPage = async () => {
   const [routes, currentRoute, spiritActivity] = await Promise.all([
     getAllRoutes(), getCurrentRoute(), getLatestSpiritActivity(),
   ]);
+  const spiritActivityHref = spiritActivity
+    ? `/agenda/activity/${spiritActivity.slug}`
+    : '/contacta';
   const filteredRoutes = (
     currentRoute
       ? routes.filter((route) => route.id !== currentRoute?.id)
@@ -114,7 +119,7 @@ const RutesItinerarisPage = async () => {
                 variant={'outline'}
                 className="hidden sm:flex"
               >
-                <Link href={'/contacta'}>
+                <Link href={spiritActivityHref}>
                   Més informació
                   <ArrowRightIcon />
                 </Link>
@@ -126,10 +131,10 @@ const RutesItinerarisPage = async () => {
             </p>
 
             {spiritActivity && (
-              // TODO: afegir link a activitat
               <ActivityCard
                 activity={spiritActivity}
                 now={now}
+                href={spiritActivityHref}
               />
             )}
 
@@ -139,7 +144,7 @@ const RutesItinerarisPage = async () => {
               variant={'outline'}
               className="flex sm:hidden mt-4"
             >
-              <Link href={'/contacta'}>
+              <Link href={spiritActivityHref}>
                 Més informació
                 <ArrowRightIcon />
               </Link>

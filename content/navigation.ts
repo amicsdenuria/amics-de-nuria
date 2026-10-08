@@ -1,5 +1,5 @@
 import { PrimaryPageNavItem } from './interfaces/primary-page-interfaces';
-// import { agendaContent } from './agenda/agendaPage';
+import { agendaContent } from './agenda/agendaPage';
 import { contactaContent } from './contacta/contactaPage';
 import { lligaEspiritualContent } from './lliga-espiritual/lligaEspiritualPage';
 // import { publicacionsContent } from './publicacions/publicacionsPage';
@@ -27,12 +27,12 @@ export const mainNavigation: NavSection[] = [
     href: '/santuari',
     children: santuariContent.nav,
   },
-  // {
-  //   id: 'agenda',
-  //   label: agendaContent.home.hero.title,
-  //   href: '/agenda',
-  //   children: agendaContent.nav,
-  // },
+  {
+    id: 'agenda',
+    label: agendaContent.home.hero.title,
+    href: '/agenda',
+    children: agendaContent.nav,
+  },
   {
     id: 'rutes-itineraris',
     label: rutesItinerarisContent.home.hero.title,

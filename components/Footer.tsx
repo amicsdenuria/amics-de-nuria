@@ -83,11 +83,11 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* <div>
+            <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">
                 {agendaContent.home.hero.title}
               </h4>
-              <ul className="space-y-2">
+              <ul className="flex flex-col gap-2">
                 {footerNav.agendaNav.map((item) => (
                   <li key={item.href}>
                     <Link
@@ -99,7 +99,7 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div> */}
+            </div>
 
             <div>
               <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground">

@@ -32,11 +32,8 @@ interface AgendaContent {
   };
 }
 
-// Activate the prepared links only when slice 2C implements the browser route.
-export const activityBrowserAvailable = false;
-export const activityBrowserComingSoon = 'Disponible properament';
-
 const agendaCTAs: PrimaryPageNavItem[] = [
+  { label: 'Totes les activitats', href: '/agenda/activitats' },
   { label: 'Pròxima activitat', href: '/agenda#next-activity' },
   { label: 'Activitat destacada', href: '/agenda#featured-activity' },
   { label: 'Properes activitats', href: '/agenda#activities' },

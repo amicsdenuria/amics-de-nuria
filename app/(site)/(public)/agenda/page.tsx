@@ -12,7 +12,7 @@ import {
   EmptyTitle,
 } from '@/components/ui/empty';
 import { TypoH2Var, TypoPVar } from '@/components/ui/typo/typoComponents';
-import { activityBrowserAvailable, activityBrowserComingSoon, agendaContent } from '@/content/agenda/agendaPage';
+import { agendaContent } from '@/content/agenda/agendaPage';
 import type { PrimaryPageNavItem } from '@/content/interfaces/primary-page-interfaces';
 import { selectAgendaActivities } from '@/domain/activity/activity.selectors';
 import {
@@ -27,17 +27,10 @@ import { ActivityCard } from './components/ActivityCard';
 
 function BrowseActivitiesButton({ cta }: { cta: PrimaryPageNavItem }) {
   return (
-    <div className="mt-8 flex flex-col items-center gap-2">
-      {activityBrowserAvailable ? (
-        <Button asChild size="lg" className="h-auto min-h-10 whitespace-normal text-center">
-          <Link href={cta.href}>{cta.label}<ArrowRightIcon aria-hidden="true" data-icon="inline-end" /></Link>
-        </Button>
-      ) : (
-        <>
-          <Button disabled size="lg" className="h-auto min-h-10 whitespace-normal text-center">{cta.label}</Button>
-          <p className="text-sm text-muted-foreground">{activityBrowserComingSoon}</p>
-        </>
-      )}
+    <div className="mt-8 flex justify-center">
+      <Button asChild size="lg" className="h-auto min-h-10 whitespace-normal text-center">
+        <Link href={cta.href}>{cta.label}<ArrowRightIcon aria-hidden="true" data-icon="inline-end" /></Link>
+      </Button>
     </div>
   );
 }
