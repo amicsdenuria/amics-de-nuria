@@ -1,0 +1,9 @@
+{"_id":"activity-type-sport","_type":"activityType","name":"Esport","slug":{"_type":"slug","current":"sport"}}
+{"_id":"activity-type-gastronomy","_type":"activityType","name":"Gastronomia","slug":{"_type":"slug","current":"gastronomy"}}
+{"_id":"activity-type-culture","_type":"activityType","name":"Cultura","slug":{"_type":"slug","current":"culture"}}
+{"_id":"activity-type-music","_type":"activityType","name":"Música","slug":{"_type":"slug","current":"music"}}
+{"_id":"activity-type-nature","_type":"activityType","name":"Natura","slug":{"_type":"slug","current":"nature"}}
+{"_id":"activity-type-games","_type":"activityType","name":"Jocs","slug":{"_type":"slug","current":"games"}}
+{"_id":"activity-type-celebration","_type":"activityType","name":"Festa","slug":{"_type":"slug","current":"celebration"}}
+{"_id":"activity-type-workshop","_type":"activityType","name":"Taller","slug":{"_type":"slug","current":"workshop"}}
+{"_id":"activity-type-other","_type":"activityType","name":"Altre","slug":{"_type":"slug","current":"other"}}

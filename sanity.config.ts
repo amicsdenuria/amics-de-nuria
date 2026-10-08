@@ -15,8 +15,9 @@ import { schema } from './sanity/schemaTypes';
 import { structure } from './sanity/structure/structure';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
+import { AGENDA_SINGLETON_IDS } from './sanity/agenda.constants';
 
-export const singletonTypes = ['currentRoute'];
+export const singletonTypes = ['currentRoute', ...Object.keys(AGENDA_SINGLETON_IDS)];
 export const notEditableTypes = ['subscriber', 'subscription'];
 
 export default defineConfig({
@@ -24,7 +25,10 @@ export default defineConfig({
   projectId,
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
-  schema,
+  schema: {
+    ...schema,
+    templates: (prev) => prev.filter((template) => !singletonTypes.includes(template.schemaType)),
+  },
   plugins: [
     structureTool({ structure }),
     // Vision is for querying with GROQ from inside the Studio
@@ -40,9 +44,10 @@ export default defineConfig({
 
   document: {
     newDocumentOptions: (prev, { creationContext }) => {
+      const options = prev.filter((template) => !singletonTypes.includes(template.templateId));
       // Oculta singletons y notEditable del botón "+" global
       if (creationContext.type === 'global') {
-        return prev.filter(
+        return options.filter(
           (template) =>
             !singletonTypes.includes(template.templateId) &&
             !notEditableTypes.includes(template.templateId),
@@ -58,7 +63,7 @@ export default defineConfig({
         return [];
       }
 
-      return prev;
+      return options;
     },
 
     // Oculta "duplicate" de singletons
