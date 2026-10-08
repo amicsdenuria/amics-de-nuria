@@ -1,0 +1,5 @@
+{"_id":"e4c5648d-dd17-4eb5-9210-d34cb0c963f7","_type":"activityType","name":"Celebració","slug":{"_type":"slug","current":"celebracio"}}
+{"_id":"2d4e9b6e-65b0-4936-97e4-0783f5bde857","_type":"activityType","name":"Concert","slug":{"_type":"slug","current":"concert"}}
+{"_id":"6f541d2b-ef7c-43f7-9a4d-f00abfc3eed8","_type":"activityType","name":"Sortida","slug":{"_type":"slug","current":"sortida"}}
+{"_id":"d74b97e0-9aff-4f6f-be08-bd56668f7f3f","_type":"activityType","name":"Taller","slug":{"_type":"slug","current":"taller"}}
+{"_id":"e64db304-84fa-42bb-8def-ceac97c31647","_type":"activityType","name":"Xerrada","slug":{"_type":"slug","current":"xerrada"}}

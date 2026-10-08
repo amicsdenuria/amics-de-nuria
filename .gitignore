@@ -44,3 +44,13 @@ next-env.d.ts
 
 # sanity
 /.sanity/
+
+# Local Agenda demo activities and their one-off bootstrap/verification tooling
+/sanity/seed/agenda-preview-activities.*
+/sanity/seed/publish-preview-activities.mjs
+/openspec/changes/agenda-activities/verification-report-activity-seed.md
+/openspec/changes/agenda-activities/verification/integration-checks.mjs
+/openspec/changes/agenda-activities/verification/remote-document-checks.mjs
+/openspec/changes/agenda-activities/verification/sanity-browser-checks.mjs
+/openspec/changes/agenda-activities/verification/sanity-live-checks.mjs
+/openspec/changes/agenda-activities/verification/seed-checks.mjs
