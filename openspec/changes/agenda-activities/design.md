@@ -82,8 +82,10 @@ the visible label after completion; other completed activities display `finished
 Never persist `finished`, completion/archive flags, or registration eligibility.
 Cards show separate Inici, optional Fi, and optional Durada stacks. Each date
 stack separates the calendar date from its Madrid time (24-hour clock).
-Card headers keep the title left and type pill right. A non-scheduled display
-status replaces capacity in the footer. Cancelled cards use the existing muted
+Card headers keep the title left and type pill right.
+Card content orders location, description clamped to three lines, then the
+schedule panel; the detail page retains the complete description.
+A non-scheduled display status replaces capacity in the footer. Cancelled cards use the existing muted
 theme tokens, faded text and a struck-through title, keeping the red status pill. They retain
 their detail link and keyboard focus; never disable navigation.
 

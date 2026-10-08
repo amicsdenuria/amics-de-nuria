@@ -39,8 +39,10 @@ Cards MUST show startDate/time and optional endDate/time, even on the same day,
 using ca-ES, a 24-hour clock and Europe/Madrid. Current dates are datetime values.
 Inici, optional Fi and optional Durada MUST occupy separate stacks; each date
 stack MUST place the time on a separate line from the date.
-Card headers MUST retain the title left and type pill right. A cancelled/full/finished
-pill MUST replace capacity in the footer. Cancelled cards MUST look muted while
+Card headers MUST retain the title left and type pill right.
+Card content MUST show location first, then description clamped to three lines,
+then the schedule panel. The detail page MUST retain the full description.
+A cancelled/full/finished pill MUST replace capacity in the footer. Cancelled cards MUST look muted while
 retaining their detail link and keyboard accessibility when details are implemented.
 
 ## Requirement: agenda selection

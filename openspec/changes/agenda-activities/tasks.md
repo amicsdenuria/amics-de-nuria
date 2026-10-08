@@ -60,14 +60,32 @@ and obtaining manual approval before committing each slice or proceeding.
   and diff review. Preserve the user's final styling and remove the unused CSS token.
   Passed: 157 assertions, 17 page-render scenarios and 2 prepared-filter-link checks.
 - [x] 2A user gate: manual acceptance and commit explicitly approved on 2026-10-08.
-- [ ] Slice 2B: add the
+- [x] Slice 2B: add the
   `/agenda/activity/[slug]` detail page with metadata, 404, image, and optional
   field rendering, including the simple external registration CTA.
+- [x] 2B agent gate: lint/types/build, 72 assertions over 14 fixture renders,
+  and 50 browser assertions over the six local details, metadata, keyboard
+  navigation, decorative icons and 360/768/1280 px layouts. Local images load; no real Sanity
+  image was available on the inspected routes. After user formatting, review
+  public UI separately from fixtures/specification, each below 400 changed lines.
+- [x] 2B user gate: all manual checks, final visual adjustments and hero copy
+  accepted; closing commits explicitly authorized on 2026-10-08. Stop before 2C.
+- [x] 2B visual amendment: preserve the user's final order of location,
+  description clamped to three lines, then the growing schedule panel; title
+  is clamped to one line. Preserve cancellation styling.
+  Gate passed: lint/types/build, browser order/clamp checks, responsive widths
+  360/768/1280 px and keyboard detail navigation. User manually accepted all
+  functional checks and visual adjustments on 2026-10-08.
+- [x] At the user's request, finish Agenda hero copy in 2B with the subtitle
+  `Trobem-nos i fem comunitat` and no hero description. Final copy and closure
+  were explicitly approved on 2026-10-08.
+  Gate passed: lint/types/build and browser checks for subtitle, omitted
+  description, preserved introduction/card order and 360/768/1280 px layouts.
 - [ ] Slice 2C: add the primary `/agenda/activitats` CTA and complete activity
   page with immediate text search, reusable-type filter, derived-display-status filter,
   URL-initialized upcoming/archived period filter, clear action, result count,
   and no-results state. Activate the two prepared preview buttons in this slice.
-- [ ] Slice 2D: unhide Agenda navigation, replace placeholder copy, and reconnect
+- [ ] Slice 2D: unhide Agenda navigation and reconnect
   the routes page to the automatically selected latest spirit edition's detail.
 - [ ] Verify 0–6 preview behavior, search accents/case, dynamic type options,
   filters, clear action, responsive keyboard use, statuses, empty states, 404,

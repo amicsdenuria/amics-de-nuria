@@ -65,6 +65,73 @@ Inspect installed components first; `empty` already exists. The final add is a
 code mutation and may require network approval. Review the added source and
 imports; never use `--overwrite` without approval.
 
+## Slice 2B manual verification
+
+The detail page and Agenda card links are implemented. Review this slice only;
+the complete browser, navigation rollout and Sanity integration remain pending.
+
+First, with `AGENDA_VERIFY` unset, check `/agenda`: every next, featured,
+upcoming and archived card opens its own detail. A cancelled card keeps its
+muted styling, red badge and working keyboard link. Back returns to `/agenda`.
+Check the user's final card order: location, description capped at three lines,
+then the schedule panel. Opening the detail reveals the complete description.
+Functional checks and final copy were manually accepted on 2026-10-08, with
+explicit authorization to close 2B. The final Agenda hero
+subtitle is `Trobem-nos i fem comunitat`; no hero description
+renders, and the introduction below remains. Check the subtitle at all three widths.
+Open `/agenda/activity/sortida-familiar-a-nuria`: full status, local image,
+5 July 2027 at 09:00 and 17:00, 480 minutes, EUR 12.00, location, organizer,
+participant bounds and requirements. No registration link is expected.
+
+Then enable the development-only fixture set before restarting the server:
+
+```powershell
+$env:AGENDA_VERIFY = 'detail'
+$env:AGENDA_VERIFY_NOW = '2026-10-08T12:00:00+02:00'
+```
+
+All paths below start with `/agenda/activity/`. `example.org/inscripcio` is
+a demonstration destination: verify the link address, not a working booking form.
+
+| Slug | Expected result |
+| --- | --- |
+| `verify-1` | Required fields, online location, free price; no image, requirements, gallery, end, duration, participant bounds or registration CTA. |
+| `verify-2` | Agendada; main image and exactly two gallery images; 9 October 2026 at 09:00/11:00, 120 minutes; physical address, organizer link, EUR 12.00, 5–25 participants, age 6–80, Iniciació, two materials and notes; external CTA. |
+| `detail-full` | Completa; external CTA remains visible. |
+| `detail-cancelled` | Cancel·lada, muted struck-through title, red badge, 7 October 2026 at 10:00 cancellation date and rain reason; no CTA. |
+| `detail-finished` | Finalitzada today; no CTA. Still in today's Agenda rather than archive. |
+| `detail-archived` | Finalitzada and archived; detail remains addressable, no CTA, end or duration. |
+| `detail-empty` | Empty image URL, gallery, materials and notes produce no image, optional sections or placeholders. |
+| `does-not-exist` | Existing public not-found page; no activity content. |
+
+With `AGENDA_VERIFY='calendar'` and the same fixed clock, verify `verify-1`
+through `verify-7`: registration appears only on 3 (multi-day), 4 (duration
+through tomorrow) and 6 (full), never on 1 (no URL), 2 (finished), 5
+(cancelled) or 7 (archived). Verify 4 has Inici and Durada, with no invented Fi.
+Set `AGENDA_VERIFY_NOW='2026-10-09T01:00:00+02:00'` and restart: 4 is finished
+exactly at its derived end and loses its CTA; 1 finishes after Madrid midnight;
+3 remains unfinished with its CTA. This requires no system-clock change.
+
+For the populated, minimal and cancelled details, check 360, 768 and 1280 px:
+no horizontal overflow or overlap; image framing, readable text and separated
+date/time stacks; practical information moves below content on small screens.
+Practical labels have small muted icons; requirements has a discrete backpack.
+Tab/Shift+Tab must show focus on card, back, organizer and registration links;
+Enter activates each. Icons are decorative (`aria-hidden`) and labels remain
+readable. Inspect one h1, named sections and nonempty alt text on real images.
+Check title, description and Open Graph title/description match each activity.
+Local image requests use `/_next/image`, load successfully and never use an
+empty source. Check browser console for render/hydration errors.
+
+Clear the fixture variables and restart after verification:
+
+```powershell
+Remove-Item Env:AGENDA_VERIFY, Env:AGENDA_VERIFY_NOW -ErrorAction SilentlyContinue
+```
+
+Production ignores both variables. The 2B gate leaves changes unstaged and
+uncommitted until the user explicitly accepts this checklist or requests fixes.
+
 ## Sanity schema and type generation
 
 Run after schema or GROQ changes:
