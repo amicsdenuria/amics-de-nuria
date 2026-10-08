@@ -35,18 +35,21 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 
 ### Scenario: choose the next activity
 
-- **Given** future scheduled, full, cancelled, and finished activities
+- **Given** today's and future scheduled, full, cancelled, and finished activities
 - **When** the agenda is rendered
-- **Then** next MUST be the earliest scheduled or full activity
+- **Then** next MUST be the earliest non-archived scheduled or full activity
+- **And** an activity that started today MUST remain eligible
 - **And** a cancelled or finished activity MUST NOT become next
 
 ### Scenario: render archive
 
-- **Given** activities before and after the current instant
+- **Given** activities with different last calendar days in Europe/Madrid
 - **When** the agenda is rendered
-- **Then** past or finished activities MUST appear in a separate newest-first
-  archive
-- **And** future cancelled activities MUST remain upcoming with their status
+- **Then** only activities whose last day is before today MUST enter the archive
+- **And** today's activities MUST remain outside it until the next Madrid midnight
+  even when marked finished, including across daylight-saving transitions
+- **And** multi-day activities MUST remain outside it through their final day
+- **And** non-archived cancelled activities MUST remain visible with their status
 
 ## Requirement: editorial featured activity
 
@@ -57,6 +60,17 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 - **Then** that activity MUST be displayed as featured
 - **But** if it is also next, it MUST NOT be duplicated
 - **And** a missing singleton or reference MUST hide the featured section
+- **And** Studio and the query MUST use the same fixed singleton document ID
+- **And** selection MUST resolve the strong document reference, not a copied slug
+
+## Requirement: simple external registration
+
+- An HTTP(S) registration URL MUST be optional; no URL MUST produce no CTA or
+  required contact step. Local fixtures MUST use the same rule.
+- A valid URL MUST show a CTA for non-archived scheduled/full activities.
+- Archived, cancelled, or finished activities MUST hide the registration CTA.
+- Availability MUST belong to the external service; editorial status changes
+  MUST NOT imply synchronized seats. Registration flags/deadlines are out of scope.
 
 ## Requirement: public activity details
 
@@ -102,13 +116,17 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 - **And** clearing controls MUST restore the complete result set
 - **And** zero matches MUST render an accessible no-results state
 
-## Requirement: persistent spirit activity
+## Requirement: automatic latest spirit edition
 
-### Scenario: find by stable slug
+### Scenario: preserve history and select automatically
 
-- **Given** the persistent activity has the configured spirit slug
+- **Given** separate valid activities marked `isSpiritActivity` with unique slugs
 - **When** `/rutes-itineraris` renders
-- **Then** it MUST use `getActivityBySlug` and link to its detail
+- **Then** it MUST use `getLatestSpiritActivity` and link to the edition with the
+  greatest start date, including future editions and regardless of status
+- **And** equal dates MUST resolve by ID ascending, independent of source order
+- **And** a newer invalid candidate MUST NOT hide an older valid edition
+- **And** title/type renames MUST NOT change membership or erase previous editions
 - **And** missing data MUST leave the placeholder section usable
 
 ## Requirement: source parity and empty data
@@ -125,6 +143,13 @@ Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 - **When** the Sanity-backed agenda renders
 - **Then** it MUST show the hero, introduction, and accessible empty state
 - **And** it MUST NOT throw or render broken links
+
+### Scenario: invalid records and infrastructure failures
+
+- **Given** a successful read containing invalid required fields
+- **Then** invalid activities MUST be discarded and optional malformed data omitted
+- **But** a network/auth/query failure MUST render an error with retry, not an
+  empty agenda or a false 404; unpublished activities MUST NOT appear publicly
 
 ## Requirement: image metadata and delivery
 

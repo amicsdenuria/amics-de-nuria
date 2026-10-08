@@ -44,6 +44,3 @@ next-env.d.ts
 
 # sanity
 /.sanity/
-
-# project
-/actions/delete.ts

@@ -1,6 +1,6 @@
 # Exploration: Agenda Activities
 
-## Current state
+## Initial snapshot (2026-08-31; historical, not current state)
 
 - The repository is on Next.js 16 App Router, React 19, TypeScript, Tailwind,
   shadcn/ui, and an embedded Sanity Studio at `/admin`.
@@ -37,8 +37,17 @@
 - Internal properties and enum values are English.
 - The final integration switches immediately to Sanity so the empty-dataset UI
   can be verified before editorial content is created.
-- “Sortides amb l’Esperit” is one persistent activity document found by a
-  stable slug; editors update that document for each new call.
+- Revised 2026-10-08: each spirit outing is a separate marked activity; routes
+  automatically selects the greatest start date, preserving all earlier editions.
+- Archive placement follows completed Madrid calendar days, not elapsed start
+  times or editorial status. Registration is an optional external URL only.
+
+## Implementation checkpoint (2026-10-08)
+
+Phase 1 and the initial agenda preview exist with English contracts and local
+sources. Detail/browser routes and Sanity integration remain pending. Current
+selectors still use timestamps and routes still resolves the original fixed slug;
+Phase 2A must migrate both to the revised rules before continuing UI work.
 
 ## Baseline verification
 

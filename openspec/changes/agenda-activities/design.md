@@ -23,6 +23,7 @@ interface DomainActivity {
   slug: string;
   title: string;
   description: string;
+  isSpiritActivity: boolean;
   type: ActivityType;
   status: ActivityStatus;
   schedule: { startDate: Date; endDate?: Date; durationMinutes?: number };
@@ -36,8 +37,6 @@ interface DomainActivity {
   organizer: { name: string; organizerUrl?: string };
   participants: { minParticipants?: number; maxParticipants?: number };
   registration: {
-    requiresRegistration: boolean;
-    registrationDeadline?: Date;
     registrationUrl?: string;
   };
   price: { isFree: boolean; amount?: number };
@@ -53,21 +52,42 @@ interface DomainActivity {
 }
 ```
 
-The domain service exposes `getActivities`, `getActivityBySlug`, and
-`getFeaturedActivity`. A pure selector accepts activities plus `now` and
-returns `nextActivity`, `upcomingActivities`, and `archivedActivities`.
+The domain service exposes `getActivities`, `getActivityBySlug`,
+`getFeaturedActivity`, and `getLatestSpiritActivity`. The agenda selector accepts
+activities plus `now` and returns next, upcoming, and archived activities;
+the latest-spirit selector only needs activities.
 
 ## Selection rules
 
-- Next is the earliest future `scheduled` or `full` activity.
-- Upcoming contains future activities except `finished`; future cancelled
-  activities remain visible with a destructive status.
-- Archive contains activities in the past or explicitly `finished`, newest
-  first.
+- Calendar comparisons use date keys in `Europe/Madrid`, never the host timezone
+  or a fixed 24-hour offset. The last activity day comes from `endDate`, otherwise
+  start plus duration when present, otherwise `startDate`.
+- Archive contains activities whose last Madrid calendar day is before today,
+  newest start date first. Today's activities remain outside the archive until
+  the following midnight, including those marked `finished`.
+- Upcoming contains every non-archived activity, including today and all statuses,
+  in ascending start order. Next is its earliest `scheduled` or `full` activity,
+  including one that started today. Status does not override calendar placement.
 - A rendered next or featured activity is removed from the remaining list.
 - If featured equals next, only next renders. Missing featured data hides its
   section.
 - Detail remains addressable for every valid slug regardless of status.
+- All date sorts break ties by `id` ascending. Compute `now` once per server render
+  and pass its ISO value to interactive consumers; recalculate on a new render.
+
+## Spirit editions and registration
+
+Each spirit outing is a separate activity with its own ID and slug, marked
+`isSpiritActivity: true` (default false). Do not match mutable titles, type names,
+or slug prefixes. `getLatestSpiritActivity` selects the valid marked activity with
+the greatest `startDate`, regardless of status or whether its date is future;
+ties use ID ascending. No current-edition pointer or manual reselection is needed.
+
+Registration stores only an optional HTTP(S) `registrationUrl`. With no URL,
+render no registration CTA or mandatory contact step. With a URL, show the CTA
+unless the activity is archived, cancelled, or finished. `full` keeps the link:
+the external service owns availability. Remove `requiresRegistration` and
+`registrationDeadline`; there are no internal bookings, deadlines, or counters.
 
 ## Sanity model
 
@@ -84,17 +104,18 @@ returns `nextActivity`, `upcomingActivities`, and `archivedActivities`.
 
 ### `activity`
 
-- Required: title, description, slug, type, status, schedule.startDate,
-  location.name/isOnline, organizer.name, registration.requiresRegistration,
-  and price.isFree.
+- Required: title, description, unique slug, type, status, schedule.startDate,
+  location.name/isOnline, organizer.name, and price.isFree. The spirit checkbox
+  defaults to false and registration URL is optional.
 - Studio groups: General; Horari; Ubicació i organització; Inscripció i preu;
   Requisits; Contingut; Cancel·lació.
 - Status options: Agendada, Completa, Cancel·lada, Finalitzada.
 - Level options: Iniciació, Intermedi, Avançat, Qualsevol.
 - End MUST follow start. If end and duration exist, their minute difference
   MUST match. Participant and age minima MUST NOT exceed maxima.
-- Amount is visible and required only when not free. Physical address fields,
-  registration details, and cancellation metadata use conditional visibility.
+- Amount is visible and required only when not free. Physical address fields
+  and cancellation metadata use conditional visibility. Registration URL remains
+  directly editable without a prerequisite registration toggle.
 - Images are optional; every supplied image requires an asset and Catalan alt.
   Hotspot is enabled and gallery is unique with at most ten entries.
 - Preview uses title, start date, status, type, and main image; orderings include
@@ -102,21 +123,35 @@ returns `nextActivity`, `upcomingActivities`, and `archivedActivities`.
 
 ### `featuredActivity`
 
-A protected singleton contains one required strong reference named
-`featuredActivity`. It follows the existing `currentRoute` structure and is
-shown under the Agenda Studio section.
+A protected singleton with exact document ID `featuredActivity` contains one
+required strong reference named `featuredActivity`, selected by the editor in
+Agenda Studio. Sanity stores the activity's `_id` in `_ref`, not its slug;
+dereferencing returns the activity and its current slug. Share the singleton ID
+between Studio and query, and query that ID instead of the first document of its
+type. Preserve existing `currentRoute` behavior and its `currentRoute-3` ID.
+Any valid referenced activity may be featured, including an archived one.
 
 ## Queries and adapters
 
-- List query projects card fields, main image, and
+- List query projects every required domain field (including description and
+  organizer for search), spirit marker, registration URL, main image, and
   `type->{_id,name,"slug":slug.current}` ordered by start date.
 - Detail query adds requirements, metadata, and gallery.
 - Featured query resolves the singleton reference with the detail projection.
+- Latest spirit read uses the same source and selection rule as the local service;
+  skip invalid candidates before choosing, not after limiting to one document.
 - Every image projection requests `asset`, `crop`, `hotspot`, and `alt`.
 - Adapters map `_id` to `id`, `slug.current` to `slug`, strings to `Date`, the
   dereferenced type to `ActivityType`, and image metadata to `DomainImage`.
-- An invalid document missing a resolved type returns `null`; collection
-  adapters filter nulls instead of crashing the page.
+- Reject invalid ID/slug/title/description, unresolved type, unknown status,
+  invalid start date, or missing required location/organizer/price data. Log only
+  document IDs and invalid field names, and filter rejected documents safely.
+- Normalize absent optional objects/arrays; omit invalid optional dates, URLs,
+  numbers, levels, and images. Require finite nonnegative paid amounts; normalize
+  fields hidden by free/online conditions instead of displaying stale values.
+- Use existing `sanityFetch`/Sanity Live for published reads. Network/auth/query
+  failures propagate to an Agenda error boundary with retry, not an empty result.
+  Only a successful empty read renders empty UI; absent/invalid details use 404.
 
 ## UI and server boundaries
 
@@ -144,8 +179,8 @@ shown under the Agenda Studio section.
   strings and are converted only where required for display.
 - Pages use a simple calendar-editorial direction within existing fonts,
   semantic tokens, shadcn composition, responsive grids, and visible focus.
-- `/rutes-itineraris` calls `getActivityBySlug` with a shared constant for
-  `sortides-amb-esperit`; missing data leaves the placeholder section intact.
+- `/rutes-itineraris` calls `getLatestSpiritActivity` and links to the selected
+  edition's actual slug; missing data leaves the placeholder section intact.
 - Dates render with `ca-ES` and `Europe/Madrid`; prices use EUR.
 
 ## Image delivery

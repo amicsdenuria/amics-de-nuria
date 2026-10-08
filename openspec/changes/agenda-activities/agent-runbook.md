@@ -6,8 +6,9 @@
    `.agents/skills/sanity-images/SKILL.md` fully.
 2. Work only on `codex/agenda-activities`; preserve unrelated user changes.
 3. Complete one phase gate before beginning the next. Keep each review slice
-   at or below 400 changed lines; ask before creating chained PRs. Agent
-   validation does not authorize a commit: wait for the user's manual approval.
+   at or below 400 changed lines; gate each slice before the next. Ask before
+   creating chained PRs. Agent validation does not authorize a commit: wait for
+   the user's manual approval.
 4. Never run remote Sanity create/import/migration/delete/deploy commands
    without the exact dataset and explicit user approval.
 5. Use `apply_patch` for edits and update `tasks.md` as work completes.
@@ -56,12 +57,13 @@ Before adding or using a registry component, inspect project-aware docs:
 
 ```bash
 pnpm dlx shadcn@latest docs input select field empty card badge button
-pnpm dlx shadcn@latest add empty --dry-run
-pnpm dlx shadcn@latest add empty
+pnpm dlx shadcn@latest add <missing-component> --dry-run
+pnpm dlx shadcn@latest add <missing-component>
 ```
 
-The final add is a code mutation and may require network approval. Review the
-added source and imports; never use `--overwrite` without approval.
+Inspect installed components first; `empty` already exists. The final add is a
+code mutation and may require network approval. Review the added source and
+imports; never use `--overwrite` without approval.
 
 ## Sanity schema and type generation
 
@@ -87,6 +89,15 @@ env XDG_CONFIG_HOME=/tmp/amics-sanity-cli pnpm typegen
 
 Use the same `XDG_CONFIG_HOME` prefix for other local Sanity CLI commands.
 
+PowerShell equivalent for the same local workaround:
+
+```powershell
+$agendaSanityConfig = Join-Path $env:TEMP 'amics-sanity-cli'
+New-Item -ItemType Directory -Force -Path (Join-Path $agendaSanityConfig 'sanity') | Out-Null
+$env:XDG_CONFIG_HOME = $agendaSanityConfig
+pnpm typegen
+```
+
 ## Empty-state gate and content bootstrap
 
 Switch to Sanity before creating Agenda content. Verify `/agenda` and
@@ -97,12 +108,13 @@ The type seed is remote content. After the user confirms `<dataset>`, back up
 and import only missing deterministic IDs:
 
 ```bash
-pnpm exec sanity dataset export <dataset> /tmp/<dataset>-pre-activity-types.tar.gz --no-drafts
+pnpm exec sanity dataset export <dataset> <backup-path>
 pnpm exec sanity dataset import sanity/seed/activity-types.ndjson <dataset> --missing
 ```
 
 Never substitute `--replace`. Activities, featured singleton, and image assets
 are created through `/admin` unless a separate approved migration is specified.
+Include drafts in the backup; confirm the project ID as well as dataset.
 
 ## Remote validation
 
@@ -110,13 +122,31 @@ are created through `/admin` unless a separate approved migration is specified.
 pnpm exec sanity documents validate --yes --level error --dataset <dataset>
 pnpm exec sanity documents query '*[_type == "activityType"] | order(name asc){_id,name,"slug":slug.current}' --dataset <dataset> --pretty
 pnpm exec sanity documents query '*[_type == "activity"] | order(schedule.startDate asc){_id,title,"slug":slug.current,status,type->{_id,name,"slug":slug.current}}' --dataset <dataset> --pretty
-pnpm exec sanity documents query '*[_type == "featuredActivity"][0]{featuredActivity->{_id,title,"slug":slug.current}}' --dataset <dataset> --pretty
+pnpm exec sanity documents query '*[_type == "featuredActivity" && _id == "featuredActivity"][0]{featuredActivity->{_id,title,"slug":slug.current}}' --dataset <dataset> --pretty
 ```
 
 `sanity schema deploy --workspace default` is experimental and optional. Run it
 only if the user explicitly adopts deployed schemas for this project.
 
 ## Final verification and rollback
+
+Use reversible fixtures and fixed `now = 2026-10-08T12:00:00+02:00` by default.
+Pass the clock into selectors and the browser; never change the system clock.
+
+| Scenario | Expected result |
+| --- | --- |
+| 0, 1, 6, >6 remaining preview candidates | All available up to six; no placeholders |
+| Eight non-archived activities, two different highlights | Six preview cards, no duplicates |
+| Same next and featured | One highlight; no duplicate card |
+| Today at 10:30, now today 23:59:59 then next midnight | Upcoming then archive |
+| Ends tomorrow; status finished today | Outside archive through tomorrow |
+| Madrid DST on 2026-03-29 and 2026-10-25 | Archive changes at local midnight |
+| Spirit editions, renamed title, tied dates, invalid latest | Latest valid marked edition; ID tie-break |
+| Latest spirit edition is future or cancelled | That edition remains the routes selection |
+| No URL / URL + scheduled or full / cancelled, finished, archive | No CTA / CTA / no CTA |
+| Empty read / invalid record / network error / unpublished | Empty / discard / retry UI / omitted |
+
+Prepare these repeatable fixtures in slice 2A without a new test framework.
 
 ```bash
 pnpm lint
@@ -134,5 +164,6 @@ filter, clear, result count, and zero matches using only local interactions. For
 Sanity images, inspect `src/srcSet`: they must point directly to `cdn.sanity.io`
 with responsive width and `auto=format`, never a nested `/_next/image` URL.
 
-Rollback is code-only: return Agenda data sources to `local` and redeploy. Do
-not delete schemas, seed types, activities, or assets during rollback.
+Rollback production to the last approved working release, not demo fixtures.
+Local sources are a development fallback. Do not delete schemas, seed types,
+activities, or assets during rollback.

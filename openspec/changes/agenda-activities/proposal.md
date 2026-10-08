@@ -10,10 +10,11 @@ level remain controlled vocabularies.
 ## In scope
 
 - English domain contracts and local fixtures for activities and types.
-- Upcoming, next, featured, and archived activity selection.
+- Today/upcoming, next, featured, and archived activity selection by Madrid day.
 - Public agenda preview, complete searchable/filterable activity browser,
   detail route, navigation, empty states, and the existing “Sortides amb
-  l’Esperit” consumer.
+  l’Esperit” consumer, automatically selecting the latest separate edition.
+- A simple optional external registration link without booking synchronization.
 - `activity`, `activityType`, and `featuredActivity` Sanity schemas and Studio
   structure.
 - GROQ reads, generated types, adapters, source switching, and image metadata.
@@ -21,7 +22,7 @@ level remain controlled vocabularies.
 
 ## Out of scope
 
-- Public REST endpoints, activity mutations from the website, registrations,
+- Public REST endpoints, activity mutations from the website, internal registrations,
   payments, attendance counts, pagination, and advanced faceted filtering.
 - Automated creation, replacement, or deletion of remote Sanity documents.
 - A new test framework or unrelated redesigns.
@@ -46,9 +47,10 @@ level remain controlled vocabularies.
 
 ## Rollback
 
-Set `dataSource.agenda.activities` and `featuredActivity` back to `local` and
-redeploy. Schemas and documents are additive and do not need deletion. Never
-remove remote documents as part of rollback.
+For production, redeploy the last approved working release; do not publish demo
+fixtures as a fallback. Switching Agenda sources to `local` is a development
+fallback only. Schemas and documents are additive; never remove remote documents
+as part of rollback.
 
 ## Success criteria
 

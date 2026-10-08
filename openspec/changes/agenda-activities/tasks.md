@@ -32,20 +32,32 @@
 
 ## Phase 2: local public UI
 
+Product decisions revised 2026-10-08; implementation and manual document review
+remain pending.
+Work in individually reviewable slices of at most 400 changed lines, validating
+and obtaining manual approval before committing each slice or proceeding.
+
+- [x] Update the plan for automatic spirit editions, Madrid calendar-day archive,
+  optional external registration, defensive reads, and reproducible scenarios.
+- [x] Remove the accidental local-testing Sanity GET endpoint and unused delete action.
+- [x] Validate planning/cleanup: lint, types, build, diff check, and removed GET returns 404.
 - [x] Fetch Agenda through domain services and implement next, featured,
   archive, empty behavior, and a deduplicated preview of at most six upcoming
-  activities.
-- [ ] Add the primary `/agenda/activitats` CTA and build that complete activity
+  activities (initial behavior; revised archive rules remain pending in 2A).
+- [ ] Slice 2A: revise domain/local fixtures for `isSpiritActivity`, implement
+  latest-edition selection and calendar-day selectors, and simplify registration
+  to its optional URL. Update consumers without introducing broken detail links.
+- [ ] Slice 2B: redesign activity cards with a responsive treatment and add the
+  `/agenda/activity/[slug]` detail page with metadata, 404, image, and optional
+  field rendering, including the simple external registration CTA.
+- [ ] Slice 2C: add the primary `/agenda/activitats` CTA and complete activity
   page with immediate text search, reusable-type filter, closed-status filter,
   clear action, result count, and no-results state.
-- [ ] Redesign activity cards with a simple responsive treatment and add the
-  `/agenda/activity/[slug]` detail page with metadata, 404, image, and optional
-  field rendering.
-- [ ] Unhide Agenda navigation, replace placeholder copy, and reconnect the
-  routes page to the persistent activity detail by slug.
+- [ ] Slice 2D: unhide Agenda navigation, replace placeholder copy, and reconnect
+  the routes page to the automatically selected latest spirit edition's detail.
 - [ ] Verify 0–6 preview behavior, search accents/case, dynamic type options,
   filters, clear action, responsive keyboard use, statuses, empty states, 404,
-  and local images.
+  and local images, using the fixed-clock matrix in the runbook.
 - [ ] Agent gate: lint/types/build plus documented manual route checklist; stop
   with the phase uncommitted.
 - [ ] User gate: receive explicit approval after the user's manual verification.
@@ -53,9 +65,13 @@
 
 ## Phase 3: Sanity editorial model
 
+Review slices: 3A types/singleton/seed; 3B activity schema and registration.
+Split further if needed to keep each reviewed diff within 400 changed lines.
+
 - [ ] Add `activityType`, `activity`, and `featuredActivity` schemas with
   Catalan UI, conditional fields, validations, previews, and orderings.
 - [ ] Register schema types and Agenda Studio structure; protect the singleton.
+  Use exact ID `featuredActivity`, strong references, and an optional spirit checkbox/URL.
 - [ ] Add deterministic predefined-type NDJSON without executing a remote write.
 - [ ] Run schema validation and type generation.
 - [ ] Agent gate: Studio checklist plus lint/types; stop with the phase
@@ -65,9 +81,13 @@
 
 ## Phase 4: Sanity reads and cutover
 
+Review slices: 4A queries/typegen; 4B adapters/services/errors; 4C cutover/content.
+Each slice requires validation and manual approval before its commit.
+
 - [ ] Add list, detail, and featured GROQ functions with complete type and image
   projections; regenerate types.
-- [ ] Add Sanity adapters and source-parity service wiring.
+- [ ] Add defensive Sanity adapters and source-parity/latest-spirit service wiring;
+  distinguish successful empty results from infrastructure failures with retry UI.
 - [ ] Switch Agenda sources to Sanity and validate the empty dataset.
 - [ ] With approval, back up the target dataset and import missing type seeds.
 - [ ] Validate documents, populate content in Studio, and verify Sanity Live.
