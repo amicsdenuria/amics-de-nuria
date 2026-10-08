@@ -157,18 +157,44 @@ retaining their detail link and keyboard accessibility when details are implemen
 - **And** revealing cards MUST NOT navigate or request data
 - **And** visible/total counts MUST be announced and focus MUST reach the first newly added card
 
-## Requirement: automatic latest spirit edition
+## Requirement: editorial current spirit edition
 
-### Scenario: preserve history and select automatically
+### Scenario: preserve history and select an edition manually
 
 - **Given** separate valid activities marked `isSpiritActivity` with unique slugs
-- **When** `/rutes-itineraris` renders
-- **Then** it MUST use `getLatestSpiritActivity` and link to the edition with the
-  greatest start date, including future editions and regardless of status
-- **And** equal dates MUST resolve by ID ascending, independent of source order
-- **And** a newer invalid candidate MUST NOT hide an older valid edition
+- **And** the fixed `currentSpiritActivity` singleton references one of them
+- **When** `/rutes-itineraris` renders after phase 4 cutover
+- **Then** it MUST use `getCurrentSpiritActivity` and link to the selected edition's current slug
+- **And** a later published edition MUST NOT change the selection automatically
+- **And** Studio and query MUST share the exact `currentSpiritActivity` document ID
+- **And** selection MUST use a required strong reference, not a copied slug
 - **And** title/type renames MUST NOT change membership or erase previous editions
-- **And** missing data MUST leave the placeholder section usable
+- **And** the editor MUST be able to change the selected edition without deleting any activity
+
+### Scenario: constrain selection and omit invalid targets
+
+- **When** an editor selects a current spirit activity
+- **Then** the picker MUST offer only activities marked `isSpiritActivity`
+- **And** singleton validation MUST reject an unmarked target, including a draft with the marker removed
+- **And** global/inline creation, duplication and deletion of Agenda singletons MUST be unavailable in Studio
+- **And** the existing `currentRoute-3` document ID MUST remain unchanged
+- **And** Seccions MUST group Ruta d'Enguany, Sortida amb l’Esperit actual and
+  Activitat destacada in that order under Destacats, with a star icon
+- **And** Agenda MUST contain only general activities and editable activity types
+- **And** Agenda MUST use a calendar icon and separate Activitats from
+  Tipus d'activitat with a divider; the type list MUST use a settings icon
+- **And** Rutes i itineraris MUST use a route icon and contain Rutes, Etapes,
+  Llocs d'interès, Comarca, a divider, and Config [NO TOCAR] with a settings icon
+- **And** the three Destacats entries MUST use route, heart and star icons respectively
+- **And** Seccions MUST order Rutes i itineraris, Agenda, a divider, Destacats,
+  a divider, and Subscripcions with a users icon; stage-tag configuration MUST
+  remain accessible under Rutes i itineraris
+- **When** a published read finds no singleton or an unresolved, unpublished, invalid or unmarked target
+- **Then** the routes section MUST retain its usable contact fallback
+- **And** it MUST NOT select another edition automatically
+
+Phase 3 MUST provide the editorial schemas only. Phase 4 MUST implement the new
+queries/services and replace the approved phase 2 local automatic selection.
 
 ## Requirement: source parity and empty data
 

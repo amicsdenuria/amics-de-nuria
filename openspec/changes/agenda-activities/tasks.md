@@ -126,29 +126,54 @@ and obtaining manual approval before committing each slice or proceeding.
 
 ## Phase 3: Sanity editorial model
 
-Review slices: 3A types/singleton/seed; 3B activity schema and registration.
+Revised 2026-10-08 at the user's request: manually select the current spirit
+edition through `currentSpiritActivity`, preserving separately published editions.
+The phase 2 automatic selector is superseded at phase 4 integration, not here.
+Review slices: 3A types/seed; 3B activity, both singletons and Studio registration.
+Validate 3A independently before 3B to avoid unresolved schema references.
 Split further if needed to keep each reviewed diff within 400 changed lines.
 
-- [ ] Add `activityType`, `activity`, and `featuredActivity` schemas with
+- [x] Add `activityType`, `activity`, `featuredActivity`, and `currentSpiritActivity` schemas with
   Catalan UI, conditional fields, validations, previews, and orderings.
-- [ ] Register schema types and Agenda Studio structure; protect the singleton.
-  Use exact ID `featuredActivity`, strong references, and an optional spirit checkbox/URL.
-- [ ] Add deterministic predefined-type NDJSON without executing a remote write.
-- [ ] Run schema validation and type generation.
-- [ ] Agent gate: Studio checklist plus lint/types; stop with the phase
+- [x] Register schema types and Agenda Studio structure; protect both singletons.
+  Use exact IDs `featuredActivity` and `currentSpiritActivity`, strong references,
+  a filtered spirit picker and an optional spirit checkbox/URL; retain `currentRoute-3`.
+- [x] At the user's request, group all three singletons under Seccions > Destacats:
+  Ruta d'Enguany, Sortida amb l’Esperit actual, Activitat destacada. Use a star
+  icon for Destacats. Keep Agenda
+  limited to Activitats and editable Tipus d'activitat. Revalidate before acceptance.
+  Root order: Rutes i itineraris, Agenda, divider, Destacats, divider,
+  Subscripcions with a users icon;
+  retain stage-tag configuration nested under Rutes i itineraris.
+  Route/calendar section icons, settings icons for Config/types, route/heart/star
+  singleton icons; routes list Rutes/Etapes/Llocs d'interès/Comarca then divider/Config,
+  and Agenda separates Activitats from Tipus d'activitat with a divider.
+- [x] Add deterministic predefined-type NDJSON without executing a remote write.
+- [x] Run schema validation and type generation.
+- [x] Agent gate: Studio checklist plus lint/types; stop with the phase
   uncommitted.
-- [ ] User gate: receive explicit approval after the user's manual verification.
-- [ ] Commit the approved phase before beginning data integration.
+  Passed schema validation (0 errors), typegen, lint/types/build, diff review and
+  156 in-memory schema/Studio/generated-artifact assertions. No remote content
+  was created or imported. See `verification-report-phase-3.md` for the exact
+  manual checklist and phase 4 integration boundary. The user accepted manual
+  verification and explicitly requested phase 3 closure on 2026-10-08.
+- [x] User gate: receive explicit approval after the user's manual verification.
+- [x] Commit the approved phase before beginning data integration.
+  Close the approved implementation, generated contracts and verification records
+  in separate reviewable commits. No merge, push or remote content write is included.
 
 ## Phase 4: Sanity reads and cutover
 
 Review slices: 4A queries/typegen; 4B adapters/services/errors; 4C cutover/content.
 Each slice requires validation and manual approval before its commit.
 
-- [ ] Add list, detail, and featured GROQ functions with complete type and image
+- [ ] Add list, detail, featured and current-spirit GROQ functions with complete type and image
   projections; regenerate types.
-- [ ] Add defensive Sanity adapters and source-parity/latest-spirit service wiring;
+- [ ] Add defensive Sanity adapters and source-parity/current-spirit service wiring;
   distinguish successful empty results from infrastructure failures with retry UI.
+- [ ] Replace `getLatestSpiritActivity`/automatic selection and its fixtures with
+  `getCurrentSpiritActivity`/explicit ID selection; connect both routes CTAs to the
+  exact singleton reference, retaining contact for missing/invalid/unmarked targets.
 - [ ] Switch Agenda sources to Sanity and validate the empty dataset.
 - [ ] With approval, back up the target dataset and import missing type seeds.
 - [ ] Validate documents, populate content in Studio, and verify Sanity Live.

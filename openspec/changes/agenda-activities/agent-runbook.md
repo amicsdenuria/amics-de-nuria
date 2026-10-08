@@ -153,6 +153,32 @@ uncommitted until the user explicitly accepts this checklist or requests fixes.
 
 ## Sanity schema and type generation
 
+### Phase 3 editorial selection amendment (2026-10-08)
+
+The user replaced automatic spirit selection with a protected
+`currentSpiritActivity` singleton. Phase 3 defines that schema alongside
+`featuredActivity`; phase 4 connects the public reads and removes the automatic
+selector. Use the exact IDs from `sanity/agenda.constants.ts` for both new
+singletons and preserve `currentRoute-3`.
+All three singletons are edited under Seccions > Destacats, in route/spirit/featured
+order. Agenda contains only general activity and editable type management.
+Root order: Rutes i itineraris, Agenda, divider, Destacats, divider, Subscripcions
+with a users icon. Existing
+stage-tag configuration is nested under Rutes i itineraris.
+
+Phase 3 review blocks: 3A reusable type/seed; 3B activity/singletons/Studio.
+Generated `schema.json` and `sanity.types.ts` are reviewed separately as generated
+artifacts; compare the existing schema definitions semantically to exclude
+unrelated changes. No import, document creation or dataset mutation is authorized.
+Manual Studio verification requires an authenticated editor and test documents
+in the user's chosen dataset. The agent uses in-memory documents for validation;
+manual creation/publication is left to the user.
+
+Run `node openspec/changes/agenda-activities/verification/schema-checks.mjs`
+for the in-memory schema/Studio gate. It uses the installed Sanity validators,
+an in-memory GROQ client, the real structure builder and generated-file comparisons.
+See `verification-report-phase-3.md` for prerequisites and the user checklist.
+
 ### Optional later migration
 
 The optional phase 5 in `tasks.md` and `design.md` tracks future server-side
@@ -238,8 +264,9 @@ Pass the clock into selectors and the browser; never change the system clock.
 | Today at 10:30, now today 23:59:59 then next midnight | Upcoming then archive |
 | Ends tomorrow / ends today before now | Unfinished through end / finished today, archive next day |
 | Madrid DST on 2026-03-29 and 2026-10-25 | Archive changes at local midnight |
-| Spirit editions, renamed title, tied dates, invalid latest | Latest valid marked edition; ID tie-break |
-| Latest spirit edition is future or cancelled | That edition remains the routes selection |
+| Several marked spirit editions, renamed title, later date | Exact singleton target remains selected; all editions remain published |
+| Selected spirit target is unmarked, invalid, unpublished or absent | Contact fallback; no automatic replacement |
+| Manually change current spirit reference | Both routes CTAs use the newly selected edition's current slug |
 | No URL / URL + unfinished scheduled or full / cancelled or completed | No CTA / CTA / no CTA |
 | Empty read / invalid record / network error / unpublished | Empty / discard / retry UI / omitted |
 

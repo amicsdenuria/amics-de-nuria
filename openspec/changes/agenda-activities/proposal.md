@@ -14,11 +14,11 @@ level remain controlled vocabularies.
 - Domain-derived completion; editorial status stores only scheduled/full/cancelled.
 - Public agenda preview, complete searchable/filterable activity browser,
   detail route, navigation, empty states, and the existing “Sortides amb
-  l’Esperit” consumer, automatically selecting the latest separate edition.
+  l’Esperit” consumer, selecting a separate edition through an editorial singleton.
 - Browser results shown in batches of 12 through a `Veure'n més` button,
   added to slice 2C at the user's request on 2026-10-08.
 - A simple optional external registration link without booking synchronization.
-- `activity`, `activityType`, and `featuredActivity` Sanity schemas and Studio
+- `activity`, `activityType`, `featuredActivity`, and `currentSpiritActivity` Sanity schemas and Studio
   structure.
 - GROQ reads, generated types, adapters, source switching, and image metadata.
 - A reviewed bootstrap file for the nine predefined activity types.

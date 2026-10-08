@@ -54,9 +54,10 @@ interface DomainActivity {
 ```
 
 The domain service exposes `getActivities`, `getActivityBySlug`,
-`getFeaturedActivity`, and `getLatestSpiritActivity`. The agenda selector accepts
+`getFeaturedActivity`, and (after phase 4) `getCurrentSpiritActivity`. The agenda selector accepts
 activities plus `now` and returns next, upcoming, and archived activities;
-the latest-spirit selector only needs activities.
+the current spirit read resolves a fixed editorial reference. Phase 3 adds only
+the Studio model; the approved local phase 2 service remains until phase 4.
 
 ## Selection rules
 
@@ -93,9 +94,15 @@ their detail link and keyboard focus; never disable navigation.
 
 Each spirit outing is a separate activity with its own ID and slug, marked
 `isSpiritActivity: true` (default false). Do not match mutable titles, type names,
-or slug prefixes. `getLatestSpiritActivity` selects the valid marked activity with
-the greatest `startDate`, regardless of status or whether its date is future;
-ties use ID ascending. No current-edition pointer or manual reselection is needed.
+or slug prefixes. Revised by the user on 2026-10-08 for phase 3: the protected
+`currentSpiritActivity` singleton selects the edition manually, like `currentRoute`
+and `featuredActivity`. Its required strong reference has the same field name.
+Editors may keep multiple editions published and choose any marked edition,
+independent of date/status. A later date never changes the pointer automatically.
+There is no date-based fallback when the singleton/reference is missing or invalid.
+Retain the marker to filter the picker and validate membership; changing title/type
+does not change membership. Phase 4 replaces `getLatestSpiritActivity` and its local
+automatic selector with the reference-based service and a local selected ID fixture.
 
 Registration stores only an optional HTTP(S) `registrationUrl`. With no URL,
 render no registration CTA or mandatory contact step. With a URL, show the CTA
@@ -139,11 +146,36 @@ the external service owns availability. Remove `requiresRegistration` and
 
 A protected singleton with exact document ID `featuredActivity` contains one
 required strong reference named `featuredActivity`, selected by the editor in
-Agenda Studio. Sanity stores the activity's `_id` in `_ref`, not its slug;
+Studio's Destacats section. Sanity stores the activity's `_id` in `_ref`, not its slug;
 dereferencing returns the activity and its current slug. Share the singleton ID
 between Studio and query, and query that ID instead of the first document of its
 type. Preserve existing `currentRoute` behavior and its `currentRoute-3` ID.
 Any valid referenced activity may be featured, including an archived one.
+
+### `currentSpiritActivity`
+
+Use exact document ID `currentSpiritActivity`, shared with the future query through
+`sanity/agenda.constants.ts`. The picker offers only activities marked
+`isSpiritActivity == true`, with inline creation disabled. Validation also checks
+the referenced activity (preferring its draft when present), so a removed marker
+cannot silently pass validation when the singleton is edited. The reference is
+strong and stores `_id`, never a copied slug. The selected activity's real slug
+will drive the routes CTA in phase 4; published reads must reject unresolved,
+unpublished, invalid or unmarked targets. Missing selection retains contact fallback.
+Both Agenda singletons are excluded from creation templates and all creation
+contexts; delete/duplicate actions are disabled. `currentRoute-3` stays unchanged.
+
+Studio's Seccions contains a Destacats folder with a star icon and, in order, Ruta d'Enguany,
+Sortida amb l’Esperit actual and Activitat destacada. No singleton appears directly
+under Seccions or inside Agenda. Agenda contains only Activitats and the editable
+Tipus d'activitat list for general activity management.
+Top-level order is Rutes i itineraris, Agenda, divider, Destacats, divider,
+Subscripcions. Subscripcions uses a users icon.
+The existing stage-tag Config [NO TOCAR] is nested under Rutes i itineraris.
+Rutes i itineraris uses a route icon and contains Rutes, Etapes, Llocs d'interès,
+Comarca, divider, Config [NO TOCAR] (gear icon). Agenda uses a calendar icon and
+contains Activitats, divider, Tipus d'activitat (gear icon). Destacats entries
+use route, heart and star icons respectively. The stages submenu stays intact.
 
 ## Queries and adapters
 
@@ -152,8 +184,9 @@ Any valid referenced activity may be featured, including an archived one.
   `type->{_id,name,"slug":slug.current}` ordered by start date.
 - Detail query adds requirements, metadata, and gallery.
 - Featured query resolves the singleton reference with the detail projection.
-- Latest spirit read uses the same source and selection rule as the local service;
-  skip invalid candidates before choosing, not after limiting to one document.
+- Current spirit query resolves the exact singleton ID and its reference using
+  the detail projection. Local and Sanity services use explicit selection;
+  never choose a different edition automatically when the selected target is invalid.
 - Every image projection requests `asset`, `crop`, `hotspot`, and `alt`.
 - Adapters map `_id` to `id`, `slug.current` to `slug`, strings to `Date`, the
   dereferenced type to `ActivityType`, and image metadata to `DomainImage`.
@@ -205,7 +238,7 @@ Any valid referenced activity may be featured, including an archived one.
   strings and are converted only where required for display.
 - Pages use a simple calendar-editorial direction within existing fonts,
   semantic tokens, shadcn composition, responsive grids, and visible focus.
-- `/rutes-itineraris` calls `getLatestSpiritActivity` and links to the selected
+- After phase 4, `/rutes-itineraris` calls `getCurrentSpiritActivity` and links to the selected
   edition's actual slug; missing data leaves the placeholder section intact.
 - Dates render with `ca-ES` and `Europe/Madrid`; prices use EUR.
 
@@ -221,7 +254,7 @@ images directly through `next-sanity/image`. Sanity MUST NOT be added to
 
 Schemas are additive; Content Lake has no schema migration. After the empty
 state passes, import only predefined type documents, then let editors create
-activities and the singleton in Studio. Finally validate remote documents and
+activities and both singletons in Studio. Finally validate remote documents and
 live publication behavior.
 
 ## Optional follow-up: server-filtered browsing (phase 5)

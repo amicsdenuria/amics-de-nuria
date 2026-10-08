@@ -39,6 +39,10 @@
   can be verified before editorial content is created.
 - Revised 2026-10-08: each spirit outing is a separate marked activity; routes
   automatically selects the greatest start date, preserving all earlier editions.
+- Superseded for phase 3 by the user on 2026-10-08: add a protected
+  `currentSpiritActivity` singleton to choose the current edition manually.
+  Multiple editions stay published; later dates do not replace the selection.
+  Phase 3 provides Studio schemas; phase 4 replaces the automatic public read.
 - Archive placement follows completed Madrid calendar days, not elapsed start
   times or editorial status. Registration is an optional external URL only.
 - Persist only scheduled/full/cancelled; derive completion and display status
