@@ -15,6 +15,8 @@ level remain controlled vocabularies.
 - Public agenda preview, complete searchable/filterable activity browser,
   detail route, navigation, empty states, and the existing “Sortides amb
   l’Esperit” consumer, automatically selecting the latest separate edition.
+- Browser results shown in batches of 12 through a `Veure'n més` button,
+  added to slice 2C at the user's request on 2026-10-08.
 - A simple optional external registration link without booking synchronization.
 - `activity`, `activityType`, and `featuredActivity` Sanity schemas and Studio
   structure.
@@ -24,7 +26,10 @@ level remain controlled vocabularies.
 ## Out of scope
 
 - Public REST endpoints, activity mutations from the website, internal registrations,
-  payments, attendance counts, pagination, and advanced faceted filtering.
+  payments, attendance counts, and advanced faceted filtering.
+- Server-side search/filtering and pagination in the current delivery. These are
+  tracked as the optional, highly recommended follow-up phase 5, not a prerequisite
+  for completing phases 2–4.
 - Automated creation, replacement, or deletion of remote Sanity documents.
 - A new test framework or unrelated redesigns.
 
@@ -34,6 +39,13 @@ level remain controlled vocabularies.
 2. Add editorial schemas and source adapters without changing the UI contract.
 3. Switch Agenda to Sanity and verify the empty dataset.
 4. Bootstrap reusable types only after the target dataset is confirmed.
+
+After this path is complete, optional phase 5 can migrate browsing to filtered
+Sanity queries and cursor-based batches. Start measuring around 200 published
+activities, including archived entries; consider the migration around 300–500,
+or earlier if payload size or mobile responsiveness warrants it. These numbers
+are project planning estimates, not Sanity limits. Phase 5 does not block the
+current implementation, manual acceptance, commits, or Sanity cutover.
 
 ## Risks and mitigations
 

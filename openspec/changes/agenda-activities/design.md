@@ -190,6 +190,14 @@ Any valid referenced activity may be featured, including an archived one.
   action restores all results, and zero matches render an accessible state.
   The period filter initializes from upcoming/archived URL presets using the
   same Madrid archive rule; absent/unknown values and clear restore all periods.
+- Initially render at most 12 matching cards. If more matches remain, show
+  `Veure'n més`; each activation appends at most 12, preserving order and existing
+  cards. Hide the button once all matches are visible; scrolling alone never loads
+  cards. Filter the complete received dataset before slicing, and reset the limit
+  to 12 on any search/filter change or clear action. Keep the total match counter
+  and announce visible/total counts when there are more than 12 matches. Move focus
+  to the first newly appended card, including the last partial batch. No additional
+  fetch, navigation, or server pagination is needed.
 - `/agenda/activity/[slug]` is a Server Component with dynamic metadata and
   `notFound()` for an unknown slug.
 - Server data passed to the browser Client Component is reduced to the fields
@@ -215,3 +223,38 @@ Schemas are additive; Content Lake has no schema migration. After the empty
 state passes, import only predefined type documents, then let editors create
 activities and the singleton in Studio. Finally validate remote documents and
 live publication behavior.
+
+## Optional follow-up: server-filtered browsing (phase 5)
+
+This improvement is highly recommended as the archive grows, but is outside
+the mandatory phases 2–4 and their acceptance gates. The current button limits
+rendered cards; the browser still receives the entire minimal dataset. Measure
+initial payload and mobile interaction around 200 published activities and
+consider migration around 300–500, including archives, or sooner for large data.
+Use measurements to decide; there is no fixed document-count limit.
+
+- Keep `/agenda/activitats`, existing filter labels and `Veure'n més`, initially
+  requesting 12 matches and fetching at most 12 more per activation.
+- Execute parameterized GROQ filtering, ordering and projection through the
+  server/Sanity read layer. Send only the fields needed for the returned cards.
+- Prefer cursor pagination with a stable date/ID tie-break. Preserve upcoming
+  first and archive newest first; define the cursor across the period boundary.
+- Preserve Madrid-day archive placement, derived finished/cancelled status and
+  case/diacritic-insensitive search. GROQ text matching is not automatically
+  equivalent to the current normalized substring search: establish and test
+  parity before cutover, including middle dots and description/location fields.
+- Fetch complete type options independently of the current result page. Define
+  matching totals and `hasMore` without transferring the entire activity list.
+- Debounce text requests, reset cursor/results on filter changes, and reject
+  stale responses so rapid edits cannot append cards from another query.
+- Add accessible loading/retry states while retaining successful cards, clear
+  behavior, URL presets, visible counts, keyboard focus and responsive layouts.
+- Keep public published reads, cache/Sanity Live behavior and server credentials
+  consistent with phase 4; never expose a private token in browser requests.
+
+Before switching, compare filtered pages with the current complete-dataset
+reference, exercise equal dates, the upcoming/archive boundary and every status,
+and verify no omissions/duplicates across cursor batches. Measure payload and
+mobile response before/after, including slow requests, errors and fast filter
+changes. Official references: [pagination with GROQ](https://www.sanity.io/docs/developer-guides/paginating-with-groq)
+and [high-performance GROQ](https://www.sanity.io/docs/developer-guides/high-performance-groq).

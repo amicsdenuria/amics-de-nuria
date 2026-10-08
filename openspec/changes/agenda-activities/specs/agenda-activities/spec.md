@@ -140,9 +140,22 @@ retaining their detail link and keyboard accessibility when details are implemen
 - **Then** results MUST update without a navigation or network request
 - **And** text matching MUST ignore case and diacritics
 - **And** type options MUST be derived from the received reusable types
-- **And** clearing controls MUST restore the complete result set
+- **And** clearing controls MUST restore the complete matching set and its first 12 cards at most
 - **And** status filtering MUST use derived display status, including finished
 - **And** zero matches MUST render an accessible no-results state
+
+### Scenario: reveal more matching activities
+
+- **Given** `/agenda/activitats` has more than 12 matching activities
+- **When** it first renders or any search/filter changes or clears
+- **Then** only the first 12 matching cards MUST render
+- **And** a `Veure'n més` button MUST append the next 12 cards at most per activation
+- **And** order and existing cards MUST be preserved without duplicates or omissions
+- **And** the button MUST disappear when no more matches remain; 12 or fewer matches MUST have no button
+- **And** scrolling alone MUST NOT append cards
+- **And** searching/filtering MUST include activities that have not yet been revealed
+- **And** revealing cards MUST NOT navigate or request data
+- **And** visible/total counts MUST be announced and focus MUST reach the first newly added card
 
 ## Requirement: automatic latest spirit edition
 
