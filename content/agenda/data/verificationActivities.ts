@@ -40,6 +40,7 @@ export const getAgendaVerification = () => {
   });
   let activities: DomainActivity[] = [];
   let featuredSlug: string | null = null;
+  let currentSpiritId: string | null = null;
   if (scenario === 'detail') {
     const minimal: DomainActivity = {
       ...make('Només informació essencial', '2026-10-09T09:00:00+02:00'),
@@ -169,7 +170,7 @@ export const getAgendaVerification = () => {
           ? {}
           : { registrationUrl: 'https://example.org/inscripcio' },
     }));
-  } else if (scenario === 'spirit') {
+  } else if (['spirit', 'spirit-missing', 'spirit-unmarked', 'spirit-invalid'].includes(scenario)) {
     activities = [
       {
         ...make('Edició anterior', '2026-09-20T08:00:00+02:00'),
@@ -188,6 +189,9 @@ export const getAgendaVerification = () => {
       { ...make('Edició invàlida', 'invalid'), isSpiritActivity: true },
       make('Sortides amb l’Esperit (sense marca)', '2028-05-09T08:00:00+02:00'),
     ];
+    currentSpiritId = scenario === 'spirit' ? 'verify-1'
+      : scenario === 'spirit-unmarked' ? 'verify-5'
+      : scenario === 'spirit-invalid' ? 'verify-4' : 'missing';
   } else if (scenario === 'browser') {
     activities = [
       { ...make('Música a Núria', '2026-10-07T18:00:00+02:00'),
@@ -246,5 +250,5 @@ export const getAgendaVerification = () => {
   } else if (scenario !== 'empty') {
     throw new Error('Unknown AGENDA_VERIFY scenario');
   }
-  return { activities, featuredSlug, now };
+  return { activities, featuredSlug, currentSpiritId, now };
 };

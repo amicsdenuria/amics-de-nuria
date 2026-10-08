@@ -10,7 +10,7 @@ import PrimaryPageHero from '../components/PrimaryPageHero';
 import RouteCard from './components/RouteCard';
 import { getAllRoutes } from '@/domain/route/route.service';
 import { getCurrentRoute } from '@/domain/currentRoute/currentRoute.service';
-import { getAgendaNow, getLatestSpiritActivity } from '@/domain/activity/activity.service';
+import { getAgendaNow, getCurrentSpiritActivity } from '@/domain/activity/activity.service';
 import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 
 const RutesItinerarisPage = async () => {
@@ -27,7 +27,7 @@ const RutesItinerarisPage = async () => {
 
   const now = getAgendaNow();
   const [routes, currentRoute, spiritActivity] = await Promise.all([
-    getAllRoutes(), getCurrentRoute(), getLatestSpiritActivity(),
+    getAllRoutes(), getCurrentRoute(), getCurrentSpiritActivity(),
   ]);
   const spiritActivityHref = spiritActivity
     ? `/agenda/activity/${spiritActivity.slug}`

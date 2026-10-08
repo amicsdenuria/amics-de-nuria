@@ -248,8 +248,8 @@ try {
     await go('/rutes-itineraris');
     const spiritLinks = page.locator('#sortides-esperit a[href^="/agenda/activity/"]');
     if (scenario === 'spirit' || scenario === 'local') {
-      const slug = scenario === 'spirit' ? 'verify-3' : 'sortides-amb-esperit-2027';
-      check('Routes latest edition card and both CTAs', await spiritLinks.count(), 3);
+      const slug = scenario === 'spirit' ? 'verify-1' : 'sortides-amb-esperit';
+      check('Routes selected edition card and both CTAs', await spiritLinks.count(), 3);
       const cardLink = spiritLinks.filter({ has: page.locator('[data-slot="card"]') });
       check('Routes actual latest slug', await cardLink.getAttribute('href'), `/agenda/activity/${slug}`);
       check('Both information CTAs target the detail', await spiritLinks.evaluateAll((links) => new Set(links.map((link) => link.getAttribute('href'))).size), 1);

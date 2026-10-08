@@ -3,14 +3,21 @@ import {
   activitiesFromLocal,
 } from './activity.adapter';
 import type { DomainActivity } from './activity.types';
-import { LOCAL_FEATURED_ACTIVITY_SLUG } from './activity.constants';
+import { LOCAL_CURRENT_SPIRIT_ACTIVITY_ID, LOCAL_FEATURED_ACTIVITY_SLUG } from './activity.constants';
 import { dataSource } from '@/config/site.config';
 import { localActivities } from '@/content/agenda/data/activities';
 import { getAgendaVerification } from '@/content/agenda/data/verificationActivities';
-import { selectLatestSpiritActivity } from './activity.selectors';
+import { activityFromSanity, activitiesFromSanity } from './activity.sanity-adapter';
+import {
+  getSanityActivities,
+  getSanityActivityBySlug,
+  getSanityCurrentSpiritActivity,
+  getSanityFeaturedActivity,
+} from '@/sanity/lib/agenda/activities';
 
 const ACTIVITIES_DATA_SOURCE = dataSource.agenda.activities;
 const FEATURED_ACTIVITY_DATA_SOURCE = dataSource.agenda.featuredActivity;
+const CURRENT_SPIRIT_ACTIVITY_DATA_SOURCE = dataSource.agenda.currentSpiritActivity;
 
 export const getAgendaNow = (): Date => getAgendaVerification()?.now ?? new Date();
 const getLocalActivities = (): DomainActivity[] =>
@@ -21,7 +28,7 @@ export const getActivities = async (): Promise<DomainActivity[]> => {
     return activitiesFromLocal(getLocalActivities());
   }
 
-  return [];
+  return activitiesFromSanity(await getSanityActivities());
 };
 
 export const getActivityBySlug = async (
@@ -33,7 +40,7 @@ export const getActivityBySlug = async (
     return activity ? activityFromLocal(activity) : null;
   }
 
-  return null;
+  return activityFromSanity(await getSanityActivityBySlug(slug));
 };
 
 export const getFeaturedActivity = async (): Promise<DomainActivity | null> => {
@@ -47,8 +54,18 @@ export const getFeaturedActivity = async (): Promise<DomainActivity | null> => {
     return activity ? activityFromLocal(activity) : null;
   }
 
-  return null;
+  return activityFromSanity(await getSanityFeaturedActivity());
 };
 
-export const getLatestSpiritActivity = async (): Promise<DomainActivity | null> =>
-  selectLatestSpiritActivity(await getActivities());
+export const getCurrentSpiritActivity = async (): Promise<DomainActivity | null> => {
+  let activity: DomainActivity | null;
+  if (CURRENT_SPIRIT_ACTIVITY_DATA_SOURCE === 'local') {
+    const verification = getAgendaVerification();
+    const selectedId = verification ? verification.currentSpiritId : LOCAL_CURRENT_SPIRIT_ACTIVITY_ID;
+    const selected = getLocalActivities().find((item) => item.id === selectedId);
+    activity = selected ? activityFromLocal(selected) : null;
+  } else {
+    activity = activityFromSanity(await getSanityCurrentSpiritActivity());
+  }
+  return activity?.isSpiritActivity ? activity : null;
+};

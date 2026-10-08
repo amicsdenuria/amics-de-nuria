@@ -54,14 +54,6 @@ export const isActivityFinished = (activity: DomainActivity, now: Date): boolean
 export const getActivityDisplayStatus = (activity: DomainActivity, now: Date): ActivityDisplayStatus =>
   activity.status === 'cancelled' ? 'cancelled' : isActivityFinished(activity, now) ? 'finished' : activity.status;
 
-export const selectLatestSpiritActivity = (
-  activities: readonly DomainActivity[],
-): DomainActivity | null =>
-  activities.filter((activity) =>
-    activity.isSpiritActivity && Number.isFinite(activity.schedule.startDate.getTime()),
-  )
-    .toSorted(byStartDateDescending)[0] ?? null;
-
 export const getActivityRegistrationUrl = (
   activity: DomainActivity, now: Date,
 ): string | null => {

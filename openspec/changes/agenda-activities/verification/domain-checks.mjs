@@ -26,6 +26,12 @@ for (const extension of ['.ts', '.tsx']) {
 }
 process.env.NODE_ENV = 'development';
 process.env.AGENDA_VERIFY_NOW = '2026-10-08T12:00:00+02:00';
+// This regression matrix exercises the explicit local source, independent of cutover.
+const { dataSource } = require(path.join(root, 'config/site.config.ts'));
+Object.assign(dataSource.agenda, { activities: 'local', featuredActivity: 'local', currentSpiritActivity: 'local' });
+const livePath = path.join(root, 'sanity/lib/live.ts');
+require.cache[livePath] = { id: livePath, filename: livePath, loaded: true,
+  exports: { sanityFetch: async () => { throw new Error('Local fixtures must not fetch Sanity'); } } };
 const service = require(path.join(root, 'domain/activity/activity.service.ts'));
 const selectors = require(path.join(root, 'domain/activity/activity.selectors.ts'));
 const model = require(path.join(root, 'app/(site)/(public)/agenda/components/activityBrowserModel.ts'));
@@ -95,10 +101,14 @@ for (const [start, before, after] of [
   check('DST after midnight', selectors.isActivityArchived(activity, new Date(after)), true);
 }
 process.env.AGENDA_VERIFY = 'spirit';
-const spirit = await service.getLatestSpiritActivity();
-check('Latest valid marked edition, ID tie-break, future cancelled', [spirit.id, spirit.slug, spirit.status], ['spirit-a', 'verify-3', 'cancelled']);
+const spirit = await service.getCurrentSpiritActivity();
+check('Exact selected edition survives later dates', [spirit.id, spirit.slug, spirit.status], ['verify-1', 'verify-1', 'scheduled']);
+for (const scenario of ['spirit-missing', 'spirit-unmarked', 'spirit-invalid']) {
+  process.env.AGENDA_VERIFY = scenario;
+  check(`${scenario} has no automatic fallback`, await service.getCurrentSpiritActivity(), null);
+}
 process.env.AGENDA_VERIFY = 'empty';
-check('Missing spirit edition', await service.getLatestSpiritActivity(), null);
+check('Missing spirit edition', await service.getCurrentSpiritActivity(), null);
 process.env.NODE_ENV = 'production';
 check('Production ignores fixture clock', service.getAgendaNow().getTime() === new Date(process.env.AGENDA_VERIFY_NOW).getTime(), false);
 check('Production ignores empty fixtures', (await service.getActivities()).length, 6);

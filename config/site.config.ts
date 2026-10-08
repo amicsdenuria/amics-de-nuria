@@ -23,6 +23,7 @@ interface DataSource {
   agenda: {
     activities: DataSourceOption;
     featuredActivity: DataSourceOption;
+    currentSpiritActivity: DataSourceOption;
   };
   publicacions: {
     publications: DataSourceOption;
@@ -38,8 +39,9 @@ export const dataSource: DataSource = {
     currentRoute: 'sanity',
   },
   agenda: {
-    activities: 'local',
-    featuredActivity: 'local',
+    activities: 'sanity',
+    featuredActivity: 'sanity',
+    currentSpiritActivity: 'sanity',
   },
   publicacions: {
     publications: 'local',
