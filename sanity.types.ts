@@ -13,6 +13,152 @@
  */
 
 // Source: schema.json
+export type CurrentSpiritActivity = {
+  _id: string;
+  _type: "currentSpiritActivity";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  currentSpiritActivity?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "activity";
+  };
+};
+
+export type FeaturedActivity = {
+  _id: string;
+  _type: "featuredActivity";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  featuredActivity?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "activity";
+  };
+};
+
+export type Activity = {
+  _id: string;
+  _type: "activity";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+  type?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "activityType";
+  };
+  isSpiritActivity?: boolean;
+  status?: "scheduled" | "full" | "cancelled";
+  schedule?: {
+    startDate?: string;
+    endDate?: string;
+    durationMinutes?: number;
+  };
+  location?: {
+    name?: string;
+    isOnline?: boolean;
+    address?: string;
+    city?: string;
+    province?: string;
+  };
+  organizer?: {
+    name?: string;
+    organizerUrl?: string;
+  };
+  participants?: {
+    minParticipants?: number;
+    maxParticipants?: number;
+  };
+  registration?: {
+    registrationUrl?: string;
+  };
+  price?: {
+    isFree?: boolean;
+    amount?: number;
+  };
+  requirements?: {
+    minAge?: number;
+    maxAge?: number;
+    level?: "beginner" | "intermediate" | "advanced" | "any";
+    requiredMaterials?: Array<string>;
+    notes?: string;
+  };
+  content?: {
+    mainImage?: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    };
+    images?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }>;
+  };
+  metadata?: {
+    cancelledAt?: string;
+    cancellationReason?: string;
+  };
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type ActivityType = {
+  _id: string;
+  _type: "activityType";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+};
+
 export type StageInternalTag = {
   _id: string;
   _type: "stageInternalTag";
@@ -21,12 +167,6 @@ export type StageInternalTag = {
   _rev: string;
   tag?: string;
   slug?: Slug;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
 };
 
 export type CurrentRoute = {
@@ -66,22 +206,6 @@ export type Poi = {
     _type: "image";
   };
   text?: Array<string>;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type Region = {
@@ -336,7 +460,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = StageInternalTag | Slug | CurrentRoute | Poi | SanityImageCrop | SanityImageHotspot | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = CurrentSpiritActivity | FeaturedActivity | Activity | SanityImageCrop | SanityImageHotspot | Slug | ActivityType | StageInternalTag | CurrentRoute | Poi | Region | Stage | Route | Subscriber | Subscription | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/rutes-itineraris/currentRoute/getCurrentRoute.ts
 // Variable: getCurrentRouteQuery
