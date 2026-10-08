@@ -164,23 +164,84 @@ Split further if needed to keep each reviewed diff within 400 changed lines.
 
 ## Phase 4: Sanity reads and cutover
 
+Content preparation requested separately by the user after phase 3 closure on
+2026-10-08: generate 35 fictitious activities using the five published types already
+created in Studio (Celebració, Sortida, Taller, Concert, Xerrada). The user then
+explicitly authorized uploading them directly to the configured project `l7cbpkut`,
+dataset `preview`. Upload only drafts after a full backup; preserve all existing
+documents and the empty published activity state needed for cutover verification.
+This content preparation does not start the queries/services/cutover slices below.
+
+- [x] Prepare 35 local draft documents, seven per existing type, and their manifest.
+- [x] Export the full target dataset before uploading, including drafts and assets.
+- [x] Validate all 35 drafts against the installed schemas and selectors.
+- [x] Import the draft fixtures with `--missing`, then verify exact remote contents,
+  references and unchanged published counts. Keep this preparation uncommitted.
+  Imported 35 drafts into `l7cbpkut/preview`; remote contents exactly match the
+  local NDJSON, seven per existing type. All five types remain unchanged and
+  published activity count remains zero. See `verification-report-activity-seed.md`.
+
 Review slices: 4A queries/typegen; 4B adapters/services/errors; 4C cutover/content.
 Each slice requires validation and manual approval before its commit.
 
-- [ ] Add list, detail, featured and current-spirit GROQ functions with complete type and image
+- [x] Add list, detail, featured and current-spirit GROQ functions with complete type and image
   projections; regenerate types.
-- [ ] Add defensive Sanity adapters and source-parity/current-spirit service wiring;
+- [x] Add defensive Sanity adapters and source-parity/current-spirit service wiring;
   distinguish successful empty results from infrastructure failures with retry UI.
-- [ ] Replace `getLatestSpiritActivity`/automatic selection and its fixtures with
+- [x] Replace `getLatestSpiritActivity`/automatic selection and its fixtures with
   `getCurrentSpiritActivity`/explicit ID selection; connect both routes CTAs to the
   exact singleton reference, retaining contact for missing/invalid/unmarked targets.
-- [ ] Switch Agenda sources to Sanity and validate the empty dataset.
-- [ ] With approval, back up the target dataset and import missing type seeds.
-- [ ] Validate documents, populate content in Studio, and verify Sanity Live.
-- [ ] Agent gate: all quality commands, direct-CDN image checklist,
+  4A gate: schema validation, typegen (19 queries), lint/types passed.
+  4B gate: lint/types, 164 schema, 97 GROQ/adapter/service and 82 local
+  domain/render assertions passed before switching sources. No remote mutations.
+- [x] Switch Agenda sources to Sanity and validate the empty dataset.
+  Passed 22 actual browser assertions at 360/768/1280 px before publication;
+  only published reads, zero activities, browser counter zero, both contact CTAs.
+- [x] Review bootstrap against the five editor-created types; reuse them and do not
+  automatically import the historical nine-type seed. Any further import needs approval.
+- [x] Validate documents, populate content in Studio, and verify Sanity Live.
+  At the user's explicit request, published all 35 demo activities after the
+  empty gate and a fresh full backup. Seven per existing type, two selector
+  drafts completed, selected outing enriched with two existing image assets.
+  All 42 published Agenda documents validate. Ten actual Live assertions passed
+  with selector/title/slug edits restored; no manual reload or rebuild.
+- [x] Agent gate: all quality commands, direct-CDN image checklist,
   verification report, and rollback readiness; stop uncommitted.
-- [ ] User gate: receive explicit approval after manual acceptance.
-- [ ] Commit only the manually approved final integration.
+  Final lint/types/build, schema validation/typegen and diff review passed.
+  164 schema, 99 GROQ/adapter/service, 82 local regression, 22 empty-browser,
+  50 populated-production, 24 retry and 10 real Live assertions passed.
+  All 42 published Agenda documents validate; initial full-dataset validation
+  reported 130 pre-existing errors in five unrelated stage drafts, unchanged by this phase.
+  Real images load with HTTP 200 directly from Sanity CDN, retaining framing.
+  See `verification-report-phase-4.md` for exact manual checks and backup/rollback.
+  Phase 5 remains unstarted. Closure revalidation passed schema/typegen,
+  lint/types/build, 164 schema, 99 integration and 82 domain assertions plus
+  all 35 seed validators. After the user's Studio corrections, pre-cleanup
+  full-dataset validation passed: 68 valid documents, zero errors.
+- [x] User gate: receive explicit approval after manual acceptance.
+  The user confirmed their corrections and successful manual verification on
+  2026-10-08, and explicitly authorized the phase 4 commits and merge into `preview`.
+- [x] Commit only the manually approved final integration.
+  Close in separately reviewable commits, then merge into local `preview`.
+  No new implementation fix follows acceptance; no push or phase 5 work is included.
+
+### Final release amendment: exclude demo activities (2026-10-08)
+
+- [x] Preserve the latest 35 full mock documents and a full dataset/assets backup
+  under ignored local paths; retain the original local seed/import tooling.
+- [x] Exclude the 35-document catalog, importer and fixture-specific helpers from
+  Git; add a preview bootstrap containing only the exact five editor-created types.
+- [x] Remove only the 35 reviewed mock IDs from `l7cbpkut/preview` with revision
+  guards and clear their two singleton references, retaining both singletons.
+  The five types and every unrelated document/asset remain unchanged.
+- [x] Verify raw/published activity counts are zero, selectors resolve to null,
+  all five types match the tracked seed, and local originals/assets are preserved.
+  Passed 22 fresh empty-browser assertions at 360/768/1280 px. Full validation:
+  33 editorial documents checked, 31 valid; three required-selection errors on
+  the two intentionally empty singletons. No unrelated validation errors.
+- [x] Keep existing datasets and `.env.local`; the local Studio also sees the
+  empty shared Agenda. Close the user's approved integration and local merge;
+  do not push, deploy, or begin phase 5.
 
 ## Phase 5: optional server-filtered browsing
 

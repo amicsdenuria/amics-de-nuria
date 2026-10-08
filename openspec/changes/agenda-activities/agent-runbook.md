@@ -153,6 +153,31 @@ uncommitted until the user explicitly accepts this checklist or requests fixes.
 
 ## Sanity schema and type generation
 
+### Phase 4 closure (2026-10-08)
+
+The user confirmed corrections and successful manual verification, then explicitly
+authorized phase 4 commits and merge into `preview`. Closure revalidation passes
+schema/typegen, lint/types/build, 164 schema, 99 integration and 82 domain checks,
+plus all 35 seed validators. Before cleanup, read-only remote validation passed
+all 68 documents with zero errors after the user's Studio corrections.
+Record acceptance and close the already-approved scope in reviewable commits;
+merge the feature branch into local `preview`. No new implementation fix follows
+acceptance. This authorization does not include a push or starting phase 5.
+
+The user's final release amendment requires no mock activities in Git `preview`
+or the Sanity content used by Vercel. Keep the existing datasets/environment,
+retain the exact five editor-created types, and exclude the demo catalog and
+one-time import tooling from Git. Preserve the latest 35 full documents locally
+and a complete export with assets before removing only their reviewed IDs from
+`l7cbpkut/preview`. Use revision guards and clear the two references without
+deleting either singleton. All other documents/assets must remain unchanged.
+The local Studio shares this dataset and therefore also shows no activities.
+Cleanup passed 22 fresh empty-browser assertions and exact public/raw reads.
+Full validation now checks 33 editorial documents: 31 valid, plus the two
+retained empty selectors with three required-selection errors. These expected
+errors are resolved by choosing real activities; do not weaken their validators.
+The full pre-cleanup export and ignored local documents preserve the originals.
+
 ### Phase 3 editorial selection amendment (2026-10-08)
 
 The user replaced automatic spirit selection with a protected
@@ -222,6 +247,30 @@ pnpm typegen
 ```
 
 ## Empty-state gate and content bootstrap
+
+User-authorized exception (2026-10-08): after accepting phase 3, the user requested
+35 generated activities and then direct upload to Studio's configured `preview`
+dataset, project `l7cbpkut`. Prepare `sanity/seed/agenda-preview-activities.ndjson`
+with only `drafts.agenda-demo-*` activities referencing the five existing published
+types. The full backup is `.sanity/backups/preview-before-agenda-demo-2026-10-08.tar.gz`.
+Validate with `node openspec/changes/agenda-activities/verification/seed-checks.mjs`,
+then import with `--missing`; never replace existing documents. Confirm the exact
+remote payload and zero published activities afterwards. No singleton mutation or
+publication is part of this upload; the empty published cutover gate is preserved.
+This explicit user request authorizes this draft-only content preparation before
+the read integration. Keep preparation changes uncommitted pending phase 4 review.
+
+Subsequent user authorization (2026-10-08): implement phase 4 reads/cutover,
+verify the empty published state first, then publish the 35 prepared activities
+in the same configured `l7cbpkut/preview` target and inspect the visible changes.
+Reuse the five editor-created types; do not import the historical nine-type seed.
+Export a fresh full backup before publication. Publish only the reviewed demo
+draft IDs using Sanity's publish action with draft revision guards. For the
+phase 4 selector/image checks, complete the two existing empty singleton drafts
+with the manifest's selections and reuse existing Montserrat image assets on
+the selected demo outing; preserve any populated editor selection. Record every
+mutation and restore temporary Live-check edits. This scoped content bootstrap
+is authorized; phase 4 commits still require new manual acceptance.
 
 Switch to Sanity before creating Agenda content. Verify `/agenda` and
 `/rutes-itineraris` against the empty dataset first. Do not treat an empty

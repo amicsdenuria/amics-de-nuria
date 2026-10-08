@@ -22,6 +22,14 @@ level remain controlled vocabularies.
   structure.
 - GROQ reads, generated types, adapters, source switching, and image metadata.
 - A reviewed bootstrap file for the nine predefined activity types.
+- User-authorized amendment (2026-10-08): prepare and upload 35 demo drafts,
+  reuse the five editor-created types in `l7cbpkut/preview`, verify the empty
+  published cutover, then publish the demo activities and complete the empty
+  Agenda selectors for integration verification, with backups and revision guards.
+- Final release amendment (2026-10-08): retain the five editor-created types in
+  `preview`, remove the 35 demo activities and clear their singleton references.
+  Preserve full demo documents/assets locally, exclude the catalog and one-time
+  import tooling from Git, and keep the existing shared dataset configuration.
 
 ## Out of scope
 
@@ -30,7 +38,8 @@ level remain controlled vocabularies.
 - Server-side search/filtering and pagination in the current delivery. These are
   tracked as the optional, highly recommended follow-up phase 5, not a prerequisite
   for completing phases 2–4.
-- Automated creation, replacement, or deletion of remote Sanity documents.
+- General automated remote creation, replacement, or deletion. The explicitly
+  authorized preview demo bootstrap above is a scoped exception.
 - A new test framework or unrelated redesigns.
 
 ## Delivery approach

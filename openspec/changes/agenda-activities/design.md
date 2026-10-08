@@ -257,6 +257,26 @@ state passes, import only predefined type documents, then let editors create
 activities and both singletons in Studio. Finally validate remote documents and
 live publication behavior.
 
+User amendment (2026-10-08): the actual `preview` dataset already has five
+published editor-created types (Celebració, Sortida, Taller, Concert, Xerrada).
+Reuse these exact IDs rather than importing the historical nine-type file.
+The user authorized upload of 35 demo drafts and subsequent publication after
+empty-state verification. The scoped bootstrap completes the two existing empty
+selector drafts and reuses existing images on the selected demo outing; it does
+not overwrite populated editor selections. Export the full dataset first and
+publish the reviewed drafts using guarded Sanity publish actions. Keep the
+application read-only and the integration uncommitted until manual acceptance.
+
+Final release amendment (2026-10-08): the user requires `preview` without demo
+activities. Back up the latest editor content/assets, delete only the 35 reviewed
+demo IDs with revision guards and clear their references while retaining both
+singleton documents. Keep all five types unchanged; record their real IDs in
+`sanity/seed/activity-types-preview.ndjson`. Exclude the demo catalog/importer
+from Git and preserve local copies under ignored paths. No new dataset or
+environment change is authorized: the local Studio also sees the empty Agenda
+because it shares `preview`. Empty singleton selectors resolve to the existing
+public fallback; their required-selection validators remain unchanged.
+
 ## Optional follow-up: server-filtered browsing (phase 5)
 
 This improvement is highly recommended as the archive grows, but is outside
