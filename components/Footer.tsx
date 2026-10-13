@@ -1,4 +1,4 @@
-import { ArrowRightIcon } from 'lucide-react';
+import { ArrowRightIcon, ArrowUpRightIcon } from 'lucide-react';
 import { Button } from './ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +10,17 @@ import { publicacionsContent } from '@/content/publicacions/publicacionsPage';
 import { rutesItinerarisContent } from '@/content/rutes-itineraris/rutesItinerarisPage';
 import { santuariContent } from '@/content/santuari/santuariPage';
 import { site } from '@/config/site.config';
+
+const brandLinkGroups = [
+  {
+    title: 'Les nostres xarxes',
+    links: lligaEspiritualContent.home.rrss.own,
+  },
+  {
+    title: "Enllaços d'interès",
+    links: lligaEspiritualContent.home.rrss.others,
+  },
+];
 
 const Footer = () => {
   const footerNav = {
@@ -27,22 +38,58 @@ const Footer = () => {
       <PageContainer className="py-12 md:py-16">
         <div className="grid gap-8 grid-cols-1 lg:grid-cols-12">
           {/* Brand */}
-          <section className="lg:col-span-2 text-center lg:text-left mx-auto">
-            <Link
-              href={'/'}
-              className="text-xl font-medium tracking-wide text-foreground flex items-center justify-center lg:justify-start gap-3"
-            >
-              <Image
-                alt="Amics de Núria Logo"
-                src="/adn-glass-logo-transparent-bg.webp"
-                width={24}
-                height={24}
-              />
-              {site.name.long}
-            </Link>
-            <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-pretty text-muted-foreground">
-              {site.hero.description}
-            </p>
+          <section className="mx-auto flex w-full max-w-xs flex-col gap-8 text-center lg:col-span-2 lg:text-left">
+            <div>
+              <Link
+                href={'/'}
+                className="text-xl font-medium tracking-wide text-foreground flex items-center justify-center lg:justify-start gap-3"
+              >
+                <Image
+                  alt="Amics de Núria Logo"
+                  src="/adn-glass-logo-transparent-bg.webp"
+                  width={24}
+                  height={24}
+                />
+                {site.name.long}
+              </Link>
+              <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-pretty text-muted-foreground">
+                {site.hero.description}
+              </p>
+            </div>
+
+            {brandLinkGroups.map((group) =>
+              group.links.length > 0 ? (
+                <nav key={group.title} aria-label={group.title}>
+                  <h4 className="mb-3 text-sm font-medium uppercase tracking-wider text-foreground">
+                    {group.title}
+                  </h4>
+                  <ul className="flex flex-col gap-1">
+                    {group.links.map(({ href, label, icon: Icon }) => (
+                      <li key={href}>
+                        <Link
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-8 items-center gap-2 rounded-sm text-sm font-light text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        >
+                          {Icon ? (
+                            <Icon aria-hidden="true" className="size-4 shrink-0" />
+                          ) : null}
+                          {label}
+                          <ArrowUpRightIcon
+                            aria-hidden="true"
+                            className="size-3 shrink-0 opacity-60"
+                          />
+                          <span className="sr-only">
+                            {' '}(s&apos;obre en una pestanya nova)
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              ) : null,
+            )}
           </section>
 
           {/* Navigation */}
