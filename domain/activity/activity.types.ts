@@ -74,6 +74,7 @@ export interface DomainActivity {
   id: string;
   slug: string;
   title: string;
+  intro: string;
   description: string;
   isSpiritActivity: boolean;
   type: ActivityType;

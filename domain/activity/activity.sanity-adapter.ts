@@ -63,7 +63,7 @@ export const activityFromSanity = (value: SanityActivity): DomainActivity | null
   const price = object(data.price);
   const required = {
     _id: text(data._id), slug: text(data.slug), title: text(data.title),
-    description: text(data.description), 'type._id': text(type._id),
+    intro: text(data.intro), description: text(data.description), 'type._id': text(type._id),
     'type.slug': text(type.slug), 'type.name': text(type.name),
     'location.name': text(location.name), 'organizer.name': text(organizer.name),
   };
@@ -102,6 +102,7 @@ export const activityFromSanity = (value: SanityActivity): DomainActivity | null
   const metadata = object(data.metadata);
   return {
     id: id!, slug: required.slug!, title: required.title!, description: required.description!,
+    intro: required.intro!,
     type: { id: required['type._id']!, slug: required['type.slug']!, name: required['type.name']! },
     status: data.status as ActivityStatus,
     isSpiritActivity: data.isSpiritActivity === true,

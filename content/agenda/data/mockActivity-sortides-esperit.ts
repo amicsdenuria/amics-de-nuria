@@ -5,6 +5,7 @@ export const spiritActivity: DomainActivity = {
   slug: 'sortides-amb-esperit',
   id: 'activity-sortides-amb-esperit',
   title: "Sortides amb l'Esperit: camí de la llum",
+  intro: 'Camina, prega i comparteix una jornada de comunitat a Montserrat.',
   description:
     'Una jornada de caminar i pregar, convertint el sender en un espai de silenci i paraula compartida.',
   isSpiritActivity: true,

@@ -9,6 +9,7 @@ export const localActivities: DomainActivity[] = [
     id: 'activity-sortides-amb-esperit-2027',
     slug: 'sortides-amb-esperit-2027',
     title: "Sortides amb l'Esperit: camí de primavera",
+    intro: 'Una sortida de primavera per caminar i compartir el sentit espiritual del camí.',
     schedule: {
       startDate: new Date('2027-05-09T08:00:00+02:00'),
       endDate: new Date('2027-05-09T18:00:00+02:00'),
@@ -19,6 +20,7 @@ export const localActivities: DomainActivity[] = [
     id: 'activity-sortida-familiar-a-nuria',
     slug: 'sortida-familiar-a-nuria',
     title: 'Sortida familiar a Núria',
+    intro: 'Descobreix la Vall de Núria en família amb una caminada suau.',
     description:
       'Una jornada per descobrir la vall en família amb una caminada suau i una estona de convivència.',
     type: activityTypes.nature,
@@ -55,6 +57,7 @@ export const localActivities: DomainActivity[] = [
     id: 'activity-taller-online-pelegrinatge',
     slug: 'taller-online-pelegrinatge',
     title: 'Taller online de preparació del pelegrinatge',
+    intro: 'Prepara el material i resol els teus dubtes abans de començar el camí.',
     description:
       'Sessió pràctica per preparar el material i resoldre dubtes abans de començar el camí.',
     type: activityTypes.workshop,
@@ -78,6 +81,7 @@ export const localActivities: DomainActivity[] = [
     id: 'activity-festa-final-temporada',
     slug: 'festa-final-de-temporada',
     title: 'Festa final de temporada',
+    intro: 'Celebrem el final de temporada amb música i activitats per a tothom.',
     description:
       'Celebració de cloenda amb música i activitats per a totes les edats.',
     type: activityTypes.celebration,
@@ -107,6 +111,7 @@ export const localActivities: DomainActivity[] = [
     id: 'activity-vetlla-pregaria-2026',
     slug: 'vetlla-de-pregaria-2026',
     title: 'Vetlla de pregària',
+    intro: 'Una trobada per pregar i compartir el sentit espiritual del camí.',
     description:
       'Espai de pregària comunitària per compartir el sentit espiritual del camí.',
     type: activityTypes.culture,

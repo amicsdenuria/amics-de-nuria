@@ -1,10 +1,11 @@
-import type { ActivityDisplayStatus, DomainActivity } from '@/domain/activity/activity.types';
+import type { ActivityContent, ActivityDisplayStatus, DomainActivity } from '@/domain/activity/activity.types';
 import { getActivityDisplayStatus, selectAgendaActivities } from '@/domain/activity/activity.selectors';
 
 export type ActivityPeriod = 'all' | 'upcoming' | 'archived';
 export type ActivityBrowserItem = Pick<DomainActivity,
-  'id' | 'slug' | 'title' | 'description' | 'type' | 'status' | 'location' | 'organizer' | 'participants' | 'price'
+  'id' | 'slug' | 'title' | 'intro' | 'description' | 'type' | 'status' | 'location' | 'organizer' | 'participants' | 'price'
 > & {
+  content?: Pick<ActivityContent, 'mainImage'>;
   schedule: { startDate: string; endDate?: string; durationMinutes?: number };
   period: Exclude<ActivityPeriod, 'all'>;
   displayStatus: ActivityDisplayStatus;
@@ -18,10 +19,12 @@ export function toActivityBrowserItems(activities: DomainActivity[], now: Date):
   const { upcomingActivities, archivedActivities } = selectAgendaActivities(activities, now);
   const serialize = (activity: DomainActivity, period: ActivityBrowserItem['period']): ActivityBrowserItem => ({
     id: activity.id, slug: activity.slug, title: activity.title, description: activity.description,
+    intro: activity.intro,
     type: activity.type, status: activity.status,
     location: { name: activity.location.name, city: activity.location.city, isOnline: activity.location.isOnline },
     organizer: { name: activity.organizer.name },
     participants: { maxParticipants: activity.participants.maxParticipants }, price: activity.price,
+    content: activity.content?.mainImage ? { mainImage: activity.content.mainImage } : undefined,
     schedule: {
       startDate: activity.schedule.startDate.toISOString(),
       endDate: activity.schedule.endDate?.toISOString(), durationMinutes: activity.schedule.durationMinutes,
@@ -49,7 +52,7 @@ export const normalizeActivitySearch = (value: string): string =>
 
 export function activitySearchText(item: ActivityBrowserItem): string {
   return normalizeActivitySearch([
-    item.title, item.description, item.type.name, item.location.name,
+    item.title, item.intro, item.description, item.type.name, item.location.name,
     item.location.city, item.location.isOnline ? 'Online' : '', item.organizer.name,
   ].join(' '));
 }

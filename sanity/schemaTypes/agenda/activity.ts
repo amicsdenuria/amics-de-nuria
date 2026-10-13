@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType, getPublishedId } from 'sanity';
 
 const validateBounds = (value: unknown, min: string, max: string) => {
   const bounds = value as Record<string, unknown> | undefined;
@@ -35,12 +35,29 @@ export const activity = defineType({
     }),
     defineField({
       name: 'slug', title: 'Slug', type: 'slug', group: 'general',
-      options: { source: 'title' },
-      description: 'Cada edició ha de tenir un slug propi, encara que comparteixi el títol.',
+      options: {
+        source: (document) => {
+          const title = typeof document.title === 'string' ? document.title : '';
+          const titleSlug = title.toLowerCase().normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-')
+            .slice(0, 200).replace(/^-+|-+$/g, '');
+          return titleSlug ? `${titleSlug}-${getPublishedId(document._id)}` : '';
+        },
+        // The source already normalizes the title; preserve the complete document ID.
+        slugify: (input) => input,
+      },
+      description: 'Genera el slug a partir del títol i l’ID del document. Cada edició tindrà un slug propi.',
       validation: (Rule) => Rule.required().error('Cal generar un slug únic.'),
     }),
     defineField({
+      name: 'intro', title: 'Introducció', type: 'text', group: 'general', rows: 3,
+      description: 'Presentació breu per a les targetes i la capçalera de la pàgina de detall.',
+      validation: (Rule) => Rule.required().custom((value) =>
+        value?.trim() ? true : 'Cal indicar la introducció.'),
+    }),
+    defineField({
       name: 'description', title: 'Descripció', type: 'text', group: 'general',
+      description: 'Descripció completa que es mostra a la pàgina de detall de l’activitat.',
       validation: (Rule) => Rule.required().custom((value) =>
         value?.trim() ? true : 'Cal indicar la descripció.'),
     }),

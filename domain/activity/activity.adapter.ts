@@ -2,7 +2,7 @@ import type { DomainActivity } from './activity.types';
 
 export const activityFromLocal = (data: DomainActivity): DomainActivity | null => {
   const requiredText = [
-    data.id, data.slug, data.title, data.description,
+    data.id, data.slug, data.title, data.intro, data.description,
     data.type?.id, data.type?.slug, data.type?.name,
     data.location?.name, data.organizer?.name,
   ];
@@ -18,7 +18,7 @@ export const activityFromLocal = (data: DomainActivity): DomainActivity | null =
       !Number.isFinite(data.price.amount) || data.price.amount < 0
     ))
   ) return null;
-  return { ...data, isSpiritActivity: data.isSpiritActivity === true };
+  return { ...data, intro: data.intro.trim(), isSpiritActivity: data.isSpiritActivity === true };
 };
 
 export const activitiesFromLocal = (
