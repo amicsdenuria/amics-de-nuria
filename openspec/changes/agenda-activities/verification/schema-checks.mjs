@@ -44,21 +44,36 @@ let passed = 0;
 const check = (name, actual, expected) => { assert.deepEqual(actual, expected, name); passed++; };
 const type = { _id: 'activity-type-nature', _type: 'activityType', name: 'Natura', slug: { _type: 'slug', current: 'nature' } };
 const base = {
-  _id: 'spirit-a', _type: 'activity', title: 'Sortida amb l’Esperit', description: 'Una edició.',
+  _id: 'spirit-a', _type: 'activity', title: 'Sortida amb l’Esperit', intro: 'Camina en comunitat.', description: 'Una edició.',
   slug: { _type: 'slug', current: 'spirit-a' }, type: { _type: 'reference', _ref: type._id },
   isSpiritActivity: true, status: 'scheduled', schedule: { startDate: '2027-01-10T09:00:00+01:00' },
   location: { name: 'Núria', isOnline: false }, organizer: { name: 'Amics de Núria' }, price: { isFree: true },
 };
 const later = { ...base, _id: 'spirit-z', slug: { _type: 'slug', current: 'spirit-z' }, schedule: { startDate: '2028-01-10T09:00:00+01:00' } };
+const slugOptions = activity.fields.find((field) => field.name === 'slug').options;
+const generateSlug = async (document) => slugOptions.slugify(await slugOptions.source(document));
+for (const id of ['abc123', 'drafts.abc123', 'versions.release1.abc123'])
+  check('Generated slug uses canonical document ID', await generateSlug({ ...base, _id: id, title: 'Festa del Pelegrí' }), 'festa-del-pelegri-abc123');
+check('Generated slug preserves full UUID', await generateSlug({ ...base,
+  _id: 'drafts.3d4c743a-cbfc-41b2-b512-a0f41078784c', title: 'Festa del Pelegrí' }),
+  'festa-del-pelegri-3d4c743a-cbfc-41b2-b512-a0f41078784c');
+check('Repeated generation is stable', await generateSlug({ ...base, _id: 'drafts.abc123', title: 'Festa del Pelegrí',
+  slug: { current: 'festa-del-pelegri-abc123' } }), 'festa-del-pelegri-abc123');
+check('Same title with distinct documents stays unique', await generateSlug({ ...base, _id: 'xyz789', title: 'Festa del Pelegrí' }), 'festa-del-pelegri-xyz789');
+check('Accents and punctuation normalize before ID', await generateSlug({ ...base, _id: 'Mixed_Id.123', title: '  Núria: música & comunitat!  ' }), 'nuria-musica-comunitat-Mixed_Id.123');
+check('Long title cannot truncate ID', (await generateSlug({ ...base, _id: 'abc123', title: 'a'.repeat(250) })).endsWith('-abc123'), true);
+for (const title of [undefined, '', '  '])
+  check('No invented slug without title', await generateSlug({ ...base, title }), '');
 documents = [type, base, later];
 check('Minimal activity', await errors(base), []);
 check('Separate later edition with same title', await errors(later), []);
-for (const key of ['title', 'description', 'slug', 'type', 'status', 'schedule', 'location', 'organizer', 'price']) {
+for (const key of ['title', 'intro', 'description', 'slug', 'type', 'status', 'schedule', 'location', 'organizer', 'price']) {
   const incomplete = structuredClone(base); delete incomplete[key];
   check(`Required ${key}`, (await errors(incomplete)).length > 0, true);
 }
 for (const [name, change] of [
-  ['Blank title', { title: '  ' }], ['Blank description', { description: '  ' }],
+  ['Blank title', { title: '  ' }], ['Blank intro', { intro: '  \n ' }], ['Blank description', { description: '  ' }],
+  ['Invalid intro type', { intro: 123 }],
   ['Unknown status', { status: 'finished' }], ['Unresolved type', { type: { _type: 'reference', _ref: 'missing' } }],
   ['Missing start', { schedule: {} }], ['Invalid start', { schedule: { startDate: 'bad' } }],
   ['Equal end', { schedule: { ...base.schedule, endDate: base.schedule.startDate } }],
@@ -185,12 +200,21 @@ for (const schemaType of ['currentRoute', 'featuredActivity', 'currentSpiritActi
 check('Activities retain regular actions', config.document.actions(actions, { schemaType: 'activity' }), actions);
 const oldSchema = JSON.parse(execFileSync('git', ['show', 'HEAD:schema.json'], { encoding: 'utf8' }));
 const newSchema = JSON.parse(fs.readFileSync(path.join(root, 'schema.json'), 'utf8'));
-for (const definition of oldSchema)
-  check(`Existing generated schema unchanged: ${definition.name}`, newSchema.find((item) => item.name === definition.name), definition);
+check('Generated intro is text', newSchema.find((item) => item.name === 'activity').attributes.intro.value.type, 'string');
+for (const definition of oldSchema) {
+  const comparable = structuredClone(newSchema.find((item) => item.name === definition.name));
+  if (definition.name === 'activity' && !definition.attributes.intro) delete comparable.attributes.intro;
+  check(`Existing generated schema unchanged apart from intro: ${definition.name}`, comparable, definition);
+}
 const aliases = (source) => new Map(ts.createSourceFile('types.ts', source, ts.ScriptTarget.Latest, true).statements
   .filter(ts.isTypeAliasDeclaration).map((node) => [node.name.text, node.getText()]));
 const oldTypes = aliases(execFileSync('git', ['show', 'HEAD:sanity.types.ts'], { encoding: 'utf8' }));
 const newTypes = aliases(fs.readFileSync(path.join(root, 'sanity.types.ts'), 'utf8'));
-for (const [name, text] of oldTypes)
-  if (name !== 'AllSanitySchemaTypes') check(`Existing generated type unchanged: ${name}`, newTypes.get(name), text);
+for (const [name, text] of oldTypes) {
+  if (name === 'AllSanitySchemaTypes') continue;
+  const next = newTypes.get(name);
+  const comparable = /^[ \t]*intro\??:/m.test(text) ? next
+    : next?.replace(/^[ \t]*intro\??: string(?: \| null)?;\r?\n/gm, '');
+  check(`Existing generated type unchanged apart from intro: ${name}`, comparable, text);
+}
 console.log(`PASS: ${passed} schema assertions; no remote requests or writes.`);
