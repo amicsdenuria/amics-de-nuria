@@ -243,6 +243,86 @@ Each slice requires validation and manual approval before its commit.
   empty shared Agenda. Close the user's approved integration and local merge;
   do not push, deploy, or begin phase 5.
 
+## Intro amendment (2026-10-13)
+
+Only this user-requested amendment is in scope; phase 5 remains unstarted.
+Keep implementation, generated artifacts, and verification records separately
+reviewable, each below 400 changed lines. No remote content writes are authorized.
+
+- [x] Require intro in the domain, local/Sanity adapters and Studio; update local activities.
+- [x] Project intro in every Agenda query and carry it through browser serialization/search.
+- [x] Replace description with intro in cards; show intro beneath the detail title
+  while retaining the full description and existing metadata.
+- [x] Regenerate schema/types; validate schema, lint, types, build and focused
+  schema/domain/GROQ/render checks; inspect the diff.
+  Passed: 0 schema errors, 23 generated schema types/19 queries, TypeScript,
+  production build and 286 assertions (172 schema, 19 intro integration, 95 domain/render).
+  Lint passes excluding `.sanity/**`; baseline full lint already failed on an
+  ignored downloaded JS artifact. See `verification-report-intro.md`.
+- [x] Inspect existing local and remote activities read-only and report invalid content.
+  All six local activities are valid. `l7cbpkut/preview` contains Festa del Pelegrí
+  without intro in both published and draft versions; no remote content was modified.
+- [x] User gate: manual acceptance of Studio, cards, detail and search; leave all
+  changes unstaged and uncommitted until the user explicitly approves closure.
+
+## Slug ID amendment (2026-10-13)
+
+Only activity slug generation is in scope; preserve the uncommitted intro
+amendment and existing remote content. Do not start phase 5.
+
+- [x] Generate `<normalized title>-<canonical Sanity document ID>`, preserving
+  the complete ID and using the same suffix for draft/published/release versions.
+- [x] Cover accent/punctuation normalization, long titles, full UUIDs, equal
+  titles with different IDs, empty titles and repeated generation in the schema gate.
+- [x] Regenerate schema/types; validate schema, lint, types, build and scoped
+  schema/domain/GROQ checks; inspect the diff.
+  Passed: 0 schema errors, schema/typegen, TypeScript, lint excluding the
+  pre-existing `.sanity/**` artifact, production build and 297 assertions
+  (183 schema/slug, 19 intro integration, 95 domain/render). No additional
+  generated contract changes beyond the intro amendment. Diff check passed.
+- [x] User gate: generate a slug in Studio, repeat generation and open the new
+  public detail URL after publishing. Keep all changes unstaged and uncommitted.
+  The user confirmed it works on 2026-10-13; no commit or push was requested.
+
+## Card media/link amendment (2026-10-13)
+
+Work only on these requested UI/payload changes; preserve prior uncommitted
+amendments and the user's `public/activity-default.webp`. Do not start phase 5.
+
+- [x] Open organizer/registration websites in separate tabs with safe link attributes.
+- [x] Render a main-image cover before CardHeader with shadcn composition,
+  project Sanity/Next routing, responsive sizes and the supplied placeholder.
+- [x] Carry only the main image through browser serialization with full metadata.
+- [x] Validate lint/types/build and scoped image/link/domain/schema checks;
+  inspect real Sanity image delivery and responsive layouts; review the diff.
+  Passed: lint excluding the pre-existing `.sanity/**` artifact, TypeScript,
+  production build, 314 script assertions (183 schema, 19 integration, 112 domain/render)
+  and 69 real-browser assertions at 360/768/1280 px. Direct Sanity CDN covers
+  loaded with crop and `auto=format`; placeholder optimization returned HTTP 200
+  on the user's port 3000. Temporary port 3170 server was closed.
+  See `verification-report-card-media.md`; remote content was not changed.
+- [x] User gate: accept cards with/without image, external tabs, responsive
+  framing and direct-CDN delivery. Leave changes uncommitted and unpushed.
+
+## User UI review (2026-10-13)
+
+- [x] Review the user's requirement panel/material/notes styling and separate
+  hero/footer CTA lists without changing their components.
+- [x] Validate lint/types/build, 112 domain/render assertions and 39 browser
+  assertions on the user's port 3000 at 360/768/1280 px, including keyboard
+  navigation and real detail image delivery. No regressions found.
+  See `verification-report-user-ui.md`. Application files were preserved;
+  no commit, push or remote content mutation was performed.
+
+## Accepted closure authorization (2026-10-13)
+
+The user accepted the complete intro/slug/card/link delivery and their reviewed
+UI adjustments, then explicitly requested commits and a local merge into
+`preview`, without any push. Final status/diff checks match the validated scope.
+Close implementation, generated contracts, verification and specification in
+reviewable commits; keep each block at or below 400 changed lines. No remote
+content mutation, deployment or phase 5 work is included in this authorization.
+
 ## Phase 5: optional server-filtered browsing
 
 Highly recommended future improvement, explicitly requested for documentation

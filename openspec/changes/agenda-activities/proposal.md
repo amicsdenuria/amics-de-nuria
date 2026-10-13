@@ -30,6 +30,14 @@ level remain controlled vocabularies.
   `preview`, remove the 35 demo activities and clear their singleton references.
   Preserve full demo documents/assets locally, exclude the catalog and one-time
   import tooling from Git, and keep the existing shared dataset configuration.
+- User amendment (2026-10-13): require a separate brief `intro` for activity
+  cards and detail headers; retain the full `description` on details and search
+  both fields. Inspect existing content read-only and report invalid activities.
+- Additional amendment (2026-10-13): activity slug generation appends the
+  canonical Sanity document ID after the normalized title.
+- Card media/link amendment (2026-10-13): external activity websites open in
+  separate tabs; cards show their main image using shadcn's image composition,
+  project image routing and the supplied local placeholder when absent.
 
 ## Out of scope
 

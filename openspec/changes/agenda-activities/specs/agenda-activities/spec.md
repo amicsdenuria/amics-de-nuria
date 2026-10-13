@@ -40,8 +40,9 @@ using ca-ES, a 24-hour clock and Europe/Madrid. Current dates are datetime value
 Inici, optional Fi and optional Durada MUST occupy separate stacks; each date
 stack MUST place the time on a separate line from the date.
 Card headers MUST retain the title left and type pill right.
-Card content MUST show location first, then description clamped to three lines,
-then the schedule panel. The detail page MUST retain the full description.
+Card content MUST show location first, then intro clamped to three lines,
+then the schedule panel. Cards MUST NOT render the full description.
+The detail header MUST show intro and the body MUST retain the full description.
 A cancelled/full/finished pill MUST replace capacity in the footer. Cancelled cards MUST look muted while
 retaining their detail link and keyboard accessibility when details are implemented.
 
@@ -85,8 +86,35 @@ retaining their detail link and keyboard accessibility when details are implemen
 - Archived, cancelled, or finished activities MUST hide the registration CTA.
 - Availability MUST belong to the external service; editorial status changes
   MUST NOT imply synchronized seats. Registration flags/deadlines are out of scope.
+- Organizer websites and registration links MUST open in a separate tab with
+  `noopener noreferrer`; internal activity/back links MUST retain normal navigation.
 
 ## Requirement: public activity details
+
+### Scenario: generate a unique activity slug from title and document ID
+
+- **Given** an activity titled Festa del Pelegrí with canonical document ID `abc123`
+- **When** an editor generates its slug
+- **Then** the result MUST be `festa-del-pelegri-abc123`
+- **And** draft, published and release versions MUST produce the same suffix
+- **And** the complete document ID MUST be preserved, including for long titles
+- **And** repeated generation MUST NOT append the ID more than once
+- **And** existing slugs MUST change only on explicit generation/editing
+
+### Scenario: independent brief introduction and full description
+
+- **Given** an activity with distinct intro and description text
+- **When** its card and detail page render
+- **Then** the card MUST show only intro, clamped to three lines
+- **And** the detail MUST show intro beneath the title and the full description
+- **And** browser search MUST match both fields, ignoring case and diacritics
+
+### Scenario: require a meaningful introduction
+
+- **Given** an activity has no intro, an invalid type, or whitespace-only intro
+- **When** it is validated or adapted
+- **Then** Studio MUST reject publication and local/Sanity adapters MUST discard it
+- **And** description MUST NOT be used as a fallback for intro
 
 ### Scenario: render optional data safely
 
@@ -219,6 +247,17 @@ queries/services and replace the approved phase 2 local automatic selection.
   empty agenda or a false 404; unpublished activities MUST NOT appear publicly
 
 ## Requirement: image metadata and delivery
+
+### Scenario: activity card cover and placeholder
+
+- **Given** an activity card on Agenda or the complete browser
+- **When** its image renders
+- **Then** the main image MUST appear before CardHeader in a full-width 16:9 cover
+- **And** an absent/unusable main image MUST use `/activity-default.webp`
+- **And** the decorative placeholder MUST have empty alt and use Next optimization
+- **And** browser serialization MUST preserve main image asset/crop/hotspot/alt
+  while excluding the gallery
+- **And** real Sanity images MUST use direct responsive CDN delivery with `auto=format`
 
 ### Scenario: render a Sanity image
 

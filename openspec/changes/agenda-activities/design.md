@@ -23,6 +23,7 @@ interface DomainActivity {
   id: string;
   slug: string;
   title: string;
+  intro: string;
   description: string;
   isSpiritActivity: boolean;
   type: ActivityType;
@@ -84,8 +85,15 @@ Never persist `finished`, completion/archive flags, or registration eligibility.
 Cards show separate Inici, optional Fi, and optional Durada stacks. Each date
 stack separates the calendar date from its Madrid time (24-hour clock).
 Card headers keep the title left and type pill right.
-Card content orders location, description clamped to three lines, then the
-schedule panel; the detail page retains the complete description.
+Cards place a full-width 16:9 main image before CardHeader, following the
+[shadcn Card image composition](https://ui.shadcn.com/docs/components/radix/card#image).
+Use `getImageProps` and `OptimizedImage`, preserving crop/hotspot and responsive
+sizes for preview/browser grids and the wider highlights. Missing/unusable main
+images use `/activity-default.webp` through Next's optimizer, with empty alt
+because the placeholder is decorative. Cancelled cards also mute the cover image.
+Card content orders location, intro clamped to three lines, then the
+schedule panel; the detail header shows intro and the body retains the complete
+description. Intro and description are independent required plain-text fields.
 A non-scheduled display status replaces capacity in the footer. Cancelled cards use the existing muted
 theme tokens, faded text and a struck-through title, keeping the red status pill. They retain
 their detail link and keyboard focus; never disable navigation.
@@ -109,6 +117,9 @@ render no registration CTA or mandatory contact step. With a URL, show the CTA
 unless the activity is archived, cancelled, or finished. `full` keeps the link:
 the external service owns availability. Remove `requiresRegistration` and
 `registrationDeadline`; there are no internal bookings, deadlines, or counters.
+Organizer websites and external registration links open in a separate tab with
+`target="_blank"` and `rel="noopener noreferrer"`. Internal detail/back links keep
+their current-tab behavior.
 
 ## Sanity model
 
@@ -125,9 +136,17 @@ the external service owns availability. Remove `requiresRegistration` and
 
 ### `activity`
 
-- Required: title, description, unique slug, type, status, schedule.startDate,
+- Required: title, intro, description, unique slug, type, status, schedule.startDate,
   location.name/isOnline, organizer.name, and price.isFree. The spirit checkbox
   defaults to false and registration URL is optional.
+- Intro is a three-row text input in General with Catalan help distinguishing
+  the brief presentation from the full detail description. Whitespace-only
+  intros are invalid. No fallback from description or remote migration is used.
+- Activity slug generation normalizes the title (up to 200 characters) and
+  appends `-<canonical document ID>` without altering or truncating the ID.
+  Draft and release prefixes are removed with Sanity's `getPublishedId` so all
+  versions of a document generate the same slug. Existing slugs change only
+  when an editor explicitly regenerates them. Activity type slugs are unchanged.
 - Studio groups: General; Horari; Ubicació i organització; Inscripció i preu;
   Requisits; Contingut; Cancel·lació.
 - Editorial status options: Agendada (default), Completa, Cancel·lada.
@@ -179,7 +198,7 @@ use route, heart and star icons respectively. The stages submenu stays intact.
 
 ## Queries and adapters
 
-- List query projects every required domain field (including description and
+- List query projects every required domain field (including intro, description and
   organizer for search), spirit marker, registration URL, main image, and
   `type->{_id,name,"slug":slug.current}` ordered by start date.
 - Detail query adds requirements, metadata, and gallery.
@@ -190,7 +209,7 @@ use route, heart and star icons respectively. The stages submenu stays intact.
 - Every image projection requests `asset`, `crop`, `hotspot`, and `alt`.
 - Adapters map `_id` to `id`, `slug.current` to `slug`, strings to `Date`, the
   dereferenced type to `ActivityType`, and image metadata to `DomainImage`.
-- Reject invalid ID/slug/title/description, unresolved type, unknown status,
+- Reject invalid ID/slug/title/intro/description, unresolved type, unknown status,
   invalid start date, or missing required location/organizer/price data. Log only
   document IDs and invalid field names, and filter rejected documents safely.
 - Normalize absent optional objects/arrays; omit invalid optional dates, URLs,
@@ -216,7 +235,7 @@ use route, heart and star icons respectively. The stages submenu stays intact.
   It displays upcoming activities first in ascending order followed by the
   newest archived activities.
 - The complete browser supports a case- and accent-insensitive text search over
-  title, description, type, location, city, and organizer plus optional
+  title, intro, description, type, location, city, and organizer plus optional
   single-value filters for the reusable type and derived display status, including finished.
   Type options are derived from the received activities so editorial additions
   require no UI code change. Changing a control filters immediately, a clear
@@ -236,6 +255,8 @@ use route, heart and star icons respectively. The stages submenu stays intact.
 - Server data passed to the browser Client Component is reduced to the fields
   required by search, filters, and cards; dates cross the boundary as ISO
   strings and are converted only where required for display.
+  The card payload includes only `content.mainImage` with full DomainImage
+  metadata; gallery, requirements and cancellation metadata remain excluded.
 - Pages use a simple calendar-editorial direction within existing fonts,
   semantic tokens, shadcn composition, responsive grids, and visible focus.
 - After phase 4, `/rutes-itineraris` calls `getCurrentSpiritActivity` and links to the selected

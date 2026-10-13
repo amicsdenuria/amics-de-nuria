@@ -39,6 +39,61 @@ permission to commit it.
 
 ## Start and baseline
 
+### Intro amendment (2026-10-13)
+
+Intro is required and replaces description in every card. The detail header
+shows intro; the body and metadata retain description. Validate this amendment
+without starting phase 5 or mutating remote content. Run the required schema
+commands, build, `verification/intro-checks.mjs`, and `verification/domain-checks.mjs`.
+The intro gate uses in-memory content and includes the schema gate; it does not
+depend on the ignored historical demo catalog.
+
+Manual verification requires an authenticated editor and a published activity
+in the configured testing dataset with distinct intro and description text.
+In `/admin` > Agenda > Activitats, verify that General exposes Introducció before
+Descripció and rejects missing/whitespace-only intro. Supply a valid intro and
+publish through Studio for public checks. Inspect `/agenda`, `/agenda/activitats`
+and `/agenda/activity/<slug>` at 360, 768 and 1280 px. Cards must show only intro
+with the existing three-line clamp; detail shows intro beneath its title and
+the full description under Sobre l’activitat. Search unique words from each
+field, including upper-case/unaccented variants. Keep working keyboard links.
+Report existing activities without intro; leave their modification/deletion to
+the user. Stop uncommitted and unpushed for manual acceptance.
+
+### Slug ID amendment (2026-10-13)
+
+Activity slug generation now appends the canonical document ID. Run the required
+schema commands, intro/schema and domain gates, lint/types/build and diff review.
+In `/admin` > Agenda > Activitats, use Festa del Pelegrí or a test activity and
+press Generate: expect `festa-del-pelegri-<complete document ID>`, with no
+`drafts.` or release prefix. Repeat generation and verify the suffix occurs once.
+After filling all required fields (including intro) and publishing, the card
+must open `/agenda/activity/<generated slug>`. Existing singleton references
+remain by ID and follow the activity's new slug. Existing slugs stay unchanged
+until explicitly regenerated; old detail URLs have no automatic redirect.
+No remote document edit or publication by the agent is authorized by this change.
+
+### Card media/link amendment (2026-10-13)
+
+Read the project sanity-images skill and shadcn Card image docs before editing.
+Keep the existing Card component; compose the image before CardHeader without
+updating the shared component or installing new primitives. Use the supplied
+`/activity-default.webp`, with decorative empty alt, for missing/unusable images.
+Include main image metadata in the browser payload but not gallery or other
+detail-only data. Sanity must bypass Vercel image optimization; the local
+placeholder remains on Next's optimizer. Run lint/types/build, intro/schema
+and domain/render checks, diff review and real browser image verification.
+
+Manual checks require published test activities with distinct image/no-image
+states and one valid organizer/registration URL. On `/agenda` and
+`/agenda/activitats`, inspect full-width covers above the header at 360/768/1280 px,
+including highlight cards, archive and filtering/load-more. Check framing and
+alt with real Sanity crop/hotspot, and local placeholder when main image is empty.
+Inspect actual `src/srcSet`: Sanity uses `cdn.sanity.io` with widths/`auto=format`,
+never nested inside `/_next/image`; the placeholder uses `/_next/image`.
+Open a detail and activate organizer/registration links: each opens a new tab;
+internal card/back links remain in the current tab. Stop uncommitted/unpushed.
+
 ```bash
 git status --short --branch
 git branch --show-current
