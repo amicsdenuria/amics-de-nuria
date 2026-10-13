@@ -11,7 +11,7 @@ import { getRouteRegions, getRouteStats } from '@/domain/route/route.service';
 import { Badge } from '@/components/ui/badge';
 import { DomainRoute } from '@/domain/route/route.types';
 import Link from 'next/link';
-import { formatDistance } from '@/lib/routesLib';
+import { formatAlternativeRoutePoints, formatDistance } from '@/lib/routesLib';
 
 interface RouteCardProps {
   route: DomainRoute;
@@ -22,6 +22,9 @@ const RouteCard = ({ route }: RouteCardProps) => {
   const maxRegionsToShow = 5;
   const visibleRegions = regions.slice(0, maxRegionsToShow);
   const remainingCount = regions.length - maxRegionsToShow;
+  const alternativeRouteDescription = formatAlternativeRoutePoints(
+    route.alternativeRoutePoints,
+  );
 
   return (
     <Link href={`/rutes-itineraris/route/${route.id}`}>
@@ -52,12 +55,11 @@ const RouteCard = ({ route }: RouteCardProps) => {
           </div>
 
           {/* Alternative route points */}
-          {route.alternativeRoutePoints &&
-            route.alternativeRoutePoints.length > 0 && (
-              <p className="text-sm text-muted-foreground">
-                via {route.alternativeRoutePoints.join(' - ')}
-              </p>
-            )}
+          {alternativeRouteDescription ? (
+            <p className="text-sm text-muted-foreground">
+              {alternativeRouteDescription}
+            </p>
+          ) : null}
 
           {/* Stats row */}
           <div className="flex flex-wrap items-center gap-3">

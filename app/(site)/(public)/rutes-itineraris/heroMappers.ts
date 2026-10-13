@@ -4,6 +4,7 @@ import type { DomainRoute } from '@/domain/route/route.types';
 import type { DomainStage } from '@/domain/stage/stage.types';
 import type { PrimaryPageHeroProps } from '../components/PrimaryPageHero';
 import { getImageProps } from '@/sanity/lib/image';
+import { formatAlternativeRoutePoints } from '@/lib/routesLib';
 
 const HERO_IMAGE_SRC = '/hero-muntanya-nuria.webp';
 const HERO_IMAGE_ALT = 'Vall de Núria';
@@ -14,7 +15,7 @@ const mapPointsDescription = (points?: string[]): string | undefined =>
 export const mapRouteHero = (route: DomainRoute): PrimaryPageHeroProps => ({
   pretitle: 'Ruta',
   title: `${route.origin} - ${route.destiny}`,
-  description: mapPointsDescription(route.alternativeRoutePoints),
+  description: formatAlternativeRoutePoints(route.alternativeRoutePoints),
   img: {
     src: HERO_IMAGE_SRC,
     alt: HERO_IMAGE_ALT,
