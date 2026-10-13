@@ -16,12 +16,15 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { getActivityDisplayStatus } from '@/domain/activity/activity.selectors';
+import OptimizedImage from '@/components/OptimizedImage';
+import { getImageProps } from '@/sanity/lib/image';
 
 interface ActivityCardProps {
   activity: DomainActivity;
   now: Date;
   href?: string;
   prefetch?: boolean;
+  imageSizes?: string;
 }
 
 const statusVariants: Record<
@@ -88,19 +91,31 @@ function ScheduleDate({ label, date }: { label: string; date: Date }) {
   );
 }
 
-export function ActivityCard({ activity, now, href, prefetch }: ActivityCardProps) {
+export function ActivityCard({ activity, now, href, prefetch,
+  imageSizes = '(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw',
+}: ActivityCardProps) {
   const { schedule, location, price, participants } = activity;
   const displayStatus = getActivityDisplayStatus(activity, now);
   const isCancelled = displayStatus === 'cancelled';
+  const imageSizing = {
+    fill: true as const, sizes: imageSizes, targetWidth: 1200, targetHeight: 675,
+  };
+  const image = getImageProps(activity.content?.mainImage, imageSizing)
+    ?? getImageProps({ url: '/activity-default.webp', alt: '' }, imageSizing);
   const card = (
     <Card
       className={cn(
-        'gap-5 border-border/60 py-5',
+        'gap-5 overflow-hidden border-border/60 pt-0 pb-5',
         isCancelled && 'border-dashed bg-muted/30 text-muted-foreground/50',
         href &&
           'h-full transition-shadow hover:border-primary/30 hover:shadow-md',
       )}
     >
+      {image ? (
+        <div className="relative aspect-video w-full shrink-0">
+          <OptimizedImage {...image} className={cn('object-cover', isCancelled && 'opacity-50')} />
+        </div>
+      ) : null}
       <CardHeader className="flex flex-row items-start justify-between gap-3 px-5">
         <CardTitle className="min-w-0 flex-1">
           <h3
@@ -137,14 +152,14 @@ export function ActivityCard({ activity, now, href, prefetch }: ActivityCardProp
           </span>
         </div>
 
-        {/* DESC */}
+        {/* INTRO */}
         <p
           className={cn(
             'line-clamp-3 text-sm leading-relaxed',
             isCancelled ? 'text-muted-foreground/50' : 'text-muted-foreground',
           )}
         >
-          {activity.description}
+          {activity.intro}
         </p>
 
         {/* SCHED */}

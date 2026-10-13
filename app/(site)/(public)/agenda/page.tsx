@@ -128,6 +128,9 @@ const AgendaPage = async () => {
                       activity={activity}
                       now={now}
                       href={`/agenda/activity/${activity.slug}`}
+                      imageSizes={highlightedActivities.length === 1
+                        ? '(min-width: 1024px) 768px, 100vw'
+                        : '(min-width: 1024px) 50vw, 100vw'}
                     />
                   </section>
                 ))}

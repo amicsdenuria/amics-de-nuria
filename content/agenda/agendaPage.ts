@@ -34,13 +34,19 @@ interface AgendaContent {
 
 const agendaCTAs: PrimaryPageNavItem[] = [
   { label: 'Totes les activitats', href: '/agenda/activitats' },
+  { label: 'Activitat destacada', href: '/agenda#featured-activity' },
+  { label: 'Properes activitats', href: '/agenda#activities' },
+];
+
+const agendaFooterNav: PrimaryPageNavItem[] = [
+  { label: 'Totes les activitats', href: '/agenda/activitats' },
   { label: 'Pròxima activitat', href: '/agenda#next-activity' },
   { label: 'Activitat destacada', href: '/agenda#featured-activity' },
   { label: 'Properes activitats', href: '/agenda#activities' },
 ];
 
 export const agendaContent: AgendaContent = {
-  nav: agendaCTAs,
+  nav: agendaFooterNav,
 
   home: {
     hero: {
@@ -72,15 +78,21 @@ export const agendaContent: AgendaContent = {
     activities: {
       title: 'Properes activitats',
       description:
-        "Descobreix les properes trobades organitzades per Amics de Núria i les activitats amb què col·laborem.",
-      cta: { label: 'Veure totes les properes activitats', href: '/agenda/activitats?period=upcoming' },
+        'Descobreix les properes trobades organitzades per Amics de Núria i les activitats amb què col·laborem.',
+      cta: {
+        label: 'Veure totes les properes activitats',
+        href: '/agenda/activitats?period=upcoming',
+      },
     },
 
     archive: {
       title: "Arxiu d'activitats",
       description:
-        "Consulta les activitats que ja hem celebrat i els moments compartits amb la comunitat.",
-      cta: { label: "Veure tot l’arxiu d’activitats", href: '/agenda/activitats?period=archived' },
+        'Consulta les activitats que ja hem celebrat i els moments compartits amb la comunitat.',
+      cta: {
+        label: 'Veure tot l’arxiu d’activitats',
+        href: '/agenda/activitats?period=archived',
+      },
     },
 
     empty: {
