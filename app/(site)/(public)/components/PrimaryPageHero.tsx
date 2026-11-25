@@ -13,6 +13,7 @@ export interface PrimaryPageHeroImage {
 
 export interface PrimaryPageHeroProps {
   pretitle?: string;
+  pretitleClassName?: string;
   title: string;
   subtitle?: string;
   description?: string;
@@ -27,6 +28,7 @@ export interface PrimaryPageHeroProps {
 
 const PrimaryPageHero = ({
   pretitle,
+  pretitleClassName,
   title,
   subtitle,
   description,
@@ -68,7 +70,12 @@ const PrimaryPageHero = ({
           </>
         )}
         {pretitle && (
-          <p className="mb-4 text-sm font-light uppercase tracking-widest text-muted-foreground">
+          <p
+            className={cn(
+              'mb-4 text-sm font-light uppercase tracking-widest text-muted-foreground',
+              pretitleClassName,
+            )}
+          >
             {pretitle}
           </p>
         )}

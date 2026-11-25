@@ -19,6 +19,7 @@ export default async function Home() {
     <main className="flex-1 flex flex-col">
       <PrimaryPageHero
         pretitle={hero.pretitle}
+        pretitleClassName="whitespace-pre-line max-sm:-mx-5 max-sm:tracking-tight"
         title={hero.title}
         description={hero.description}
         img={hero.img}

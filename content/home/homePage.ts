@@ -64,7 +64,7 @@ interface HomeContent {
 
 export const homeContent: HomeContent = {
   hero: {
-    pretitle: 'Amics de Núria',
+    pretitle: "Lliga espiritual de la Mare de Déu de Núria\nBisbat d'Urgell",
     title: site.hero.title,
     subtitle: '',
     description: site.hero.description,
