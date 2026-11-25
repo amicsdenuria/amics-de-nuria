@@ -1,3 +1,4 @@
+import { ArrowUpRightIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -76,7 +77,11 @@ export default function DonationsPage() {
             </li>
           </ol>
           <Button asChild size="lg">
-            <a href={donationUrl}>Dona aquí</a>
+            <a href={donationUrl} target="_blank" rel="noopener noreferrer">
+              Dona aquí
+              <ArrowUpRightIcon aria-hidden="true" data-icon="inline-end" />
+              <span className="sr-only"> (s’obre en una pestanya nova)</span>
+            </a>
           </Button>
         </PageContainer>
       </section>
