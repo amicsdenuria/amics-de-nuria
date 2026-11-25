@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import HomeLink from '@/components/navbar/HomeLink';
 import Link from 'next/link';
 import { TypoH2Var } from '@/components/ui/typo/typoComponents';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const PublicNotFoundPage = () => {
   return (
@@ -21,6 +22,7 @@ const PublicNotFoundPage = () => {
           </Link>
         </Button>
       </div>
+      <WhatsAppButton />
     </div>
   );
 };

@@ -8,6 +8,13 @@ export const site = {
     description:
       'Una comunitat que uneix espiritualitat, natura i identitat per mantenir viva la història, la fe i el vincle amb Núria i amb el país.',
   },
+  contact: {
+    phone: {
+      countryCode: '34',
+      nationalNumber: '607 93 41 11',
+    },
+    whatsappMessage: 'Hola! Us escric des del web d’Amics de Núria.',
+  },
 };
 
 type DataSourceOption = 'local' | 'sanity';

@@ -1,5 +1,6 @@
 import PageContainer from '@/components/ui/page-container';
 import PrimaryPageHero from '../components/PrimaryPageHero';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import { contactaContent } from '@/content/contacta/contactaPage';
 
 const ContactaPage = () => {
@@ -27,6 +28,15 @@ const ContactaPage = () => {
             <p className="text-lg">{contactInfo.info.phone.value}</p>
           </div>
         </div>
+        <section
+          aria-labelledby="contacta-whatsapp"
+          className="mx-auto flex max-w-md flex-col items-center gap-4 border-t border-border pt-8 text-center"
+        >
+          <h2 id="contacta-whatsapp" className="text-muted-foreground">
+            WhatsApp
+          </h2>
+          <WhatsAppButton variant="inline" />
+        </section>
       </PageContainer>
     </>
   );

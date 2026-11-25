@@ -2,6 +2,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { Metadata } from 'next';
 import Providers from '@/components/providers';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import { SanityLive } from '@/sanity/lib/live';
 import { site } from '@/config/site.config';
 
@@ -25,6 +26,7 @@ const PublicLayout = ({ children }: PublicLayoutProps) => {
         <Footer />
       </div>
 
+      <WhatsAppButton />
       <SanityLive />
     </Providers>
   );

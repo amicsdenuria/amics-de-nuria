@@ -1,3 +1,4 @@
+import { site } from '@/config/site.config';
 import {
   InfoItem,
   PrimaryPageHeroContent,
@@ -35,7 +36,7 @@ export const contactaContent: ContactaContent = {
       },
       phone: {
         label: 'Telèfon',
-        value: '607 93 41 11',
+        value: site.contact.phone.nationalNumber,
       },
     },
   },
