@@ -149,7 +149,7 @@ their current-tab behavior.
   when an editor explicitly regenerates them. Activity type slugs are unchanged.
 - Studio groups: General; Horari; Ubicació i organització; Inscripció i preu;
   Requisits; Contingut; Cancel·lació.
-- Editorial status options: Agendada (default), Completa, Cancel·lada.
+- Editorial status options: Agendada (default), Sense places, Cancel·lada.
 - Level options: Iniciació, Intermedi, Avançat, Qualsevol.
 - End MUST follow start. If end and duration exist, their minute difference
   MUST match. Participant and age minima MUST NOT exceed maxima.

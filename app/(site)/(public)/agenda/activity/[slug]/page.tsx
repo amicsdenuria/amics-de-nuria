@@ -41,7 +41,7 @@ type ActivityPageProps = { params: Promise<{ slug: string }> };
 const getActivity = cache(getActivityBySlug);
 const statusLabels: Record<ActivityDisplayStatus, string> = {
   scheduled: 'Agendada',
-  full: 'Completa',
+  full: 'Sense places',
   cancelled: 'Cancel·lada',
   finished: 'Finalitzada',
 };

@@ -171,7 +171,7 @@ a demonstration destination: verify the link address, not a working booking form
 | --- | --- |
 | `verify-1` | Required fields, online location, free price; no image, requirements, gallery, end, duration, participant bounds or registration CTA. |
 | `verify-2` | Agendada; main image and exactly two gallery images; 9 October 2026 at 09:00/11:00, 120 minutes; physical address, organizer link, EUR 12.00, 5–25 participants, age 6–80, Iniciació, two materials and notes; external CTA. |
-| `detail-full` | Completa; external CTA remains visible. |
+| `detail-full` | Sense places; external CTA remains visible. |
 | `detail-cancelled` | Cancel·lada, muted struck-through title, red badge, 7 October 2026 at 10:00 cancellation date and rain reason; no CTA. |
 | `detail-finished` | Finalitzada today; no CTA. Still in today's Agenda rather than archive. |
 | `detail-archived` | Finalitzada and archived; detail remains addressable, no CTA, end or duration. |

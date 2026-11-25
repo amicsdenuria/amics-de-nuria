@@ -16,7 +16,7 @@ import {
 } from './activityBrowserModel';
 
 const statusLabels: Record<ActivityDisplayStatus, string> = {
-  scheduled: 'Agendada', full: 'Completa', cancelled: 'Cancel·lada', finished: 'Finalitzada',
+  scheduled: 'Agendada', full: 'Sense places', cancelled: 'Cancel·lada', finished: 'Finalitzada',
 };
 const batchSize = 12;
 

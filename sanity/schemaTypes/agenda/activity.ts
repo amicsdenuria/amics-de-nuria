@@ -12,7 +12,7 @@ const imageFields = [defineField({
 })];
 const statuses = [
   { title: 'Agendada', value: 'scheduled' },
-  { title: 'Completa', value: 'full' },
+  { title: 'Sense places', value: 'full' },
   { title: 'Cancel·lada', value: 'cancelled' },
 ];
 
@@ -76,7 +76,7 @@ export const activity = defineType({
       initialValue: 'scheduled', options: { list: statuses, layout: 'radio' },
       validation: (Rule) => Rule.required().custom((value) =>
         value === undefined || statuses.some((item) => item.value === value) || 'Tria un estat de la llista.')
-        .error('Tria Agendada, Completa o Cancel·lada. La finalització es calcula al web.'),
+        .error('Tria Agendada, Sense places o Cancel·lada. La finalització es calcula al web.'),
     }),
     defineField({
       name: 'schedule', title: 'Horari', type: 'object', group: 'schedule',

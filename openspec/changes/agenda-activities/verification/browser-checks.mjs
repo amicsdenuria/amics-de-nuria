@@ -189,7 +189,7 @@ try {
   } else if (scenario === 'detail') {
     await count(7);
     for (const [slug, registered, status] of [
-      ['verify-1', false, 'Agendada'], ['verify-2', true, 'Agendada'], ['detail-full', true, 'Completa'],
+      ['verify-1', false, 'Agendada'], ['verify-2', true, 'Agendada'], ['detail-full', true, 'Sense places'],
       ['detail-cancelled', false, 'Cancel·lada'], ['detail-finished', false, 'Finalitzada'],
       ['detail-archived', false, 'Finalitzada'], ['detail-empty', false, 'Agendada'],
     ]) {

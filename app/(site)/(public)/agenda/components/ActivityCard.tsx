@@ -38,7 +38,7 @@ const statusVariants: Record<
 };
 const statusLabels: Record<ActivityDisplayStatus, string> = {
   scheduled: 'Agendada',
-  full: 'Completa',
+  full: 'Sense places',
   cancelled: 'Cancel·lada',
   finished: 'Finalitzada',
 };

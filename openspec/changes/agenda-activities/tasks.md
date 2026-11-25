@@ -323,6 +323,11 @@ Close implementation, generated contracts, verification and specification in
 reviewable commits; keep each block at or below 400 changed lines. No remote
 content mutation, deployment or phase 5 work is included in this authorization.
 
+## Full activity label (2026-11-25)
+
+- [x] Show “Sense places” for `full` on cards, in the status filter, on activity details and in Studio.
+- [x] User gate: the user verified the label and approved the commit.
+
 ## Phase 5: optional server-filtered browsing
 
 Highly recommended future improvement, explicitly requested for documentation
