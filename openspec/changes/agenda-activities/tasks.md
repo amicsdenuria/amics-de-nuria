@@ -328,6 +328,11 @@ content mutation, deployment or phase 5 work is included in this authorization.
 - [x] Show “Sense places” for `full` on cards, in the status filter, on activity details and in Studio.
 - [x] User gate: the user verified the label and approved the commit.
 
+## Activity Studio form (2026-11-25)
+
+- [x] Open new activities on Studio's built-in all-fields tab.
+- [x] User gate: the user accepted the new initial tab and authorized the commit.
+
 ## Phase 5: optional server-filtered browsing
 
 Highly recommended future improvement, explicitly requested for documentation

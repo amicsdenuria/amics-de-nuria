@@ -19,7 +19,7 @@ const statuses = [
 export const activity = defineType({
   name: 'activity', title: 'Activitat', type: 'document',
   groups: [
-    { name: 'general', title: 'General', default: true },
+    { name: 'general', title: 'General' },
     { name: 'schedule', title: 'Horari' },
     { name: 'location', title: 'Ubicació i organització' },
     { name: 'registration', title: 'Inscripció i preu' },
