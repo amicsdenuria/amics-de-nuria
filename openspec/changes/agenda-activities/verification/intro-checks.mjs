@@ -49,6 +49,13 @@ for (const read of [
   check('Every public read preserves description separately', result.description, activity.description);
 }
 const raw = (await run(queries.activitiesQuery))[0];
+const links = [
+  { url: 'https://example.org/mapa', text: 'Mapa del recorregut' },
+  { url: 'https://example.org/programa', text: 'Programa' },
+];
+activity.relatedLinks = [links[0], { url: 'ftp://example.org', text: 'Invàlid' }, { url: links[0].url, text: ' ' }, links[1]];
+check('Detail returns valid links in editorial order', (await service.getActivityBySlug(activity.slug.current)).relatedLinks, links);
+check('List query omits detail links', 'relatedLinks' in (await run(queries.activitiesQuery))[0], false);
 const logs = [];
 const originalWarn = console.warn;
 console.warn = (...args) => logs.push(args);

@@ -76,6 +76,7 @@ export interface DomainActivity {
   title: string;
   intro: string;
   description: string;
+  relatedLinks?: { url: string; text: string }[];
   isSpiritActivity: boolean;
   type: ActivityType;
   status: ActivityStatus;

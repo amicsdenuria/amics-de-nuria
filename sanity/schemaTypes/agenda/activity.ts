@@ -62,6 +62,25 @@ export const activity = defineType({
         value?.trim() ? true : 'Cal indicar la descripció.'),
     }),
     defineField({
+      name: 'relatedLinks', title: 'Enllaços d’interès', type: 'array', group: 'general',
+      of: [defineArrayMember({
+        name: 'relatedLink', title: 'Enllaç', type: 'object',
+        fields: [
+          defineField({
+            name: 'url', title: 'Enllaç', type: 'url',
+            validation: (Rule) => Rule.required().uri({ scheme: ['http', 'https'] })
+              .error('Cal indicar un enllaç http:// o https:// vàlid.'),
+          }),
+          defineField({
+            name: 'text', title: 'Text públic', type: 'string',
+            validation: (Rule) => Rule.required().custom((value) =>
+              value?.trim() ? true : 'Cal indicar el text de l’enllaç.'),
+          }),
+        ],
+        preview: { select: { title: 'text', subtitle: 'url' } },
+      })],
+    }),
+    defineField({
       name: 'type', title: "Tipus d'activitat", type: 'reference', group: 'general',
       to: [{ type: 'activityType' }], weak: false,
       validation: (Rule) => Rule.required().error("Cal seleccionar un tipus d'activitat."),

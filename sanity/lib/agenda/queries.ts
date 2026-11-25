@@ -22,7 +22,10 @@ export const activitiesQuery = defineQuery(`
   *[_type == "activity"] | order(schedule.startDate asc, _id asc){${activityProjection}}
 `);
 export const activityBySlugQuery = defineQuery(`
-  *[_type == "activity" && slug.current == $slug] | order(_id asc)[0]{${activityDetailProjection}}
+  *[_type == "activity" && slug.current == $slug] | order(_id asc)[0]{
+    ${activityDetailProjection},
+    relatedLinks[]{url, text}
+  }
 `);
 export const featuredActivityQuery = defineQuery(`
   *[_type == "featuredActivity" && _id == $singletonId][0]

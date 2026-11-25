@@ -103,6 +103,12 @@ export const activityFromSanity = (value: SanityActivity): DomainActivity | null
   return {
     id: id!, slug: required.slug!, title: required.title!, description: required.description!,
     intro: required.intro!,
+    relatedLinks: Array.isArray(data.relatedLinks) ? data.relatedLinks.flatMap((entry) => {
+      const link = object(entry);
+      const href = url(link.url);
+      const label = text(link.text);
+      return href && label ? [{ url: href, text: label }] : [];
+    }) : undefined,
     type: { id: required['type._id']!, slug: required['type.slug']!, name: required['type.name']! },
     status: data.status as ActivityStatus,
     isSpiritActivity: data.isSpiritActivity === true,

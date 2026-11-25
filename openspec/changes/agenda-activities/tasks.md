@@ -333,6 +333,13 @@ content mutation, deployment or phase 5 work is included in this authorization.
 - [x] Open new activities on Studio's built-in all-fields tab.
 - [x] User gate: the user accepted the new initial tab and authorized the commit.
 
+## Activity links of interest (2026-11-25)
+
+- [x] Add optional ordered links with a URL and public text to Studio and the activity detail below the description.
+- [x] Place links directly below the description without a heading, bullets or underlining. Use the same external-link icon and style for the organizer.
+- [x] Use the surrounding text color and place a vertically aligned arrow at the start of each related link and the organizer link.
+- [x] User gate: the user approved the final link presentation and authorized the commit.
+
 ## Phase 5: optional server-filtered browsing
 
 Highly recommended future improvement, explicitly requested for documentation

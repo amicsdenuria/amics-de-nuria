@@ -69,6 +69,10 @@ export const getAgendaVerification = () => {
         organizerUrl: 'https://amicsdenuria.com',
       },
       registration: { registrationUrl: 'https://example.org/inscripcio' },
+      relatedLinks: [
+        { url: 'https://example.org/mapa', text: 'Mapa del recorregut' },
+        { url: 'https://example.org/programa', text: 'Programa de la jornada' },
+      ],
       price: { isFree: false, amount: 12 },
       requirements: {
         minAge: 6,

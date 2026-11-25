@@ -127,6 +127,22 @@ function externalUrl(value?: string): string | null {
   }
 }
 
+function ActivityExternalLink({ href, children }: { href: string; children: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="rounded-sm wrap-break-word text-inherit no-underline focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      <ArrowUpRightIcon aria-hidden="true" className="mr-1 inline-block size-3.5 align-middle" />
+      {'\u2060'}
+      {children}
+      <span className="sr-only"> (s’obre en una pestanya nova)</span>
+    </a>
+  );
+}
+
 export async function generateMetadata({
   params,
 }: ActivityPageProps): Promise<Metadata> {
@@ -255,6 +271,17 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
             <p className="whitespace-pre-line text-lg leading-relaxed">
               {activity.description}
             </p>
+            {activity.relatedLinks?.length ? (
+              <ul role="list" className="flex list-none flex-col gap-2">
+                {activity.relatedLinks.map((link, index) => (
+                  <li key={index}>
+                    <ActivityExternalLink href={link.url}>
+                      {link.text}
+                    </ActivityExternalLink>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </section>
           {hasRequirements ? (
             <section
@@ -418,14 +445,9 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
                   icon={Building2Icon}
                 >
                   {organizerUrl ? (
-                    <a
-                      href={organizerUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="break-words underline underline-offset-4 outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
+                    <ActivityExternalLink href={organizerUrl}>
                       {organizer.name}
-                    </a>
+                    </ActivityExternalLink>
                   ) : (
                     organizer.name
                   )}

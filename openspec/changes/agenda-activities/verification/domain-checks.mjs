@@ -112,6 +112,21 @@ const detailActivity = await service.getActivityBySlug('verify-2');
 const detailHtml = renderToStaticMarkup(await ActivityPage({ params: Promise.resolve({ slug: detailActivity.slug }) }));
 check('Detail header shows intro', detailHtml.match(/<header[^>]*>(.*?)<\/header>/s)?.[1].includes(detailActivity.intro), true);
 check('Detail retains complete description', detailHtml.includes(detailActivity.description), true);
+const about = (html) => html.match(/<section aria-labelledby="activity-about".*?<\/section>/s)?.[0];
+const description = about(detailHtml);
+check('Links sit directly below the description', /<\/p><ul\b/.test(description), true);
+check('Links use a list without bullets', description.includes('list-none'), true);
+check('Only the description heading appears', (description.match(/<h2\b/g) ?? []).length, 1);
+for (const { url, text } of [...detailActivity.relatedLinks, { url: 'https://amicsdenuria.com/', text: detailActivity.organizer.name }]) {
+  const anchor = [...detailHtml.matchAll(/<a\b[^>]*>.*?<\/a>/gs)].map(([tag]) => tag).find((tag) => tag.includes(`href="${url}"`));
+  check('External link puts the centered inline arrow directly before its text',
+    anchor?.includes(`</svg>\u2060${text}`) && anchor.includes('inline-block') && anchor.includes('align-middle') &&
+      anchor.includes('lucide-arrow-up-right'), true);
+  check('External link inherits the surrounding text color without underlining',
+    anchor?.includes('text-inherit') && anchor.includes('no-underline'), true);
+}
+const detailWithoutLinks = renderToStaticMarkup(await ActivityPage({ params: Promise.resolve({ slug: 'verify-1' }) }));
+check('A detail without links omits the list', about(detailWithoutLinks)?.includes('<ul'), false);
 for (const url of ['https://amicsdenuria.com/', 'https://example.org/inscripcio']) {
   const anchor = [...detailHtml.matchAll(/<a\b[^>]*>/g)].map(([tag]) => tag).find((tag) => tag.includes(`href="${url}"`));
   check('Activity external website opens separate tab', anchor?.includes('target="_blank"'), true);

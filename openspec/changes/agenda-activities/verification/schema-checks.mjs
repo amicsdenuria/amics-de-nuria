@@ -66,6 +66,11 @@ for (const title of [undefined, '', '  '])
   check('No invented slug without title', await generateSlug({ ...base, title }), '');
 documents = [type, base, later];
 check('Minimal activity', await errors(base), []);
+const link = { _key: 'map', _type: 'relatedLink', url: 'https://example.org/mapa', text: 'Mapa' };
+check('Empty links are optional', await errors({ ...base, relatedLinks: [] }), []);
+check('Valid link', await errors({ ...base, relatedLinks: [link] }), []);
+for (const change of [{ url: undefined }, { url: 'ftp://example.org' }, { text: '  ' }])
+  check('A link needs a web URL and public text', (await errors({ ...base, relatedLinks: [{ ...link, ...change }] })).length > 0, true);
 check('Separate later edition with same title', await errors(later), []);
 for (const key of ['title', 'intro', 'description', 'slug', 'type', 'status', 'schedule', 'location', 'organizer', 'price']) {
   const incomplete = structuredClone(base); delete incomplete[key];
@@ -204,7 +209,8 @@ check('Generated intro is text', newSchema.find((item) => item.name === 'activit
 for (const definition of oldSchema) {
   const comparable = structuredClone(newSchema.find((item) => item.name === definition.name));
   if (definition.name === 'activity' && !definition.attributes.intro) delete comparable.attributes.intro;
-  check(`Existing generated schema unchanged apart from intro: ${definition.name}`, comparable, definition);
+  if (definition.name === 'activity' && !definition.attributes.relatedLinks) delete comparable.attributes.relatedLinks;
+  check(`Preserve existing schema fields: ${definition.name}`, comparable, definition);
 }
 const aliases = (source) => new Map(ts.createSourceFile('types.ts', source, ts.ScriptTarget.Latest, true).statements
   .filter(ts.isTypeAliasDeclaration).map((node) => [node.name.text, node.getText()]));
@@ -212,9 +218,11 @@ const oldTypes = aliases(execFileSync('git', ['show', 'HEAD:sanity.types.ts'], {
 const newTypes = aliases(fs.readFileSync(path.join(root, 'sanity.types.ts'), 'utf8'));
 for (const [name, text] of oldTypes) {
   if (name === 'AllSanitySchemaTypes') continue;
-  const next = newTypes.get(name);
+  let next = newTypes.get(name);
+  if (['Activity', 'ActivityBySlugQueryResult'].includes(name) && !text.includes('  relatedLinks'))
+    next = next?.replace(/^  relatedLinks\??: Array<\{\r?\n(?:    [^\n]+\n)+  \}>(?: \| null)?;\r?\n/m, '');
   const comparable = /^[ \t]*intro\??:/m.test(text) ? next
     : next?.replace(/^[ \t]*intro\??: string(?: \| null)?;\r?\n/gm, '');
-  check(`Existing generated type unchanged apart from intro: ${name}`, comparable, text);
+  check(`Preserve existing generated type fields: ${name}`, comparable, text);
 }
 console.log(`PASS: ${passed} schema assertions; no remote requests or writes.`);
