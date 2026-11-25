@@ -8,8 +8,7 @@ import { HomeSectionItem } from './interfaces';
 import { site } from '@/config/site.config';
 
 const homeCTAs: PrimaryPageNavItem[] = [
-  { label: 'Rutes i itineraris', href: '/rutes-itineraris' },
-  { label: 'Lliga Espiritual', href: '/lliga-espiritual' },
+  { label: 'Fes un donatiu', href: '/donacions' },
 ];
 
 export const homeSections: HomeSectionItem[] = [

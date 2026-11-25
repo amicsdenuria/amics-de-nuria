@@ -4,6 +4,7 @@ import { ArrowRightIcon } from 'lucide-react';
 // import { InstagramFeed } from '@/components/instagram/InstagramFeed';
 import Link from 'next/link';
 import PageContainer from '@/components/ui/page-container';
+import { HomeSupportSection } from './components/HomeSupportSection';
 import PrimaryPageHero from './components/PrimaryPageHero';
 import { cn } from '@/lib/utils';
 import { getUserData } from '@/actions/getUserData';
@@ -62,6 +63,8 @@ export default async function Home() {
           </div>
         </section>
       </PageContainer>
+
+      <HomeSupportSection isEnrolled={isEnrolled} />
 
       {/* TODO: Instagram Feed Section */}
       {/* <section className="bg-secondary/20 py-16 md:py-24">

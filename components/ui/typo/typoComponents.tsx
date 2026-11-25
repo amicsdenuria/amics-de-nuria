@@ -22,16 +22,15 @@ export function TypoPVar({ children, className }: ComponentProps<'p'>) {
   );
 }
 
-export function TypoH2Var({ children, className }: ComponentProps<'h2'>) {
+export function TypoH2Var({ className, ...props }: ComponentProps<'h2'>) {
   return (
     <h2
       className={cn(
         'scroll-m20 text-3xl md:text-4xl font-light tracking-tight text-foreground',
         className,
       )}
-    >
-      {children}
-    </h2>
+      {...props}
+    />
   );
 }
 
