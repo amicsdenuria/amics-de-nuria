@@ -4,7 +4,9 @@ import { ArrowRightIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import PrimaryPageHero from '../components/PrimaryPageHero';
+import CameraGrid from './components/CameraGrid';
 import SectionCard from './components/SectionCard';
+import { santuariCameras, santuariCamerasPath } from '@/content/santuari/santuariCameras';
 import { santuariContent } from '@/content/santuari/santuariPage';
 
 const SantuariPage = () => {
@@ -58,6 +60,26 @@ const SantuariPage = () => {
               <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Link>
           </Button>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="cameres-en-directe"
+        className="bg-secondary/20 py-16 md:py-24"
+      >
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 md:gap-10">
+          <TypoH2Var id="cameres-en-directe" className="text-center">
+            Càmeres en directe
+          </TypoH2Var>
+          <CameraGrid cameras={santuariCameras.slice(0, 3)} />
+          <div className="flex justify-center">
+            <Button asChild size="lg">
+              <Link href={santuariCamerasPath}>
+                Veure més càmeres
+                <ArrowRightIcon aria-hidden="true" data-icon="inline-end" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </>
