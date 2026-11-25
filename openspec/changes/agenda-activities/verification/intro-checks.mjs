@@ -49,6 +49,37 @@ for (const read of [
   check('Every public read preserves description separately', result.description, activity.description);
 }
 const raw = (await run(queries.activitiesQuery))[0];
+const selectors = require(path.join(root, 'domain/activity/activity.selectors.ts'));
+const model = require(path.join(root, 'app/(site)/(public)/agenda/components/activityBrowserModel.ts'));
+const { ActivityScheduleDates } = require(path.join(root, 'app/(site)/(public)/agenda/components/ActivityScheduleDates.tsx'));
+const { renderToStaticMarkup } = require('react-dom/server');
+const { createElement } = require('react');
+const renderSchedule = (schedule) => renderToStaticMarkup(createElement(ActivityScheduleDates, { schedule }));
+for (const [mode, caption] of [['allDay', 'Tot el dia'], ['pending', 'Horari pendent de confirmar']]) {
+  activity.schedule = { mode, startDate: '2027-03-27', endDate: '2027-03-28', durationMinutes: 90 };
+  const detail = await service.getActivityBySlug(activity.slug.current);
+  const now = new Date('2027-03-28T23:59:59+02:00');
+  const listing = model.toActivityBrowserItems(await service.getActivities(), now);
+  const card = model.toActivityCardData(JSON.parse(JSON.stringify(listing[0])));
+  for (const item of [detail, card]) {
+    const html = renderSchedule(item.schedule);
+    check('Date range includes schedule caption', html.includes(caption), true);
+    check('Date-only schedules omit clock times', /\d\d:\d\d/.test(html), false);
+    check('Duration only shown for pending time', item.schedule.durationMinutes, mode === 'pending' ? 90 : undefined);
+    check('Active throughout the inclusive last Madrid day', selectors.isActivityFinished(item, now), false);
+    check('Archives at next Madrid midnight', selectors.isActivityArchived(item, new Date('2027-03-29T00:00:00+02:00')), true);
+  }
+}
+activity.schedule = { mode: 'pending', startDate: '2027-10-31', durationMinutes: 90 };
+let scheduled = await service.getActivityBySlug(activity.slug.current);
+check('Single pending day uses singular caption', renderSchedule(scheduled.schedule).includes('Hora pendent de confirmar'), true);
+check('Autumn 25-hour day lasts through local evening', selectors.isActivityFinished(scheduled, new Date('2027-10-31T23:59:59+01:00')), false);
+activity.schedule = { mode: 'timed', startDate: '2027-10-31T10:30', durationMinutes: 90 };
+scheduled = await service.getActivityBySlug(activity.slug.current);
+check('Confirming a time enables duration cutoff', selectors.getActivityEndDate(scheduled).toISOString(), '2027-10-31T11:00:00.000Z');
+check('Confirmed hour replaces pending caption', renderSchedule(scheduled.schedule).includes('10:30 h'), true);
+activity.schedule = { startDate: '2027-06-11T22:00:00Z' };
+check('Existing confirmed midnight is displayed', renderSchedule((await service.getActivityBySlug(activity.slug.current)).schedule).includes('00:00 h'), true);
 const links = [
   { url: 'https://example.org/mapa', text: 'Mapa del recorregut' },
   { url: 'https://example.org/programa', text: 'Programa' },

@@ -22,7 +22,7 @@ process.env.NEXT_PUBLIC_SANITY_PROJECT_ID = 'localtest';
 process.env.NEXT_PUBLIC_SANITY_DATASET = 'localtest';
 const sanityRequire = createRequire(require.resolve('sanity'));
 const { parse, evaluate } = sanityRequire('groq-js');
-const { createSchema, defaultTemplatesForSchema, validateDocument } = require('sanity');
+const { createSchema, defaultTemplatesForSchema, resolveInitialValue, validateDocument } = require('sanity');
 // Sanity 4's validation scheduler calls a window timer even in a Node process.
 globalThis.window = { setTimeout, clearTimeout };
 const { activity } = require(path.join(root, 'sanity/schemaTypes/agenda/activity.ts'));
@@ -66,6 +66,16 @@ for (const title of [undefined, '', '  '])
   check('No invented slug without title', await generateSlug({ ...base, title }), '');
 documents = [type, base, later];
 check('Minimal activity', await errors(base), []);
+const activityTemplate = defaultTemplatesForSchema(schema).find((template) => template.id === 'activity');
+const initialActivity = await resolveInitialValue(schema, activityTemplate, {}, workspace);
+check('New Studio activities default to pending', initialActivity.schedule.mode, 'pending');
+for (const mode of ['pending', 'allDay']) {
+  check('Date alone can be published: ' + mode, await errors({ ...base, schedule: { mode, startDate: '2027-06-12' } }), []);
+  check('Inclusive range can be published: ' + mode, await errors({ ...base, schedule: { mode, startDate: '2027-06-12', endDate: '2027-06-14' } }), []);
+  check('Reversed range is rejected: ' + mode, (await errors({ ...base, schedule: { mode, startDate: '2027-06-12', endDate: '2027-06-11' } })).length > 0, true);
+}
+for (const startDate of ['2027-06-12', '2027-03-28T02:30', '2027-02-30T09:00'])
+  check('Confirmed start requires a real Madrid time', (await errors({ ...base, schedule: { mode: 'timed', startDate } })).length > 0, true);
 const link = { _key: 'map', _type: 'relatedLink', url: 'https://example.org/mapa', text: 'Mapa' };
 check('Empty links are optional', await errors({ ...base, relatedLinks: [] }), []);
 check('Valid link', await errors({ ...base, relatedLinks: [link] }), []);
@@ -210,6 +220,8 @@ for (const definition of oldSchema) {
   const comparable = structuredClone(newSchema.find((item) => item.name === definition.name));
   if (definition.name === 'activity' && !definition.attributes.intro) delete comparable.attributes.intro;
   if (definition.name === 'activity' && !definition.attributes.relatedLinks) delete comparable.attributes.relatedLinks;
+  if (definition.name === 'activity' && !definition.attributes.schedule.value.attributes.mode)
+    delete comparable.attributes.schedule.value.attributes.mode;
   check(`Preserve existing schema fields: ${definition.name}`, comparable, definition);
 }
 const aliases = (source) => new Map(ts.createSourceFile('types.ts', source, ts.ScriptTarget.Latest, true).statements
@@ -219,6 +231,8 @@ const newTypes = aliases(fs.readFileSync(path.join(root, 'sanity.types.ts'), 'ut
 for (const [name, text] of oldTypes) {
   if (name === 'AllSanitySchemaTypes') continue;
   let next = newTypes.get(name);
+  if (text.includes('startDate') && !/\bmode\??:/.test(text))
+    next = next?.replace(/^    mode\??: [^;]+;\r?\n/gm, '');
   if (['Activity', 'ActivityBySlugQueryResult'].includes(name) && !text.includes('  relatedLinks'))
     next = next?.replace(/^  relatedLinks\??: Array<\{\r?\n(?:    [^\n]+\n)+  \}>(?: \| null)?;\r?\n/m, '');
   const comparable = /^[ \t]*intro\??:/m.test(text) ? next

@@ -3,7 +3,7 @@ import { defineQuery } from 'next-sanity';
 const activityProjection = `
   _id, title, intro, description, "slug": slug.current, status, isSpiritActivity,
   type->{_id, name, "slug": slug.current},
-  schedule{startDate, endDate, durationMinutes},
+  schedule{mode, startDate, endDate, durationMinutes},
   location{name, address, city, province, isOnline},
   organizer{name, organizerUrl},
   participants{minParticipants, maxParticipants},

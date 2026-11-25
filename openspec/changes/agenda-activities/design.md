@@ -28,7 +28,7 @@ interface DomainActivity {
   isSpiritActivity: boolean;
   type: ActivityType;
   status: ActivityStatus;
-  schedule: { startDate: Date; endDate?: Date; durationMinutes?: number };
+  schedule: { mode?: 'pending' | 'timed' | 'allDay'; startDate: Date; endDate?: Date; endDateOnly?: boolean; durationMinutes?: number };
   location: {
     name: string;
     address?: string;
@@ -64,7 +64,7 @@ the Studio model; the approved local phase 2 service remains until phase 4.
 
 - Calendar comparisons use date keys in `Europe/Madrid`, never the host timezone
   or a fixed 24-hour offset. The last activity day comes from `endDate`, otherwise
-  start plus duration when present, otherwise `startDate`.
+  a confirmed start plus duration when present, otherwise `startDate`.
 - Archive contains activities whose last Madrid calendar day is before today,
   newest start date first. Today's activities remain outside the archive until
   the following midnight, including those already finished by the domain clock.
@@ -78,12 +78,14 @@ the Studio model; the approved local phase 2 service remains until phase 4.
 - All date sorts break ties by `id` ascending. Compute `now` once per server render
   and pass its ISO value to interactive consumers; recalculate on a new render.
 
-Completion is derived at `now >= endDate`, otherwise start plus a supplied
-duration; with neither, at the next Madrid calendar day. Cancellation remains
+Completion is derived at the confirmed end instant or from a confirmed start
+plus duration. Otherwise the last stated Madrid day is inclusive. Cancellation remains
 the visible label after completion; other completed activities display `finished`.
 Never persist `finished`, completion/archive flags, or registration eligibility.
-Cards show separate Inici, optional Fi, and optional Durada stacks. Each date
-stack separates the calendar date from its Madrid time (24-hour clock).
+Studio saves a calendar day for a date-only input and an ISO timestamp for a
+confirmed time. Existing timestamps without a mode represent confirmed times.
+Cards and details share a date renderer with 24-hour Madrid times, single-day
+time ranges and captions for pending or all-day schedules.
 Card headers keep the title left and type pill right.
 Cards place a full-width 16:9 main image before CardHeader, following the
 [shadcn Card image composition](https://ui.shadcn.com/docs/components/radix/card#image).

@@ -2,7 +2,7 @@ import type {
   ActivityDisplayStatus,
   DomainActivity,
 } from '@/domain/activity/activity.types';
-import { CalendarIcon, ClockIcon, MapPinIcon, UsersIcon } from 'lucide-react';
+import { ClockIcon, MapPinIcon, UsersIcon } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-import { ACTIVITY_TIME_ZONE } from '@/domain/activity/activity.constants';
+import { ActivityScheduleDates } from './ActivityScheduleDates';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -42,19 +42,6 @@ const statusLabels: Record<ActivityDisplayStatus, string> = {
   cancelled: 'Cancel·lada',
   finished: 'Finalitzada',
 };
-const dateFormatter = new Intl.DateTimeFormat('ca-ES', {
-  day: 'numeric',
-  month: 'short',
-  year: 'numeric',
-  timeZone: ACTIVITY_TIME_ZONE,
-});
-const timeFormatter = new Intl.DateTimeFormat('ca-ES', {
-  hour: '2-digit',
-  minute: '2-digit',
-  hourCycle: 'h23',
-  timeZone: ACTIVITY_TIME_ZONE,
-});
-
 function formatDuration(minutes: number): string {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
@@ -62,33 +49,6 @@ function formatDuration(minutes: number): string {
   return remainingMinutes === 0
     ? `${hours} h`
     : `${hours} h ${remainingMinutes} min`;
-}
-
-function ScheduleDate({ label, date }: { label: string; date: Date }) {
-  return (
-    <div className="flex min-w-0 flex-col gap-1.5">
-      <dt className="flex items-center gap-1.5 text-xs text-muted-foreground">
-        <CalendarIcon
-          aria-hidden="true"
-          className="size-3.5"
-        />
-        {label}
-      </dt>
-      <dd>
-        <time
-          dateTime={date.toISOString()}
-          className="flex flex-col gap-1"
-        >
-          <span className="text-sm font-medium">
-            {dateFormatter.format(date)}
-          </span>
-          <span className="text-lg font-semibold tabular-nums">
-            {timeFormatter.format(date)}
-          </span>
-        </time>
-      </dd>
-    </div>
-  );
 }
 
 export function ActivityCard({ activity, now, href, prefetch,
@@ -164,17 +124,8 @@ export function ActivityCard({ activity, now, href, prefetch,
 
         {/* SCHED */}
         <dl className="grow grid grid-cols-1 gap-x-6 gap-y-4 rounded-lg bg-muted/40 p-4 sm:grid-cols-2">
-          <ScheduleDate
-            label="Inici"
-            date={schedule.startDate}
-          />
-          {schedule.endDate && (
-            <ScheduleDate
-              label="Fi"
-              date={schedule.endDate}
-            />
-          )}
-          {schedule.durationMinutes !== undefined && (
+          <ActivityScheduleDates schedule={schedule} compact />
+          {schedule.mode !== 'allDay' && schedule.durationMinutes !== undefined && (
             <div className="flex flex-col gap-1.5 sm:col-span-2">
               <dt className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <ClockIcon

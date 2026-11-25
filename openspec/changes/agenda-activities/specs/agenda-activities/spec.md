@@ -31,14 +31,19 @@ Persisted status MUST be one of `scheduled`, `full`, or `cancelled`. Level,
 when present, MUST be one of `beginner`, `intermediate`, `advanced`, or `any`.
 Studio MUST show their labels in Catalan and MUST NOT permit arbitrary values.
 
-Completion MUST be derived from `now >= endDate`, else start plus duration,
-else the next Madrid day. It MUST NOT require database updates. Display status
+For a confirmed schedule, completion MUST use the explicit end instant or the
+confirmed start plus duration. Without a known end instant, the activity MUST
+remain active throughout its last stated Madrid calendar day. Display status
 MUST preserve cancelled; otherwise completed activities display finished.
 Archive placement and registration eligibility MUST also be computed, not stored.
-Cards MUST show startDate/time and optional endDate/time, even on the same day,
-using ca-ES, a 24-hour clock and Europe/Madrid. Current dates are datetime values.
-Inici, optional Fi and optional Durada MUST occupy separate stacks; each date
-stack MUST place the time on a separate line from the date.
+Studio MUST default new activities to “Hora pendent de confirmar” and offer
+“Amb horari” and “Tot el dia”. A start date is required for every mode.
+Confirmed schedules require a start time and may have an end date and time.
+Existing timestamps without a mode are confirmed, including midnight.
+Cards and details MUST show the same Catalan date or inclusive date range.
+Only confirmed times use the 24-hour Madrid clock. Pending and all-day entries
+show their caption in place of a time. Duration is optional except for all-day
+activities, where it is hidden. Pending duration does not determine an end instant.
 Card headers MUST retain the title left and type pill right.
 Card content MUST show location first, then intro clamped to three lines,
 then the schedule panel. Cards MUST NOT render the full description.

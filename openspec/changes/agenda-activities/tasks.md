@@ -340,6 +340,12 @@ content mutation, deployment or phase 5 work is included in this authorization.
 - [x] Use the surrounding text color and place a vertically aligned arrow at the start of each related link and the organizer link.
 - [x] User gate: the user approved the final link presentation and authorized the commit.
 
+## Activity schedule precision (2026-11-25)
+
+- [x] Support pending times, confirmed times and all-day activities in Studio, cards and details. Preserve existing timestamps as confirmed times.
+- [x] Use inclusive Madrid dates for date-only schedules, including ranges and daylight-saving transitions.
+- [x] User gate: the user authorized the commit after receiving the manual verification checklist.
+
 ## Phase 5: optional server-filtered browsing
 
 Highly recommended future improvement, explicitly requested for documentation

@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 
 import OptimizedImage from '@/components/OptimizedImage';
+import { ActivityScheduleDates } from '../../components/ActivityScheduleDates';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -402,17 +403,8 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
             </CardHeader>
             <CardContent className="flex flex-col gap-6">
               <dl className="grid gap-5">
-                <ScheduleDate
-                  label="Inici"
-                  date={schedule.startDate}
-                />
-                {schedule.endDate ? (
-                  <ScheduleDate
-                    label="Fi"
-                    date={schedule.endDate}
-                  />
-                ) : null}
-                {schedule.durationMinutes !== undefined ? (
+                <ActivityScheduleDates schedule={schedule} />
+                {schedule.mode !== 'allDay' && schedule.durationMinutes !== undefined ? (
                   <DetailField
                     label="Durada"
                     icon={ClockIcon}

@@ -20,10 +20,14 @@ export type ActivityLevel =
   | 'any';
 
 export interface ActivitySchedule {
+  mode?: ScheduleMode;
+  endDateOnly?: boolean;
   startDate: Date;
   endDate?: Date;
   durationMinutes?: number;
 }
+
+export type ScheduleMode = 'pending' | 'timed' | 'allDay';
 
 export interface ActivityLocation {
   name: string;

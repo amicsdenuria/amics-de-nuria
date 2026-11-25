@@ -1,4 +1,7 @@
 import { defineArrayMember, defineField, defineType, getPublishedId } from 'sanity';
+import { madridDay, scheduleDateParts, scheduleInstant, scheduleLabels } from '../../../domain/activity/activity.schedule';
+import type { ScheduleMode } from '../../../domain/activity/activity.types';
+import { ScheduleDateInput, ScheduleModeInput } from './ScheduleDateInput';
 
 const validateBounds = (value: unknown, min: string, max: string) => {
   const bounds = value as Record<string, unknown> | undefined;
@@ -99,30 +102,51 @@ export const activity = defineType({
     }),
     defineField({
       name: 'schedule', title: 'Horari', type: 'object', group: 'schedule',
+      description: 'Les dates i les hores corresponen a l’hora local de Madrid.',
+      initialValue: { mode: 'pending' },
       validation: (Rule) => Rule.required().custom((value) => {
-        const schedule = value as { startDate?: string; endDate?: string; durationMinutes?: number } | undefined;
-        if (!schedule?.startDate || !schedule.endDate) return true;
-        const start = Date.parse(schedule.startDate), end = Date.parse(schedule.endDate);
-        if (!Number.isFinite(start) || !Number.isFinite(end)) return true;
-        if (end <= start) return 'La data de fi ha de ser posterior a l’inici.';
+        const schedule = value as { mode?: ScheduleMode; startDate?: string; endDate?: string; durationMinutes?: number } | undefined;
+        if (!schedule) return true;
+        const mode = schedule.mode ?? 'timed';
+        const start = scheduleInstant(schedule.startDate, mode);
+        if (!start) return 'Cal una data d’inici vàlida (hora de Madrid).';
+        if (mode === 'timed' && !scheduleDateParts(schedule.startDate).clock) return 'Cal indicar l’hora d’inici.';
+        if (!schedule.endDate) return true;
+        const end = scheduleInstant(schedule.endDate, mode);
+        if (!end) return 'Cal una data de fi vàlida (hora de Madrid).';
+        if (mode !== 'timed' || !scheduleDateParts(schedule.endDate).clock) {
+          if (madridDay(end) < madridDay(start)) return 'La data de fi no pot ser anterior a l’inici.';
+          if (mode === 'timed' && Number.isFinite(schedule.durationMinutes)) {
+            const derivedEnd = new Date(start.getTime() + schedule.durationMinutes! * 60000);
+            return Number.isFinite(derivedEnd.getTime()) && madridDay(derivedEnd) === madridDay(end) ||
+              'La durada ha de coincidir amb la data de fi.';
+          }
+          return true;
+        }
+        if (end <= start) return 'La fi ha de ser posterior a l’inici.';
         return schedule.durationMinutes === undefined ||
-          Math.abs((end - start) / 60_000 - schedule.durationMinutes) < 0.000001 ||
+          Math.abs((end.getTime() - start.getTime()) / 60_000 - schedule.durationMinutes) < 0.000001 ||
           'La durada ha de coincidir amb la diferència entre inici i fi.';
       }),
       fields: [
         defineField({
-          name: 'startDate', title: 'Inici', type: 'datetime',
-          validation: (Rule) => Rule.required().custom((value) =>
-            value && Number.isFinite(Date.parse(value)) ? true : 'Cal una data d’inici vàlida.'),
+          name: 'mode', title: 'Tipus d’horari', type: 'string',
+          components: { input: ScheduleModeInput },
+          options: { layout: 'radio', list: Object.entries(scheduleLabels).map(([value, title]) => ({ value, title })) },
         }),
         defineField({
-          name: 'endDate', title: 'Fi (opcional)', type: 'datetime',
-          validation: (Rule) => Rule.custom((value) =>
-            value === undefined || Number.isFinite(Date.parse(value)) || 'Cal una data de fi vàlida.'),
+          name: 'startDate', title: 'Inici', type: 'string', components: { input: ScheduleDateInput },
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'endDate', title: 'Fi (opcional)', type: 'string', components: { input: ScheduleDateInput },
         }),
         defineField({
           name: 'durationMinutes', title: 'Durada (minuts, opcional)', type: 'number',
-          validation: (Rule) => Rule.min(1).integer().error('La durada ha de ser un nombre enter positiu.'),
+          hidden: ({ parent }) => parent?.mode === 'allDay',
+          validation: (Rule) => Rule.custom((value, context) =>
+            (context.parent as { mode?: ScheduleMode } | undefined)?.mode === 'allDay' || value === undefined ||
+            (Number.isInteger(value) && value > 0) || 'La durada ha de ser un nombre enter positiu.'),
         }),
       ],
     }),
@@ -237,11 +261,14 @@ export const activity = defineType({
     { title: 'Títol', name: 'titleAsc', by: [{ field: 'title', direction: 'asc' }] },
   ],
   preview: {
-    select: { title: 'title', start: 'schedule.startDate', status: 'status', type: 'type.name', media: 'content.mainImage' },
-    prepare({ title, start, status, type, media }) {
-      const date = start && Number.isFinite(Date.parse(start))
-        ? new Date(start).toLocaleString('ca-ES', { timeZone: 'Europe/Madrid', dateStyle: 'short', timeStyle: 'short' }) : undefined;
-      return { title, media, subtitle: [date, statuses.find((item) => item.value === status)?.title, type].filter(Boolean).join(' · ') };
+    select: { title: 'title', start: 'schedule.startDate', mode: 'schedule.mode', status: 'status', type: 'type.name', media: 'content.mainImage' },
+    prepare({ title, start, mode: storedMode, status, type, media }) {
+      const mode: ScheduleMode = storedMode ?? 'timed';
+      const date = scheduleInstant(start, mode)?.toLocaleString('ca-ES', {
+        timeZone: 'Europe/Madrid', dateStyle: 'short', timeStyle: mode === 'timed' && scheduleDateParts(start).clock ? 'short' : undefined,
+      });
+      const timing = mode === 'timed' ? undefined : scheduleLabels[mode];
+      return { title, media, subtitle: [date, timing, statuses.find((item) => item.value === status)?.title, type].filter(Boolean).join(' · ') };
     },
   },
 });

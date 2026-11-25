@@ -6,7 +6,7 @@ export type ActivityBrowserItem = Pick<DomainActivity,
   'id' | 'slug' | 'title' | 'intro' | 'description' | 'type' | 'status' | 'location' | 'organizer' | 'participants' | 'price'
 > & {
   content?: Pick<ActivityContent, 'mainImage'>;
-  schedule: { startDate: string; endDate?: string; durationMinutes?: number };
+  schedule: Omit<DomainActivity['schedule'], 'startDate' | 'endDate'> & { startDate: string; endDate?: string };
   period: Exclude<ActivityPeriod, 'all'>;
   displayStatus: ActivityDisplayStatus;
 };
@@ -26,6 +26,7 @@ export function toActivityBrowserItems(activities: DomainActivity[], now: Date):
     participants: { maxParticipants: activity.participants.maxParticipants }, price: activity.price,
     content: activity.content?.mainImage ? { mainImage: activity.content.mainImage } : undefined,
     schedule: {
+      mode: activity.schedule.mode, endDateOnly: activity.schedule.endDateOnly,
       startDate: activity.schedule.startDate.toISOString(),
       endDate: activity.schedule.endDate?.toISOString(), durationMinutes: activity.schedule.durationMinutes,
     },

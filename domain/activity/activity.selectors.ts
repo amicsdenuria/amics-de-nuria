@@ -1,5 +1,5 @@
 import type { ActivityDisplayStatus, DomainActivity } from './activity.types';
-import { ACTIVITY_TIME_ZONE } from './activity.constants';
+import { madridDay } from './activity.schedule';
 
 export interface AgendaActivitySelection {
   nextActivity: DomainActivity | null;
@@ -24,27 +24,18 @@ const byStartDateDescending = (
   second.schedule.startDate.getTime() - first.schedule.startDate.getTime() ||
   byIdAscending(first, second);
 
-const dayFormatter = new Intl.DateTimeFormat('en', {
-  timeZone: ACTIVITY_TIME_ZONE,
-  year: 'numeric', month: '2-digit', day: '2-digit',
-});
-const dayKey = (date: Date): string => {
-  const parts = Object.fromEntries(
-    dayFormatter.formatToParts(date).map(({ type, value }) => [type, value]),
-  );
-  return `${parts.year}-${parts.month}-${parts.day}`;
-};
-
 export const getActivityEndDate = (activity: DomainActivity): Date | null => {
   const { startDate, endDate, durationMinutes } = activity.schedule;
-  if (endDate && Number.isFinite(endDate.getTime())) return endDate;
+  if (activity.schedule.mode === 'pending' || activity.schedule.mode === 'allDay') return null;
+  if (!activity.schedule.endDateOnly && endDate && Number.isFinite(endDate.getTime())) return endDate;
   if (durationMinutes === undefined || !Number.isFinite(durationMinutes) || durationMinutes < 0) return null;
   const end = new Date(startDate.getTime() + durationMinutes * 60_000);
-  return Number.isFinite(end.getTime()) ? end : null;
+  if (!Number.isFinite(end.getTime()) || (endDate && madridDay(end) !== madridDay(endDate))) return null;
+  return end;
 };
 
 export const isActivityArchived = (activity: DomainActivity, now: Date): boolean =>
-  dayKey(getActivityEndDate(activity) ?? activity.schedule.startDate) < dayKey(now);
+  madridDay(getActivityEndDate(activity) ?? activity.schedule.endDate ?? activity.schedule.startDate) < madridDay(now);
 
 export const isActivityFinished = (activity: DomainActivity, now: Date): boolean => {
   const end = getActivityEndDate(activity);

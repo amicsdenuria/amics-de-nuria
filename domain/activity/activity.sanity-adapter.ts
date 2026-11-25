@@ -1,5 +1,6 @@
 import type { ActivitiesQueryResult, ActivityBySlugQueryResult } from '@/sanity.types';
 import type { DomainImage } from '@/domain/shared/image.types';
+import { madridDay, scheduleDateParts, scheduleInstant } from './activity.schedule';
 import type { ActivityLevel, ActivityStatus, DomainActivity } from './activity.types';
 
 type SanityActivity = ActivitiesQueryResult[number] | ActivityBySlugQueryResult;
@@ -70,8 +71,9 @@ export const activityFromSanity = (value: SanityActivity): DomainActivity | null
   const invalid = Object.entries(required).filter(([, value]) => !value).map(([key]) => key);
   const id = required._id;
   if (id && (!/^[a-z\d_.-]+$/i.test(id) || /^(drafts|versions)\./.test(id))) invalid.push('_id');
-  const startDate = date(schedule.startDate);
-  if (!startDate) invalid.push('schedule.startDate');
+  const mode = schedule.mode === 'allDay' || schedule.mode === 'pending' ? schedule.mode : 'timed';
+  const startDate = scheduleInstant(schedule.startDate, mode);
+  if (!startDate || (mode === 'timed' && !scheduleDateParts(text(schedule.startDate)).clock)) invalid.push('schedule.startDate');
   if (!['scheduled', 'full', 'cancelled'].includes(data.status as string)) invalid.push('status');
   if (typeof location.isOnline !== 'boolean') invalid.push('location.isOnline');
   if (typeof price.isFree !== 'boolean') invalid.push('price.isFree');
@@ -80,10 +82,11 @@ export const activityFromSanity = (value: SanityActivity): DomainActivity | null
     console.warn('[agenda] Rejected activity', { id: id ?? '(missing)', fields: invalid });
     return null;
   }
-  const end = date(schedule.endDate);
-  const endDate = end && end > startDate! ? end : undefined;
-  const duration = number(schedule.durationMinutes);
-  const durationMinutes = endDate && duration !== undefined &&
+  const end = scheduleInstant(schedule.endDate, mode);
+  const endDateOnly = mode !== 'timed' || !scheduleDateParts(text(schedule.endDate)).clock;
+  const endDate = end && (endDateOnly ? madridDay(end) >= madridDay(startDate!) : end > startDate!) ? end : undefined;
+  const duration = mode === 'allDay' ? undefined : number(schedule.durationMinutes);
+  const durationMinutes = endDate && !endDateOnly && duration !== undefined &&
     Math.abs((endDate.getTime() - startDate!.getTime()) / 60_000 - duration) > 0.001
     ? undefined : duration;
   const participants = object(data.participants);
@@ -112,7 +115,7 @@ export const activityFromSanity = (value: SanityActivity): DomainActivity | null
     type: { id: required['type._id']!, slug: required['type.slug']!, name: required['type.name']! },
     status: data.status as ActivityStatus,
     isSpiritActivity: data.isSpiritActivity === true,
-    schedule: { startDate: startDate!, endDate, durationMinutes },
+    schedule: { mode, startDate: startDate!, endDate, endDateOnly: !!endDate && endDateOnly, durationMinutes },
     location: {
       name: required['location.name']!, isOnline: location.isOnline as boolean,
       ...(location.isOnline ? {} : {
